@@ -1,0 +1,3 @@
+[submodule "ivoyager"]
+	path = ivoyager
+	url = https://github.com/charliewhitfield/ivoyager

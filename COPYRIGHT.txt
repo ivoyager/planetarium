@@ -1,0 +1,6 @@
+THIS FILE IS A PLACEHOLDER ONLY!
+
+For comprehensive copyright and licence information of files distributed
+in I, Voyager, see COPYRIGHT.txt in the "ivoyager" submodule repository at
+https://github.com/ivoyager/ivoyager, or in the "ivoyager" subdirectory
+of this software distribution.

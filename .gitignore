@@ -1,0 +1,7 @@
+# ignore:
+~*
+*.translation
+\.import/
+ivoyager_assets/
+export/
+export_presets.cfg
