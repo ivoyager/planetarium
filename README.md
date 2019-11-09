@@ -1,5 +1,4 @@
-# I, Voyager Project Template
-This file is a placeholder. You should replace it with your project README.md.
+# I, Voyager Planetarium
 
 Homepage: https://ivoyager.dev
 
