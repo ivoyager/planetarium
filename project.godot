@@ -422,13 +422,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="I Voyager Project Template"
+config/name="I Voyager Planetarium"
 run/main_scene="res://ivoyager/gui_admin/gui_top.tscn"
 boot_splash/image="res://ivoyager_assets/misc/pale_blue_dot.P36254.nasa_jpl-caltech.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 icon="res://ivoyager_assets/jupiter-icon-128.png"
 main_scene="res://ivoyager/ui_admin/gui_top.tscn"
-name="I Voyager Project Template"
+name="I Voyager Planetarium"
 
 [autoload]
 
