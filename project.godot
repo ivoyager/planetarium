@@ -39,11 +39,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/cached_items_popup.gd"
 }, {
-"base": "Label",
-"class": "CameraRange",
-"language": "GDScript",
-"path": "res://ivoyager/gui_widgets/camera_range.gd"
-}, {
 "base": "PopupPanel",
 "class": "CreditsPopup",
 "language": "GDScript",
@@ -63,6 +58,11 @@ _global_script_classes=[ {
 "class": "EnumGlobalizer",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/enum_globalizer.gd"
+}, {
+"base": "VBoxContainer",
+"class": "FOVBox",
+"language": "GDScript",
+"path": "res://ivoyager/gui_widgets/fov_box.gd"
 }, {
 "base": "Reference",
 "class": "FileHelper",
@@ -239,6 +239,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program_nodes/points_manager.gd"
 }, {
+"base": "Label",
+"class": "RangeLabel",
+"language": "GDScript",
+"path": "res://ivoyager/gui_widgets/range_label.gd"
+}, {
 "base": "Node",
 "class": "Registrar",
 "language": "GDScript",
@@ -344,6 +349,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program_nodes/tree_manager.gd"
 }, {
+"base": "HBoxContainer",
+"class": "ViewpointBox",
+"language": "GDScript",
+"path": "res://ivoyager/gui_widgets/viewpoint_box.gd"
+}, {
 "base": "Camera",
 "class": "VoyagerCamera",
 "language": "GDScript",
@@ -361,11 +371,11 @@ _global_script_class_icons={
 "BodyList": "",
 "CachedItemsManager": "",
 "CachedItemsPopup": "",
-"CameraRange": "",
 "CreditsPopup": "",
 "DateTime": "",
 "DraggablePanel": "",
 "EnumGlobalizer": "",
+"FOVBox": "",
 "FileHelper": "",
 "FontManager": "",
 "GUITop": "",
@@ -401,6 +411,7 @@ _global_script_class_icons={
 "OrbitBuilder": "",
 "PBDSplashScreen": "",
 "PointsManager": "",
+"RangeLabel": "",
 "Registrar": "",
 "SaveDialog": "",
 "SaverLoader": "",
@@ -422,6 +433,7 @@ _global_script_class_icons={
 "TimeControl": "",
 "Timekeeper": "",
 "TreeManager": "",
+"ViewpointBox": "",
 "VoyagerCamera": "",
 "VoyagerEnvironment": ""
 }
