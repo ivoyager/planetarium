@@ -1,20 +1,21 @@
-# Licensing information for files in the I, Voyager repositories.
+# Copyright and license information for 3rd party files in I, Voyager.
 # ==============================================================================
 #
 # The aim of this file is to document copyright and licence information for
-# every file distributed from repositores:
+# every 3rd party (or modified from 3rd party) file distributed in the following
+# repositores:
 #     https://github.com/ivoyager/ivoyager
 #     https://github.com/ivoyager/ivoyager_planetarium
 #     https://github.com/ivoyager/ivoyager_project_template
 # including binary and asset files distributed via repository "releases". In
 # typical code distributions, these files will be found in subdirectories
-# "ivoyager", "ivoyager_assets" (or "ivoyager_assets_mobile") and/or other
+# "ivoyager", "ivoyager_assets" (or "ivoyager_assets_web") and/or other
 # subdirectories matching the pattern "ivoyager_*".
 #
 # This file uses globbing patterns to identify files based on their names or
 # directories within repositories and/or project software distributions.
 #
-# It is intended to become a machine readable file (format:
+# This file is intended to become a machine readable file (format:
 # https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/) but this
 # is not likely to be the case in its present form.
 #
