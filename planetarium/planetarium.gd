@@ -15,17 +15,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+#
+# TODO: A lot of new work and GUI changes in ivoyager_web is appropriate for
+# the Planetarium. The base GUI is kind of "gamey".
+
 
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.1"
+const EXTENSION_VERSION := "0.0.2+ dev"
 const EXTENSION_VERSION_YMD := 20191109
 
 
 func extension_init():
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	Global.connect("gui_entered_tree", self, "_on_gui_entered_tree")
+	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
 	Global.allow_time_reversal = true
 
