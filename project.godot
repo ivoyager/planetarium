@@ -90,9 +90,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/program_nodes/gregorian_timekeeper.gd"
 }, {
 "base": "Control",
-"class": "HUD2dControl",
+"class": "HUD2dSurface",
 "language": "GDScript",
-"path": "res://ivoyager/program_nodes/hud_2d_control.gd"
+"path": "res://ivoyager/gui_admin/hud_2d_surface.gd"
 }, {
 "base": "MeshInstance",
 "class": "HUDIcon",
@@ -386,7 +386,7 @@ _global_script_class_icons={
 "FontManager": "",
 "GUITop": "",
 "GregorianTimekeeper": "",
-"HUD2dControl": "",
+"HUD2dSurface": "",
 "HUDIcon": "",
 "HUDLabel": "",
 "HUDOrbit": "",
