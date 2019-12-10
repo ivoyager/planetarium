@@ -44,7 +44,7 @@ func extension_init() -> void:
 	_use_web_assets = _is_web_build and has_web_assets
 	print("is_web_build = ", _is_web_build, "; use_web_assets = ", _use_web_assets)
 	if USE_PLANETARIUM_GUI:
-		ProjectBuilder.gui_top_nodes._InGameGUI_ = PlanetariumGUI
+		ProjectBuilder.gui_top_nodes._ProjectGUI_ = PlanetariumGUI
 	ProjectBuilder.gui_top_nodes.erase("_LoadDialog_")
 	ProjectBuilder.gui_top_nodes.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
@@ -78,8 +78,7 @@ func _on_project_objects_instantiated() -> void:
 		_on_project_objects_instantiated_app()
 
 func _on_project_objects_instantiated_app() -> void:
-	Global.objects.InGameGUI.hide()
-	print(Global.objects.InGameGUI.visible)
+	Global.objects.ProjectGUI.hide()
 
 func _on_project_objects_instantiated_web() -> void:
 	var input_map_manager: InputMapManager = Global.objects.InputMapManager
