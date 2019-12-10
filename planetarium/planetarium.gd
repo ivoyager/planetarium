@@ -26,16 +26,19 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.2+ dev"
 const EXTENSION_VERSION_YMD := 20191109
 
+
+const USE_PLANETARIUM_GUI := true
 const FORCE_WEB_BUILD := false # for development; leave false for production
-var is_web_build := false
-var use_web_assets := false
+
+var _is_web_build := false
+var _use_web_assets := false
 
 func extension_init():
 	var has_base_assets := FileHelper.is_valid_dir("res://ivoyager_assets")
 	var has_web_assets := FileHelper.is_valid_dir("res://ivoyager_assets_web")
-	is_web_build = FORCE_WEB_BUILD or (!has_base_assets and has_web_assets)
-	use_web_assets = is_web_build and has_web_assets
-	print("is_web_build=", is_web_build, "; use_web_assets=", use_web_assets)
+	_is_web_build = FORCE_WEB_BUILD or (!has_base_assets and has_web_assets)
+	_use_web_assets = _is_web_build and has_web_assets
+	print("is_web_build=", _is_web_build, "; use_web_assets=", _use_web_assets)
 	
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	Global.connect("gui_entered_tree", self, "_on_gui_entered_tree")
