@@ -2,6 +2,6 @@
 ~*
 *.translation
 \.import/
-ivoyager_assets/
+ivoyager_assets*/
 export/
 export_presets.cfg
