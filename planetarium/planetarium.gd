@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-
+#
 # This extension can run either the standalone Planetarium "app" or web-based
 # planetarium. In production HTML5 export, the web version is triggered by
 # presence of ivoyager_assets_web and absence of ivoyager_assets. However, the
@@ -29,8 +29,8 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.2+ dev"
 const EXTENSION_VERSION_YMD := 20191109
 
-const USE_PLANETARIUM_GUI := true
-const FORCE_WEB_BUILD := true # for development; false in production
+const USE_PLANETARIUM_GUI := false
+const FORCE_WEB_BUILD := false # for dev; production uses assets detection
 
 var _is_web_build := false
 var _use_web_assets := false
