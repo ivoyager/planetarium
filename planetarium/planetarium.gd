@@ -15,7 +15,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-#
 # This extension can run either the standalone Planetarium "app" or web-based
 # planetarium. In production HTML5 export, the web version is triggered by
 # presence of ivoyager_assets_web and absence of ivoyager_assets. However, the
@@ -30,7 +29,7 @@ const EXTENSION_VERSION := "0.0.2+ dev"
 const EXTENSION_VERSION_YMD := 20191109
 
 const USE_PLANETARIUM_GUI := true
-const FORCE_WEB_BUILD := false # for dev; production uses assets detection
+const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
 
 var _is_web_build := false
 var _use_web_assets := false
@@ -55,6 +54,8 @@ func extension_init() -> void:
 		_extension_init_web()
 	else:
 		_extension_init_app()
+	if _use_web_assets:
+		Global.asset_replacement_dir = "ivoyager_assets_web"
 
 func _extension_init_app() -> void:
 	pass
@@ -65,7 +66,7 @@ func _extension_init_web() -> void:
 	ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
 	Global.use_threads = false
 	Global.skip_splash_screen = true
-	Global.asteroid_mag_cutoff_override = 13.0 # TODO: replace csv so we can have all NEOs
+	Global.asteroid_mag_cutoff_override = 14.0
 	Global.vertecies_per_orbit = 200
 
 func _on_project_objects_instantiated() -> void:
