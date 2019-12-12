@@ -62,14 +62,6 @@ Comment: I, Voyager Solar System data files
 Copyright: 2017-2019, Charlie Whitfield
 Licence: Apache-2.0
 
-Files: */text/wiki_text.csv
-Comment: Wikipedia text excerpts
- Attribution of text excerpts is in accordance with
- https://en.wikipedia.org/wiki/Wikipedia:Reusing_Wikipedia_content
- by including URL to source Wikipedia pages visible to the software user.
-Copyright: 2019, Wikipedia contributors
-Licence: CC-BY-3.0
-
 Files: */fonts/Roboto-Regular.ttf
 Comment: Roboto TrueType font
 Copyright: 2011, Google Inc.
