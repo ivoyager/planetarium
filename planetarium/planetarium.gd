@@ -29,7 +29,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.2+ dev"
 const EXTENSION_VERSION_YMD := 20191109
 
-const USE_PLANETARIUM_GUI := false
+const USE_PLANETARIUM_GUI := true
 const FORCE_WEB_BUILD := false # for dev; production uses assets detection
 
 var _is_web_build := false

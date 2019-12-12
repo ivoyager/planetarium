@@ -129,21 +129,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/hotkeys_popup.gd"
 }, {
-"base": "DraggablePanel",
-"class": "InfoPanel",
-"language": "GDScript",
-"path": "res://ivoyager/gui_game/info_panel.gd"
-}, {
-"base": "Control",
-"class": "InfoSubpanel",
-"language": "GDScript",
-"path": "res://ivoyager/gui_game/info_subpanel.gd"
-}, {
-"base": "InfoSubpanel",
-"class": "InfoSubpanelWiki",
-"language": "GDScript",
-"path": "res://ivoyager/gui_game/info_subpanel_wiki.gd"
-}, {
 "base": "Node",
 "class": "InputHandler",
 "language": "GDScript",
@@ -399,9 +384,6 @@ _global_script_class_icons={
 "HUDPoints": "",
 "HotkeyDialog": "",
 "HotkeysPopup": "",
-"InfoPanel": "",
-"InfoSubpanel": "",
-"InfoSubpanelWiki": "",
 "InputHandler": "",
 "InputMapManager": "",
 "LPointBuilder": "",
@@ -536,7 +518,7 @@ ui_down={
 [locale]
 
 test="en"
-translations=PoolStringArray( "res://ivoyager/data/text/wiki_text.en.translation", "res://ivoyager/data/text/entities_text.en.translation", "res://ivoyager/data/text/gui_text.en.translation", "res://ivoyager/data/text/long_text.en.translation" )
+translations=PoolStringArray( "res://ivoyager/data/text/entities_text.en.translation", "res://ivoyager/data/text/gui_text.en.translation", "res://ivoyager/data/text/long_text.en.translation" )
 
 [logging]
 
