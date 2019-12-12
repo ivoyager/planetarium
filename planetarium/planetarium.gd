@@ -25,7 +25,7 @@
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.2+ dev"
+const EXTENSION_VERSION := "0.0.3 development"
 const EXTENSION_VERSION_YMD := 20191109
 
 const USE_PLANETARIUM_GUI := true
@@ -36,7 +36,7 @@ var _use_web_assets := false
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
-	Global.connect("gui_entered_tree", self, "_on_gui_entered_tree")
+	Global.connect("about_to_add_environment", self, "_on_about_to_add_environment")
 	var has_base_assets := FileHelper.is_valid_dir("res://ivoyager_assets")
 	var has_web_assets := FileHelper.is_valid_dir("res://ivoyager_assets_web")
 	_is_web_build = FORCE_WEB_BUILD or (!has_base_assets and has_web_assets)
@@ -51,42 +51,32 @@ func extension_init() -> void:
 	Global.enable_save_load = false
 	Global.allow_time_reversal = true
 	if _is_web_build:
-		_extension_init_web()
-	else:
-		_extension_init_app()
+		ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
+		ProjectBuilder.gui_top_nodes.erase("_MainMenu_")
+		ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
+		Global.use_threads = false
+		Global.skip_splash_screen = true
+		Global.asteroid_mag_cutoff_override = 14.0
+		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
-
-func _extension_init_app() -> void:
-	pass
-
-func _extension_init_web() -> void:
-	ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
-	ProjectBuilder.gui_top_nodes.erase("_MainMenu_")
-	ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
-	Global.use_threads = false
-	Global.skip_splash_screen = true
-	Global.asteroid_mag_cutoff_override = 14.0
-	Global.vertecies_per_orbit = 200
 
 func _on_project_objects_instantiated() -> void:
 	var tree_manager: TreeManager = Global.objects.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
 	if _is_web_build:
-		_on_project_objects_instantiated_web()
+		var input_map_manager: InputMapManager = Global.objects.InputMapManager
+		# warning-ignore:unused_variable
+		var default_map := input_map_manager.defaults
+		var settings_manager: SettingsManager = Global.objects.SettingsManager
+		settings_manager.defaults.gui_size = SettingsManager.GUISizes.GUI_LARGE
 	else:
-		_on_project_objects_instantiated_app()
+		Global.objects.ProjectGUI.hide()
 
-func _on_project_objects_instantiated_app() -> void:
-	Global.objects.ProjectGUI.hide()
+func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
+	if _is_web_build:
+		# GLES2 lighting is very different than GLES3
+		environment.background_energy = 2.0
+		environment.ambient_light_energy = 0.15
 
-func _on_project_objects_instantiated_web() -> void:
-	var input_map_manager: InputMapManager = Global.objects.InputMapManager
-	# warning-ignore:unused_variable
-	var default_map := input_map_manager.defaults
-	var settings_manager: SettingsManager = Global.objects.SettingsManager
-	settings_manager.defaults.gui_size = SettingsManager.GUISizes.GUI_LARGE
-
-func _on_gui_entered_tree(_gui_panel: Control) -> void:
-	pass
