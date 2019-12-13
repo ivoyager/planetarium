@@ -60,6 +60,7 @@ func extension_init() -> void:
 		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
+		Global.asset_paths.starfield = "res://ivoyager_assets/starfields/starmap_8k.jpg"
 
 func _on_project_objects_instantiated() -> void:
 	var tree_manager: TreeManager = Global.objects.TreeManager
@@ -81,7 +82,7 @@ func _on_project_objects_instantiated() -> void:
 
 func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
 	if _is_web_build:
-		# GLES2 lighting is very different than GLES3
+		# GLES2 lighting is very different than GLES3!
 		environment.background_energy = 1.0
-		environment.ambient_light_energy = 0.15
+		environment.ambient_light_energy = 0.1
 
