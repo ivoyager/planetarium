@@ -70,13 +70,18 @@ func _on_project_objects_instantiated() -> void:
 		# warning-ignore:unused_variable
 		var default_map := input_map_manager.defaults
 		var settings_manager: SettingsManager = Global.objects.SettingsManager
-		settings_manager.defaults.gui_size = SettingsManager.GUISizes.GUI_LARGE
+		var default_settings := settings_manager.defaults
+		default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
+		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
+		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
+		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
+		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 	else:
 		Global.objects.ProjectGUI.hide()
 
 func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
 	if _is_web_build:
 		# GLES2 lighting is very different than GLES3
-		environment.background_energy = 2.0
+		environment.background_energy = 1.0
 		environment.ambient_light_energy = 0.15
 
