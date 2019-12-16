@@ -29,7 +29,7 @@ const EXTENSION_VERSION := "0.0.3 development"
 const EXTENSION_VERSION_YMD := 20191109
 
 const USE_PLANETARIUM_GUI := true
-const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
+const FORCE_WEB_BUILD := true # for dev only; production uses assets detection
 
 var _is_web_build := false
 var _use_web_assets := false
@@ -56,7 +56,8 @@ func extension_init() -> void:
 		ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
 		Global.use_threads = false
 		Global.skip_splash_screen = true
-		Global.asteroid_mag_cutoff_override = 14.0
+		Global.disable_exit = true
+		Global.disable_quit = true
 		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
@@ -72,7 +73,7 @@ func _on_project_objects_instantiated() -> void:
 		var default_map := input_map_manager.defaults
 		var settings_manager: SettingsManager = Global.objects.SettingsManager
 		var default_settings := settings_manager.defaults
-		default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
+#		default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
