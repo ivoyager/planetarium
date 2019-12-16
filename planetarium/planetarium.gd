@@ -29,7 +29,7 @@ const EXTENSION_VERSION := "0.0.3 development"
 const EXTENSION_VERSION_YMD := 20191109
 
 const USE_PLANETARIUM_GUI := true
-const FORCE_WEB_BUILD := true # for dev only; production uses assets detection
+const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
 
 var _is_web_build := false
 var _use_web_assets := false
