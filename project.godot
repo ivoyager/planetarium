@@ -50,11 +50,6 @@ _global_script_classes=[ {
 "path": "res://ivoyager/gui_game/draggable_panel.gd"
 }, {
 "base": "Reference",
-"class": "EnumGlobalizer",
-"language": "GDScript",
-"path": "res://ivoyager/program_refs/enum_globalizer.gd"
-}, {
-"base": "Reference",
 "class": "FileHelper",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/file_helper.gd"
@@ -323,7 +318,6 @@ _global_script_class_icons={
 "CachedItemsPopup": "",
 "CreditsPopup": "",
 "DraggablePanel": "",
-"EnumGlobalizer": "",
 "FileHelper": "",
 "FontManager": "",
 "GUITop": "",
