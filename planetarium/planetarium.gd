@@ -33,10 +33,12 @@ const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
 
 var _is_web_build := false
 var _use_web_assets := false
+var _loading_message: Label # used for web build only
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	Global.connect("about_to_add_environment", self, "_on_about_to_add_environment")
+	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
 	var has_base_assets := FileHelper.is_valid_dir("res://ivoyager_assets")
 	var has_web_assets := FileHelper.is_valid_dir("res://ivoyager_assets_web")
 	_is_web_build = FORCE_WEB_BUILD or (!has_base_assets and has_web_assets)
@@ -58,6 +60,7 @@ func extension_init() -> void:
 		Global.skip_splash_screen = true
 		Global.disable_exit = true
 		Global.disable_quit = true
+		Global.asteroid_mag_cutoff_override = 18.0 # limited by binaries
 		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
@@ -71,7 +74,6 @@ func _on_project_objects_instantiated() -> void:
 #	var default_map := input_map_manager.defaults
 	var hotkeys_popup: HotkeysPopup = Global.objects.HotkeysPopup
 	hotkeys_popup.remove_subpanel("GUI")
-	
 	if _is_web_build:
 		var settings_manager: SettingsManager = Global.objects.SettingsManager
 		var default_settings := settings_manager.defaults
@@ -80,6 +82,12 @@ func _on_project_objects_instantiated() -> void:
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
+		# loading message for web deployment
+		_loading_message = Label.new()
+		_loading_message.text = "Building the solar system and loading graphics.\n"
+		_loading_message.text += "We should be more than halfway there!"
+		Global.objects.GUITop.add_child(_loading_message)
+		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 	else:
 		Global.objects.ProjectGUI.hide()
 
@@ -89,3 +97,6 @@ func _on_about_to_add_environment(environment: Environment, _is_world_env: bool)
 		environment.background_energy = 1.0
 		environment.ambient_light_energy = 0.1
 
+func _on_about_to_start_simulator(_is_loaded_game: bool) -> void:
+	if _is_web_build:
+		_loading_message.queue_free()
