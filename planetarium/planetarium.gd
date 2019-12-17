@@ -67,10 +67,12 @@ func _on_project_objects_instantiated() -> void:
 	var tree_manager: TreeManager = Global.objects.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
+#	var input_map_manager: InputMapManager = Global.objects.InputMapManager
+#	var default_map := input_map_manager.defaults
+	var hotkeys_popup: HotkeysPopup = Global.objects.HotkeysPopup
+	hotkeys_popup.remove_subpanel("GUI")
+	
 	if _is_web_build:
-		var input_map_manager: InputMapManager = Global.objects.InputMapManager
-		# warning-ignore:unused_variable
-		var default_map := input_map_manager.defaults
 		var settings_manager: SettingsManager = Global.objects.SettingsManager
 		var default_settings := settings_manager.defaults
 #		default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
