@@ -52,15 +52,14 @@ func extension_init() -> void:
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
 	Global.allow_time_reversal = true
+	Global.skip_splash_screen = true
+	Global.disable_exit = true
+	ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
+	ProjectBuilder.gui_top_nodes.erase("_MainMenu_")
 	if _is_web_build:
-		ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
-		ProjectBuilder.gui_top_nodes.erase("_MainMenu_")
 		ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
 		Global.use_threads = false
-		Global.skip_splash_screen = true
-		Global.disable_exit = true
 		Global.disable_quit = true
-		Global.asteroid_mag_cutoff_override = 18.0 # limited by binaries
 		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
@@ -74,10 +73,11 @@ func _on_project_objects_instantiated() -> void:
 #	var default_map := input_map_manager.defaults
 	var hotkeys_popup: HotkeysPopup = Global.objects.HotkeysPopup
 	hotkeys_popup.remove_subpanel("GUI")
+	hotkeys_popup.remove_item("toggle_full_screen")
+	var settings_manager: SettingsManager = Global.objects.SettingsManager
+	var default_settings := settings_manager.defaults
+	default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
 	if _is_web_build:
-		var settings_manager: SettingsManager = Global.objects.SettingsManager
-		var default_settings := settings_manager.defaults
-#		default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
@@ -88,8 +88,6 @@ func _on_project_objects_instantiated() -> void:
 		_loading_message.text += "We should be more than halfway there!"
 		Global.objects.GUITop.add_child(_loading_message)
 		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
-	else:
-		Global.objects.ProjectGUI.hide()
 
 func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
 	if _is_web_build:
