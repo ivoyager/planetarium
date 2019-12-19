@@ -84,8 +84,9 @@ func _on_project_objects_instantiated() -> void:
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 		# loading message for web deployment
 		_loading_message = Label.new()
-		_loading_message.text = "Building the solar system and loading graphics.\n"
-		_loading_message.text += "We should be more than halfway there!"
+		_loading_message.align = Label.ALIGN_CENTER
+		_loading_message.text = "Building the solar system and loading graphics...\n"
+		_loading_message.text += "\nWe should be more than halfway there!"
 		Global.objects.GUITop.add_child(_loading_message)
 		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 
