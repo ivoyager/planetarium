@@ -69,10 +69,8 @@ func _on_project_objects_instantiated() -> void:
 	var tree_manager: TreeManager = Global.objects.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
-#	var input_map_manager: InputMapManager = Global.objects.InputMapManager
-#	var default_map := input_map_manager.defaults
 	var hotkeys_popup: HotkeysPopup = Global.objects.HotkeysPopup
-	hotkeys_popup.remove_subpanel("GUI")
+	hotkeys_popup.remove_subpanel("LABEL_GUI")
 	hotkeys_popup.remove_item("toggle_full_screen")
 	var settings_manager: SettingsManager = Global.objects.SettingsManager
 	var default_settings := settings_manager.defaults
@@ -85,14 +83,13 @@ func _on_project_objects_instantiated() -> void:
 		# loading message for web deployment
 		_loading_message = Label.new()
 		_loading_message.align = Label.ALIGN_CENTER
-		_loading_message.text = "Building the solar system and loading graphics...\n"
-		_loading_message.text += "\nWe should be more than halfway there!"
+		_loading_message.text = "TXT_WEB_PLANETARIUM_LOADING"
 		Global.objects.GUITop.add_child(_loading_message)
 		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 
 func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
 	if _is_web_build:
-		# GLES2 lighting is very different than GLES3!
+		# GLES2 lighting is different than GLES3!
 		environment.background_energy = 1.0
 		environment.ambient_light_energy = 0.1
 
