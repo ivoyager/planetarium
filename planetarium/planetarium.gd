@@ -25,8 +25,8 @@
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.3"
-const EXTENSION_VERSION_YMD := 20191218
+const EXTENSION_VERSION := "0.0.4"
+const EXTENSION_VERSION_YMD := 20191226
 
 const USE_PLANETARIUM_GUI := true
 const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
