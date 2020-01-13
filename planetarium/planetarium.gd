@@ -1,7 +1,7 @@
 # planetarium.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
-# Copyright (c) 2017-2019 Charlie Whitfield
+# Copyright (c) 2017-2020 Charlie Whitfield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.4"
-const EXTENSION_VERSION_YMD := 20191226
+const EXTENSION_VERSION := "dev 0.0.4+"
+const EXTENSION_VERSION_YMD := 20200113
 
 const USE_PLANETARIUM_GUI := true
 const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
@@ -55,7 +55,6 @@ func extension_init() -> void:
 	Global.skip_splash_screen = true
 	Global.disable_exit = true
 	ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
-	ProjectBuilder.gui_top_nodes.erase("_MainMenu_")
 	if _is_web_build:
 		ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
 		Global.use_threads = false
@@ -66,6 +65,11 @@ func extension_init() -> void:
 		Global.asset_paths.starfield = "res://ivoyager_assets/starfields/starmap_8k.jpg"
 
 func _on_project_objects_instantiated() -> void:
+	var main_menu: MainMenu = Global.objects.MainMenu
+	main_menu.planetarium_mode = true
+	var help_text := "Planetarium " + EXTENSION_VERSION + "\n" + tr("TXT_PLANETARIUM_HELP")
+	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
+			["rich_text_popup_requested", "LABEL_HELP", help_text])
 	var tree_manager: TreeManager = Global.objects.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
