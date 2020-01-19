@@ -73,9 +73,6 @@ func _on_project_objects_instantiated() -> void:
 	var tree_manager: TreeManager = Global.objects.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
-	var hotkeys_popup: HotkeysPopup = Global.objects.HotkeysPopup
-	hotkeys_popup.remove_subpanel("LABEL_GUI")
-	hotkeys_popup.remove_item("toggle_full_screen")
 	var settings_manager: SettingsManager = Global.objects.SettingsManager
 	var default_settings := settings_manager.defaults
 	default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
