@@ -402,7 +402,7 @@ gdscript/warnings/return_value_discarded=false
 [display]
 
 window/size/width=1800
-window/size/height=900
+window/size/height=945
 window/dpi/allow_hidpi=true
 
 [importer_defaults]
