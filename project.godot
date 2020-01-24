@@ -395,7 +395,6 @@ ProjectBuilder="*res://ivoyager/singletons/project_builder.gd"
 
 [debug]
 
-gdscript/warnings/unused_class_variable=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
 
