@@ -74,11 +74,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_game/game_gui.gd"
 }, {
-"base": "Timekeeper",
-"class": "GregorianTimekeeper",
-"language": "GDScript",
-"path": "res://ivoyager/program_nodes/gregorian_timekeeper.gd"
-}, {
 "base": "Control",
 "class": "HUD2dSurface",
 "language": "GDScript",
@@ -328,7 +323,6 @@ _global_script_class_icons={
 "GUIHelper": "",
 "GUITop": "",
 "GameGUI": "",
-"GregorianTimekeeper": "",
 "HUD2dSurface": "",
 "HUDIcon": "",
 "HUDLabel": "",
