@@ -16,7 +16,7 @@ I, Voyager is free to use and distribute under the permissive [Apache License 2.
 Help us grow the community by following us on [Twitter](https://twitter.com/IVoygr) and [Facebook](https://www.facebook.com/IVoygr/). Exchange ideas and give and receive help on our [Forum](https://ivoyager.dev/forum). Report bugs ([here](https://github.com/ivoyager/ivoyager-bugs/issues)) and astronomical inaccuracies ([here](https://github.com/ivoyager/ivoyager-astronomical-inaccuracies/issues)). Contribute to code via pull requests at our repositories: https://github.com/ivoyager.
 
 ### How can I support this effort financially?
-Please visit our [GitHub Sponsors page!](https://github.com/sponsors/charliewhitfield) **GitHub will match your contributions dollar for dollar throughout 2020!** Become a Mercury Patron for $2/month! Or, if you are a company, please consider sponsoring us as a Saturn or Jupiter Patron. Goal #1: Make I, Voyager into a non-profit entity. This will shield us from tax liability, allow us to apply for grants and secure the organization's existence into the future.
+Please visit our [GitHub Sponsors page!](https://github.com/sponsors/charliewhitfield) **GitHub will match your contributions dollar for dollar throughout 2020!** Become a Mercury Patron for $2 per month! Or, if you are a company, please consider sponsoring us as a Saturn or Jupiter Patron. Goal #1: Make I, Voyager into a non-profit entity. This will shield us from tax liability, allow us to apply for grants and secure the organization's existence into the future.
 
 ### Where did I, Voyager come from?
 Creator and lead programmer Charlie Whitfield stumbled into the Godot Engine in November, 2017. By December there were TestCubes orbiting bigger TestCubes orbiting one really big TestCube*. The name "I, Voyager" was inspired by **[Pale Blue Dot](https://www.planetary.org/explore/space-topics/earth/pale-blue-dot.html)**, an image of Earth taken by Voyager 1 from 6.4 billion kilometers away. The name is a play on "Voyager 1" and in honor of the Voyager Program. I, Voyager became an open-source project on Carl Sagan's birthday, November 9, 2019.
@@ -41,7 +41,7 @@ Jupiter and the four Galilean moons – Io, Europa, Ganymede and Callisto – em
 Saturn's rings and its close-orbiting moons.
 
 ![](https://ivoyager.dev/wp-content/uploads/2020/01/uranus-moons-ivoyager.jpg)
-Uranus' moons are an interesting cast of characters. The planet's 98° axial tilt puts the inner solar system almost directly to the south in this image.
+Uranus' moons are an interesting cast of characters (literally). The planet's 98° axial tilt puts the inner solar system almost directly to the south in this image.
 
 ![](https://ivoyager.dev/wp-content/uploads/2020/01/solar-system-pluto-flyby-ivoyager.jpg)
 Here's the solar system on July 14, 2015, the day of New Horizon's flyby of the dwarf planet Pluto (♇). Not coincidentally, Pluto was near the plane of the ecliptic at this time.
@@ -50,10 +50,10 @@ Here's the solar system on July 14, 2015, the day of New Horizon's flyby of the 
 Pluto and its moon Charon to scale. Both are tidally locked so their facing sides never change. (Um... I'm not sure we have the facing sides correct. If anyone can help with that, it would be most appreciated!)
 
 ![](https://ivoyager.dev/wp-content/uploads/2020/01/asteroids-ivoyager-1.jpg)
- Jupiter (♃) is the shepherd of the solar system. Shown here are 64,738 asteroids, the vast majority in the  Main Belt (the ring inside Jupiter’s orbit) but quite a few in the two Trojan groups (the “lobes” 60° ahead of and 60° behind Jupiter). The Hildas are also evident in this image. I, Voyager has orbital data for >600,000 asteroids (numbered and multiposition) but can run with a reduced set filtered by magnitude.
+ Jupiter (♃) is the shepherd of the solar system. Shown here are 64,738 asteroids, the vast majority in the  Main Belt (the ring inside Jupiter’s orbit) but quite a few in the two Trojan groups (the "lobes" 60° ahead of and 60° behind Jupiter). The Hildas are also evident in this image. I, Voyager has orbital data for >600,000 asteroids (numbered and multiposition) but can run with a reduced set filtered by magnitude.
  
 ![](https://ivoyager.dev/wp-content/uploads/2020/01/asteroids-ivoyager-2.jpg)
-Asteroids viewed from the side. We use the GPU to calculate asteroid positions (each asteroid is a shader vertex that knows its own orbital parameters).
+Asteroids viewed from the side. We use the GPU to calculate asteroid positions; each asteroid is a shader vertex that knows its own orbital parameters.
 
 ![](https://ivoyager.dev/wp-content/uploads/2020/01/ivoyager-planetarium-gui.jpg)
 The Planetarium has an easy-to-use interface that is mostly hidden during use; individual elements show when the mouse moves to the relevant screen zone.
