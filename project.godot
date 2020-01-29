@@ -398,12 +398,12 @@ _global_script_class_icons={
 
 [application]
 
-config/name="I Voyager Planetarium"
+config/name="I Voyager Planetarium (Web)"
 run/main_scene="res://ivoyager/tree_nodes/universe.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 icon="res://jupiter-icon-128.png"
 main_scene="res://ivoyager/tree_nodes/universe.tscn"
-name="I Voyager Planetarium"
+name="I Voyager Planetarium (Web)"
 
 [autoload]
 
@@ -492,4 +492,5 @@ motion_fix_enabled=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_clear_color=Color( 0, 0, 0, 1 )
