@@ -40,8 +40,8 @@ Comment: Godot Engine
  Godot Engine executables are distributed in repository "releases".
  A list of Godot Engine contributors is at:
  https://github.com/godotengine/godot/blob/master/AUTHORS.md.
-Copyright: 2007-2019, Juan Linietsky, Ariel Manzur.
- 2014-2019, Godot Engine contributors.
+Copyright: 2007-2020, Juan Linietsky, Ariel Manzur.
+ 2014-2020, Godot Engine contributors.
 License: Expat
 
 Files: *.gd
@@ -49,7 +49,7 @@ Files: *.gd
  *.shader
 Comment: I, Voyager code files
  Code files were generated using the Godot Engine editor.
-Copyright: 2017-2019, Charlie Whitfield
+Copyright: 2017-2020, Charlie Whitfield
 Licence: Apache-2.0
 
 Files: */solar_system/*.csv
@@ -59,7 +59,7 @@ Comment: I, Voyager Solar System data files
  and physical characteristics were primarily from JPL Solar System Dynamics
  (https://ssd.jpl.nasa.gov) and NASA PDS (https://pds.nasa.gov/). Asteroid
  binaries were generated from data files at Asteroids Dynamic Site (AstDyS-2; https://newton.spacedys.com/astdys2).
-Copyright: 2017-2019, Charlie Whitfield
+Copyright: 2017-2020, Charlie Whitfield
 Licence: Apache-2.0
 
 Files: */fonts/Roboto-Regular.ttf
