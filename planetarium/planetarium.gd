@@ -39,8 +39,8 @@ func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	Global.connect("about_to_add_environment", self, "_on_about_to_add_environment")
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
-	var has_base_assets := FileHelper.is_valid_dir("res://ivoyager_assets")
-	var has_web_assets := FileHelper.is_valid_dir("res://ivoyager_assets_web")
+	var has_base_assets := FileUtils.is_valid_dir("res://ivoyager_assets")
+	var has_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 	_is_web_build = FORCE_WEB_BUILD or (!has_base_assets and has_web_assets)
 	_use_web_assets = _is_web_build and has_web_assets
 	print("is_web_build = ", _is_web_build, "; use_web_assets = ", _use_web_assets)
@@ -65,15 +65,15 @@ func extension_init() -> void:
 		Global.asset_paths.starfield = "res://ivoyager_assets/starfields/starmap_8k.jpg"
 
 func _on_project_objects_instantiated() -> void:
-	var main_menu: MainMenu = Global.objects.MainMenu
+	var main_menu: MainMenu = Global.program.MainMenu
 	main_menu.planetarium_mode = true
 	var help_text := "Planetarium " + EXTENSION_VERSION + "\n" + tr("TXT_PLANETARIUM_HELP")
 	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
 			["rich_text_popup_requested", "LABEL_HELP", help_text])
-	var tree_manager: TreeManager = Global.objects.TreeManager
+	var tree_manager: TreeManager = Global.program.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
-	var settings_manager: SettingsManager = Global.objects.SettingsManager
+	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
 	if _is_web_build:
@@ -85,7 +85,7 @@ func _on_project_objects_instantiated() -> void:
 		_loading_message = Label.new()
 		_loading_message.align = Label.ALIGN_CENTER
 		_loading_message.text = "TXT_WEB_PLANETARIUM_LOADING"
-		Global.objects.GUITop.add_child(_loading_message)
+		Global.program.GUITop.add_child(_loading_message)
 		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 
 func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
