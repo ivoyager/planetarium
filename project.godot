@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/asteroid_group.gd"
 }, {
+"base": "Camera",
+"class": "BCamera",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/b_camera.gd"
+}, {
 "base": "Spatial",
 "class": "Body",
 "language": "GDScript",
@@ -124,15 +129,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/input_map_manager.gd"
 }, {
+"base": "Spatial",
+"class": "LPoint",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/l_point.gd"
+}, {
 "base": "Reference",
 "class": "LPointBuilder",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/lagrange_point_helper.gd"
-}, {
-"base": "Spatial",
-"class": "LagrangePoint",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/lagrange_point.gd"
 }, {
 "base": "FileDialog",
 "class": "LoadDialog",
@@ -280,14 +285,14 @@ _global_script_classes=[ {
 "path": "res://ivoyager/program_refs/system_builder.gd"
 }, {
 "base": "Reference",
+"class": "TableHelper",
+"language": "GDScript",
+"path": "res://ivoyager/program_refs/table_helper.gd"
+}, {
+"base": "Reference",
 "class": "TableReader",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/table_reader.gd"
-}, {
-"base": "Reference",
-"class": "TableUtils",
-"language": "GDScript",
-"path": "res://ivoyager/static/table_utils.gd"
 }, {
 "base": "MeshInstance",
 "class": "TempRings",
@@ -314,18 +319,14 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/static/unit_defs.gd"
 }, {
-"base": "Camera",
-"class": "VoyagerCamera",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/voyager_camera.gd"
-}, {
 "base": "WorldEnvironment",
-"class": "VoyagerEnvironment",
+"class": "VEnv",
 "language": "GDScript",
-"path": "res://ivoyager/tree_nodes/voyager_environment.gd"
+"path": "res://ivoyager/tree_nodes/v_env.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
+"BCamera": "",
 "Body": "",
 "BodyBuilder": "",
 "BodyList": "",
@@ -348,8 +349,8 @@ _global_script_class_icons={
 "HotkeysPopup": "",
 "InputHandler": "",
 "InputMapManager": "",
+"LPoint": "",
 "LPointBuilder": "",
-"LagrangePoint": "",
 "LoadDialog": "",
 "Main": "",
 "MainMenu": "",
@@ -379,15 +380,14 @@ _global_script_class_icons={
 "SettingsManager": "",
 "Starlight": "",
 "SystemBuilder": "",
+"TableHelper": "",
 "TableReader": "",
-"TableUtils": "",
 "TempRings": "",
 "ThemeManager": "",
 "Timekeeper": "",
 "TreeManager": "",
 "UnitDefs": "",
-"VoyagerCamera": "",
-"VoyagerEnvironment": ""
+"VEnv": ""
 }
 
 [application]
