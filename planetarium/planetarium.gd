@@ -51,6 +51,7 @@ func extension_init() -> void:
 	ProjectBuilder.program_references.erase("_SaverLoader_")
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
+	Global.allow_real_world_time = true
 	Global.allow_time_reversal = true
 	Global.skip_splash_screen = true
 	Global.disable_exit = true
@@ -70,6 +71,8 @@ func _on_project_objects_instantiated() -> void:
 	var help_text := "Planetarium " + EXTENSION_VERSION + "\n" + tr("TXT_PLANETARIUM_HELP")
 	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
 			["rich_text_popup_requested", "LABEL_HELP", help_text])
+	var timekeeper: Timekeeper = Global.program.Timekeeper
+	timekeeper.start_real_world_time = true
 	var tree_manager: TreeManager = Global.program.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
