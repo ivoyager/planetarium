@@ -323,6 +323,11 @@ _global_script_classes=[ {
 "class": "VEnv",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/v_env.gd"
+}, {
+"base": "Node",
+"class": "ViewportInput",
+"language": "GDScript",
+"path": "res://ivoyager/program_nodes/viewport_input.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
@@ -387,7 +392,8 @@ _global_script_class_icons={
 "Timekeeper": "",
 "TreeManager": "",
 "UnitDefs": "",
-"VEnv": ""
+"VEnv": "",
+"ViewportInput": ""
 }
 
 [application]
