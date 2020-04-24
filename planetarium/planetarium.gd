@@ -55,6 +55,7 @@ func extension_init() -> void:
 	Global.allow_time_reversal = true
 	Global.skip_splash_screen = true
 	Global.disable_exit = true
+	Global.enable_wiki = true
 	ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
 	if _is_web_build:
 		ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
@@ -76,8 +77,18 @@ func _on_project_objects_instantiated() -> void:
 	var tree_manager: TreeManager = Global.program.TreeManager
 	tree_manager.show_labels = true
 	tree_manager.show_orbits = true
+	var qty_strings: QtyStrings = Global.program.QtyStrings
+	qty_strings.exp_str = " x 10^"
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
+	# planetarium adds
+	default_settings.lock_navigator = true
+	default_settings.lock_time = true
+	default_settings.lock_selection = true
+	default_settings.lock_range = true
+	default_settings.lock_info = true
+	default_settings.lock_controls = false
+	# changes
 	default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
 	if _is_web_build:
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
