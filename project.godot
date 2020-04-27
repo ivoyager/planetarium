@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/b_camera.gd"
 }, {
+"base": "Node",
+"class": "BCameraInput",
+"language": "GDScript",
+"path": "res://ivoyager/program_nodes/b_camera_input.gd"
+}, {
 "base": "Spatial",
 "class": "Body",
 "language": "GDScript",
@@ -323,15 +328,11 @@ _global_script_classes=[ {
 "class": "VEnv",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/v_env.gd"
-}, {
-"base": "Node",
-"class": "ViewportInput",
-"language": "GDScript",
-"path": "res://ivoyager/program_nodes/viewport_input.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
 "BCamera": "",
+"BCameraInput": "",
 "Body": "",
 "BodyBuilder": "",
 "BodyList": "",
@@ -392,8 +393,7 @@ _global_script_class_icons={
 "Timekeeper": "",
 "TreeManager": "",
 "UnitDefs": "",
-"VEnv": "",
-"ViewportInput": ""
+"VEnv": ""
 }
 
 [application]
