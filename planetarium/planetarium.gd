@@ -45,9 +45,9 @@ func extension_init() -> void:
 	_use_web_assets = _is_web_build and has_web_assets
 	print("is_web_build = ", _is_web_build, "; use_web_assets = ", _use_web_assets)
 	if USE_PLANETARIUM_GUI:
-		ProjectBuilder.gui_top_nodes._ProjectGUI_ = PlanetariumGUI
-	ProjectBuilder.gui_top_nodes.erase("_LoadDialog_")
-	ProjectBuilder.gui_top_nodes.erase("_SaveDialog_")
+		ProjectBuilder.gui_nodes._ProjectGUI_ = PlanetariumGUI
+	ProjectBuilder.gui_nodes.erase("_LoadDialog_")
+	ProjectBuilder.gui_nodes.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
@@ -56,9 +56,9 @@ func extension_init() -> void:
 	Global.skip_splash_screen = true
 	Global.disable_exit = true
 	Global.enable_wiki = true
-	ProjectBuilder.gui_top_nodes.erase("_SplashScreen_")
+	ProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	if _is_web_build:
-		ProjectBuilder.gui_top_nodes.erase("_MainProgBar_")
+		ProjectBuilder.gui_nodes.erase("_MainProgBar_")
 		Global.use_threads = false
 		Global.disable_quit = true
 		Global.vertecies_per_orbit = 200
@@ -99,7 +99,7 @@ func _on_project_objects_instantiated() -> void:
 		_loading_message = Label.new()
 		_loading_message.align = Label.ALIGN_CENTER
 		_loading_message.text = "TXT_WEB_PLANETARIUM_LOADING"
-		Global.program.GUITop.add_child(_loading_message)
+		Global.program.universe.add_child(_loading_message)
 		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 
 func _on_about_to_add_environment(environment: Environment, _is_world_env: bool) -> void:
