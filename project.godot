@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://ivoyager/static/enums.gd"
 }, {
 "base": "Reference",
+"class": "EnvironmentBuilder",
+"language": "GDScript",
+"path": "res://ivoyager/program_refs/environment_builder.gd"
+}, {
+"base": "Reference",
 "class": "FileUtils",
 "language": "GDScript",
 "path": "res://ivoyager/static/file_utils.gd"
@@ -73,11 +78,6 @@ _global_script_classes=[ {
 "class": "FontManager",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/font_manager.gd"
-}, {
-"base": "Control",
-"class": "GUITop",
-"language": "GDScript",
-"path": "res://ivoyager/gui_admin/gui_top.gd"
 }, {
 "base": "Reference",
 "class": "GUIUtils",
@@ -95,16 +95,6 @@ _global_script_classes=[ {
 "path": "res://ivoyager/gui_admin/hud_2d_surface.gd"
 }, {
 "base": "MeshInstance",
-"class": "HUDIcon",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/hud_icon.gd"
-}, {
-"base": "Label",
-"class": "HUDLabel",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/hud_label.gd"
-}, {
-"base": "MeshInstance",
 "class": "HUDOrbit",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/hud_orbit.gd"
@@ -113,6 +103,11 @@ _global_script_classes=[ {
 "class": "HUDPoints",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/hud_points.gd"
+}, {
+"base": "Reference",
+"class": "HUDsBuilder",
+"language": "GDScript",
+"path": "res://ivoyager/program_refs/huds_builder.gd"
 }, {
 "base": "ConfirmationDialog",
 "class": "HotkeyDialog",
@@ -143,6 +138,11 @@ _global_script_classes=[ {
 "class": "LPointBuilder",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/lagrange_point_helper.gd"
+}, {
+"base": "Reference",
+"class": "LightBuilder",
+"language": "GDScript",
+"path": "res://ivoyager/program_refs/light_builder.gd"
 }, {
 "base": "FileDialog",
 "class": "LoadDialog",
@@ -179,10 +179,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program_nodes/minor_bodies_manager.gd"
 }, {
-"base": "Spatial",
-"class": "Model",
+"base": "Reference",
+"class": "ModelBuilder",
 "language": "GDScript",
-"path": "res://ivoyager/tree_nodes/model.gd"
+"path": "res://ivoyager/program_refs/model_builder.gd"
 }, {
 "base": "Reference",
 "class": "MouseClickSelector",
@@ -244,6 +244,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/rich_text_popup.gd"
 }, {
+"base": "Reference",
+"class": "RingsBuilder",
+"language": "GDScript",
+"path": "res://ivoyager/program_refs/rings_builder.gd"
+}, {
 "base": "FileDialog",
 "class": "SaveDialog",
 "language": "GDScript",
@@ -279,11 +284,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/settings_manager.gd"
 }, {
-"base": "OmniLight",
-"class": "Starlight",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/starlight.gd"
-}, {
 "base": "Reference",
 "class": "SystemBuilder",
 "language": "GDScript",
@@ -298,11 +298,6 @@ _global_script_classes=[ {
 "class": "TableReader",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/table_reader.gd"
-}, {
-"base": "MeshInstance",
-"class": "TempRings",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/temp_rings.gd"
 }, {
 "base": "Reference",
 "class": "ThemeManager",
@@ -323,11 +318,6 @@ _global_script_classes=[ {
 "class": "UnitDefs",
 "language": "GDScript",
 "path": "res://ivoyager/static/unit_defs.gd"
-}, {
-"base": "WorldEnvironment",
-"class": "VEnv",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/v_env.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
@@ -341,22 +331,22 @@ _global_script_class_icons={
 "CreditsPopup": "",
 "DraggablePanel": "",
 "Enums": "",
+"EnvironmentBuilder": "",
 "FileUtils": "",
 "FontManager": "",
-"GUITop": "",
 "GUIUtils": "",
 "GameGUI": "",
 "HUD2dSurface": "",
-"HUDIcon": "",
-"HUDLabel": "",
 "HUDOrbit": "",
 "HUDPoints": "",
+"HUDsBuilder": "",
 "HotkeyDialog": "",
 "HotkeysPopup": "",
 "InputHandler": "",
 "InputMapManager": "",
 "LPoint": "",
 "LPointBuilder": "",
+"LightBuilder": "",
 "LoadDialog": "",
 "Main": "",
 "MainMenu": "",
@@ -364,7 +354,7 @@ _global_script_class_icons={
 "Math": "",
 "MinorBodiesBuilder": "",
 "MinorBodiesManager": "",
-"Model": "",
+"ModelBuilder": "",
 "MouseClickSelector": "",
 "NavigationPanel": "",
 "OneUseConfirm": "",
@@ -377,6 +367,7 @@ _global_script_class_icons={
 "QtyStrings": "",
 "Registrar": "",
 "RichTextPopup": "",
+"RingsBuilder": "",
 "SaveDialog": "",
 "SaverLoader": "",
 "SelectionBuilder": "",
@@ -384,22 +375,19 @@ _global_script_class_icons={
 "SelectionManager": "",
 "SelectionPanel": "",
 "SettingsManager": "",
-"Starlight": "",
 "SystemBuilder": "",
 "TableHelper": "",
 "TableReader": "",
-"TempRings": "",
 "ThemeManager": "",
 "Timekeeper": "",
 "TreeManager": "",
-"UnitDefs": "",
-"VEnv": ""
+"UnitDefs": ""
 }
 
 [application]
 
 config/name="I Voyager Planetarium"
-run/main_scene="res://ivoyager/gui_admin/gui_top.tscn"
+run/main_scene="res://ivoyager/tree_nodes/universe.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 icon="res://jupiter-icon-128.png"
 main_scene="res://ivoyager/ui_admin/gui_top.tscn"
