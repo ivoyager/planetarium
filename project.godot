@@ -390,7 +390,7 @@ config/name="I Voyager Planetarium"
 run/main_scene="res://ivoyager/tree_nodes/universe.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 icon="res://jupiter-icon-128.png"
-main_scene="res://ivoyager/ui_admin/gui_top.tscn"
+main_scene="res://ivoyager/tree_nodes/universe.tscn"
 name="I Voyager Planetarium"
 
 [autoload]
