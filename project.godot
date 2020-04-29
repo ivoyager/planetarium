@@ -79,11 +79,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/font_manager.gd"
 }, {
-"base": "Control",
-"class": "GUITop",
-"language": "GDScript",
-"path": "res://ivoyager/gui_admin/gui_top.gd"
-}, {
 "base": "Reference",
 "class": "GUIUtils",
 "language": "GDScript",
@@ -98,16 +93,6 @@ _global_script_classes=[ {
 "class": "HUD2dSurface",
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/hud_2d_surface.gd"
-}, {
-"base": "MeshInstance",
-"class": "HUDIcon",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/hud_icon.gd"
-}, {
-"base": "Label",
-"class": "HUDLabel",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/hud_label.gd"
 }, {
 "base": "MeshInstance",
 "class": "HUDOrbit",
@@ -333,11 +318,6 @@ _global_script_classes=[ {
 "class": "UnitDefs",
 "language": "GDScript",
 "path": "res://ivoyager/static/unit_defs.gd"
-}, {
-"base": "WorldEnvironment",
-"class": "VEnv",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/v_env.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
@@ -354,12 +334,9 @@ _global_script_class_icons={
 "EnvironmentBuilder": "",
 "FileUtils": "",
 "FontManager": "",
-"GUITop": "",
 "GUIUtils": "",
 "GameGUI": "",
 "HUD2dSurface": "",
-"HUDIcon": "",
-"HUDLabel": "",
 "HUDOrbit": "",
 "HUDPoints": "",
 "HUDsBuilder": "",
@@ -404,8 +381,7 @@ _global_script_class_icons={
 "ThemeManager": "",
 "Timekeeper": "",
 "TreeManager": "",
-"UnitDefs": "",
-"VEnv": ""
+"UnitDefs": ""
 }
 
 [application]
