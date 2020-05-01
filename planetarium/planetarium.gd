@@ -81,6 +81,10 @@ func _on_project_objects_instantiated() -> void:
 	tree_manager.show_orbits = true
 	var qty_strings: QtyStrings = Global.program.QtyStrings
 	qty_strings.exp_str = " x 10^"
+	var theme_manager: ThemeManager = Global.program.ThemeManager
+	theme_manager.main_menu_font = "gui_main"
+	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
+	hotkeys_popup.remove_item("toggle_full_screen")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	# planetarium adds
