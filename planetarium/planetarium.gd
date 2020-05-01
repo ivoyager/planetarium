@@ -72,6 +72,8 @@ func _on_project_objects_instantiated() -> void:
 	var help_text := "Planetarium " + EXTENSION_VERSION + "\n" + tr("TXT_PLANETARIUM_HELP")
 	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
 			["rich_text_popup_requested", "LABEL_HELP", help_text])
+	var model_builder: ModelBuilder = Global.program.ModelBuilder
+	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper
 	timekeeper.start_real_world_time = true
 	var tree_manager: TreeManager = Global.program.TreeManager
