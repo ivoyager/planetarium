@@ -95,7 +95,7 @@ func _on_project_objects_instantiated() -> void:
 	default_settings.lock_info = true
 	default_settings.lock_controls = false
 	# changes
-	default_settings.gui_size = SettingsManager.GUISizes.GUI_LARGE
+	default_settings.gui_size = Enums.GUISizes.GUI_LARGE
 	if _is_web_build:
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
