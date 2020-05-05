@@ -230,6 +230,11 @@ _global_script_classes=[ {
 "path": "res://ivoyager/program_nodes/points_manager.gd"
 }, {
 "base": "Reference",
+"class": "Properties",
+"language": "GDScript",
+"path": "res://ivoyager/tree_refs/properties.gd"
+}, {
+"base": "Reference",
 "class": "QtyStrings",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/qty_strings.gd"
@@ -248,6 +253,11 @@ _global_script_classes=[ {
 "class": "RingsBuilder",
 "language": "GDScript",
 "path": "res://ivoyager/program_refs/rings_builder.gd"
+}, {
+"base": "Reference",
+"class": "Rotations",
+"language": "GDScript",
+"path": "res://ivoyager/tree_refs/rotations.gd"
 }, {
 "base": "FileDialog",
 "class": "SaveDialog",
@@ -364,10 +374,12 @@ _global_script_class_icons={
 "PBDSplashScreen": "",
 "PlanetariumGUI": "",
 "PointsManager": "",
+"Properties": "",
 "QtyStrings": "",
 "Registrar": "",
 "RichTextPopup": "",
 "RingsBuilder": "",
+"Rotations": "",
 "SaveDialog": "",
 "SaverLoader": "",
 "SelectionBuilder": "",
