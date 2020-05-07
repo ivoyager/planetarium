@@ -300,14 +300,14 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_builders/system_builder.gd"
 }, {
 "base": "Reference",
-"class": "TableHelper",
+"class": "TableImporter",
 "language": "GDScript",
-"path": "res://ivoyager/prog_refs/table_helper.gd"
+"path": "res://ivoyager/prog_builders/table_importer.gd"
 }, {
 "base": "Reference",
 "class": "TableReader",
 "language": "GDScript",
-"path": "res://ivoyager/prog_builders/table_reader.gd"
+"path": "res://ivoyager/prog_refs/table_reader.gd"
 }, {
 "base": "Reference",
 "class": "ThemeManager",
@@ -388,7 +388,7 @@ _global_script_class_icons={
 "SelectionPanel": "",
 "SettingsManager": "",
 "SystemBuilder": "",
-"TableHelper": "",
+"TableImporter": "",
 "TableReader": "",
 "ThemeManager": "",
 "Timekeeper": "",
