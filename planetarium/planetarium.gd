@@ -64,7 +64,6 @@ func extension_init() -> void:
 		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
-		Global.asset_paths.starfield = "res://ivoyager_assets/starfields/starmap_8k.jpg"
 
 func _on_project_objects_instantiated() -> void:
 	var main_menu: MainMenu = Global.program.MainMenu
