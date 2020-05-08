@@ -37,6 +37,7 @@ var _loading_message: Label # used for web build only
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
+	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
 	Global.connect("environment_created", self, "_on_environment_created")
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
 	var has_base_assets := FileUtils.is_valid_dir("res://ivoyager_assets")
@@ -87,22 +88,26 @@ func _on_project_objects_instantiated() -> void:
 	hotkeys_popup.remove_item("release_gui_focus")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
-	# planetarium adds
-	default_settings.lock_navigator = true
-	default_settings.lock_time = true
-	default_settings.lock_selection = true
-	default_settings.lock_range = true
-	default_settings.lock_info = true
-	default_settings.lock_controls = false
-	# changes
-	default_settings.gui_size = Enums.GUISizes.GUI_LARGE
+	default_settings.lock_navigator = true # add
+	default_settings.lock_time = true # add
+	default_settings.lock_selection = true # add
+	default_settings.lock_range = true # add
+	default_settings.lock_info = true # add
+	default_settings.lock_controls = false # add
+	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
+	var options_popup: OptionsPopup = Global.program.OptionsPopup
 	if _is_web_build:
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
+		options_popup.remove_item("starmap")
+
+func _on_project_inited() -> void:
+	if _is_web_build:
 		# loading message for web deployment
 		_loading_message = Label.new()
+		_loading_message.set("custom_fonts/font", Global.fonts.medium)
 		_loading_message.align = Label.ALIGN_CENTER
 		_loading_message.text = "TXT_WEB_PLANETARIUM_LOADING"
 		Global.program.universe.add_child(_loading_message)
