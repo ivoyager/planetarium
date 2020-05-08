@@ -197,7 +197,7 @@ _global_script_classes=[ {
 "base": "ConfirmationDialog",
 "class": "OneUseConfirm",
 "language": "GDScript",
-"path": "res://ivoyager/gui_widgets/one_use_confirm.gd"
+"path": "res://ivoyager/gui_admin/one_use_confirm.gd"
 }, {
 "base": "CachedItemsPopup",
 "class": "OptionsPopup",
