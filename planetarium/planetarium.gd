@@ -45,7 +45,8 @@ func extension_init() -> void:
 	_use_web_assets = _is_web_build and has_web_assets
 	print("is_web_build = ", _is_web_build, "; use_web_assets = ", _use_web_assets)
 	if USE_PLANETARIUM_GUI:
-		ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI
+		ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
+	ProjectBuilder.gui_controls._PlntrmHelpPopup_ = PlntrmHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
@@ -69,8 +70,8 @@ func _on_project_objects_instantiated() -> void:
 	var main_menu: MainMenu = Global.program.MainMenu
 	main_menu.planetarium_mode = true
 	var help_text := "Planetarium " + EXTENSION_VERSION + "\n" + tr("TXT_PLANETARIUM_HELP")
-	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
-			["rich_text_popup_requested", "LABEL_HELP", help_text])
+#	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
+#			["rich_text_popup_requested", "LABEL_HELP", help_text])
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper
