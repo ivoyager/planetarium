@@ -25,8 +25,8 @@
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.5"
-const EXTENSION_VERSION_YMD := 20200129
+const EXTENSION_VERSION := "0.0.6-alpha dev"
+const EXTENSION_VERSION_YMD := 20200508
 
 const USE_PLANETARIUM_GUI := true
 const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
@@ -45,7 +45,8 @@ func extension_init() -> void:
 	_use_web_assets = _is_web_build and has_web_assets
 	print("is_web_build = ", _is_web_build, "; use_web_assets = ", _use_web_assets)
 	if USE_PLANETARIUM_GUI:
-		ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI
+		ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
+	ProjectBuilder.gui_controls._PlntrmHelpPopup_ = PlntrmHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
@@ -68,9 +69,6 @@ func extension_init() -> void:
 func _on_project_objects_instantiated() -> void:
 	var main_menu: MainMenu = Global.program.MainMenu
 	main_menu.planetarium_mode = true
-	var help_text := "Planetarium " + EXTENSION_VERSION + "\n" + tr("TXT_PLANETARIUM_HELP")
-	main_menu.make_button("BUTTON_HELP", 1000, true, true, Global, "emit_signal",
-			["rich_text_popup_requested", "LABEL_HELP", help_text])
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper
@@ -84,6 +82,8 @@ func _on_project_objects_instantiated() -> void:
 	theme_manager.main_menu_font = "gui_main"
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
 	hotkeys_popup.remove_item("toggle_full_screen")
+	hotkeys_popup.remove_item("obtain_gui_focus")
+	hotkeys_popup.remove_item("release_gui_focus")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	# planetarium adds
