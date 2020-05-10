@@ -28,25 +28,22 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.6-alpha dev"
 const EXTENSION_VERSION_YMD := 20200508
 
-const USE_PLANETARIUM_GUI := true
-const FORCE_WEB_BUILD := false # for dev only; production uses assets detection
+const FORCE_WEB_BUILD := false # dev only
+const FORCE_WEB_ASSETS := false
 
-var _is_web_build := false
-var _use_web_assets := false
+var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
+var _has_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
+var _is_web_build := FORCE_WEB_BUILD or (_is_gles2 and _has_web_assets) # no threads, etc.
+var _use_web_assets := FORCE_WEB_ASSETS or (_is_gles2 and _has_web_assets)
 var _loading_message: Label # used for web build only
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
-	Global.connect("environment_created", self, "_on_environment_created")
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
-	var has_base_assets := FileUtils.is_valid_dir("res://ivoyager_assets")
-	var has_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
-	_is_web_build = FORCE_WEB_BUILD or (!has_base_assets and has_web_assets)
-	_use_web_assets = _is_web_build and has_web_assets
-	print("is_web_build = ", _is_web_build, "; use_web_assets = ", _use_web_assets)
-	if USE_PLANETARIUM_GUI:
-		ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
+	print("Web build: ", _is_web_build, "; web assets: = ", _use_web_assets,
+			"; GLES2: ", _is_gles2)
+	ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
 	ProjectBuilder.gui_controls._PlntrmHelpPopup_ = PlntrmHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
@@ -97,27 +94,21 @@ func _on_project_objects_instantiated() -> void:
 	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
 	if _is_web_build:
+		options_popup.remove_item("starmap")
+	if _is_gles2:
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
-		options_popup.remove_item("starmap")
 
 func _on_project_inited() -> void:
 	if _is_web_build:
-		# loading message for web deployment
 		_loading_message = Label.new()
 		_loading_message.set("custom_fonts/font", Global.fonts.medium)
 		_loading_message.align = Label.ALIGN_CENTER
 		_loading_message.text = "TXT_WEB_PLANETARIUM_LOADING"
 		Global.program.universe.add_child(_loading_message)
 		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
-
-func _on_environment_created(environment: Environment, _is_world_env: bool) -> void:
-	if _is_web_build:
-		# GLES2 lighting is different than GLES3!
-		environment.background_energy = 1.0
-		environment.ambient_light_energy = 0.1
 
 func _on_about_to_start_simulator(_is_loaded_game: bool) -> void:
 	if _is_web_build:
