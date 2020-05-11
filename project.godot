@@ -185,6 +185,11 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_builders/model_builder.gd"
 }, {
 "base": "Reference",
+"class": "ModelManager",
+"language": "GDScript",
+"path": "res://ivoyager/tree_refs/model_manager.gd"
+}, {
+"base": "Reference",
 "class": "MouseClickSelector",
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/mouse_click_selector.gd"
@@ -258,11 +263,6 @@ _global_script_classes=[ {
 "class": "RingsBuilder",
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/rings_builder.gd"
-}, {
-"base": "Reference",
-"class": "Rotations",
-"language": "GDScript",
-"path": "res://ivoyager/tree_refs/rotations.gd"
 }, {
 "base": "FileDialog",
 "class": "SaveDialog",
@@ -370,6 +370,7 @@ _global_script_class_icons={
 "MinorBodiesBuilder": "",
 "MinorBodiesManager": "",
 "ModelBuilder": "",
+"ModelManager": "",
 "MouseClickSelector": "",
 "NavigationPanel": "",
 "OneUseConfirm": "",
@@ -385,7 +386,6 @@ _global_script_class_icons={
 "Registrar": "",
 "RichTextPopup": "",
 "RingsBuilder": "",
-"Rotations": "",
 "SaveDialog": "",
 "SaverLoader": "",
 "SelectionBuilder": "",
