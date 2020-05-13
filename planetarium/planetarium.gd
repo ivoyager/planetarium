@@ -26,9 +26,11 @@ extends Reference
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.6-alpha dev"
-const EXTENSION_VERSION_YMD := 20200508
+const EXTENSION_VERSION_YMD := 20200512
 
-const FORCE_WEB_BUILD := false # dev only
+# dev settings
+const USE_THREADS := false
+const FORCE_WEB_BUILD := false
 const FORCE_WEB_ASSETS := false
 
 var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
@@ -48,6 +50,7 @@ func extension_init() -> void:
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
+	Global.use_threads = USE_THREADS
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
@@ -73,7 +76,7 @@ func _on_project_objects_instantiated() -> void:
 	var timekeeper: Timekeeper = Global.program.Timekeeper
 	timekeeper.start_real_world_time = true
 	var tree_manager: TreeManager = Global.program.TreeManager
-	tree_manager.show_labels = true
+	tree_manager.show_names = true
 	tree_manager.show_orbits = true
 	var qty_strings: QtyStrings = Global.program.QtyStrings
 	qty_strings.exp_str = " x 10^"
