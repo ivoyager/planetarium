@@ -25,8 +25,8 @@
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.6-alpha dev"
-const EXTENSION_VERSION_YMD := 20200512
+const EXTENSION_VERSION := "0.0.6-alpha"
+const EXTENSION_VERSION_YMD := 20200513
 
 # dev settings
 const USE_THREADS := false
