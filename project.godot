@@ -339,6 +339,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/timekeeper.gd"
 }, {
+"base": "Reference",
+"class": "TranslationImporter",
+"language": "GDScript",
+"path": "res://ivoyager/prog_builders/translation_importer.gd"
+}, {
 "base": "Node",
 "class": "TreeManager",
 "language": "GDScript",
@@ -416,6 +421,7 @@ _global_script_class_icons={
 "TableReader": "",
 "ThemeManager": "",
 "Timekeeper": "",
+"TranslationImporter": "",
 "TreeManager": "",
 "UnitDefs": ""
 }
