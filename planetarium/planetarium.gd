@@ -50,7 +50,6 @@ func extension_init() -> void:
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
-	Global.full_screen_on_system_tree_ready = true
 	Global.use_threads = USE_THREADS
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
