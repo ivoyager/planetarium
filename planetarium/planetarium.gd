@@ -63,7 +63,6 @@ func extension_init() -> void:
 	if _is_web_build:
 		ProjectBuilder.gui_controls.erase("_MainProgBar_")
 		Global.use_threads = false
-		Global.disable_quit = true
 		Global.vertecies_per_orbit = 200
 	if _use_web_assets:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
