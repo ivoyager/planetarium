@@ -1,0 +1,98 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://planetarium/gui_widgets/locks.gd" type="Script" id=1]
+
+
+
+
+[node name="Locks" type="VBoxContainer"]
+margin_top = 500.0
+margin_right = 200.0
+margin_bottom = 500.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Locks1" type="HBoxContainer" parent="."]
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="LkTimeL" type="Label" parent="Locks1"]
+margin_top = 5.0
+margin_right = 116.0
+margin_bottom = 19.0
+text = "LABEL_LOCK_TIME"
+
+[node name="LkTimeCkBx" type="CheckBox" parent="Locks1"]
+margin_left = 120.0
+margin_right = 144.0
+margin_bottom = 24.0
+
+[node name="LkSelectionL" type="Label" parent="Locks1"]
+margin_left = 148.0
+margin_top = 5.0
+margin_right = 302.0
+margin_bottom = 19.0
+text = "LABEL_LOCK_SELECTION"
+
+[node name="LkSelectionCkBx" type="CheckBox" parent="Locks1"]
+margin_left = 306.0
+margin_right = 330.0
+margin_bottom = 24.0
+
+[node name="Locks2" type="HBoxContainer" parent="."]
+margin_top = 28.0
+margin_right = 362.0
+margin_bottom = 52.0
+
+[node name="LkControls" type="Label" parent="Locks2"]
+margin_top = 5.0
+margin_right = 154.0
+margin_bottom = 19.0
+text = "LABEL_LOCK_CONTROLS"
+
+[node name="LkControlsCkBx" type="CheckBox" parent="Locks2"]
+margin_left = 158.0
+margin_right = 182.0
+margin_bottom = 24.0
+
+[node name="LkRangeL" type="Label" parent="Locks2"]
+margin_left = 186.0
+margin_top = 5.0
+margin_right = 334.0
+margin_bottom = 19.0
+text = "LABEL_LOCK_DISTANCE"
+
+[node name="LkRangeCkBx" type="CheckBox" parent="Locks2"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="Locks3" type="HBoxContainer" parent="."]
+margin_top = 56.0
+margin_right = 362.0
+margin_bottom = 80.0
+
+[node name="LkinfoL" type="Label" parent="Locks3"]
+margin_top = 5.0
+margin_right = 118.0
+margin_bottom = 19.0
+text = "LABEL_LOCK_INFO"
+
+[node name="LkInfoCkBx" type="CheckBox" parent="Locks3"]
+margin_left = 122.0
+margin_right = 146.0
+margin_bottom = 24.0
+
+[node name="LkNavL" type="Label" parent="Locks3"]
+margin_left = 150.0
+margin_top = 5.0
+margin_right = 262.0
+margin_bottom = 19.0
+text = "LABEL_LOCK_NAV"
+
+[node name="LkNavCkBx" type="CheckBox" parent="Locks3"]
+margin_left = 266.0
+margin_right = 290.0
+margin_bottom = 24.0

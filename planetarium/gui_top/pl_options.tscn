@@ -1,0 +1,271 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://planetarium/gui_top/pl_options.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" type="PackedScene" id=3]
+[ext_resource path="res://planetarium/gui_widgets/locks.tscn" type="PackedScene" id=4]
+
+[node name="PlOptions" type="VBoxContainer"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Orbits" type="HBoxContainer" parent="."]
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Orbits"]
+margin_top = 5.0
+margin_right = 334.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "LABEL_ORBITS"
+
+[node name="CheckBox" type="CheckBox" parent="Orbits"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="NamesSymbols" type="HBoxContainer" parent="."]
+margin_top = 28.0
+margin_right = 362.0
+margin_bottom = 52.0
+
+[node name="Label" type="Label" parent="NamesSymbols"]
+margin_top = 5.0
+margin_right = 306.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "LABEL_NAMES_SYMBOLS"
+
+[node name="CheckBox1" type="CheckBox" parent="NamesSymbols"]
+margin_left = 310.0
+margin_right = 334.0
+margin_bottom = 24.0
+
+[node name="CheckBox2" type="CheckBox" parent="NamesSymbols"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="AllAsteroids" type="HBoxContainer" parent="."]
+margin_top = 56.0
+margin_right = 362.0
+margin_bottom = 80.0
+
+[node name="RTLabel" type="RichTextLabel" parent="AllAsteroids"]
+margin_right = 334.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]All Asteroids[/url]"
+text = "All Asteroids"
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="AllAsteroids"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="NearEarth" type="HBoxContainer" parent="."]
+margin_top = 84.0
+margin_right = 362.0
+margin_bottom = 108.0
+
+[node name="Spacer" type="Control" parent="NearEarth"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="RTLabel" type="RichTextLabel" parent="NearEarth"]
+margin_left = 24.0
+margin_right = 334.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]Near-Earth[/url]"
+text = "Near-Earth"
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="NearEarth"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="MarsCrossers" type="HBoxContainer" parent="."]
+margin_top = 112.0
+margin_right = 362.0
+margin_bottom = 136.0
+
+[node name="Spacer" type="Control" parent="MarsCrossers"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="RTLabel" type="RichTextLabel" parent="MarsCrossers"]
+margin_left = 24.0
+margin_right = 334.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]Mars-Crossers[/url]"
+text = "Mars-Crossers"
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="MarsCrossers"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="MainBelt" type="HBoxContainer" parent="."]
+margin_top = 140.0
+margin_right = 362.0
+margin_bottom = 164.0
+
+[node name="Spacer" type="Control" parent="MainBelt"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="RTLabel" type="RichTextLabel" parent="MainBelt"]
+margin_left = 24.0
+margin_right = 334.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]Main Belt[/url]"
+text = "Main Belt"
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="MainBelt"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="JupiterTrojans" type="HBoxContainer" parent="."]
+margin_top = 168.0
+margin_right = 362.0
+margin_bottom = 192.0
+
+[node name="Spacer" type="Control" parent="JupiterTrojans"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="RTLabel" type="RichTextLabel" parent="JupiterTrojans"]
+margin_left = 24.0
+margin_right = 306.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]Jupiter Trojans[/url]"
+text = "Jupiter Trojans"
+scroll_active = false
+
+[node name="CheckBoxL4" type="CheckBox" parent="JupiterTrojans"]
+margin_left = 310.0
+margin_right = 334.0
+margin_bottom = 24.0
+
+[node name="CheckBoxL5" type="CheckBox" parent="JupiterTrojans"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="Centaurs" type="HBoxContainer" parent="."]
+margin_top = 196.0
+margin_right = 362.0
+margin_bottom = 220.0
+
+[node name="Spacer" type="Control" parent="Centaurs"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="RTLabel" type="RichTextLabel" parent="Centaurs"]
+margin_left = 24.0
+margin_right = 334.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]Centaurs[/url]"
+text = "Centaurs"
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="Centaurs"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="TransNeptunian" type="HBoxContainer" parent="."]
+margin_top = 224.0
+margin_right = 362.0
+margin_bottom = 248.0
+
+[node name="Spacer" type="Control" parent="TransNeptunian"]
+margin_right = 20.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="RTLabel" type="RichTextLabel" parent="TransNeptunian"]
+margin_left = 24.0
+margin_right = 334.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+bbcode_enabled = true
+bbcode_text = "[url]Trans-Neptunian[/url]"
+text = "Trans-Neptunian"
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="TransNeptunian"]
+margin_left = 338.0
+margin_right = 362.0
+margin_bottom = 24.0
+
+[node name="FocalLength" type="HBoxContainer" parent="."]
+margin_top = 252.0
+margin_right = 362.0
+margin_bottom = 272.0
+
+[node name="Label" type="Label" parent="FocalLength"]
+margin_top = 3.0
+margin_right = 267.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "LABEL_FOCAL_LENGTH"
+
+[node name="FocalLengthLabel" parent="FocalLength" instance=ExtResource( 2 )]
+margin_left = 271.0
+margin_top = 3.0
+margin_right = 317.0
+margin_bottom = 17.0
+
+[node name="FocalLengthButtons" parent="FocalLength" instance=ExtResource( 3 )]
+margin_left = 321.0
+margin_top = 0.0
+margin_right = 362.0
+margin_bottom = 20.0
+
+[node name="Locks" parent="." instance=ExtResource( 4 )]
+margin_top = 276.0
+margin_right = 362.0
+margin_bottom = 356.0
+
+[node name="FullScreen" type="HBoxContainer" parent="."]
+margin_top = 360.0
+margin_right = 362.0
+margin_bottom = 380.0
+
+[node name="Label" type="Label" parent="FullScreen"]
+margin_top = 3.0
+margin_right = 325.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "LABEL_FULL_SCREEN"
+
+[node name="Button" type="Button" parent="FullScreen"]
+margin_left = 329.0
+margin_right = 362.0
+margin_bottom = 20.0
+text = "ON"
