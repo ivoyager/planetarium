@@ -53,6 +53,8 @@ func _ready():
 	_change_mouse_vis_control(settings.lock_range, range_items)
 	_change_mouse_vis_control(settings.lock_info, info_items)
 	_change_mouse_vis_control(settings.lock_controls, control_items)
+	for gui in control_items:
+		gui.hide() # these are malformed at this time
 
 func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	# Show everything (whether locked or not) until user moves mouse

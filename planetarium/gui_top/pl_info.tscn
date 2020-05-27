@@ -18,7 +18,7 @@ __meta__ = {
 }
 
 [node name="TimeBox" type="HBoxContainer" parent="."]
-margin_right = 200.0
+margin_right = 583.0
 margin_bottom = 33.0
 rect_min_size = Vector2( 0, 33 )
 
@@ -30,18 +30,17 @@ rect_min_size = Vector2( 200, 0 )
 size_flags_vertical = 4
 
 [node name="TimeControl" parent="TimeBox" instance=ExtResource( 3 )]
-visible = false
 margin_left = 204.0
-margin_top = 5.0
-margin_right = 352.0
-margin_bottom = 25.0
+margin_top = 6.0
+margin_right = 583.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 2
 
 [node name="SelectionBox" type="HBoxContainer" parent="."]
 margin_top = 37.0
-margin_right = 200.0
+margin_right = 583.0
 margin_bottom = 67.0
 rect_min_size = Vector2( 0, 30 )
 
@@ -53,7 +52,6 @@ bbcode_text = ""
 text = ""
 
 [node name="ViewButtons" parent="SelectionBox" instance=ExtResource( 8 )]
-visible = false
 margin_left = 104.0
 margin_top = 5.0
 margin_right = 583.0
@@ -64,7 +62,7 @@ alignment = 2
 
 [node name="RangeLabel" parent="." instance=ExtResource( 5 )]
 margin_top = 71.0
-margin_right = 200.0
+margin_right = 583.0
 margin_bottom = 101.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_vertical = 8
@@ -73,13 +71,13 @@ valign = 1
 
 [node name="Spacer" type="Control" parent="."]
 margin_top = 105.0
-margin_right = 200.0
+margin_right = 583.0
 margin_bottom = 111.0
 rect_min_size = Vector2( 0, 6 )
 
 [node name="InfoScroll" type="ScrollContainer" parent="."]
 margin_top = 115.0
-margin_right = 200.0
+margin_right = 583.0
 margin_bottom = 500.0
 size_flags_vertical = 3
 scroll_horizontal_enabled = false

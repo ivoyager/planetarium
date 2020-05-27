@@ -20,31 +20,40 @@ extends VBoxContainer
 
 var _points_manager: PointsManager = Global.program.PointsManager
 onready var _tree_manager: TreeManager = Global.program.TreeManager
-onready var _orbits_checkbox: CheckBox = $Orbits/CheckBox
-onready var _names_checkbox: CheckBox = $NamesSymbols/CheckBox1
-onready var _symbols_checkbox: CheckBox = $NamesSymbols/CheckBox2
+onready var _scroll: ScrollContainer = $Scroll
+onready var _vbox: VBoxContainer = $Scroll/VBox
+onready var _fullscreen: HBoxContainer = $FullScreen
+onready var _orbits_checkbox: CheckBox = $Scroll/VBox/Orbits/CheckBox
+onready var _names_checkbox: CheckBox = $Scroll/VBox/NamesSymbols/CheckBox1
+onready var _symbols_checkbox: CheckBox = $Scroll/VBox/NamesSymbols/CheckBox2
 onready var _fullscreen_button: Button = $FullScreen/Button
 
 onready var _asteroid_checkboxes := {
-	all_asteroids = $AllAsteroids/CheckBox,
-	NE = $NearEarth/CheckBox,
-	MC = $MarsCrossers/CheckBox,
-	MB = $MainBelt/CheckBox,
-	JT4 = $JupiterTrojans/CheckBoxL4,
-	JT5 = $JupiterTrojans/CheckBoxL5,
-	CE = $Centaurs/CheckBox,
-	TN = $TransNeptunian/CheckBox
+	all_asteroids = $Scroll/VBox/AllAsteroids/CheckBox,
+	NE = $Scroll/VBox/NearEarth/CheckBox,
+	MC = $Scroll/VBox/MarsCrossers/CheckBox,
+	MB = $Scroll/VBox/MainBelt/CheckBox,
+	JT4 = $Scroll/VBox/JupiterTrojans/CheckBoxL4,
+	JT5 = $Scroll/VBox/JupiterTrojans/CheckBoxL5,
+	CE = $Scroll/VBox/Centaurs/CheckBox,
+	TN = $Scroll/VBox/TransNeptunian/CheckBox
 }
 
 onready var _asteroid_labels := {
-	LABEL_ALL_ASTEROIDS = $AllAsteroids/RTLabel,
-	LABEL_NEAR_EARTH = $NearEarth/RTLabel,
-	LABEL_MARS_CROSSERS = $MarsCrossers/RTLabel,
-	LABEL_MAIN_BELT = $MainBelt/RTLabel,
-	LABEL_JUPITER_TROJANS = $JupiterTrojans/RTLabel,
-	LABEL_CENTAURS = $Centaurs/RTLabel,
-	LABEL_TRANS_NEPTUNIAN = $TransNeptunian/RTLabel
+	LABEL_ALL_ASTEROIDS = $Scroll/VBox/AllAsteroids/RTLabel,
+	LABEL_NEAR_EARTH = $Scroll/VBox/NearEarth/RTLabel,
+	LABEL_MARS_CROSSERS = $Scroll/VBox/MarsCrossers/RTLabel,
+	LABEL_MAIN_BELT = $Scroll/VBox/MainBelt/RTLabel,
+	LABEL_JUPITER_TROJANS = $Scroll/VBox/JupiterTrojans/RTLabel,
+	LABEL_CENTAURS = $Scroll/VBox/Centaurs/RTLabel,
+	LABEL_TRANS_NEPTUNIAN = $Scroll/VBox/TransNeptunian/RTLabel
 }
+
+func get_content_height() -> float:
+	return _vbox.rect_size.y + _fullscreen.rect_size.y
+
+func set_height(height: float) -> void:
+	_scroll.rect_min_size.y = height - _fullscreen.rect_size.y
 
 func _ready() -> void:
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator", [], CONNECT_ONESHOT)
@@ -67,7 +76,7 @@ func _ready() -> void:
 	hide()
 
 func _on_about_to_start_simulator(_is_new_game: bool) -> void:
-	_resize_and_reposition()
+	_vbox.rect_size.x = 0.0
 	show()
 
 func _on_screen_resized() -> void:
@@ -131,8 +140,3 @@ func _on_meta_clicked(_meta: String, key: String) -> void:
 			wiki_page = "Trans-Neptunian_object"
 	if wiki_page:
 		OS.shell_open("https://en.wikipedia.org/wiki/" + wiki_page)
-
-func _resize_and_reposition() -> void:
-	set_anchors_and_margins_preset(PRESET_BOTTOM_RIGHT, PRESET_MODE_MINSIZE)
-	rect_position.x -= 15
-	rect_position.y -= 15
