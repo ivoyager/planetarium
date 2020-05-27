@@ -15,12 +15,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-# This extension can run either the standalone Planetarium "app" or web-based
-# planetarium. In production HTML5 export, the web version is triggered by
-# presence of ivoyager_assets_web and absence of ivoyager_assets. However, the
-# web version can also be forced by setting FORCE_WEB_BUILD = true.
+# This extension works in three different "platforms":
+#  1. The native app: Windows (or whatever) export w/ ivoyager_assets.
+#  2. Web deployment: GLES2; HTML5 export w/ ivoyager_assets_web; running from
+#     a web server.
+#  3. Electron app: GLES2, HTML5 export w/ ivoyager_assets; drop the exported 
+#     project into our "electron app" (github.com/ivoyager/electron_app) and
+#     run with npm start, or deploy that project with electron-forge. This
+#     integrates the planetarium with its own browser.
 #
-# For functional HTML5 export, you must set GLES2!
+# Note: In Godot 3.x, HTML5 export should use GLES2.
 
 extends Reference
 
@@ -30,23 +34,22 @@ const EXTENSION_VERSION_YMD := 20200519
 
 # dev settings
 const USE_THREADS := false
-const FORCE_WEB_BUILD := false
+const FORCE_WEB_BUILD := true
 const FORCE_WEB_ASSETS := false
 
 var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
 var _has_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 var _is_web_build := FORCE_WEB_BUILD or (_is_gles2 and _has_web_assets) # no threads, etc.
 var _use_web_assets := FORCE_WEB_ASSETS or (_is_gles2 and _has_web_assets)
-var _loading_message: Label # used for web build only
+var _is_html5: bool = OS.has_feature('JavaScript')
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
-	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
 	print("Planetarium extension initing...")
 	print("Web build: ", _is_web_build, "; web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
 	ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
-	ProjectBuilder.gui_controls._PlntrmHelpPopup_ = PlntrmHelpPopup # addition
+	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
@@ -104,14 +107,16 @@ func _on_project_objects_instantiated() -> void:
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 func _on_project_inited() -> void:
-	if _is_web_build:
-		_loading_message = Label.new()
-		_loading_message.set("custom_fonts/font", Global.fonts.medium)
-		_loading_message.align = Label.ALIGN_CENTER
-		_loading_message.text = "TXT_WEB_PLANETARIUM_LOADING"
-		Global.program.universe.add_child(_loading_message)
-		_loading_message.set_anchors_and_margins_preset(Control.PRESET_CENTER)
+	if _is_html5 or _is_web_build:
+		LoadingMessage.new()
 
-func _on_about_to_start_simulator(_is_loaded_game: bool) -> void:
-	if _is_web_build:
-		_loading_message.queue_free()
+
+class LoadingMessage extends Label:
+
+	func _init() -> void:
+		set("custom_fonts/font", Global.fonts.medium)
+		align = ALIGN_CENTER
+		text = "TXT_WEB_PLANETARIUM_LOADING"
+		Global.program.universe.add_child(self)
+		Global.connect("gui_refresh_requested", self, "queue_free")
+		set_anchors_and_margins_preset(PRESET_CENTER)

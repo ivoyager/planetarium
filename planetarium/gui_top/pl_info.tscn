@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://planetarium/gui_top/pl_info.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/date_time.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/time_control.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_widgets/selection_wiki.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ivoyager/gui_widgets/range_label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ivoyager/gui_widgets/selection_data.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_widgets/view_buttons.tscn" type="PackedScene" id=8]
+
+[node name="PlInfo" type="VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 0, 500 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeBox" type="HBoxContainer" parent="."]
+margin_right = 583.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 0, 33 )
+
+[node name="DateTime" parent="TimeBox" instance=ExtResource( 2 )]
+margin_top = 9.0
+margin_right = 200.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 4
+
+[node name="TimeControl" parent="TimeBox" instance=ExtResource( 3 )]
+margin_left = 204.0
+margin_top = 6.0
+margin_right = 583.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 2
+
+[node name="SelectionBox" type="HBoxContainer" parent="."]
+margin_top = 37.0
+margin_right = 583.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="SelectionWiki" parent="SelectionBox" instance=ExtResource( 4 )]
+margin_top = 0.0
+margin_right = 100.0
+margin_bottom = 30.0
+bbcode_text = ""
+text = ""
+
+[node name="ViewButtons" parent="SelectionBox" instance=ExtResource( 8 )]
+margin_left = 104.0
+margin_top = 5.0
+margin_right = 583.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 2
+
+[node name="RangeLabel" parent="." instance=ExtResource( 5 )]
+margin_top = 71.0
+margin_right = 583.0
+margin_bottom = 101.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_vertical = 8
+text = ""
+valign = 1
+
+[node name="Spacer" type="Control" parent="."]
+margin_top = 105.0
+margin_right = 583.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 0, 6 )
+
+[node name="InfoScroll" type="ScrollContainer" parent="."]
+margin_top = 115.0
+margin_right = 583.0
+margin_bottom = 500.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="SelectionData" parent="InfoScroll" instance=ExtResource( 6 )]
