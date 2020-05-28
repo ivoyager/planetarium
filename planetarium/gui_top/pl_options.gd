@@ -81,13 +81,19 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 
 func _on_screen_resized() -> void:
 	yield(get_tree(), "idle_frame")
-	_fullscreen_button.text = "BUTTON_OFF" if OS.window_fullscreen else "BUTTON_ON"
+	# OS.window_fullscreen gives the exact wrong result in electron_app. This
+	# seems like an Electron bug.
+	var is_fullscreen := OS.window_fullscreen
+	if Global.is_electron_app:
+		is_fullscreen = !is_fullscreen
+	_fullscreen_button.text = "BUTTON_SHRINK" if is_fullscreen else "BUTTON_EXPAND"
 
 func _change_fullscreen() -> void:
 	OS.window_fullscreen = !OS.window_fullscreen
 
 func _show_hide_orbits() -> void:
 	_tree_manager.set_show_orbits(_orbits_checkbox.pressed)
+	print("OS.window_fullscreen = ", OS.window_fullscreen) # debug Electron
 
 func _show_hide_names() -> void:
 	_tree_manager.set_show_names(_names_checkbox.pressed)
