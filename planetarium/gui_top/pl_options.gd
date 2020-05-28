@@ -49,6 +49,8 @@ onready var _asteroid_labels := {
 	LABEL_TRANS_NEPTUNIAN = $Scroll/VBox/TransNeptunian/RTLabel
 }
 
+var _is_screen_size_testing := false
+
 func get_content_height() -> float:
 	return _vbox.rect_size.y + _fullscreen.rect_size.y
 
@@ -80,13 +82,25 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	show()
 
 func _on_screen_resized() -> void:
-	yield(get_tree(), "idle_frame")
-	# OS.window_fullscreen gives the exact wrong result in electron_app. This
-	# seems like an Electron bug.
-	var is_fullscreen := OS.window_fullscreen
-	if Global.is_electron_app:
-		is_fullscreen = !is_fullscreen
-	_fullscreen_button.text = "BUTTON_SHRINK" if is_fullscreen else "BUTTON_EXPAND"
+	# In electron_app this takes a while to give correct result. Possibly other
+	# browsers have this problem. So we keep checking for a while.
+	if _is_screen_size_testing:
+		return
+	_is_screen_size_testing = true
+	var fullscreen := OS.window_fullscreen
+	_fullscreen_button.text = "BUTTON_REDUCE" if fullscreen else "BUTTON_EXPAND"
+	var tree := get_tree()
+	var i := 0
+	while i < 20:
+		yield(tree, "idle_frame")
+		var new_fullscreen := OS.window_fullscreen
+		if fullscreen != new_fullscreen:
+			fullscreen = new_fullscreen
+			_fullscreen_button.text = "BUTTON_REDUCE" if fullscreen else "BUTTON_EXPAND"
+		i += 1
+	_is_screen_size_testing = false
+
+
 
 func _change_fullscreen() -> void:
 	OS.window_fullscreen = !OS.window_fullscreen
