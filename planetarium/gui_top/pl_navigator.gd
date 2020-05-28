@@ -18,8 +18,8 @@
 
 extends VBoxContainer
 
-var left_truncate := 45
-var bottom_margin := 10
+var left_truncate := 42
+var bottom_margin := 0
 
 onready var mouse_trigger: Control = self
 onready var mouse_visible := [self]
