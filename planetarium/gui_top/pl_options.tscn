@@ -18,7 +18,8 @@ __meta__ = {
 }
 
 [node name="Scroll" type="ScrollContainer" parent="."]
-margin_right = 362.0
+margin_left = 12.0
+margin_right = 374.0
 margin_bottom = 500.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 500 )
@@ -281,16 +282,19 @@ margin_right = 362.0
 margin_bottom = 356.0
 
 [node name="FullScreen" type="HBoxContainer" parent="."]
+margin_top = 504.0
+margin_right = 374.0
+margin_bottom = 524.0
 
 [node name="Label" type="Label" parent="FullScreen"]
 margin_top = 3.0
-margin_right = 129.0
+margin_right = 246.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
-text = "LABEL_FULL_SCREEN"
+text = "LABEL_FULLSCREEN"
 
 [node name="Button" type="Button" parent="FullScreen"]
-margin_left = 133.0
-margin_right = 166.0
+margin_left = 250.0
+margin_right = 374.0
 margin_bottom = 20.0
-text = "ON"
+text = "BUTTON_EXPAND"

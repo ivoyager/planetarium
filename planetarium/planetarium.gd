@@ -32,28 +32,25 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.7-alpha dev"
 const EXTENSION_VERSION_YMD := 20200519
 
-# dev settings
-const USE_THREADS := false
-const FORCE_WEB_BUILD := true
-const FORCE_WEB_ASSETS := false
+const USE_THREADS := true # false for debugging; HTML5 overrides false
+const IS_ELECTRON_APP := false
 
-var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
-var _has_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
-var _is_web_build := FORCE_WEB_BUILD or (_is_gles2 and _has_web_assets) # no threads, etc.
-var _use_web_assets := FORCE_WEB_ASSETS or (_is_gles2 and _has_web_assets)
 var _is_html5: bool = OS.has_feature('JavaScript')
+var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
+var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
 	print("Planetarium extension initing...")
-	print("Web build: ", _is_web_build, "; web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
+	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
 	ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
 	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
-	Global.use_threads = USE_THREADS
+	Global.is_electron_app = IS_ELECTRON_APP
+	Global.use_threads = USE_THREADS and !_is_html5
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
@@ -63,11 +60,11 @@ func extension_init() -> void:
 	Global.disable_exit = true
 	Global.enable_wiki = true
 	ProjectBuilder.gui_controls.erase("_SplashScreen_")
-	if _is_web_build:
-		ProjectBuilder.gui_controls.erase("_MainProgBar_")
+	if _is_html5:
 		Global.use_threads = false
-		Global.vertecies_per_orbit = 200
+		ProjectBuilder.gui_controls.erase("_MainProgBar_")
 	if _use_web_assets:
+		Global.vertecies_per_orbit = 200
 		Global.asset_replacement_dir = "ivoyager_assets_web"
 
 func _on_project_objects_instantiated() -> void:
@@ -85,7 +82,7 @@ func _on_project_objects_instantiated() -> void:
 	var theme_manager: ThemeManager = Global.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
-	hotkeys_popup.remove_item("toggle_full_screen")
+	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.remove_item("obtain_gui_focus")
 	hotkeys_popup.remove_item("release_gui_focus")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
@@ -98,7 +95,7 @@ func _on_project_objects_instantiated() -> void:
 	default_settings.lock_controls = false # add
 	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
-	if _is_web_build:
+	if _use_web_assets:
 		options_popup.remove_item("starmap")
 	if _is_gles2:
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
@@ -107,7 +104,7 @@ func _on_project_objects_instantiated() -> void:
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 func _on_project_inited() -> void:
-	if _is_html5 or _is_web_build:
+	if _use_web_assets:
 		LoadingMessage.new()
 
 
