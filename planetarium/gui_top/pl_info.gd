@@ -42,7 +42,6 @@ func _ready():
 	real_time_button.text = "BUTTON_NOW"
 	var view_buttons: Control = $SelectionBox/ViewButtons
 	view_buttons.use_small_txt = true
-	view_buttons.include_recenter = true
 	var selection_data: Control = $InfoScroll/SelectionData
 	selection_data.enable_wiki_links = true
 	selection_data.labels_width = col1_width
