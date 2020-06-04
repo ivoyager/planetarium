@@ -190,9 +190,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_builders/model_builder.gd"
 }, {
 "base": "Reference",
-"class": "ModelManager",
+"class": "ModelGeometry",
 "language": "GDScript",
-"path": "res://ivoyager/tree_refs/model_manager.gd"
+"path": "res://ivoyager/tree_refs/model_geometry.gd"
 }, {
 "base": "Reference",
 "class": "MouseClickSelector",
@@ -391,7 +391,7 @@ _global_script_class_icons={
 "MinorBodiesBuilder": "",
 "MinorBodiesManager": "",
 "ModelBuilder": "",
-"ModelManager": "",
+"ModelGeometry": "",
 "MouseClickSelector": "",
 "NavigationPanel": "",
 "OneUseConfirm": "",

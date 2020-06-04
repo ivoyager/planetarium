@@ -26,7 +26,7 @@ onready var mouse_visible := [] # dynamic
 
 onready var time_items := [$TimeBox/DateTime]
 onready var selection_items := [$SelectionBox/SelectionWiki]
-onready var range_items := [$RangeLabel]
+onready var range_items := [$CoordsBox/RangeLabel]
 onready var info_items := [$InfoScroll]
 onready var control_items := [$TimeBox/TimeControl, $SelectionBox/ViewButtons]
 
