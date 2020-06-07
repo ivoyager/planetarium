@@ -26,9 +26,10 @@ onready var mouse_visible := [] # dynamic
 
 onready var time_items := [$TimeBox/DateTime]
 onready var selection_items := [$SelectionBox/SelectionWiki]
-onready var range_items := [$CoordsBox/RangeLabel]
+onready var range_items := [$RangeLabel, $CoordsBox/LatitudeLongitude]
 onready var info_items := [$InfoScroll]
-onready var control_items := [$TimeBox/TimeControl, $SelectionBox/ViewButtons]
+onready var control_items := [$TimeBox/TimeControl, $SelectionBox/ViewButtons,
+	$CoordsBox/TrackControler]
 
 func _ready():
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator", [],

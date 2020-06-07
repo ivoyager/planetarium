@@ -62,39 +62,40 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 alignment = 2
 
-[node name="CoordsBox" type="HBoxContainer" parent="."]
+[node name="RangeLabel" parent="." instance=ExtResource( 5 )]
 margin_top = 71.0
 margin_right = 589.0
 margin_bottom = 101.0
-
-[node name="RangeLabel" parent="CoordsBox" instance=ExtResource( 5 )]
-margin_right = 329.0
-margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
-size_flags_horizontal = 3
 size_flags_vertical = 8
 text = ""
 valign = 1
 
-[node name="LatitudeLongitude" parent="CoordsBox" instance=ExtResource( 9 )]
-margin_left = 333.0
-margin_top = 8.0
-margin_right = 333.0
-margin_bottom = 22.0
-
-[node name="TrackControler" parent="CoordsBox" instance=ExtResource( 7 )]
-margin_left = 337.0
-margin_right = 589.0
-margin_bottom = 30.0
-
-[node name="Spacer" type="Control" parent="."]
+[node name="CoordsBox" type="HBoxContainer" parent="."]
 margin_top = 105.0
 margin_right = 589.0
-margin_bottom = 111.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 35 )
+
+[node name="LatitudeLongitude" parent="CoordsBox" instance=ExtResource( 9 )]
+margin_top = 10.0
+margin_right = 290.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="TrackControler" parent="CoordsBox" instance=ExtResource( 7 )]
+margin_left = 294.0
+margin_right = 589.0
+margin_bottom = 35.0
+
+[node name="Spacer" type="Control" parent="."]
+margin_top = 144.0
+margin_right = 589.0
+margin_bottom = 150.0
 rect_min_size = Vector2( 0, 6 )
 
 [node name="InfoScroll" type="ScrollContainer" parent="."]
-margin_top = 115.0
+margin_top = 154.0
 margin_right = 589.0
 margin_bottom = 500.0
 size_flags_vertical = 3
