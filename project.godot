@@ -353,6 +353,11 @@ _global_script_classes=[ {
 "class": "UnitDefs",
 "language": "GDScript",
 "path": "res://ivoyager/static/unit_defs.gd"
+}, {
+"base": "Reference",
+"class": "View",
+"language": "GDScript",
+"path": "res://ivoyager/xclasses/view.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
@@ -423,7 +428,8 @@ _global_script_class_icons={
 "Timekeeper": "",
 "TranslationImporter": "",
 "TreeManager": "",
-"UnitDefs": ""
+"UnitDefs": "",
+"View": ""
 }
 
 [application]
