@@ -455,8 +455,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1200
-window/size/height=800
+window/size/width=2048
+window/size/height=1200
 window/dpi/allow_hidpi=true
 
 [importer_defaults]
