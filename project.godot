@@ -40,9 +40,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/tree_refs/body_list.gd"
 }, {
 "base": "Reference",
-"class": "CachedItemsManager",
+"class": "CacheManager",
 "language": "GDScript",
-"path": "res://ivoyager/prog_refs/cached_items_manager.gd"
+"path": "res://ivoyager/prog_refs/cache_manager.gd"
 }, {
 "base": "PopupPanel",
 "class": "CachedItemsPopup",
@@ -129,7 +129,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/input_handler.gd"
 }, {
-"base": "CachedItemsManager",
+"base": "CacheManager",
 "class": "InputMapManager",
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/input_map_manager.gd"
@@ -304,7 +304,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_game/selection_panel.gd"
 }, {
-"base": "CachedItemsManager",
+"base": "CacheManager",
 "class": "SettingsManager",
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/settings_manager.gd"
@@ -357,7 +357,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "View",
 "language": "GDScript",
-"path": "res://ivoyager/xclasses/view.gd"
+"path": "res://ivoyager/tree_refs/view.gd"
+}, {
+"base": "Reference",
+"class": "ViewCacher",
+"language": "GDScript",
+"path": "res://planetarium/prog/view_cacher.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
@@ -366,7 +371,7 @@ _global_script_class_icons={
 "Body": "",
 "BodyBuilder": "",
 "BodyList": "",
-"CachedItemsManager": "",
+"CacheManager": "",
 "CachedItemsPopup": "",
 "CreditsPopup": "",
 "DraggablePanel": "",
@@ -429,7 +434,8 @@ _global_script_class_icons={
 "TranslationImporter": "",
 "TreeManager": "",
 "UnitDefs": "",
-"View": ""
+"View": "",
+"ViewCacher": ""
 }
 
 [application]
