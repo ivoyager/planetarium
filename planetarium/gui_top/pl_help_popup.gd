@@ -20,7 +20,7 @@ extends PopupPanel
 class_name PlHelpPopup
 const SCENE := "res://planetarium/gui_top/pl_help_popup.tscn"
 
-var _main: Main
+var _state_manager: StateManager
 onready var _header: Label = $VBox/Header
 onready var _rtlabel: RichTextLabel = $VBox/RTLabel
 onready var _close_button: Button = $VBox/Close
@@ -29,7 +29,7 @@ func project_init() -> void:
 	connect("ready", self, "_on_ready")
 	connect("popup_hide", self, "_on_popup_hide")
 	Global.connect("help_requested", self, "_open")
-	_main = Global.program.Main
+	_state_manager = Global.program.StateManager
 	var main_menu: MainMenu = Global.program.get("MainMenu")
 	if main_menu:
 		main_menu.make_button("BUTTON_HELP", 1500, true, false, self, "_open")
@@ -45,7 +45,7 @@ func _on_ready() -> void:
 
 func _open() -> void:
 	set_process_unhandled_key_input(true)
-	_main.require_stop(self)
+	_state_manager.require_stop(self)
 #	var version: String = load("res://planetarium/planetarium.gd").EXTENSION_VERSION
 #	var help_text := "Planetarium " + version + "\n" + tr("TXT_PLANETARIUM_HELP")
 	_rtlabel.bbcode_text = tr("TXT_PLANETARIUM_HELP")
@@ -54,7 +54,7 @@ func _open() -> void:
 
 func _on_popup_hide() -> void:
 	set_process_unhandled_key_input(false)
-	_main.allow_run(self)
+	_state_manager.allow_run(self)
 
 
 func _unhandled_key_input(event: InputEventKey) -> void:

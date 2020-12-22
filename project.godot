@@ -154,11 +154,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/load_dialog.gd"
 }, {
-"base": "Node",
-"class": "Main",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/main.gd"
-}, {
 "base": "VBoxContainer",
 "class": "MainMenu",
 "language": "GDScript",
@@ -309,6 +304,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/settings_manager.gd"
 }, {
+"base": "Node",
+"class": "StateManager",
+"language": "GDScript",
+"path": "res://ivoyager/prog_nodes/state_manager.gd"
+}, {
 "base": "Reference",
 "class": "StrUtils",
 "language": "GDScript",
@@ -394,7 +394,6 @@ _global_script_class_icons={
 "LPointBuilder": "",
 "LightBuilder": "",
 "LoadDialog": "",
-"Main": "",
 "MainMenu": "",
 "MainProgBar": "",
 "Math": "",
@@ -425,6 +424,7 @@ _global_script_class_icons={
 "SelectionManager": "",
 "SelectionPanel": "",
 "SettingsManager": "",
+"StateManager": "",
 "StrUtils": "",
 "SystemBuilder": "",
 "TableImporter": "",

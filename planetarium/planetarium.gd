@@ -56,6 +56,7 @@ func extension_init() -> void:
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
 	Global.allow_time_reversal = true
+	Global.home_view_from_user_time_zone = true
 	Global.disable_pause = true
 	Global.skip_splash_screen = true
 	Global.disable_exit = true
