@@ -18,9 +18,9 @@
 
 class_name ViewCacher
 
-
-var cache_dir := "user://cache"
 var cache_file_name := "view.vbinary"
 
+var _cache_dir: String = Global.cache_dir
 
-
+func project_init() -> void:
+	pass

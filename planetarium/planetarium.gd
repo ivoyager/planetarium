@@ -44,6 +44,7 @@ func extension_init() -> void:
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
 	print("Planetarium extension initing...")
 	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
+	ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
 	ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
 	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
