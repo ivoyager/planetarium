@@ -14,16 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/asteroid_group.gd"
 }, {
-"base": "Camera",
-"class": "BCamera",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/b_camera.gd"
-}, {
-"base": "Node",
-"class": "BCameraInput",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/b_camera_input.gd"
-}, {
 "base": "Spatial",
 "class": "Body",
 "language": "GDScript",
@@ -363,11 +353,19 @@ _global_script_classes=[ {
 "class": "ViewCacher",
 "language": "GDScript",
 "path": "res://planetarium/prog/view_cacher.gd"
+}, {
+"base": "Camera",
+"class": "VygrCamera",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/vygr_camera.gd"
+}, {
+"base": "Node",
+"class": "VygrCameraHandler",
+"language": "GDScript",
+"path": "res://ivoyager/prog_nodes/vygr_camera_handler.gd"
 } ]
 _global_script_class_icons={
 "AsteroidGroup": "",
-"BCamera": "",
-"BCameraInput": "",
 "Body": "",
 "BodyBuilder": "",
 "BodyList": "",
@@ -435,7 +433,9 @@ _global_script_class_icons={
 "TreeManager": "",
 "UnitDefs": "",
 "View": "",
-"ViewCacher": ""
+"ViewCacher": "",
+"VygrCamera": "",
+"VygrCameraHandler": ""
 }
 
 [application]

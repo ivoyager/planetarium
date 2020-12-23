@@ -22,7 +22,7 @@ class_name ViewCacher
 var cache_file_name := "view.vbinary"
 
 var _cache_dir: String = Global.cache_dir
-var _camera: BCamera
+var _camera: VygrCamera
 
 func project_init() -> void:
 	Global.connect("camera_ready", self, "_on_camera_ready")
@@ -31,7 +31,7 @@ func project_init() -> void:
 	if dir.open(_cache_dir) != OK:
 		dir.make_dir(_cache_dir)
 
-func _on_camera_ready(camera: BCamera) -> void:
+func _on_camera_ready(camera: VygrCamera) -> void:
 	_camera = camera
 	var file := _get_file(File.READ)
 	if !file:
