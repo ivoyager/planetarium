@@ -18,8 +18,8 @@
 
 extends VBoxContainer
 
-var left_truncate := 42
-var bottom_margin := 0
+var system_navigator_min_height_presets := [215.0, 265.0, 320.0]
+var left_truncates := [33.0, 42.0, 51.0]
 
 onready var mouse_trigger: Control = self
 onready var mouse_visible := [self]
@@ -31,16 +31,20 @@ func _ready() -> void:
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator", [],
 			CONNECT_ONESHOT)
 	Global.connect("setting_changed", self, "_settings_listener")
-	$SystemNavigator.horizontal_expansion = 590.0
+	$SystemNavigator.widget_min_height_presets = system_navigator_min_height_presets
 	var settings: Dictionary = Global.settings
 	_change_mouse_vis_control(settings.lock_navigator)
 	hide() # hide until sim start
 
 func _on_about_to_start_simulator(_is_new_game: bool) -> void:
-	set_anchors_and_margins_preset(PRESET_BOTTOM_LEFT, PRESET_MODE_MINSIZE)
-	rect_position.x -= left_truncate
-	rect_position.y -= bottom_margin
+	var gui_size: int = Global.settings.gui_size
+	_refit_to_corner(gui_size)
 	show() # show until mouse movement (if not locked)
+
+func _refit_to_corner(gui_size: int) -> void:
+	set_anchors_and_margins_preset(PRESET_BOTTOM_LEFT, PRESET_MODE_MINSIZE)
+	var left_truncate: int = left_truncates[gui_size]
+	rect_position.x -= left_truncate
 
 func _change_mouse_vis_control(is_locked: bool) -> void:
 	if is_locked:
@@ -55,3 +59,6 @@ func _settings_listener(setting: String, value) -> void:
 	match setting:
 		"lock_navigator":
 			_change_mouse_vis_control(value)
+		"gui_size":
+			yield(get_tree(), "idle_frame")
+			_refit_to_corner(value)

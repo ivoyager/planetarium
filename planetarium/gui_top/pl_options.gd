@@ -100,8 +100,6 @@ func _on_screen_resized() -> void:
 		i += 1
 	_is_screen_size_testing = false
 
-
-
 func _change_fullscreen() -> void:
 	OS.window_fullscreen = !OS.window_fullscreen
 
