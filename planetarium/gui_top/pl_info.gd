@@ -18,17 +18,14 @@
 
 extends VBoxContainer
 
-var col1_width := 170
-var col2_width := 170
-
 onready var mouse_trigger: Control = self
 onready var mouse_visible := [] # dynamic
-
 onready var time_items := [$TimeBox/DateTime]
 onready var selection_items := [$SelectionBox/SelectionWiki]
-onready var range_items := [$RangeLabel]
+onready var range_items := [$RangeLabel, $CoordsBox/LatitudeLongitude]
 onready var info_items := [$InfoScroll]
-onready var control_items := [$TimeBox/TimeControl, $SelectionBox/ViewButtons]
+onready var control_items := [$TimeBox/TimeControl, $SelectionBox/ViewButtons,
+	$CoordsBox/TrackControler]
 
 func _ready():
 	Global.connect("about_to_start_simulator", self, "_on_about_to_start_simulator", [],
@@ -42,11 +39,8 @@ func _ready():
 	real_time_button.text = "BUTTON_NOW"
 	var view_buttons: Control = $SelectionBox/ViewButtons
 	view_buttons.use_small_txt = true
-	view_buttons.include_recenter = true
 	var selection_data: Control = $InfoScroll/SelectionData
 	selection_data.enable_wiki_links = true
-	selection_data.labels_width = col1_width
-	selection_data.values_width = col2_width
 	var settings: Dictionary = Global.settings
 	_change_mouse_vis_control(settings.lock_time, time_items)
 	_change_mouse_vis_control(settings.lock_selection, selection_items)
