@@ -1,7 +1,7 @@
 # planetarium.gd
 # This file is part of I, Voyager (https://ivoyager.dev)
 # *****************************************************************************
-# Copyright (c) 2017-2020 Charlie Whitfield
+# Copyright (c) 2017-2021 Charlie Whitfield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ func extension_init() -> void:
 	print("Planetarium extension initing...")
 	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
 	ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
-	ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
-	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
+	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
+#	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
@@ -70,8 +70,6 @@ func extension_init() -> void:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
 
 func _on_project_objects_instantiated() -> void:
-	var main_menu: MainMenu = Global.program.MainMenu
-	main_menu.planetarium_mode = true
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper

@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ivoyager/gui_widgets/asteroid_group_buttons.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.gd" type="Script" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/show_buttons.gd" type="Script" id=3]
+[ext_resource path="res://ivoyager/gui_widgets/system_navigator.gd" type="Script" id=4]
+[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.gd" type="Script" id=5]
+[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_widgets/asteroid_group_buttons.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ivoyager/gui_widgets/show_buttons.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ivoyager/gui_widgets/system_navigator.tscn" type="PackedScene" id=10]
+
+[node name="PltmNavPanel" type="PanelContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -338.0
+margin_right = 414.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SystemNavigator" type="HBoxContainer" parent="." instance=ExtResource( 10 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 415.0
+margin_bottom = 331.0
+custom_constants/separation = 0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopHBox" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 415.0
+margin_bottom = 31.0
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="TopHBox"]
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="ShowButtons" type="VBoxContainer" parent="TopHBox" instance=ExtResource( 9 )]
+margin_left = 4.0
+margin_right = 380.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisOnMOCkbx" type="CheckBox" parent="TopHBox" instance=ExtResource( 6 )]
+margin_left = 384.0
+margin_right = 408.0
+margin_bottom = 24.0
+hint_tooltip = "HINT_VIS_ON_MO_CKBX"
+size_flags_horizontal = 0
+pressed = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 291.0
+margin_right = 415.0
+margin_bottom = 331.0
+size_flags_vertical = 8
+
+[node name="AsteroidGroupButtons" type="HBoxContainer" parent="VBox" instance=ExtResource( 7 )]
+margin_right = 408.0
+margin_bottom = 40.0
+size_flags_vertical = 8
+custom_constants/separation = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WinMgrDynamic" type="Control" parent="." instance=ExtResource( 8 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 415.0
+margin_bottom = 331.0
+mouse_filter = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

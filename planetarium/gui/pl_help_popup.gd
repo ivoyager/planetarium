@@ -1,7 +1,7 @@
 # pl_help_popup.gd
 # This file is part of I, Voyager (https://ivoyager.dev)
 # *****************************************************************************
-# Copyright (c) 2017-2020 Charlie Whitfield
+# Copyright (c) 2017-2021 Charlie Whitfield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 extends PopupPanel
 class_name PlHelpPopup
-const SCENE := "res://planetarium/gui_top/pl_help_popup.tscn"
+const SCENE := "res://planetarium/gui/pl_help_popup.tscn"
 
 var _state_manager: StateManager
 onready var _header: Label = $VBox/Header
@@ -30,9 +30,8 @@ func project_init() -> void:
 	connect("popup_hide", self, "_on_popup_hide")
 	Global.connect("help_requested", self, "_open")
 	_state_manager = Global.program.StateManager
-	var main_menu: MainMenu = Global.program.get("MainMenu")
-	if main_menu:
-		main_menu.make_button("BUTTON_HELP", 1500, true, false, self, "_open")
+	var main_menu_manager: MainMenuManager = Global.program.MainMenuManager
+	main_menu_manager.make_button("BUTTON_HELP", 1500, true, false, self, "_open")
 
 func _on_ready() -> void:
 	theme = Global.themes.main
