@@ -47,6 +47,7 @@ func extension_init() -> void:
 	ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
 	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
 #	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
+	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")

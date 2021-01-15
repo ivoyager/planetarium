@@ -19,8 +19,15 @@
 extends PanelContainer
 
 func _ready():
+	# widget mods
+	var date_time_label := find_node("DateTimeLabel")
+	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
+	date_time_label.clock_hm_format = "  %02d:%02d UT"
+	var track_orbit_ground_ckbxs := find_node("TrackOrbitGroudCkbxs")
+	track_orbit_ground_ckbxs.remove_track_label()
 	$WinMgrDynamic.default_sizes = [
-		Vector2(435.0, 435.0), # GUI_SMALL
-		Vector2(575.0, 575.0), # GUI_MEDIUM
-		Vector2(712.0, 712.0), # GUI_LARGE
+		Vector2(270.0, 870.0), # GUI_SMALL
+		Vector2(360.0, 1150.0), # GUI_MEDIUM
+		Vector2(450.0, 1424.0), # GUI_LARGE
 	]
+	$WinMgrDynamic.max_default_screen_proportions = Vector2(0.33, 0.5)

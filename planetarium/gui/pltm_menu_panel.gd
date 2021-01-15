@@ -1,4 +1,4 @@
-# pltm_nav_panel.gd
+# pltm_menu_panel.gd
 # This file is part of I, Voyager (https://ivoyager.dev)
 # *****************************************************************************
 # Copyright (c) 2017-2021 Charlie Whitfield
@@ -20,8 +20,10 @@ extends PanelContainer
 
 func _ready():
 	$WinMgrDynamic.default_sizes = [
-		Vector2(435.0, 262.0), # GUI_SMALL
-		Vector2(575.0, 319.0), # GUI_MEDIUM
-		Vector2(712.0, 379.0), # GUI_LARGE
+		# Zeros allow panel to shrink to content, but we need some width here
+		# so our "Support Us!" RichTextLabel doesn't wrap.
+		Vector2(75.0, 0.0), # GUI_SMALL
+		Vector2(100.0, 0.0), # GUI_MEDIUM
+		Vector2(125.0, 0.0), # GUI_LARGE
 	]
-	$WinMgrDynamic.max_default_screen_proportions = Vector2(0.55, 0.45)
+	$WinMgrDynamic.max_default_screen_proportions = Vector2(0.55, 0.55)

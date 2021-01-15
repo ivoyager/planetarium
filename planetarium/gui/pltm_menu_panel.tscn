@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://planetarium/gui/pltm_menu_panel.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_widgets/main_menu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ivoyager/gui_widgets/ivoyager_homepage.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ivoyager/gui_widgets/ivoyager_support_us.tscn" type="PackedScene" id=6]
+
+[node name="PltmMenuPanel" type="PanelContainer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -133.0
+margin_bottom = 164.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 126.0
+margin_bottom = 157.0
+mouse_filter = 2
+alignment = 1
+
+[node name="MarginContainer1" type="MarginContainer" parent="VBox"]
+margin_top = 28.0
+margin_right = 119.0
+margin_bottom = 63.0
+mouse_filter = 2
+custom_constants/margin_right = 25
+custom_constants/margin_top = 25
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="MainMenu" parent="VBox/MarginContainer1" instance=ExtResource( 4 )]
+margin_left = 52.0
+margin_top = 25.0
+margin_right = 52.0
+margin_bottom = 25.0
+size_flags_horizontal = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBox"]
+margin_top = 67.0
+margin_right = 119.0
+margin_bottom = 121.0
+mouse_filter = 2
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="VBox/MarginContainer2"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 109.0
+margin_bottom = 44.0
+
+[node name="IVoyagerHomepage" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+margin_top = 0.0
+margin_right = 99.0
+margin_bottom = 15.0
+
+[node name="IVoyagerSupportUs" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
+margin_top = 19.0
+margin_right = 99.0
+margin_bottom = 34.0
+
+[node name="VisOnMOCkbx" parent="." instance=ExtResource( 2 )]
+margin_left = 102.0
+margin_top = 7.0
+margin_right = 126.0
+margin_bottom = 31.0
+
+[node name="WinMgrDynamic" parent="." instance=ExtResource( 3 )]
+margin_right = 126.0
+margin_bottom = 157.0
