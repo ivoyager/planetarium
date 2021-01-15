@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/date_time.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_widgets/time_control.tscn" type="PackedScene" id=4]
+[ext_resource path="res://planetarium/gui/pltm_info_panel.gd" type="Script" id=5]
+
+[node name="PltmInfoPanel" type="PanelContainer"]
+margin_right = 334.0
+margin_bottom = 480.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 327.0
+margin_bottom = 473.0
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+margin_right = 320.0
+margin_bottom = 20.0
+
+[node name="DateTime" parent="VBox/HBox" instance=ExtResource( 3 )]
+margin_right = 134.0
+size_flags_horizontal = 3
+valign = 1
+
+[node name="TimeControl" parent="VBox/HBox" instance=ExtResource( 4 )]
+margin_left = 138.0
+margin_top = 0.0
+margin_right = 286.0
+margin_bottom = 20.0
+
+[node name="Control" type="Control" parent="VBox/HBox"]
+margin_left = 290.0
+margin_right = 320.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="VisOnMOCkbx" parent="VBox/HBox/Control" instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -24.0
+margin_right = 0.0
+
+[node name="WinMgrDynamic" parent="." instance=ExtResource( 2 )]
+margin_right = 327.0
+margin_bottom = 473.0
