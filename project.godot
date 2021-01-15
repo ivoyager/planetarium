@@ -209,11 +209,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/pbd_splash_screen.gd"
 }, {
-"base": "PopupPanel",
-"class": "PlHelpPopup",
-"language": "GDScript",
-"path": "res://planetarium/gui/pl_help_popup.gd"
-}, {
 "base": "Control",
 "class": "PltmGUI",
 "language": "GDScript",
@@ -395,7 +390,6 @@ _global_script_class_icons={
 "Orbit": "",
 "OrbitBuilder": "",
 "PBDSplashScreen": "",
-"PlHelpPopup": "",
 "PltmGUI": "",
 "PointsManager": "",
 "Properties": "",
