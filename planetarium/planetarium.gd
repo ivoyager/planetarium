@@ -111,7 +111,7 @@ func _on_project_objects_instantiated() -> void:
 func _on_project_inited() -> void:
 	if _use_web_assets:
 		print("Loading HTML5 Boot Screen")
-		var boot_res: PackedScene = preload("res://ivoyager/gui_admin/html5_boot_screen.tscn")
+		var boot_res: PackedScene = load("res://ivoyager/gui_admin/html5_boot_screen.tscn")
 		var boot := boot_res.instance()
 		Global.program.universe.add_child(boot)
 		Global.connect("gui_refresh_requested", boot, "queue_free")
