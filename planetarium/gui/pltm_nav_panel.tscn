@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://planetarium/gui/pltm_nav_panel.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/orbits_names_symbols_ckbxs.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_widgets/asteroid_group_buttons.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ivoyager/gui_widgets/system_navigator.tscn" type="PackedScene" id=10]
+
+[node name="PltmNavPanel" type="PanelContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -338.0
+margin_right = 414.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SystemNavigator" parent="." instance=ExtResource( 10 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 407.0
+margin_bottom = 331.0
+
+[node name="OrbitsNamesSymbolsCkbxs" parent="." instance=ExtResource( 2 )]
+margin_left = 26.0
+margin_top = 7.0
+margin_right = 387.0
+margin_bottom = 31.0
+size_flags_horizontal = 4
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 291.0
+margin_right = 407.0
+margin_bottom = 331.0
+mouse_filter = 2
+size_flags_vertical = 8
+
+[node name="AsteroidGroupButtons" parent="VBox" instance=ExtResource( 7 )]
+margin_right = 400.0
+size_flags_vertical = 8
+
+[node name="VisOnMOCkbx" parent="." instance=ExtResource( 6 )]
+margin_left = 383.0
+margin_top = 7.0
+margin_right = 407.0
+margin_bottom = 31.0
+
+[node name="WinMgrDynamic" parent="." instance=ExtResource( 8 )]
+margin_right = 407.0
+margin_bottom = 331.0

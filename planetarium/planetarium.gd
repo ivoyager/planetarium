@@ -1,7 +1,7 @@
 # planetarium.gd
 # This file is part of I, Voyager (https://ivoyager.dev)
 # *****************************************************************************
-# Copyright (c) 2017-2020 Charlie Whitfield
+# Copyright (c) 2017-2021 Charlie Whitfield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ func extension_init() -> void:
 	print("Planetarium extension initing...")
 	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
 	ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
-	ProjectBuilder.gui_controls._ProjectGUI_ = PlanetariumGUI # replacement
-	ProjectBuilder.gui_controls._PlHelpPopup_ = PlHelpPopup # addition
+	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
+	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
@@ -70,8 +70,6 @@ func extension_init() -> void:
 		Global.asset_replacement_dir = "ivoyager_assets_web"
 
 func _on_project_objects_instantiated() -> void:
-	var main_menu: MainMenu = Global.program.MainMenu
-	main_menu.planetarium_mode = true
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper
@@ -83,7 +81,10 @@ func _on_project_objects_instantiated() -> void:
 	qty_strings.exp_str = " x 10^"
 	var theme_manager: ThemeManager = Global.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
+	var credits_popup: CreditsPopup = Global.program.CreditsPopup
+	credits_popup.stop_sim = false
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
+	hotkeys_popup.stop_sim = false
 	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.remove_item("obtain_gui_focus")
 	hotkeys_popup.remove_item("release_gui_focus")
@@ -97,6 +98,7 @@ func _on_project_objects_instantiated() -> void:
 	default_settings.lock_controls = false # add
 	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
+	options_popup.stop_sim = false
 	if _use_web_assets:
 		options_popup.remove_item("starmap")
 	if _is_gles2:
