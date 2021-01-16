@@ -39,6 +39,7 @@ var _is_html5: bool = OS.has_feature('JavaScript')
 var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
 var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 
+
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
@@ -109,15 +110,8 @@ func _on_project_objects_instantiated() -> void:
 
 func _on_project_inited() -> void:
 	if _use_web_assets:
-		LoadingMessage.new()
-
-
-class LoadingMessage extends Label:
-
-	func _init() -> void:
-		set("custom_fonts/font", Global.fonts.medium)
-		align = ALIGN_CENTER
-		text = "TXT_WEB_PLANETARIUM_LOADING"
-		Global.program.universe.add_child(self)
-		Global.connect("gui_refresh_requested", self, "queue_free")
-		set_anchors_and_margins_preset(PRESET_CENTER)
+		print("Loading HTML5 Boot Screen")
+		var boot_res: PackedScene = preload("res://ivoyager/gui_admin/html5_boot_screen.tscn")
+		var boot := boot_res.instance()
+		Global.program.universe.add_child(boot)
+		Global.connect("gui_refresh_requested", boot, "queue_free")
