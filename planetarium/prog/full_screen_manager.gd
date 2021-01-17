@@ -16,7 +16,7 @@
 # limitations under the License.
 # *****************************************************************************
 
-extends Reference
+extends Node # works as Reference, but causes errors on quit as of Godot 3.2.3
 class_name FullScreenManager
 
 var _tree: SceneTree = Global.get_tree()
@@ -25,9 +25,10 @@ var _is_screen_size_testing := false
 var _is_fullscreen := false
 
 func project_init() -> void:
-	_main_menu_manager.make_button("BUTTON_FULL_SCREEN", 1000, false, true, self,
+	pass
+	_main_menu_manager.make_button("BUTTON_FULL_SCREEN", 1001, false, true, self,
 			"_change_fullscreen")
-	_main_menu_manager.make_button("BUTTON_MINIMIZE", 1000, false, true, self,
+	_main_menu_manager.make_button("BUTTON_MINIMIZE", 1002, false, true, self,
 			"_change_fullscreen", [], _main_menu_manager.HIDDEN)
 	Global.connect("gui_refresh_requested", self, "_update_buttons")
 	_tree.connect("screen_resized", self, "_on_screen_resized")

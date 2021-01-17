@@ -69,7 +69,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/font_manager.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "FullScreenManager",
 "language": "GDScript",
 "path": "res://planetarium/prog/full_screen_manager.gd"
