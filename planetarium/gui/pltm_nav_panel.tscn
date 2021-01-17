@@ -2,9 +2,9 @@
 
 [ext_resource path="res://planetarium/gui/pltm_nav_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_widgets/orbits_names_symbols_ckbxs.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_mods/panel_vis_on_mouse_over_ckbx.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_widgets/asteroid_group_buttons.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ivoyager/gui_mods/container_dynamic.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ivoyager/gui_widgets/system_navigator.tscn" type="PackedScene" id=10]
 
 [node name="PltmNavPanel" type="PanelContainer"]
@@ -42,12 +42,12 @@ size_flags_vertical = 8
 margin_right = 400.0
 size_flags_vertical = 8
 
-[node name="VisOnMOCkbx" parent="." instance=ExtResource( 6 )]
+[node name="PanelVisOnMouseOverCkbx" parent="." instance=ExtResource( 6 )]
 margin_left = 383.0
 margin_top = 7.0
 margin_right = 407.0
 margin_bottom = 31.0
 
-[node name="WinMgrDynamic" parent="." instance=ExtResource( 8 )]
+[node name="ContainerDynamic" parent="." instance=ExtResource( 8 )]
 margin_right = 407.0
 margin_bottom = 331.0

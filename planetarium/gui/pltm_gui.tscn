@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://planetarium/gui/pltm_gui.gd" type="Script" id=1]
 [ext_resource path="res://planetarium/gui/pltm_nav_panel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://planetarium/gui/pltm_info_panel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://planetarium/gui/pltm_menu_panel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ivoyager/gui_mods/project_cyclable_panels.tscn" type="PackedScene" id=5]
 
 [node name="PltmGUI" type="Control"]
 anchor_right = 1.0
@@ -23,3 +24,5 @@ margin_right = 422.0
 [node name="PltmMenuPanel" parent="." instance=ExtResource( 4 )]
 margin_left = -77.0
 margin_bottom = 114.0
+
+[node name="ProjectCyclablePanels" parent="." instance=ExtResource( 5 )]

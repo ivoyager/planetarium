@@ -25,9 +25,9 @@ func _ready():
 	date_time_label.clock_hm_format = "  %02d:%02d UT"
 	var track_orbit_ground_ckbxs := find_node("TrackOrbitGroudCkbxs")
 	track_orbit_ground_ckbxs.remove_track_label()
-	$WinMgrDynamic.default_sizes = [
+	$ContainerDynamic.default_sizes = [
 		Vector2(270.0, 870.0), # GUI_SMALL
 		Vector2(360.0, 1150.0), # GUI_MEDIUM
 		Vector2(450.0, 1424.0), # GUI_LARGE
 	]
-	$WinMgrDynamic.max_default_screen_proportions = Vector2(0.33, 0.5)
+	$ContainerDynamic.max_default_screen_proportions = Vector2(0.33, 0.55)

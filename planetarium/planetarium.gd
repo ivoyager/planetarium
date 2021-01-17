@@ -32,12 +32,13 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.7-alpha dev"
 const EXTENSION_VERSION_YMD := 20200519
 
-const USE_THREADS := true # false for debugging; HTML5 overrides false
+const USE_THREADS := false # false for debugging; HTML5 overrides false
 const IS_ELECTRON_APP := false
 
 var _is_html5: bool = OS.has_feature('JavaScript')
 var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
 var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
+
 
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
@@ -45,6 +46,7 @@ func extension_init() -> void:
 	print("Planetarium extension initing...")
 	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
 	ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
+	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
 	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
 	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
@@ -86,8 +88,8 @@ func _on_project_objects_instantiated() -> void:
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
 	hotkeys_popup.stop_sim = false
 	hotkeys_popup.remove_item("toggle_all_gui")
-	hotkeys_popup.remove_item("obtain_gui_focus")
-	hotkeys_popup.remove_item("release_gui_focus")
+	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
+	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_PREV_PANEL", "LABEL_GUI")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	default_settings.lock_navigator = true # add
@@ -109,15 +111,8 @@ func _on_project_objects_instantiated() -> void:
 
 func _on_project_inited() -> void:
 	if _use_web_assets:
-		LoadingMessage.new()
-
-
-class LoadingMessage extends Label:
-
-	func _init() -> void:
-		set("custom_fonts/font", Global.fonts.medium)
-		align = ALIGN_CENTER
-		text = "TXT_WEB_PLANETARIUM_LOADING"
-		Global.program.universe.add_child(self)
-		Global.connect("gui_refresh_requested", self, "queue_free")
-		set_anchors_and_margins_preset(PRESET_CENTER)
+		print("Loading HTML5 Boot Screen")
+		var boot_res: PackedScene = load("res://ivoyager/gui_admin/html5_boot_screen.tscn")
+		var boot := boot_res.instance()
+		Global.program.universe.add_child(boot)
+		Global.connect("gui_refresh_requested", boot, "queue_free")
