@@ -15,8 +15,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+# Note: "ObjectDB leaked at exit" errors occur on quit if this is a Reference;
+# these result from passing self to MainMenuManager (don't know why).
 
-extends Node # works as Reference, but causes errors on quit as of Godot 3.2.3
+extends Node # See Note
 class_name FullScreenManager
 
 var _tree: SceneTree = Global.get_tree()
