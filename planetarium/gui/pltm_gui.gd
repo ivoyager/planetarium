@@ -15,8 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-#
-# Modified from ivoyager/gui_example/example_game_gui.gd.
+# See comments in ivoyager/gui_example/example_game_gui.gd to understand what's
+# going on here.
 
 extends Control
 class_name PltmGUI
@@ -34,7 +34,7 @@ func project_init() -> void:
 
 func _ready():
 	var style_box := StyleBoxFlat.new()
-	style_box.bg_color = Color(1.0, 1.0, 1.0, 0.05)
+	style_box.bg_color = Color(1.0, 1.0, 1.0, 0.05) # almost transparent
 	for child in get_children():
 		var panel_container := child as PanelContainer
 		if !panel_container:

@@ -88,8 +88,8 @@ func _on_project_objects_instantiated() -> void:
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
 	hotkeys_popup.stop_sim = false
 	hotkeys_popup.remove_item("toggle_all_gui")
-	hotkeys_popup.remove_item("obtain_gui_focus")
-	hotkeys_popup.remove_item("release_gui_focus")
+	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
+	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_PREV_PANEL", "LABEL_GUI")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	default_settings.lock_navigator = true # add

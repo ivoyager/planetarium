@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://planetarium/gui/pltm_menu_panel.gd" type="Script" id=1]
-[ext_resource path="res://ivoyager/gui_widgets/vis_on_mo_ckbx.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ivoyager/gui_widgets/win_mgr_dynamic.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_mods/panel_vis_on_mouse_over_ckbx.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_mods/container_dynamic.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/main_menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/ivoyager_homepage.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ivoyager/gui_widgets/ivoyager_support_us.tscn" type="PackedScene" id=6]
@@ -68,12 +68,12 @@ margin_top = 19.0
 margin_right = 99.0
 margin_bottom = 34.0
 
-[node name="VisOnMOCkbx" parent="." instance=ExtResource( 2 )]
+[node name="PanelVisOnMouseOverCkbx" parent="." instance=ExtResource( 2 )]
 margin_left = 102.0
 margin_top = 7.0
 margin_right = 126.0
 margin_bottom = 31.0
 
-[node name="WinMgrDynamic" parent="." instance=ExtResource( 3 )]
+[node name="ContainerDynamic" parent="." instance=ExtResource( 3 )]
 margin_right = 126.0
 margin_bottom = 157.0

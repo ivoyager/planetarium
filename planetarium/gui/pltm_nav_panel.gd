@@ -19,9 +19,9 @@
 extends PanelContainer
 
 func _ready():
-	$WinMgrDynamic.default_sizes = [
+	$ContainerDynamic.default_sizes = [
 		Vector2(435.0, 262.0), # GUI_SMALL
 		Vector2(575.0, 319.0), # GUI_MEDIUM
 		Vector2(712.0, 379.0), # GUI_LARGE
 	]
-	$WinMgrDynamic.max_default_screen_proportions = Vector2(0.55, 0.45)
+	$ContainerDynamic.max_default_screen_proportions = Vector2(0.55, 0.45)
