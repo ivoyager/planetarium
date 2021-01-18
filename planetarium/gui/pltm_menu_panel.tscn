@@ -26,9 +26,9 @@ mouse_filter = 2
 alignment = 1
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBox"]
-margin_top = 28.0
+margin_top = 26.0
 margin_right = 119.0
-margin_bottom = 63.0
+margin_bottom = 61.0
 mouse_filter = 2
 custom_constants/margin_right = 25
 custom_constants/margin_top = 25
@@ -43,9 +43,9 @@ margin_bottom = 25.0
 size_flags_horizontal = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBox"]
-margin_top = 67.0
+margin_top = 65.0
 margin_right = 119.0
-margin_bottom = 121.0
+margin_bottom = 123.0
 mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -56,7 +56,8 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 109.0
-margin_bottom = 44.0
+margin_bottom = 48.0
+custom_constants/separation = 8
 
 [node name="IVoyagerHomepage" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
 margin_top = 0.0
@@ -64,9 +65,9 @@ margin_right = 99.0
 margin_bottom = 15.0
 
 [node name="IVoyagerSupportUs" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
-margin_top = 19.0
+margin_top = 23.0
 margin_right = 99.0
-margin_bottom = 34.0
+margin_bottom = 38.0
 
 [node name="PanelVisOnMouseOverCkbx" parent="." instance=ExtResource( 2 )]
 margin_left = 102.0

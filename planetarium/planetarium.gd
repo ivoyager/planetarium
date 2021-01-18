@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.7-alpha dev"
 const EXTENSION_VERSION_YMD := 20200519
 
-const USE_THREADS := false # false for debugging; HTML5 overrides false
+const USE_THREADS := false # false for debugging; HTML5 overrides to false
 const IS_ELECTRON_APP := false
 
 var _is_html5: bool = OS.has_feature('JavaScript')
@@ -45,7 +45,11 @@ func extension_init() -> void:
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
 	print("Planetarium extension initing...")
 	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
-	ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
+	if !_is_html5 or IS_ELECTRON_APP:
+		# We could implement this in web build if we had some way to know that
+		# the user has closed the browser tab (in lieu of quit). Don't know how
+		# to do that.
+		ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
 	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
 	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
 	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
@@ -53,7 +57,7 @@ func extension_init() -> void:
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_references.erase("_SaverLoader_")
 	Global.is_electron_app = IS_ELECTRON_APP
-	Global.use_threads = USE_THREADS and !_is_html5
+	Global.use_threads = USE_THREADS
 	Global.project_name = "I, Voyager Planetarium"
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
@@ -66,6 +70,7 @@ func extension_init() -> void:
 	ProjectBuilder.gui_controls.erase("_SplashScreen_")
 	if _is_html5:
 		Global.use_threads = false
+		Global.disable_quit = !IS_ELECTRON_APP
 		ProjectBuilder.gui_controls.erase("_MainProgBar_")
 	if _use_web_assets:
 		Global.vertecies_per_orbit = 200
@@ -92,13 +97,13 @@ func _on_project_objects_instantiated() -> void:
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_PREV_PANEL", "LABEL_GUI")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
-	default_settings.lock_navigator = true # add
-	default_settings.lock_time = true # add
-	default_settings.lock_selection = true # add
-	default_settings.lock_range = true # add
-	default_settings.lock_info = true # add
-	default_settings.lock_controls = false # add
-	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
+#	default_settings.lock_navigator = true # add
+#	default_settings.lock_time = true # add
+#	default_settings.lock_selection = true # add
+#	default_settings.lock_range = true # add
+#	default_settings.lock_info = true # add
+#	default_settings.lock_controls = false # add
+#	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
 	options_popup.stop_sim = false
 	if _use_web_assets:
