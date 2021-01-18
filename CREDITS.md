@@ -17,6 +17,6 @@ I, Voyager would not be possible without public interest in space exploration â€
     Starfield - NASA Goddard Space Flight Center, Scientific Visualization Studio
 
 ##
-See 3rd party copyright and licence information in ivoyager/3RD_PARTY.txt.
+See 3rd party copyright and licence information at https://github.com/ivoyager/ivoyager/blob/master/3RD_PARTY.txt.
 
 
