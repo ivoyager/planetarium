@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://planetarium/gui/pltm_menu_panel.gd" type="Script" id=1]
-[ext_resource path="res://ivoyager/gui_mods/panel_vis_on_mouse_over_ckbx.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_mods/container_draggable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/main_menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/link_label.tscn" type="PackedScene" id=5]
@@ -68,7 +68,7 @@ margin_top = 23.0
 margin_right = 99.0
 margin_bottom = 38.0
 
-[node name="PanelVisOnMouseOverCkbx" parent="." instance=ExtResource( 2 )]
+[node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 2 )]
 margin_left = 102.0
 margin_top = 7.0
 margin_right = 126.0
