@@ -107,7 +107,7 @@ _global_script_classes=[ {
 "base": "ConfirmationDialog",
 "class": "HotkeyDialog",
 "language": "GDScript",
-"path": "res://ivoyager/gui_widgets/hotkey_dialog.gd"
+"path": "res://ivoyager/gui_admin/hotkey_dialog.gd"
 }, {
 "base": "CachedItemsPopup",
 "class": "HotkeysPopup",
@@ -212,7 +212,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "PBDSplashScreen",
 "language": "GDScript",
-"path": "res://ivoyager/gui_admin/pbd_splash_screen.gd"
+"path": "res://ivoyager/gui_example/pbd_splash_screen.gd"
 }, {
 "base": "Control",
 "class": "PltmGUI",
