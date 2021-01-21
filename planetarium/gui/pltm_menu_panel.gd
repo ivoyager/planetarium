@@ -19,11 +19,13 @@
 extends PanelContainer
 
 func _ready():
-	$ContainerDynamic.default_sizes = [
+	var link_label2 = find_node("LinkLabel2")
+	link_label2.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
+	
+	$ContainerDraggable.default_sizes = [
 		# Zeros allow panel to shrink to content, but we need some width here
 		# so our "Support Us!" RichTextLabel doesn't wrap.
 		Vector2(75.0, 0.0), # GUI_SMALL
 		Vector2(100.0, 0.0), # GUI_MEDIUM
 		Vector2(125.0, 0.0), # GUI_LARGE
 	]
-	$ContainerDynamic.max_default_screen_proportions = Vector2(0.55, 0.55)

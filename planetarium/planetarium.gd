@@ -97,25 +97,21 @@ func _on_project_objects_instantiated() -> void:
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
-#	default_settings.lock_navigator = true # add
-#	default_settings.lock_time = true # add
-#	default_settings.lock_selection = true # add
-#	default_settings.lock_range = true # add
-#	default_settings.lock_info = true # add
-#	default_settings.lock_controls = false # add
-#	default_settings.gui_size = Enums.GUISizes.GUI_LARGE # change
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
 	options_popup.stop_sim = false
+	if _is_html5:
+		default_settings.gui_size = Enums.GUISizes.GUI_LARGE
 	if _use_web_assets:
 		options_popup.remove_item("starmap")
 	if _is_gles2:
+		# Color is different for Gles2; try to compensate here
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 func _on_project_inited() -> void:
-	if _use_web_assets:
+	if _is_html5:
 		print("Loading HTML5 Boot Screen")
 		var boot_res: PackedScene = load("res://ivoyager/gui_admin/html5_boot_screen.tscn")
 		var boot := boot_res.instance()
