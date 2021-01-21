@@ -212,7 +212,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "PBDSplashScreen",
 "language": "GDScript",
-"path": "res://ivoyager/gui_admin/pbd_splash_screen.gd"
+"path": "res://ivoyager/gui_example/pbd_splash_screen.gd"
 }, {
 "base": "Control",
 "class": "PltmGUI",
