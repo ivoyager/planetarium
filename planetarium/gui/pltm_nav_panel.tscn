@@ -5,7 +5,7 @@
 [ext_resource path="res://ivoyager/gui_widgets/planet_moon_buttons.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/sssbs_ckbxs.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/sun_slice_button.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ivoyager/gui_mods/panel_vis_on_mouse_over_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ivoyager/gui_mods/container_draggable.tscn" type="PackedScene" id=8]
 
@@ -95,7 +95,7 @@ margin_top = 7.0
 margin_right = 74.0
 margin_bottom = 27.0
 
-[node name="PanelVisOnMouseOverCkbx" parent="." instance=ExtResource( 6 )]
+[node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
 margin_left = 490.0
 margin_top = 7.0
 margin_right = 514.0
