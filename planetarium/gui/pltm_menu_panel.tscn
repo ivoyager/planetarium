@@ -21,14 +21,14 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 126.0
-margin_bottom = 157.0
+margin_bottom = 162.0
 mouse_filter = 2
 alignment = 1
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBox"]
-margin_top = 15.0
+margin_top = 1.0
 margin_right = 119.0
-margin_bottom = 50.0
+margin_bottom = 36.0
 mouse_filter = 2
 custom_constants/margin_right = 25
 custom_constants/margin_top = 25
@@ -43,33 +43,47 @@ margin_bottom = 25.0
 size_flags_horizontal = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBox"]
-margin_top = 54.0
+margin_top = 40.0
 margin_right = 119.0
-margin_bottom = 134.0
+margin_bottom = 154.0
 mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
-custom_constants/margin_left = 10
+custom_constants/margin_left = 17
 custom_constants/margin_bottom = 10
 
 [node name="VBox" type="VBoxContainer" parent="VBox/MarginContainer2"]
-margin_left = 10.0
+margin_left = 17.0
 margin_top = 10.0
 margin_right = 109.0
-margin_bottom = 70.0
+margin_bottom = 104.0
 custom_constants/separation = 8
 
-[node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
-
 [node name="HomePageLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
-margin_top = 22.0
-margin_right = 99.0
-margin_bottom = 37.0
+margin_top = 0.0
+margin_right = 92.0
+margin_bottom = 15.0
+
+[node name="FeedbackLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+margin_top = 23.0
+margin_right = 92.0
+margin_bottom = 38.0
 
 [node name="SupportUsLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
-margin_top = 45.0
-margin_right = 99.0
-margin_bottom = 60.0
+margin_top = 46.0
+margin_right = 92.0
+margin_bottom = 61.0
+
+[node name="Spacer" type="Control" parent="VBox/MarginContainer2/VBox"]
+margin_top = 69.0
+margin_right = 92.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
+margin_top = 80.0
+margin_right = 92.0
+margin_bottom = 94.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 2 )]
 margin_left = 102.0

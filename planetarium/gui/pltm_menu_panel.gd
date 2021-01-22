@@ -21,6 +21,8 @@ extends PanelContainer
 func _ready():
 	var version_label = find_node("VersionLabel")
 	version_label.set_version_label("Planetarium", false, true)
+	var feedback = find_node("FeedbackLinkLabel")
+	feedback.set_hyperlink("Feedback", "https://ivoyager.dev/forum/")
 	var support_us = find_node("SupportUsLinkLabel")
 	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
 	
