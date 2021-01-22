@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://planetarium/gui/pltm_menu_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_mods/container_draggable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/main_menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/link_label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ivoyager/gui_widgets/version_label.tscn" type="PackedScene" id=6]
 
 [node name="PltmMenuPanel" type="PanelContainer"]
 anchor_left = 1.0
@@ -25,9 +26,9 @@ mouse_filter = 2
 alignment = 1
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBox"]
-margin_top = 26.0
+margin_top = 15.0
 margin_right = 119.0
-margin_bottom = 61.0
+margin_bottom = 50.0
 mouse_filter = 2
 custom_constants/margin_right = 25
 custom_constants/margin_top = 25
@@ -42,9 +43,9 @@ margin_bottom = 25.0
 size_flags_horizontal = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBox"]
-margin_top = 65.0
+margin_top = 54.0
 margin_right = 119.0
-margin_bottom = 123.0
+margin_bottom = 134.0
 mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -55,18 +56,20 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 109.0
-margin_bottom = 48.0
+margin_bottom = 70.0
 custom_constants/separation = 8
 
-[node name="LinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
-margin_top = 0.0
-margin_right = 99.0
-margin_bottom = 15.0
+[node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
 
-[node name="LinkLabel2" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
-margin_top = 23.0
+[node name="HomePageLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+margin_top = 22.0
 margin_right = 99.0
-margin_bottom = 38.0
+margin_bottom = 37.0
+
+[node name="SupportUsLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+margin_top = 45.0
+margin_right = 99.0
+margin_bottom = 60.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 2 )]
 margin_left = 102.0

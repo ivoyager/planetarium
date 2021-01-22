@@ -19,8 +19,10 @@
 extends PanelContainer
 
 func _ready():
-	var link_label2 = find_node("LinkLabel2")
-	link_label2.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
+	var version_label = find_node("VersionLabel")
+	version_label.set_version_label("Planetarium", false, true)
+	var support_us = find_node("SupportUsLinkLabel")
+	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
 	
 	$ContainerDraggable.default_sizes = [
 		# Zeros allow panel to shrink to content, but we need some width here

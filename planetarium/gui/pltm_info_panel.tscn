@@ -61,10 +61,16 @@ margin_top = 2.0
 margin_right = 425.0
 margin_bottom = 22.0
 
-[node name="HBox2" type="HBoxContainer" parent="MarginContainer/VBox"]
+[node name="Spacer1" type="Control" parent="MarginContainer/VBox"]
 margin_top = 28.0
 margin_right = 425.0
-margin_bottom = 178.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 12 )
+
+[node name="HBox2" type="HBoxContainer" parent="MarginContainer/VBox"]
+margin_top = 44.0
+margin_right = 425.0
+margin_bottom = 194.0
 
 [node name="SelectionWikiLink" parent="MarginContainer/VBox/HBox2" instance=ExtResource( 10 )]
 margin_top = 0.0
@@ -78,9 +84,9 @@ margin_right = 345.0
 margin_bottom = 85.0
 
 [node name="HBox3" type="HBoxContainer" parent="MarginContainer/VBox"]
-margin_top = 182.0
+margin_top = 198.0
 margin_right = 425.0
-margin_bottom = 202.0
+margin_bottom = 218.0
 
 [node name="RangeLabel" parent="MarginContainer/VBox/HBox3" instance=ExtResource( 6 )]
 margin_right = 330.0
@@ -102,9 +108,9 @@ margin_right = 425.0
 margin_bottom = 20.0
 
 [node name="HBox4" type="HBoxContainer" parent="MarginContainer/VBox"]
-margin_top = 206.0
+margin_top = 222.0
 margin_right = 425.0
-margin_bottom = 230.0
+margin_bottom = 246.0
 
 [node name="LatLongLabel" parent="MarginContainer/VBox/HBox4" instance=ExtResource( 8 )]
 margin_top = 5.0
@@ -117,14 +123,14 @@ margin_left = 4.0
 margin_right = 425.0
 margin_bottom = 24.0
 
-[node name="Spacer" type="Control" parent="MarginContainer/VBox"]
-margin_top = 234.0
+[node name="Spacer2" type="Control" parent="MarginContainer/VBox"]
+margin_top = 250.0
 margin_right = 425.0
-margin_bottom = 242.0
-rect_min_size = Vector2( 0, 8 )
+margin_bottom = 262.0
+rect_min_size = Vector2( 0, 12 )
 
 [node name="DataScroll" type="ScrollContainer" parent="MarginContainer/VBox"]
-margin_top = 246.0
+margin_top = 266.0
 margin_right = 425.0
 margin_bottom = 446.0
 size_flags_vertical = 3
