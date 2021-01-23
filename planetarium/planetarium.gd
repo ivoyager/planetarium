@@ -1,7 +1,9 @@
 # planetarium.gd
-# This file is part of I, Voyager (https://ivoyager.dev)
+# This file is part of I, Voyager
+# https://ivoyager.dev
 # *****************************************************************************
 # Copyright (c) 2017-2021 Charlie Whitfield
+# "I, Voyager" is a registered trademark of Charlie Whitfield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
