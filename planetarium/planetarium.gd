@@ -31,8 +31,8 @@
 extends Reference
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.7-alpha"
-const EXTENSION_VERSION_YMD := 20210122
+const EXTENSION_VERSION := "0.0.8-dev"
+const EXTENSION_VERSION_YMD := 20210123
 
 const USE_THREADS := false # false for debugging; HTML5 overrides to false
 const IS_ELECTRON_APP := false
