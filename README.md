@@ -1,30 +1,32 @@
-# I, Voyager Planetarium
+# Planetarium
 
 Homepage: https://ivoyager.dev
 
 ### What is I, Voyager?
 I, Voyager is
 1. an open-source software planetarium 
-2. a development platform for creating games and educational software in a realistic Solar System.
+2. a development platform for creating games and educational software in a realistic solar system.
 
 It is designed to be improved, modified and extended by the community. I, Voyager runs on the open-source [Godot Engine](https://godotengine.org) and primarily uses Godot’s easy-to-learn [GDScript](http://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#doc-gdscript) (similar to Python). It can be extended into an independent free-standing project (a game or other software product) using GDScript, C# or C++.
 
+If you are interested in our future development, see our official [Roadmap!](https://ivoyager.dev/forum/index.php?p=/discussion/41/roadmap)
+
 ### What does I, Voyager cost?
-I, Voyager is free to use and distribute under the permissive [Apache License 2.0](https://en.wikipedia.org/wiki/Apache_License). Projects built with I, Voyager are owned by their creators. You can sell what you make. There are no royalties or fees.
+I, Voyager is free to use and distribute under the permissive [Apache License 2.0](https://en.wikipedia.org/wiki/Apache_License). Projects built with I, Voyager are owned by their creators. You are free to give away or sell what you make. There are no royalties or fees.
 
 ### How do I contribute to I, Voyager development?
-Help us grow the community by following us on [Twitter](https://twitter.com/IVoygr) and [Facebook](https://www.facebook.com/IVoygr/). Exchange ideas and give and receive help on our [Forum](https://ivoyager.dev/forum). Report bugs ([here](https://github.com/ivoyager/ivoyager-bugs/issues)) and astronomical inaccuracies ([here](https://github.com/ivoyager/ivoyager-astronomical-inaccuracies/issues)). Contribute to code via pull requests at our repositories: https://github.com/ivoyager.
+Help us grow the community by following us on [Twitter](https://twitter.com/IVoygr) and [Facebook](https://www.facebook.com/IVoygr/). Exchange ideas and give and receive help on our [Forum](https://ivoyager.dev/forum). Report bugs or astronomical inaccuracies at our issue tracker [here](https://github.com/ivoyager/issues). Or contribute to code development via pull requests to our repositories at https://github.com/ivoyager.
 
 ### How can I support this effort financially?
-Please visit our [GitHub Sponsors page!](https://github.com/sponsors/charliewhitfield) **GitHub will match your contributions dollar for dollar throughout 2020!** Become a Mercury Patron for $2 per month! Or, if you are a company, please consider sponsoring us as a Saturn or Jupiter Patron. Goal #1: Make I, Voyager into a non-profit entity. This will shield us from tax liability, allow us to apply for grants and secure the organization's existence into the future.
+Please visit our [GitHub Sponsors page!](https://github.com/sponsors/charliewhitfield) Become a Mercury Patron for $2 per month! Or, if you are a company, please consider sponsoring us as a Saturn or Jupiter Patron. Goal #1: Make I, Voyager into a non-profit entity. This will shield us from tax liability, allow us to apply for grants, and secure our existence as a collaborative open-source project into the future.
 
 ### Where did I, Voyager come from?
-Creator and lead programmer Charlie Whitfield stumbled into the Godot Engine in November, 2017. By December there were TestCubes orbiting bigger TestCubes orbiting one really big TestCube*. The name "I, Voyager" was inspired by **[Pale Blue Dot](https://www.planetary.org/explore/space-topics/earth/pale-blue-dot.html)**, an image of Earth taken by Voyager 1 from 6.4 billion kilometers away. The name is a play on "Voyager 1" and in honor of the Voyager Program. I, Voyager became an open-source project on Carl Sagan's birthday, November 9, 2019.
+Creator and lead programmer Charlie Whitfield stumbled into the Godot Engine in November, 2017. By December there were TestCubes orbiting bigger TestCubes orbiting one really big TestCube*. The name "I, Voyager" is a play on "Voyager 1," the spacecraft that captured an image of Earth from 6.4 billion kilometers away (the [Pale Blue Dot](https://www.planetary.org/explore/space-topics/earth/pale-blue-dot.html)). I, Voyager became an open-source project on Carl Sagan's birthday, November 9, 2019.
 
 (* Godot devs, bring back the [TestCube](https://docs.godotengine.org/en/2.1/classes/class_testcube.html)!)
 
 ### Authors, credits and legal
-I, Voyager would not be possible without public interest in space exploration – expressed via funding of government agencies such as NASA, NOAA and ESA, and the scientists and engineers they employ. I, Voyager also owes a special debt of gratitude to Godot Engine’s creators and contributors. I, Voyager is copyright (c) 2017-2020 Charlie Whitfield. For up-to-date lists of authors, credits, and license information, see files in our code repository [here](https://github.com/ivoyager/ivoyager) or follow these links:
+I, Voyager would not be possible without public interest in space exploration – expressed via funding of government agencies such as NASA and ESA and the scientists and engineers that they employ. I, Voyager also owes a special debt of gratitude to Godot Engine’s creators and contributors. I, Voyager is copyright (c) 2017-2021 Charlie Whitfield. "I, Voyager" is a registered trademark of Charlie Whitfield. For up-to-date lists of authors, credits, and license information, see files in our code repository [here](https://github.com/ivoyager/ivoyager) or follow these links:
 * [AUTHORS.md](https://github.com/ivoyager/ivoyager/blob/master/AUTHORS.md) - contributors to I, Voyager code and assets.
 * [CREDITS.md](https://github.com/ivoyager/ivoyager/blob/master/CREDITS.md) - individuals and organizations whose efforts made I, Voyager possible.  
 * [LICENSE.txt](https://github.com/ivoyager/ivoyager/blob/master/LICENSE.txt) - the I, Voyager license.

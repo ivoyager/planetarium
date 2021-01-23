@@ -1,7 +1,9 @@
 # full_screen_manager.gd
-# This file is part of I, Voyager (https://ivoyager.dev)
+# This file is part of I, Voyager
+# https://ivoyager.dev
 # *****************************************************************************
 # Copyright (c) 2017-2021 Charlie Whitfield
+# "I, Voyager" is a registered trademark of Charlie Whitfield
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,8 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-# Note: "ObjectDB leaked at exit" errors occur on quit if this is a Reference;
-# these result from passing self to MainMenuManager (don't know why).
+# Note: "ObjectDB leaked at exit" errors occur on quit if this is a Reference
+# as of Godot 3.2.3; these result from passing self to MainMenuManager. This
+# shouldn't happen, but changing to Node and adding via
+# ProjectBuider.program_nodes fixes the problem for now.
 
 extends Node # See Note
 class_name FullScreenManager
