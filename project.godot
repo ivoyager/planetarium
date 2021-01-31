@@ -344,10 +344,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/view.gd"
 }, {
-"base": "Reference",
-"class": "ViewCacher",
+"base": "Timer",
+"class": "ViewCaching",
 "language": "GDScript",
-"path": "res://planetarium/prog/view_cacher.gd"
+"path": "res://ivoyager/prog_nodes/view_caching.gd"
 }, {
 "base": "Camera",
 "class": "VygrCamera",
@@ -427,7 +427,7 @@ _global_script_class_icons={
 "TreeManager": "",
 "UnitDefs": "",
 "View": "",
-"ViewCacher": "",
+"ViewCaching": "",
 "VygrCamera": "",
 "VygrCameraHandler": ""
 }
