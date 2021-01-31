@@ -34,7 +34,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.8-dev"
 const EXTENSION_VERSION_YMD := 20210123
 
-const USE_THREADS := false # false for debugging; HTML5 overrides to false
+const USE_THREADS := true # false for debugging; HTML5 overrides to false
 const IS_ELECTRON_APP := false
 
 var _is_html5: bool = OS.has_feature('JavaScript')
@@ -45,13 +45,8 @@ var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
-	print("Planetarium extension initing...")
-	print("Web assets: ", _use_web_assets, "; GLES2: ", _is_gles2)
-	if !_is_html5 or IS_ELECTRON_APP:
-		# We could implement this in web build if we had some way to know that
-		# the user has closed the browser tab (in lieu of quit). Don't know how
-		# to do that.
-		ProjectBuilder.program_references._ViewCacher_ = ViewCacher # planetarium addition
+	print("HTML5 ", _is_html5, "; GLES2 ", _is_gles2, "; Web Assets ", _use_web_assets)
+	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
 	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
 	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
 	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
@@ -72,8 +67,9 @@ func extension_init() -> void:
 	ProjectBuilder.gui_controls.erase("_SplashScreen_")
 	if _is_html5:
 		Global.use_threads = false
-		Global.disable_quit = !IS_ELECTRON_APP
 		ProjectBuilder.gui_controls.erase("_MainProgBar_")
+	if _is_html5 and !IS_ELECTRON_APP:
+		Global.disable_quit = true
 	if _use_web_assets:
 		Global.vertecies_per_orbit = 200
 		Global.asset_replacement_dir = "ivoyager_assets_web"
@@ -97,16 +93,19 @@ func _on_project_objects_instantiated() -> void:
 	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
-	var settings_manager: SettingsManager = Global.program.SettingsManager
-	var default_settings := settings_manager.defaults
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
 	options_popup.stop_sim = false
+	var settings_manager: SettingsManager = Global.program.SettingsManager
+	var default_settings := settings_manager.defaults
 	if _is_html5:
-		default_settings.gui_size = Enums.GUISizes.GUI_LARGE
+		default_settings.gui_size = Enums.GUISize.GUI_LARGE
+	if _is_html5 and !IS_ELECTRON_APP:
+		var view_caching: ViewCaching = Global.program.ViewCaching
+		view_caching.cache_interval = 5.0
 	if _use_web_assets:
 		options_popup.remove_item("starmap")
 	if _is_gles2:
-		# Color is different for Gles2; try to compensate here
+		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
