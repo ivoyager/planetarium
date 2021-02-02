@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/huds_builder.gd"
 }, {
+"base": "Node",
+"class": "HUDsManager",
+"language": "GDScript",
+"path": "res://ivoyager/prog_nodes/huds_manager.gd"
+}, {
 "base": "ConfirmationDialog",
 "class": "HotkeyDialog",
 "language": "GDScript",
@@ -289,6 +294,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/settings_manager.gd"
 }, {
+"base": "Reference",
+"class": "SimTimer",
+"language": "GDScript",
+"path": "res://ivoyager/prog_refs/sim_timer.gd"
+}, {
+"base": "Reference",
+"class": "SleepManager",
+"language": "GDScript",
+"path": "res://ivoyager/prog_refs/sleep_manager.gd"
+}, {
 "base": "Node",
 "class": "StateManager",
 "language": "GDScript",
@@ -328,11 +343,6 @@ _global_script_classes=[ {
 "class": "TranslationImporter",
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/translation_importer.gd"
-}, {
-"base": "Node",
-"class": "TreeManager",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/tree_manager.gd"
 }, {
 "base": "Reference",
 "class": "UnitDefs",
@@ -380,6 +390,7 @@ _global_script_class_icons={
 "HUDOrbit": "",
 "HUDPoints": "",
 "HUDsBuilder": "",
+"HUDsManager": "",
 "HotkeyDialog": "",
 "HotkeysPopup": "",
 "InputHandler": "",
@@ -416,6 +427,8 @@ _global_script_class_icons={
 "SelectionItem": "",
 "SelectionManager": "",
 "SettingsManager": "",
+"SimTimer": "",
+"SleepManager": "",
 "StateManager": "",
 "StrUtils": "",
 "SystemBuilder": "",
@@ -424,7 +437,6 @@ _global_script_class_icons={
 "ThemeManager": "",
 "Timekeeper": "",
 "TranslationImporter": "",
-"TreeManager": "",
 "UnitDefs": "",
 "View": "",
 "ViewCaching": "",

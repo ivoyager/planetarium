@@ -79,9 +79,9 @@ func _on_project_objects_instantiated() -> void:
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper
 	timekeeper.start_real_world_time = true
-	var tree_manager: TreeManager = Global.program.TreeManager
-	tree_manager.show_names = true
-	tree_manager.show_orbits = true
+	var huds_manager: HUDsManager = Global.program.HUDsManager
+	huds_manager.show_names = true
+	huds_manager.show_orbits = true
 	var qty_strings: QtyStrings = Global.program.QtyStrings
 	qty_strings.exp_str = " x 10^"
 	var theme_manager: ThemeManager = Global.program.ThemeManager
