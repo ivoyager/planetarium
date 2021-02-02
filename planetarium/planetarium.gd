@@ -45,6 +45,7 @@ var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 func extension_init() -> void:
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
+	Global.connect("simulator_started", self, "_on_simulator_started")
 	print("HTML5 ", _is_html5, "; GLES2 ", _is_gles2, "; Web Assets ", _use_web_assets)
 	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
 	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
@@ -118,3 +119,18 @@ func _on_project_inited() -> void:
 		var boot := boot_res.instance()
 		Global.program.universe.add_child(boot)
 		Global.connect("gui_refresh_requested", boot, "queue_free")
+
+func _on_simulator_started() -> void:
+	pass
+	# Scheduler test below
+#	var scheduler: Scheduler = Global.program.Scheduler
+#	scheduler.interval_connect(1.0 * UnitDefs.HOUR, self, "_print", ["1.0 hr"])
+#	scheduler.interval_connect(2.0 * UnitDefs.HOUR, self, "_print", ["2.0 hr"])
+#	scheduler.interval_connect(4.0 * UnitDefs.HOUR, self, "_print", ["4.0 hr"])
+#	scheduler.interval_connect(3.0 * UnitDefs.HOUR, self, "_print", ["3.0 hr Oneshot"], CONNECT_ONESHOT)
+#	scheduler.interval_connect(5.0 * UnitDefs.HOUR, self, "_print", ["5.0 hr Oneshot"], CONNECT_ONESHOT)
+#
+#func _print(text: String) -> void:
+#	if text == "4.0 hr":
+#		Global.program.Scheduler.interval_disconnect(4.0 * UnitDefs.HOUR, self, "_print")
+#	print(text)
