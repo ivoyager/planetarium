@@ -55,6 +55,11 @@ _global_script_classes=[ {
 "path": "res://ivoyager/gui_admin/credits_popup.gd"
 }, {
 "base": "Reference",
+"class": "Debug",
+"language": "GDScript",
+"path": "res://ivoyager/static/debug.gd"
+}, {
+"base": "Reference",
 "class": "Enums",
 "language": "GDScript",
 "path": "res://ivoyager/static/enums.gd"
@@ -379,6 +384,7 @@ _global_script_class_icons={
 "CacheManager": "",
 "CachedItemsPopup": "",
 "CreditsPopup": "",
+"Debug": "",
 "Enums": "",
 "EnvironmentBuilder": "",
 "ExampleGameGUI": "",
@@ -456,7 +462,6 @@ name="I Voyager Planetarium"
 
 [autoload]
 
-Debug="*res://ivoyager/singletons/debug.gd"
 Global="*res://ivoyager/singletons/global.gd"
 ProjectBuilder="*res://ivoyager/singletons/project_builder.gd"
 
