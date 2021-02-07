@@ -94,11 +94,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/static/gui_utils.gd"
 }, {
-"base": "Control",
-"class": "HUD2dSurface",
-"language": "GDScript",
-"path": "res://ivoyager/gui_admin/hud_2d_surface.gd"
-}, {
 "base": "Label",
 "class": "HUDLabel",
 "language": "GDScript",
@@ -243,6 +238,11 @@ _global_script_classes=[ {
 "class": "PointsManager",
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/points_manager.gd"
+}, {
+"base": "Control",
+"class": "ProjectionSurface",
+"language": "GDScript",
+"path": "res://ivoyager/gui_admin/projection_surface.gd"
 }, {
 "base": "Reference",
 "class": "Properties",
@@ -392,7 +392,6 @@ _global_script_class_icons={
 "FontManager": "",
 "FullScreenManager": "",
 "GUIUtils": "",
-"HUD2dSurface": "",
 "HUDLabel": "",
 "HUDOrbit": "",
 "HUDPoints": "",
@@ -422,6 +421,7 @@ _global_script_class_icons={
 "PBDSplashScreen": "",
 "PltmGUI": "",
 "PointsManager": "",
+"ProjectionSurface": "",
 "Properties": "",
 "QtyStrings": "",
 "RangeValue": "",
