@@ -21,32 +21,33 @@
 #  1. The native app: Windows (or whatever) export w/ ivoyager_assets.
 #  2. Web deployment: GLES2; HTML5 export w/ ivoyager_assets_web; running from
 #     a web server.
-#  3. Electron app: GLES2, HTML5 export w/ ivoyager_assets; drop the exported 
+#  3. [DEPRECIATE]
+#     Electron app: GLES2, HTML5 export w/ ivoyager_assets; drop the exported 
 #     project into our "electron app" (github.com/ivoyager/electron_app) and
 #     run with npm start, or deploy that project with electron-forge. This
 #     integrates the planetarium with its own browser.
+#  3. [TODO] Native apps w/ lightweight browser (maybe Electron) with
+#     restricted access to Wiki, NASA, etc.
 #
 # Note: In Godot 3.x, HTML5 export should use GLES2.
 
-extends Reference
-
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.8-dev"
-const EXTENSION_VERSION_YMD := 20210123
+const EXTENSION_VERSION_YMD := 20210207
 
 const USE_THREADS := true # false for debugging; HTML5 overrides to false
-const IS_ELECTRON_APP := false
+const IS_ELECTRON_APP := false # DEPRECIATE
 
 var _is_html5: bool = OS.has_feature('JavaScript')
 var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
 var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 
-
 func extension_init() -> void:
+	prints(EXTENSION_NAME) # save version as I, Voyager
+	printt("HTML5 %s; GLES2 %s; Web Assets %s" % [_is_html5, _is_gles2, _use_web_assets])
 	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
 	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
-	print("HTML5 ", _is_html5, "; GLES2 ", _is_gles2, "; Web Assets ", _use_web_assets)
 	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
 	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
 	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
@@ -56,7 +57,7 @@ func extension_init() -> void:
 	ProjectBuilder.program_references.erase("_SaverLoader_")
 	Global.is_electron_app = IS_ELECTRON_APP
 	Global.use_threads = USE_THREADS
-	Global.project_name = "I, Voyager Planetarium"
+	Global.project_name = "Planetarium"
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
 	Global.allow_time_reversal = true
