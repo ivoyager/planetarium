@@ -199,11 +199,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/model_geometry.gd"
 }, {
-"base": "Reference",
-"class": "MouseClickSelector",
-"language": "GDScript",
-"path": "res://ivoyager/prog_refs/mouse_click_selector.gd"
-}, {
 "base": "ConfirmationDialog",
 "class": "OneUseConfirm",
 "language": "GDScript",
@@ -242,7 +237,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "ProjectionSurface",
 "language": "GDScript",
-"path": "res://ivoyager/gui_admin/projection_surface.gd"
+"path": "res://ivoyager/tree_nodes/projection_surface.gd"
 }, {
 "base": "Reference",
 "class": "Properties",
@@ -413,7 +408,6 @@ _global_script_class_icons={
 "MinorBodiesManager": "",
 "ModelBuilder": "",
 "ModelGeometry": "",
-"MouseClickSelector": "",
 "OneUseConfirm": "",
 "OptionsPopup": "",
 "Orbit": "",
