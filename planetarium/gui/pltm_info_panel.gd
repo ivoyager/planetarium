@@ -29,9 +29,9 @@ func _ready():
 	track_orbit_ground_ckbxs.remove_track_label()
 	var selection_data = find_node("SelectionData")
 	selection_data.enable_wiki_links = true
-	$ContainerDraggable.default_sizes = [
+	$ControlDraggable.default_sizes = [
 		Vector2(315.0, 870.0), # GUI_SMALL
 		Vector2(375.0, 1150.0), # GUI_MEDIUM
 		Vector2(455.0, 1424.0), # GUI_LARGE
 	]
-	$ContainerDraggable.max_default_screen_proportions = Vector2(0.33, 0.55)
+	$ControlDraggable.max_default_screen_proportions = Vector2(0.33, 0.55)

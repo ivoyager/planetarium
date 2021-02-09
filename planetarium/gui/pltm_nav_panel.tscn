@@ -7,7 +7,7 @@
 [ext_resource path="res://ivoyager/gui_widgets/sun_slice_button.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ivoyager/gui_mods/container_draggable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
 
 [node name="PltmNavPanel" type="PanelContainer"]
 anchor_top = 1.0
@@ -101,4 +101,4 @@ margin_top = 7.0
 margin_right = 514.0
 margin_bottom = 31.0
 
-[node name="ContainerDraggable" parent="." instance=ExtResource( 8 )]
+[node name="ControlDraggable" parent="." instance=ExtResource( 8 )]

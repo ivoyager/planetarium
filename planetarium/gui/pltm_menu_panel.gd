@@ -28,7 +28,7 @@ func _ready():
 	var support_us = find_node("SupportUsLinkLabel")
 	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
 	
-	$ContainerDraggable.default_sizes = [
+	$ControlDraggable.default_sizes = [
 		# Zeros allow panel to shrink to content, but we need some width here
 		# so our "Support Us!" RichTextLabel doesn't wrap.
 		Vector2(75.0, 0.0), # GUI_SMALL

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://planetarium/gui/pltm_menu_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ivoyager/gui_mods/container_draggable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/main_menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/link_label.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ivoyager/gui_widgets/version_label.tscn" type="PackedScene" id=6]
@@ -21,14 +21,13 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 126.0
-margin_bottom = 162.0
+margin_bottom = 160.0
 mouse_filter = 2
 alignment = 1
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBox"]
-margin_top = 1.0
 margin_right = 119.0
-margin_bottom = 36.0
+margin_bottom = 35.0
 mouse_filter = 2
 custom_constants/margin_right = 25
 custom_constants/margin_top = 25
@@ -43,9 +42,9 @@ margin_bottom = 25.0
 size_flags_horizontal = 4
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBox"]
-margin_top = 40.0
+margin_top = 39.0
 margin_right = 119.0
-margin_bottom = 154.0
+margin_bottom = 153.0
 mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -91,4 +90,4 @@ margin_top = 7.0
 margin_right = 126.0
 margin_bottom = 31.0
 
-[node name="ContainerDraggable" parent="." instance=ExtResource( 3 )]
+[node name="ControlDraggable" parent="." instance=ExtResource( 3 )]
