@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ivoyager/gui_mods/container_draggable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_widgets/date_time_label.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/speed_buttons.tscn" type="PackedScene" id=4]
 [ext_resource path="res://planetarium/gui/pltm_info_panel.gd" type="Script" id=5]
@@ -152,4 +152,4 @@ margin_top = 7.0
 margin_right = 467.0
 margin_bottom = 31.0
 
-[node name="ContainerDraggable" parent="." instance=ExtResource( 2 )]
+[node name="ControlDraggable" parent="." instance=ExtResource( 2 )]
