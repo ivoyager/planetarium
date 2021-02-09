@@ -45,21 +45,28 @@ margin_right = 425.0
 margin_bottom = 24.0
 
 [node name="DateTimeLabel" parent="MarginContainer/VBox/HBox1" instance=ExtResource( 3 )]
-margin_right = 164.0
+margin_right = 140.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 valign = 1
 
 [node name="PresentTimeCkbx" parent="MarginContainer/VBox/HBox1" instance=ExtResource( 14 )]
-margin_left = 168.0
-margin_right = 326.0
+margin_left = 144.0
+margin_right = 302.0
 
 [node name="SpeedButtons" parent="MarginContainer/VBox/HBox1" instance=ExtResource( 4 )]
-margin_left = 330.0
+margin_left = 306.0
 margin_top = 2.0
-margin_right = 425.0
+margin_right = 401.0
 margin_bottom = 22.0
+
+[node name="SetDateTime" type="Button" parent="MarginContainer/VBox/HBox1"]
+margin_left = 405.0
+margin_right = 425.0
+margin_bottom = 24.0
+hint_tooltip = "HINT_SET_TIME"
+text = "*"
 
 [node name="Spacer1" type="Control" parent="MarginContainer/VBox"]
 margin_top = 28.0
