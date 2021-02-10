@@ -2,6 +2,10 @@
 
 Homepage: https://ivoyager.dev
 
+Issues: https://github.com/ivoyager/ivoyager/issues
+
+Forum: https://ivoyager.dev/forum
+
 ### What is I, Voyager?
 I, Voyager is
 1. an open-source software planetarium 
