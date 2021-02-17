@@ -39,10 +39,12 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 435.0
 margin_bottom = 456.0
+mouse_filter = 2
 
 [node name="HBox1" type="HBoxContainer" parent="MarginContainer/VBox"]
 margin_right = 425.0
 margin_bottom = 24.0
+mouse_filter = 2
 
 [node name="DateTimeLabel" parent="MarginContainer/VBox/HBox1" instance=ExtResource( 3 )]
 margin_right = 140.0
@@ -73,11 +75,13 @@ margin_top = 28.0
 margin_right = 425.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 12 )
+mouse_filter = 2
 
 [node name="HBox2" type="HBoxContainer" parent="MarginContainer/VBox"]
 margin_top = 44.0
 margin_right = 425.0
 margin_bottom = 194.0
+mouse_filter = 2
 
 [node name="SelectionWikiLink" parent="MarginContainer/VBox/HBox2" instance=ExtResource( 10 )]
 margin_top = 0.0
@@ -94,6 +98,7 @@ margin_bottom = 85.0
 margin_top = 198.0
 margin_right = 425.0
 margin_bottom = 218.0
+mouse_filter = 2
 
 [node name="RangeLabel" parent="MarginContainer/VBox/HBox3" instance=ExtResource( 6 )]
 margin_right = 330.0
@@ -118,6 +123,7 @@ margin_bottom = 20.0
 margin_top = 222.0
 margin_right = 425.0
 margin_bottom = 246.0
+mouse_filter = 2
 
 [node name="LatLongLabel" parent="MarginContainer/VBox/HBox4" instance=ExtResource( 8 )]
 margin_top = 5.0
@@ -135,11 +141,13 @@ margin_top = 250.0
 margin_right = 425.0
 margin_bottom = 262.0
 rect_min_size = Vector2( 0, 12 )
+mouse_filter = 2
 
 [node name="DataScroll" type="ScrollContainer" parent="MarginContainer/VBox"]
 margin_top = 266.0
 margin_right = 425.0
 margin_bottom = 446.0
+mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
