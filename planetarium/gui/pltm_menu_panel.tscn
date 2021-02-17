@@ -56,6 +56,7 @@ margin_left = 17.0
 margin_top = 10.0
 margin_right = 109.0
 margin_bottom = 104.0
+mouse_filter = 2
 custom_constants/separation = 8
 
 [node name="HomePageLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
@@ -78,6 +79,7 @@ margin_top = 69.0
 margin_right = 92.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 0, 3 )
+mouse_filter = 2
 
 [node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
 margin_top = 80.0

@@ -77,6 +77,7 @@ margin_bottom = 28.0
 margin_top = 32.0
 margin_right = 491.0
 margin_bottom = 32.0
+mouse_filter = 2
 
 [node name="BottomVBox" type="VBoxContainer" parent="HBox/RightContent"]
 margin_top = 244.0
