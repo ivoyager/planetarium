@@ -54,8 +54,8 @@ func extension_init() -> void:
 	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
-	ProjectBuilder.program_builders.erase("_SaverLoader_")
-	ProjectBuilder.program_references.erase("_SaveLoadManager_")
+	ProjectBuilder.program_builders.erase("_SaveBuilder_")
+	ProjectBuilder.program_nodes.erase("_SaveManager_")
 	Global.is_electron_app = IS_ELECTRON_APP
 	Global.use_threads = USE_THREADS
 	Global.project_name = "Planetarium"
