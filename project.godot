@@ -454,6 +454,7 @@ _global_script_class_icons={
 
 config/name="I, Voyager - Planetarium"
 run/main_scene="res://universe.tscn"
+boot_splash/image="res://pale_blue_dot.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://jupiter-icon-128.png"
 icon="res://jupiter-icon-128.png"
@@ -472,8 +473,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1600
-window/size/height=900
+window/size/width=1800
+window/size/height=1080
 window/dpi/allow_hidpi=true
 
 [importer_defaults]
