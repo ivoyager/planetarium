@@ -89,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/prog/full_screen_manager.gd"
 }, {
+"base": "Control",
+"class": "GUITop",
+"language": "GDScript",
+"path": "res://planetarium/gui/gui_top.gd"
+}, {
 "base": "Reference",
 "class": "GUIUtils",
 "language": "GDScript",
@@ -223,11 +228,6 @@ _global_script_classes=[ {
 "class": "PBDSplashScreen",
 "language": "GDScript",
 "path": "res://ivoyager/gui_example/pbd_splash_screen.gd"
-}, {
-"base": "Control",
-"class": "PltmGUI",
-"language": "GDScript",
-"path": "res://planetarium/gui/pltm_gui.gd"
 }, {
 "base": "Node",
 "class": "PointsManager",
@@ -391,6 +391,7 @@ _global_script_class_icons={
 "FileUtils": "",
 "FontManager": "",
 "FullScreenManager": "",
+"GUITop": "",
 "GUIUtils": "",
 "HUDLabel": "",
 "HUDOrbit": "",
@@ -418,7 +419,6 @@ _global_script_class_icons={
 "Orbit": "",
 "OrbitBuilder": "",
 "PBDSplashScreen": "",
-"PltmGUI": "",
 "PointsManager": "",
 "ProjectionSurface": "",
 "Properties": "",
@@ -454,6 +454,7 @@ _global_script_class_icons={
 
 config/name="I, Voyager - Planetarium"
 run/main_scene="res://universe.tscn"
+boot_splash/image="res://pale_blue_dot.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://jupiter-icon-128.png"
 icon="res://jupiter-icon-128.png"
@@ -472,8 +473,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1600
-window/size/height=900
+window/size/width=1920
+window/size/height=1080
 window/dpi/allow_hidpi=true
 
 [importer_defaults]

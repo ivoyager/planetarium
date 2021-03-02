@@ -42,15 +42,17 @@ var _is_html5: bool = OS.has_feature('JavaScript')
 var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
 var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 
+
 func extension_init() -> void:
 	prints(EXTENSION_NAME) # save version as I, Voyager
 	printt("HTML5 %s; GLES2 %s; Web Assets %s" % [_is_html5, _is_gles2, _use_web_assets])
-	ProjectBuilder.connect("project_objects_instantiated", self, "_on_project_objects_instantiated")
-	ProjectBuilder.connect("project_inited", self, "_on_project_inited")
+	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
+	Global.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
 	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
 	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
-	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
+	ProjectBuilder.gui_controls._ProjectGUI_ = GUITop # replacement
+	ProjectBuilder.gui_controls.erase("_SplashScreen_")
 	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
 	ProjectBuilder.gui_controls.erase("_SaveDialog_")
@@ -77,7 +79,7 @@ func extension_init() -> void:
 		Global.vertecies_per_orbit = 200
 		Global.asset_replacement_dir = "ivoyager_assets_web"
 
-func _on_project_objects_instantiated() -> void:
+func _on_program_objects_instantiated() -> void:
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = Global.program.Timekeeper
@@ -115,24 +117,7 @@ func _on_project_objects_instantiated() -> void:
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 func _on_project_inited() -> void:
-	if _is_html5:
-		print("Loading HTML5 Boot Screen")
-		var boot_res: PackedScene = load("res://ivoyager/gui_admin/html5_boot_screen.tscn")
-		var boot := boot_res.instance()
-		Global.program.Universe.add_child(boot)
-		Global.connect("gui_refresh_requested", boot, "queue_free")
+	pass
 
 func _on_simulator_started() -> void:
 	pass
-	# Scheduler test below
-#	var scheduler: Scheduler = Global.program.Scheduler
-#	scheduler.interval_connect(1.0 * UnitDefs.HOUR, self, "_print", ["1.0 hr"])
-#	scheduler.interval_connect(2.0 * UnitDefs.HOUR, self, "_print", ["2.0 hr"])
-#	scheduler.interval_connect(4.0 * UnitDefs.HOUR, self, "_print", ["4.0 hr"])
-#	scheduler.interval_connect(3.0 * UnitDefs.HOUR, self, "_print", ["3.0 hr Oneshot"], CONNECT_ONESHOT)
-#	scheduler.interval_connect(5.0 * UnitDefs.HOUR, self, "_print", ["5.0 hr Oneshot"], CONNECT_ONESHOT)
-#
-#func _print(text: String) -> void:
-#	if text == "4.0 hr":
-#		Global.program.Scheduler.interval_disconnect(4.0 * UnitDefs.HOUR, self, "_print")
-#	print(text)

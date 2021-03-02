@@ -1,4 +1,4 @@
-# pltm_menu_panel.gd
+# info_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -21,17 +21,17 @@
 extends PanelContainer
 
 func _ready():
-	var version_label = find_node("VersionLabel")
-	version_label.set_version_label("Planetarium", false, true)
-	var feedback = find_node("FeedbackLinkLabel")
-	feedback.set_hyperlink("Feedback", "https://ivoyager.dev/forum/")
-	var support_us = find_node("SupportUsLinkLabel")
-	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
-	
+	# widget mods
+	var date_time_label := find_node("DateTimeLabel")
+	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
+	date_time_label.clock_hm_format = "  %02d:%02d UT"
+	var track_orbit_ground_ckbxs := find_node("TrackOrbitGroudCkbxs")
+	track_orbit_ground_ckbxs.remove_track_label()
+	var selection_data = find_node("SelectionData")
+	selection_data.enable_wiki_links = true
 	$ControlDraggable.default_sizes = [
-		# Zeros allow panel to shrink to content, but we need some width here
-		# so our "Support Us!" RichTextLabel doesn't wrap.
-		Vector2(75.0, 0.0), # GUI_SMALL
-		Vector2(100.0, 0.0), # GUI_MEDIUM
-		Vector2(125.0, 0.0), # GUI_LARGE
+		Vector2(315.0, 870.0), # GUI_SMALL
+		Vector2(375.0, 1150.0), # GUI_MEDIUM
+		Vector2(455.0, 1424.0), # GUI_LARGE
 	]
+	$ControlDraggable.max_default_screen_proportions = Vector2(0.33, 0.55)

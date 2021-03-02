@@ -1,4 +1,4 @@
-# pltm_info_panel.gd
+# boot_screen.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,21 +17,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+# Self-freeing boot screen.
 
-extends PanelContainer
+extends ColorRect
 
-func _ready():
-	# widget mods
-	var date_time_label := find_node("DateTimeLabel")
-	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
-	date_time_label.clock_hm_format = "  %02d:%02d UT"
-	var track_orbit_ground_ckbxs := find_node("TrackOrbitGroudCkbxs")
-	track_orbit_ground_ckbxs.remove_track_label()
-	var selection_data = find_node("SelectionData")
-	selection_data.enable_wiki_links = true
-	$ControlDraggable.default_sizes = [
-		Vector2(315.0, 870.0), # GUI_SMALL
-		Vector2(375.0, 1150.0), # GUI_MEDIUM
-		Vector2(455.0, 1424.0), # GUI_LARGE
-	]
-	$ControlDraggable.max_default_screen_proportions = Vector2(0.33, 0.55)
+func _ready() -> void:
+	Global.connect("translations_imported", self, "_set_labels")
+	Global.connect("simulator_started", self, "queue_free", [], CONNECT_ONESHOT)
+
+func _set_labels() -> void:
+	var font_data: DynamicFontData = Global.assets.primary_font_data
+	var font := DynamicFont.new()
+	font.font_data = font_data
+	font.size = 26
+	if Global.is_html5:
+		var load_label: Label = $SideVBox/LoadLabel
+		load_label.set("custom_fonts/font", font)
+		load_label.text = "TXT_HTML5_LOADING"
+	var pbd_label: Label = $SideVBox/PBDLabel
+	pbd_label.set("custom_fonts/font", font)
+	pbd_label.set("custom_colors/font_color", Color.lightskyblue)
+#	pbd_label.set("custom_colors/font_color", Color(0.740906, 0.828778, 0.953125))
+	pbd_label.text = "TXT_PBD_SHORT"

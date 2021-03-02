@@ -1,4 +1,4 @@
-# pltm_nav_panel.gd
+# menu_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -20,24 +20,18 @@
 
 extends PanelContainer
 
-var _settings: Dictionary = Global.settings
-onready var _under_moons_spacer: Control = find_node("UnderMoonsSpacer")
-var _under_moons_spacer_sizes := [55.0, 66.0, 77.0]
-
 func _ready():
+	var version_label = find_node("VersionLabel")
+	version_label.set_version_label("Planetarium", false, true)
+	var feedback = find_node("FeedbackLinkLabel")
+	feedback.set_hyperlink("Feedback", "https://ivoyager.dev/forum/")
+	var support_us = find_node("SupportUsLinkLabel")
+	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
+	
 	$ControlDraggable.default_sizes = [
-		Vector2(435.0, 278.0), # GUI_SMALL
-		Vector2(575.0, 336.0), # GUI_MEDIUM
-		Vector2(712.0, 400.0), # GUI_LARGE
+		# Zeros allow panel to shrink to content, but we need some width here
+		# so our "Support Us!" RichTextLabel doesn't wrap.
+		Vector2(75.0, 0.0), # GUI_SMALL
+		Vector2(100.0, 0.0), # GUI_MEDIUM
+		Vector2(125.0, 0.0), # GUI_LARGE
 	]
-	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	Global.connect("gui_refresh_requested", self, "_resize")
-	Global.connect("setting_changed", self, "_settings_listener")
-
-func _resize() -> void:
-	var gui_size: int = _settings.gui_size
-	_under_moons_spacer.rect_min_size.y = _under_moons_spacer_sizes[gui_size]
-
-func _settings_listener(setting: String, _value) -> void:
-	if setting == "gui_size":
-		_resize()

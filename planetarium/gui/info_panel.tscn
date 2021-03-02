@@ -4,7 +4,7 @@
 [ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_widgets/date_time_label.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/speed_buttons.tscn" type="PackedScene" id=4]
-[ext_resource path="res://planetarium/gui/pltm_info_panel.gd" type="Script" id=5]
+[ext_resource path="res://planetarium/gui/info_panel.gd" type="Script" id=5]
 [ext_resource path="res://ivoyager/gui_widgets/range_label.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_widgets/view_buttons.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ivoyager/gui_widgets/lat_long_label.tscn" type="PackedScene" id=8]
@@ -15,7 +15,8 @@
 [ext_resource path="res://ivoyager/gui_widgets/selection_data.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ivoyager/gui_widgets/present_time_ckbx.tscn" type="PackedScene" id=14]
 
-[node name="PltmInfoPanel" type="PanelContainer"]
+
+[node name="InfoPanel" type="PanelContainer"]
 margin_right = 334.0
 margin_bottom = 480.0
 script = ExtResource( 5 )
