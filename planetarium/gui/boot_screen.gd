@@ -23,7 +23,7 @@ extends ColorRect
 
 func _ready() -> void:
 	Global.connect("translations_imported", self, "_set_labels")
-	Global.connect("gui_refresh_requested", self, "queue_free", [], CONNECT_ONESHOT)
+	Global.connect("simulator_started", self, "queue_free", [], CONNECT_ONESHOT)
 
 func _set_labels() -> void:
 	var font_data: DynamicFontData = Global.assets.primary_font_data
@@ -36,5 +36,6 @@ func _set_labels() -> void:
 		load_label.text = "TXT_HTML5_LOADING"
 	var pbd_label: Label = $SideVBox/PBDLabel
 	pbd_label.set("custom_fonts/font", font)
-	pbd_label.set("custom_colors/font_color", Color(0.740906, 0.828778, 0.953125))
+	pbd_label.set("custom_colors/font_color", Color.lightskyblue)
+#	pbd_label.set("custom_colors/font_color", Color(0.740906, 0.828778, 0.953125))
 	pbd_label.text = "TXT_PBD_SHORT"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://planetarium/gui/pltm_nav_panel.gd" type="Script" id=1]
+[ext_resource path="res://planetarium/gui/nav_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_widgets/orbits_names_symbols_ckbxs.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_widgets/planet_moon_buttons.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/sssbs_ckbxs.tscn" type="PackedScene" id=4]
@@ -9,7 +9,8 @@
 [ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
 
-[node name="PltmNavPanel" type="PanelContainer"]
+
+[node name="NavPanel" type="PanelContainer"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -338.0

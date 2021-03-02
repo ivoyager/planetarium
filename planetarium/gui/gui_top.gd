@@ -1,4 +1,4 @@
-# pltm_gui.gd
+# gui_top.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -21,8 +21,8 @@
 # going on here.
 
 extends Control
-class_name PltmGUI
-const SCENE := "res://planetarium/gui/pltm_gui.tscn"
+class_name GUITop
+const SCENE := "res://planetarium/gui/gui_top.tscn"
 
 var selection_manager: SelectionManager
 

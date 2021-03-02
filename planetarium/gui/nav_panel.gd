@@ -1,4 +1,4 @@
-# pltm_nav_panel.gd
+# nav_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -31,7 +31,7 @@ func _ready():
 		Vector2(712.0, 400.0), # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	Global.connect("gui_refresh_requested", self, "_resize")
+	Global.connect("update_gui_needed", self, "_resize")
 	Global.connect("setting_changed", self, "_settings_listener")
 
 func _resize() -> void:

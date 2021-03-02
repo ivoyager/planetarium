@@ -17,29 +17,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
 expand = true
-stretch_mode = 7
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SideVBox" type="VBoxContainer" parent="."]
-anchor_left = 0.758
-anchor_top = 0.054
-anchor_right = 0.957
-anchor_bottom = 0.946
+anchor_left = 0.75
+anchor_top = 0.055
+anchor_right = 0.966
+anchor_bottom = 0.945
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LoadLabel" type="Label" parent="SideVBox"]
-margin_right = 358.0
+margin_right = 414.0
 margin_bottom = 14.0
 autowrap = true
 
 [node name="PBDLabel" type="Label" parent="SideVBox"]
 margin_top = 18.0
-margin_right = 358.0
-margin_bottom = 963.0
+margin_right = 414.0
+margin_bottom = 961.0
 size_flags_vertical = 3
 valign = 2
 autowrap = true

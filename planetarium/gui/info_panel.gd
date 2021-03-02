@@ -1,4 +1,4 @@
-# pltm_info_panel.gd
+# info_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************

@@ -36,7 +36,7 @@ func project_init() -> void:
 			"_change_fullscreen")
 	_main_menu_manager.make_button("BUTTON_MINIMIZE", 1002, false, true, self,
 			"_change_fullscreen", [], _main_menu_manager.HIDDEN)
-	Global.connect("gui_refresh_requested", self, "_update_buttons")
+	Global.connect("update_gui_needed", self, "_update_buttons")
 	_tree.connect("screen_resized", self, "_on_screen_resized")
 
 func _change_fullscreen() -> void:

@@ -51,7 +51,7 @@ func extension_init() -> void:
 	Global.connect("simulator_started", self, "_on_simulator_started")
 	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
 	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
-	ProjectBuilder.gui_controls._ProjectGUI_ = PltmGUI # replacement
+	ProjectBuilder.gui_controls._ProjectGUI_ = GUITop # replacement
 	ProjectBuilder.gui_controls.erase("_SplashScreen_")
 	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_controls.erase("_LoadDialog_")
@@ -118,10 +118,6 @@ func _on_program_objects_instantiated() -> void:
 
 func _on_project_inited() -> void:
 	pass
-#	var boot_res: PackedScene = preload("res://planetarium/gui/boot_screen.tscn")
-#	var boot := boot_res.instance()
-#	Global.program.Universe.add_child(boot)
-#	Global.connect("gui_refresh_requested", boot, "queue_free", [], CONNECT_ONESHOT)
 
 func _on_simulator_started() -> void:
 	pass

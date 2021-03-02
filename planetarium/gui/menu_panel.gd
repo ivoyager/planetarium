@@ -1,4 +1,4 @@
-# pltm_menu_panel.gd
+# menu_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
