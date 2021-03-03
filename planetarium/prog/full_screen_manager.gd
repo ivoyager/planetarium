@@ -30,8 +30,7 @@ var _main_menu_manager: MainMenuManager = Global.program.MainMenuManager
 var _is_screen_size_testing := false
 var _is_fullscreen := false
 
-func project_init() -> void:
-	pass
+func _project_init() -> void:
 	_main_menu_manager.make_button("BUTTON_FULL_SCREEN", 1001, false, true, self,
 			"_change_fullscreen")
 	_main_menu_manager.make_button("BUTTON_MINIMIZE", 1002, false, true, self,
