@@ -33,7 +33,7 @@
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.9-dev"
-const EXTENSION_VERSION_YMD := 20210226
+const EXTENSION_VERSION_YMD := 20210302
 
 const USE_THREADS := true # false for debugging; HTML5 overrides to false
 const IS_ELECTRON_APP := false # DEPRECIATE
@@ -43,7 +43,7 @@ var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driv
 var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 
 
-func extension_init() -> void:
+func _extension_init() -> void:
 	prints(EXTENSION_NAME) # save version as I, Voyager
 	printt("HTML5 %s; GLES2 %s; Web Assets %s" % [_is_html5, _is_gles2, _use_web_assets])
 	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")

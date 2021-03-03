@@ -28,7 +28,7 @@ var selection_manager: SelectionManager
 
 onready var _SelectionManager_: Script = Global.script_classes._SelectionManager_
 
-func project_init() -> void:
+func _project_init() -> void:
 	Global.connect("project_builder_finished", self, "_on_project_builder_finished")
 	Global.connect("system_tree_built_or_loaded", self, "_on_system_tree_built_or_loaded")
 	Global.connect("simulator_exited", self, "_on_simulator_exited")
