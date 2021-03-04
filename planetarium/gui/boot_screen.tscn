@@ -32,14 +32,14 @@ __meta__ = {
 }
 
 [node name="LoadLabel" type="Label" parent="SideVBox"]
-margin_right = 414.0
+margin_right = 388.0
 margin_bottom = 14.0
 autowrap = true
 
 [node name="PBDLabel" type="Label" parent="SideVBox"]
 margin_top = 18.0
-margin_right = 414.0
-margin_bottom = 961.0
+margin_right = 388.0
+margin_bottom = 841.0
 size_flags_vertical = 3
 valign = 2
 autowrap = true
