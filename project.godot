@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/body_list.gd"
 }, {
+"base": "Reference",
+"class": "BodyProperties",
+"language": "GDScript",
+"path": "res://ivoyager/tree_refs/body_properties.gd"
+}, {
 "base": "Node",
 "class": "BodyRegistry",
 "language": "GDScript",
@@ -200,9 +205,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_builders/model_builder.gd"
 }, {
 "base": "Reference",
-"class": "ModelGeometry",
+"class": "ModelController",
 "language": "GDScript",
-"path": "res://ivoyager/tree_refs/model_geometry.gd"
+"path": "res://ivoyager/tree_refs/model_controller.gd"
 }, {
 "base": "ConfirmationDialog",
 "class": "OneUseConfirm",
@@ -240,14 +245,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/tree_nodes/projection_surface.gd"
 }, {
 "base": "Reference",
-"class": "Properties",
+"class": "QtyTxtConverter",
 "language": "GDScript",
-"path": "res://ivoyager/tree_refs/properties.gd"
-}, {
-"base": "Reference",
-"class": "QtyStrings",
-"language": "GDScript",
-"path": "res://ivoyager/prog_refs/qty_strings.gd"
+"path": "res://ivoyager/prog_refs/qty_txt_converter.gd"
 }, {
 "base": "Reference",
 "class": "RangeValue",
@@ -385,6 +385,7 @@ _global_script_class_icons={
 "Body": "",
 "BodyBuilder": "",
 "BodyList": "",
+"BodyProperties": "",
 "BodyRegistry": "",
 "CacheManager": "",
 "CachedItemsPopup": "",
@@ -418,7 +419,7 @@ _global_script_class_icons={
 "MinorBodiesBuilder": "",
 "MinorBodiesManager": "",
 "ModelBuilder": "",
-"ModelGeometry": "",
+"ModelController": "",
 "OneUseConfirm": "",
 "OptionsPopup": "",
 "Orbit": "",
@@ -426,8 +427,7 @@ _global_script_class_icons={
 "PBDSplashScreen": "",
 "PointsManager": "",
 "ProjectionSurface": "",
-"Properties": "",
-"QtyStrings": "",
+"QtyTxtConverter": "",
 "RangeValue": "",
 "RichTextPopup": "",
 "RingsBuilder": "",

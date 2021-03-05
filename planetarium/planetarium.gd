@@ -78,8 +78,8 @@ func _on_program_objects_instantiated() -> void:
 	var huds_manager: HUDsManager = Global.program.HUDsManager
 	huds_manager.show_names = true
 	huds_manager.show_orbits = true
-	var qty_strings: QtyStrings = Global.program.QtyStrings
-	qty_strings.exp_str = " x 10^"
+	var qty_txt_converter: QtyTxtConverter = Global.program.QtyTxtConverter
+	qty_txt_converter.exp_str = " x 10^"
 	var theme_manager: ThemeManager = Global.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
