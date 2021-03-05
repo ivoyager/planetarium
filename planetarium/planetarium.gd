@@ -36,29 +36,23 @@ const EXTENSION_VERSION := "0.0.9-dev"
 const EXTENSION_VERSION_YMD := 20210302
 
 const USE_THREADS := true # false for debugging; HTML5 overrides to false
-const IS_ELECTRON_APP := false # DEPRECIATE
-
-var _is_html5: bool = OS.has_feature('JavaScript')
-var _is_gles2: bool = ProjectSettings.get_setting("rendering/quality/driver/driver_name") == "GLES2"
-var _use_web_assets := FileUtils.is_valid_dir("res://ivoyager_assets_web")
 
 
 func _extension_init() -> void:
-	prints(EXTENSION_NAME) # save version as I, Voyager
-	printt("HTML5 %s; GLES2 %s; Web Assets %s" % [_is_html5, _is_gles2, _use_web_assets])
+	printt("%s (HTML5 = %s, GLES2 = %s)" % [EXTENSION_NAME, Global.is_html5, Global.is_gles2])
 	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
 	Global.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
-	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
-	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
-	ProjectBuilder.gui_controls._ProjectGUI_ = GUITop # replacement
-	ProjectBuilder.gui_controls.erase("_SplashScreen_")
-	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
-	ProjectBuilder.gui_controls.erase("_LoadDialog_")
-	ProjectBuilder.gui_controls.erase("_SaveDialog_")
 	ProjectBuilder.program_builders.erase("_SaveBuilder_")
 	ProjectBuilder.program_nodes.erase("_SaveManager_")
-	Global.is_electron_app = IS_ELECTRON_APP
+	ProjectBuilder.gui_controls.erase("_SaveDialog_")
+	ProjectBuilder.gui_controls.erase("_LoadDialog_")
+	ProjectBuilder.gui_controls.erase("_SplashScreen_")
+	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
+	ProjectBuilder.gui_controls.erase("_MainProgBar_")
+	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
+	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
+	ProjectBuilder.gui_controls._ProjectGUI_ = GUITop
 	Global.use_threads = USE_THREADS
 	Global.project_name = "Planetarium"
 	Global.enable_save_load = false
@@ -69,15 +63,12 @@ func _extension_init() -> void:
 	Global.skip_splash_screen = true
 	Global.disable_exit = true
 	Global.enable_wiki = true
-	ProjectBuilder.gui_controls.erase("_SplashScreen_")
-	if _is_html5:
+	Global.popops_can_stop_sim = false
+	if Global.is_html5:
 		Global.use_threads = false
 		ProjectBuilder.gui_controls.erase("_MainProgBar_")
-	if _is_html5 and !IS_ELECTRON_APP:
 		Global.disable_quit = true
-	if _use_web_assets:
 		Global.vertecies_per_orbit = 200
-		Global.asset_replacement_dir = "ivoyager_assets_web"
 
 func _on_program_objects_instantiated() -> void:
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
@@ -91,25 +82,19 @@ func _on_program_objects_instantiated() -> void:
 	qty_strings.exp_str = " x 10^"
 	var theme_manager: ThemeManager = Global.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
-	var credits_popup: CreditsPopup = Global.program.CreditsPopup
-	credits_popup.stop_sim = false
 	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
-	hotkeys_popup.stop_sim = false
 	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: OptionsPopup = Global.program.OptionsPopup
-	options_popup.stop_sim = false
+	options_popup.remove_item("starmap")
 	var settings_manager: SettingsManager = Global.program.SettingsManager
 	var default_settings := settings_manager.defaults
-	if _is_html5:
+	if Global.is_html5:
 		default_settings.gui_size = Enums.GUISize.GUI_LARGE
-	if _is_html5 and !IS_ELECTRON_APP:
 		var view_caching: ViewCaching = Global.program.ViewCaching
 		view_caching.cache_interval = 5.0
-	if _use_web_assets:
-		options_popup.remove_item("starmap")
-	if _is_gles2:
+	if Global.is_gles2:
 		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
