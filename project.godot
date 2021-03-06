@@ -327,7 +327,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "TableImporter",
 "language": "GDScript",
-"path": "res://ivoyager/prog_builders/table_importer.gd"
+"path": "res://ivoyager/prog_importers/table_importer.gd"
 }, {
 "base": "Reference",
 "class": "TableReader",
@@ -347,7 +347,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "TranslationImporter",
 "language": "GDScript",
-"path": "res://ivoyager/prog_builders/translation_importer.gd"
+"path": "res://ivoyager/prog_importers/translation_importer.gd"
 }, {
 "base": "Reference",
 "class": "UnitDefs",
