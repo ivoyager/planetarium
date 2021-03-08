@@ -12,9 +12,8 @@
 [ext_resource path="res://ivoyager/gui_widgets/selection_wiki_link.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" type="PackedScene" id=12]
-[ext_resource path="res://ivoyager/gui_widgets/selection_data.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ivoyager/gui_widgets/selection_data2.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ivoyager/gui_widgets/present_time_ckbx.tscn" type="PackedScene" id=14]
-
 
 [node name="InfoPanel" type="PanelContainer"]
 margin_right = 334.0
@@ -154,6 +153,7 @@ scroll_horizontal_enabled = false
 
 [node name="SelectionData" parent="MarginContainer/VBox/DataScroll" instance=ExtResource( 13 )]
 margin_right = 425.0
+margin_bottom = 0.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 1 )]
 margin_left = 443.0

@@ -27,8 +27,6 @@ func _ready():
 	date_time_label.clock_hm_format = "  %02d:%02d UT"
 	var track_orbit_ground_ckbxs := find_node("TrackOrbitGroudCkbxs")
 	track_orbit_ground_ckbxs.remove_track_label()
-	var selection_data = find_node("SelectionData")
-	selection_data.enable_wiki_links = true
 	$ControlDraggable.default_sizes = [
 		Vector2(315.0, 870.0), # GUI_SMALL
 		Vector2(375.0, 1150.0), # GUI_MEDIUM
