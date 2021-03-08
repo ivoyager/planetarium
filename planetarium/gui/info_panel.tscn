@@ -154,6 +154,7 @@ scroll_horizontal_enabled = false
 
 [node name="SelectionData" parent="MarginContainer/VBox/DataScroll" instance=ExtResource( 13 )]
 margin_right = 425.0
+margin_bottom = 0.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 1 )]
 margin_left = 443.0
