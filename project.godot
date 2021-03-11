@@ -267,7 +267,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "RangeValue",
 "language": "GDScript",
-"path": "res://ivoyager/xclasses/range_value.gd"
+"path": "res://ivoyager/tree_refs/range_value.gd"
 }, {
 "base": "PopupPanel",
 "class": "RichTextPopup",
