@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
-"class": "ArrayUtils",
-"language": "GDScript",
-"path": "res://ivoyager/static/array_utils.gd"
-}, {
-"base": "Reference",
 "class": "AsteroidGroup",
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/asteroid_group.gd"
@@ -28,11 +23,6 @@ _global_script_classes=[ {
 "class": "BodyBuilder",
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/body_builder.gd"
-}, {
-"base": "Reference",
-"class": "BodyCharacteristics",
-"language": "GDScript",
-"path": "res://ivoyager/tree_refs/body_characteristics.gd"
 }, {
 "base": "Reference",
 "class": "BodyList",
@@ -395,11 +385,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_nodes/vygr_camera_handler.gd"
 } ]
 _global_script_class_icons={
-"ArrayUtils": "",
 "AsteroidGroup": "",
 "Body": "",
 "BodyBuilder": "",
-"BodyCharacteristics": "",
 "BodyList": "",
 "BodyRegistry": "",
 "CacheManager": "",
