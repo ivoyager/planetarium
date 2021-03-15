@@ -25,11 +25,6 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_builders/body_builder.gd"
 }, {
 "base": "Reference",
-"class": "BodyCharacteristics",
-"language": "GDScript",
-"path": "res://ivoyager/tree_refs/body_characteristics.gd"
-}, {
-"base": "Reference",
 "class": "BodyList",
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/body_list.gd"
@@ -393,7 +388,6 @@ _global_script_class_icons={
 "AsteroidGroup": "",
 "Body": "",
 "BodyBuilder": "",
-"BodyCharacteristics": "",
 "BodyList": "",
 "BodyRegistry": "",
 "CacheManager": "",
