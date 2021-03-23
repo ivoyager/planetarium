@@ -20,7 +20,7 @@
 # Note: "ObjectDB leaked at exit" errors occur on quit if this is a Reference
 # as of Godot 3.2.3; these result from passing self to MainMenuManager. This
 # shouldn't happen, but changing to Node and adding via
-# ProjectBuider.program_nodes fixes the problem for now.
+# ProjectBuider.prog_nodes fixes the problem for now.
 
 extends Node # See Note
 class_name FullScreenManager
