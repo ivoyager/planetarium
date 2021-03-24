@@ -15,7 +15,6 @@
 [ext_resource path="res://ivoyager/gui_widgets/selection_data.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ivoyager/gui_widgets/present_time_ckbx.tscn" type="PackedScene" id=14]
 
-
 [node name="InfoPanel" type="PanelContainer"]
 margin_right = 334.0
 margin_bottom = 480.0

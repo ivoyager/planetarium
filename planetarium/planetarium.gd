@@ -43,16 +43,16 @@ func _extension_init() -> void:
 	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
 	Global.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
-	ProjectBuilder.program_builders.erase("_SaveBuilder_")
-	ProjectBuilder.program_nodes.erase("_SaveManager_")
-	ProjectBuilder.gui_controls.erase("_SaveDialog_")
-	ProjectBuilder.gui_controls.erase("_LoadDialog_")
-	ProjectBuilder.gui_controls.erase("_SplashScreen_")
-	ProjectBuilder.gui_controls.erase("_MainMenuPopup_")
-	ProjectBuilder.gui_controls.erase("_MainProgBar_")
-	ProjectBuilder.program_nodes._ViewCaching_ = ViewCaching
-	ProjectBuilder.program_nodes._FullScreenManager_ = FullScreenManager
-	ProjectBuilder.gui_controls._ProjectGUI_ = GUITop
+	ProjectBuilder.prog_builders.erase("_SaveBuilder_")
+	ProjectBuilder.prog_nodes.erase("_SaveManager_")
+	ProjectBuilder.gui_nodes.erase("_SaveDialog_")
+	ProjectBuilder.gui_nodes.erase("_LoadDialog_")
+	ProjectBuilder.gui_nodes.erase("_SplashScreen_")
+	ProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
+	ProjectBuilder.gui_nodes.erase("_MainProgBar_")
+	ProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching
+	ProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
+	ProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
 	Global.use_threads = USE_THREADS
 	Global.project_name = "Planetarium"
 	Global.enable_save_load = false
@@ -66,7 +66,7 @@ func _extension_init() -> void:
 	Global.popops_can_stop_sim = false
 	if Global.is_html5:
 		Global.use_threads = false
-		ProjectBuilder.gui_controls.erase("_MainProgBar_")
+		ProjectBuilder.gui_nodes.erase("_MainProgBar_")
 		Global.disable_quit = true
 		Global.vertecies_per_orbit = 200
 
