@@ -32,14 +32,15 @@
 # Note: In Godot 3.x, HTML5 export should use GLES2.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.9-dev-3-24"
-const EXTENSION_VERSION_YMD := 20210324
+const EXTENSION_VERSION := "0.0.9-dev"
+const EXTENSION_VERSION_YMD := 20210326
 
 const USE_THREADS := true # false for debugging; HTML5 overrides to false
 
 
 func _extension_init() -> void:
-	printt("%s (HTML5 = %s, GLES2 = %s)" % [EXTENSION_NAME, Global.is_html5, Global.is_gles2])
+	print("%s (HTML5 = %s, GLES2 = %s, threads = %s)" % \
+			[EXTENSION_NAME, Global.is_html5, Global.is_gles2, USE_THREADS])
 	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
 	Global.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
