@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "AssetInitializer",
+"language": "GDScript",
+"path": "res://ivoyager/initializers/asset_initializer.gd"
+}, {
+"base": "Reference",
 "class": "AsteroidGroup",
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/asteroid_group.gd"
@@ -173,6 +178,11 @@ _global_script_classes=[ {
 "class": "LoadDialog",
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/load_dialog.gd"
+}, {
+"base": "Reference",
+"class": "LogInitializer",
+"language": "GDScript",
+"path": "res://ivoyager/initializers/log_initializer.gd"
 }, {
 "base": "Reference",
 "class": "MainMenuManager",
@@ -385,11 +395,17 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_nodes/vygr_camera_handler.gd"
 }, {
 "base": "Reference",
+"class": "WikiInitializer",
+"language": "GDScript",
+"path": "res://ivoyager/initializers/wiki_initializer.gd"
+}, {
+"base": "Reference",
 "class": "WikiManager",
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/wiki_manager.gd"
 } ]
 _global_script_class_icons={
+"AssetInitializer": "",
 "AsteroidGroup": "",
 "Body": "",
 "BodyBuilder": "",
@@ -423,6 +439,7 @@ _global_script_class_icons={
 "LPointBuilder": "",
 "LightBuilder": "",
 "LoadDialog": "",
+"LogInitializer": "",
 "MainMenuManager": "",
 "MainMenuPopup": "",
 "MainProgBar": "",
@@ -465,6 +482,7 @@ _global_script_class_icons={
 "ViewCaching": "",
 "VygrCamera": "",
 "VygrCameraHandler": "",
+"WikiInitializer": "",
 "WikiManager": ""
 }
 
