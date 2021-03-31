@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/pale_blue_dot.png-02c8d7b34cba13ec6714aaa48b27f6cd.s3tc.stex"
-path.etc2="res://.import/pale_blue_dot.png-02c8d7b34cba13ec6714aaa48b27f6cd.etc2.stex"
+path.s3tc="res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.s3tc.stex"
+path.etc2="res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://pale_blue_dot.png"
-dest_files=[ "res://.import/pale_blue_dot.png-02c8d7b34cba13ec6714aaa48b27f6cd.s3tc.stex", "res://.import/pale_blue_dot.png-02c8d7b34cba13ec6714aaa48b27f6cd.etc2.stex" ]
+source_file="res://planetarium/gui/pale-blue-dot-512.jpg"
+dest_files=[ "res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.s3tc.stex", "res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.etc2.stex" ]
 
 [params]
 
 compress/mode=2
-compress/lossy_quality=1.0
+compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=2
@@ -25,7 +25,7 @@ flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
-flags/srgb=0
+flags/srgb=1
 process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false

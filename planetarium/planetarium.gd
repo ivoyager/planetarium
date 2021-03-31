@@ -32,8 +32,8 @@
 # Note: In Godot 3.x, HTML5 export should use GLES2.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.9-dev"
-const EXTENSION_VERSION_YMD := 20210326
+const EXTENSION_VERSION := "0.0.9-dev-3-31"
+const EXTENSION_VERSION_YMD := 20210331
 
 const USE_THREADS := true # false for debugging; HTML5 overrides to false
 
@@ -54,8 +54,10 @@ func _extension_init() -> void:
 	ProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching
 	ProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	ProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
+	Global.project_name = EXTENSION_NAME
+	Global.project_version = EXTENSION_VERSION
+	Global.project_version_ymd = EXTENSION_VERSION_YMD
 	Global.use_threads = USE_THREADS
-	Global.project_name = "Planetarium"
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
 	Global.allow_time_reversal = true
