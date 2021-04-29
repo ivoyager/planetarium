@@ -32,8 +32,8 @@
 # Note: In Godot 3.x, HTML5 export should use GLES2.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.9-dev-3-31"
-const EXTENSION_VERSION_YMD := 20210331
+const EXTENSION_VERSION := "0.0.9-alpha"
+const EXTENSION_VERSION_YMD := 20210429
 
 const USE_THREADS := true # false for debugging; HTML5 overrides to false
 
