@@ -3,5 +3,4 @@
 *.translation
 \.import/
 ivoyager_assets*/
-web_assets*/
 export/
