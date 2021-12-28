@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.s3tc.stex"
-path.etc2="res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.etc2.stex"
+path.s3tc="res://.import/pale-blue-dot-512.jpg-7102f895bf68576013f1b010597bd409.s3tc.stex"
+path.etc2="res://.import/pale-blue-dot-512.jpg-7102f895bf68576013f1b010597bd409.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://planetarium/gui/pale-blue-dot-512.jpg"
-dest_files=[ "res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.s3tc.stex", "res://.import/pale-blue-dot-512.jpg-679c3460c29569698144a45ebf40b02f.etc2.stex" ]
+source_file="res://planetarium_assets/pale-blue-dot-512.jpg"
+dest_files=[ "res://.import/pale-blue-dot-512.jpg-7102f895bf68576013f1b010597bd409.s3tc.stex", "res://.import/pale-blue-dot-512.jpg-7102f895bf68576013f1b010597bd409.etc2.stex" ]
 
 [params]
 
