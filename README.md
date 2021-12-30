@@ -7,7 +7,7 @@
 ### What is I, Voyager?
 I, Voyager is
 1. an open-source software planetarium 
-2. a development platform for creating games and educational software in a realistic solar system.
+2. a development platform for creating games and educational apps in a realistic solar system.
 
 It is designed to be improved, modified and extended by the community. I, Voyager runs on the open-source [Godot Engine](https://godotengine.org) and primarily uses Godot’s easy-to-learn [GDScript](http://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#doc-gdscript) (similar to Python). It can be extended into an independent free-standing project (a game or other software product) using GDScript, C# or C++.
 
