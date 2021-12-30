@@ -5,12 +5,12 @@
 # every 3rd party (or modified from 3rd party) file distributed in the following
 # repositores:
 #     https://github.com/ivoyager/ivoyager
-#     https://github.com/ivoyager/ivoyager_planetarium
-#     https://github.com/ivoyager/ivoyager_project_template
+#     https://github.com/ivoyager/planetarium
+#     https://github.com/ivoyager/project_template
+#     https://github.com/ivoyager/non_release_assets
 # including binary and asset files distributed via repository "releases". In
-# typical code distributions, these files will be found in subdirectories
-# "ivoyager", "ivoyager_assets" (or "ivoyager_assets_web") and/or other
-# subdirectories matching the pattern "ivoyager_*".
+# typical code distributions, these files will be found in subdirectories named
+# "ivoyager_assets", "planetarium_assets", etc.
 #
 # This file uses globbing patterns to identify files based on their names or
 # directories within repositories and/or project software distributions.

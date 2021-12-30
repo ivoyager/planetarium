@@ -7,7 +7,7 @@
 ### What is I, Voyager?
 I, Voyager is
 1. an open-source software planetarium 
-2. a development platform for creating games and educational software in a realistic solar system.
+2. a development platform for creating games and educational apps in a realistic solar system.
 
 It is designed to be improved, modified and extended by the community. I, Voyager runs on the open-source [Godot Engine](https://godotengine.org) and primarily uses Godot’s easy-to-learn [GDScript](http://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#doc-gdscript) (similar to Python). It can be extended into an independent free-standing project (a game or other software product) using GDScript, C# or C++.
 
@@ -17,7 +17,7 @@ If you are interested in our future development, see our official [Roadmap!](htt
 I, Voyager is free to use and distribute under the permissive [Apache License 2.0](https://en.wikipedia.org/wiki/Apache_License). Projects built with I, Voyager are owned by their creators. You are free to give away or sell what you make. There are no royalties or fees.
 
 ### How do I contribute to I, Voyager development?
-Help us grow the community by following us on [Twitter](https://twitter.com/IVoygr) and [Facebook](https://www.facebook.com/IVoygr/). Exchange ideas and give and receive help on our [Forum](https://www.ivoyager.dev/forum). Report bugs or astronomical inaccuracies at our issue tracker [here](https://github.com/ivoyager/issues). Or contribute to code development via pull requests to our repositories at https://github.com/ivoyager.
+Help us grow the community by following us on [Twitter](https://twitter.com/IVoygr) and [Facebook](https://www.facebook.com/IVoygr/). Exchange ideas and give and receive help on our [Forum](https://www.ivoyager.dev/forum). Report bugs or astronomical inaccuracies at our issue tracker [here](https://github.com/ivoyager/issues). Or contribute to code development via pull requests to our repositories at [github.com/ivoyager](https://github.com/ivoyager).
 
 ### How can I support this effort financially?
 Please visit our [GitHub Sponsors page!](https://github.com/sponsors/charliewhitfield) Become a Mercury Patron for $2 per month! Or, if you are a company, please consider sponsoring us as a Saturn or Jupiter Patron. Goal #1: Make I, Voyager into a non-profit entity. This will shield us from tax liability, allow us to apply for grants, and secure our existence as a collaborative open-source project into the future.
@@ -34,9 +34,12 @@ I, Voyager is possible due to public interest in space exploration and funding o
 * [LICENSE.txt](https://github.com/ivoyager/ivoyager/blob/master/LICENSE.txt) - the I, Voyager license.
 * [3RD_PARTY.txt](https://github.com/ivoyager/ivoyager/blob/master/3RD_PARTY.txt) - copyright and license information for 3rd-party assets distributed in I, Voyager.
 
-### A tour in screen captures:
+### Screen captures!
+
+Our site header for [ivoyager.dev](https://www.ivoyager.dev) is also from the Planetarium!
+
 ![](https://www.ivoyager.dev/wp-content/uploads/2020/01/europa-jupiter-io-ivoyager.jpg)
-Jupiter and Io viewed from Europa. We've hidden all interface here for one of the best views in the solar system.
+Jupiter and Io viewed from Europa. We've hidden the interface for one of the best views in the solar system.
 
 ![](https://www.ivoyager.dev/wp-content/uploads/2019/10/moons-of-jupiter.jpg)
 Jupiter and the four Galilean moons – Io, Europa, Ganymede and Callisto – embedded in the orbital paths of many smaller moons.
@@ -51,16 +54,19 @@ Uranus' moons are an interesting cast of characters (literally). The planet's 98
 Here's the solar system on July 14, 2015, the day of New Horizon's flyby of the dwarf planet Pluto (♇). Not coincidentally, Pluto was near the plane of the ecliptic at this time.
 
 ![](https://www.ivoyager.dev/wp-content/uploads/2020/01/pluto-charon-ivoyager.jpg)
-Pluto and its moon Charon to scale. Both are tidally locked so their facing sides never change. (Um... I'm not sure we have the facing sides correct. If anyone can help with that, it would be most appreciated!)
+Pluto and its moon Charon to scale. Both are tidally locked so their facing sides never change.
 
 ![](https://www.ivoyager.dev/wp-content/uploads/2020/01/asteroids-ivoyager-1.jpg)
- Jupiter (♃) is the shepherd of the solar system. Shown here are 64,738 asteroids, the vast majority in the  Main Belt (the ring inside Jupiter’s orbit) but quite a few in the two Trojan groups (the "lobes" 60° ahead of and 60° behind Jupiter). The Hildas are also evident in this image. I, Voyager has orbital data for >600,000 asteroids (numbered and multiposition) but can run with a reduced set filtered by magnitude.
+Jupiter (♃) is the shepherd of the Solar System, as is evident in the orbits of asteroids (64,738 shown here). The [Main Belt](https://en.wikipedia.org/wiki/Asteroid_belt) (the ring) and [Trojans](https://en.wikipedia.org/wiki/Jupiter_trojan) (the two lobes leading and lagging Jupiter by 60°) are the most obvious features here. [Hildas](https://en.wikipedia.org/wiki/Hilda_asteroid) are also visible. I, Voyager has orbital data for >600,000 asteroids (numbered and multiposition) but can run with a reduced set filtered by magnitude.
  
 ![](https://www.ivoyager.dev/wp-content/uploads/2020/01/asteroids-ivoyager-2.jpg)
-Asteroids viewed from the side. We use the GPU to calculate asteroid positions; each asteroid is a shader vertex that knows its own orbital parameters.
+Main Belt and Trojans viewed from the side. We use the GPU to calculate and update asteroid positions (each asteroid is a shader vertex that knows its own orbital parameters).
 
-![](https://www.ivoyager.dev/wp-content/uploads/2020/01/ivoyager-planetarium-gui.jpg)
-The Planetarium has an easy-to-use interface that is mostly hidden during use; individual elements show when the mouse moves to the relevant screen zone.
+![](https://www.ivoyager.dev/wp-content/uploads/2021/02/ivoyager-planetarium-gui.jpg)
+The Planetarium has easy-to-use interface panels that can be hidden.
 
-![](https://www.ivoyager.dev/wp-content/uploads/2020/01/ivoyager-template-gui.jpg)
-The Project Template has a "starter" GUI intended for game development. I, Voyager provides various GUI widgets (a system navigator, date-time display, etc.) that can be arranged into panels or however you need for your own project.
+![](https://www.ivoyager.dev/wp-content/uploads/2021/02/ivoyager-gui-widgets.jpg)
+For developers, we have a large set of GUI widgets that know how to talk to the simulator. These can be easily dropped into Containers to make your custom GUI however you like.
+
+![](https://www.ivoyager.dev/wp-content/uploads/2021/02/template-gui.jpg)
+Here's our "starter GUI" in the Project Template to get you going on game development.
