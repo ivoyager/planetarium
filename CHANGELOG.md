@@ -1,3 +1,5 @@
+# Changelog
+
 This file documents changes to the Planetarium project only. For changes to the core submodule (ivoyager) and core assets (ivoyager_assets directory), see [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
 File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
