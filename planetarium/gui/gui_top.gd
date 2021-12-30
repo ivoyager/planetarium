@@ -2,8 +2,8 @@
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
-# Copyright (c) 2017-2021 Charlie Whitfield
-# I, Voyager is a registered trademark of Charlie Whitfield
+# Copyright 2017-2022 Charlie Whitfield
+# I, Voyager is a registered trademark of Charlie Whitfield in the US
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
