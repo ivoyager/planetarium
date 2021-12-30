@@ -17,30 +17,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-# This extension works in three different "platforms":
-#  1. The native app: Windows (or whatever) export w/ ivoyager_assets.
-#  2. Web deployment: GLES2; HTML5 export w/ ivoyager_assets_web; running from
-#     a web server.
-#  3. [DEPRECIATE]
-#     Electron app: GLES2, HTML5 export w/ ivoyager_assets; drop the exported 
-#     project into our "electron app" (github.com/ivoyager/electron_app) and
-#     run with npm start, or deploy that project with electron-forge. This
-#     integrates the planetarium with its own browser.
-#  3. [TODO] Native apps w/ lightweight browser (maybe Electron) with
-#     restricted access to Wiki, NASA, etc.
+# As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
+# App (PWA). However, it should be exportable to other, non-HTML5 platforms.
 #
 # Note: In Godot 3.x, HTML5 export should use GLES2.
+# Note2: Godot 3.4.2+ supports multithreading in HTML5 exports. We are keeping
+# single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := Global.IVOYAGER_VERSION
 const EXTENSION_VERSION_YMD := Global.IVOYAGER_VERSION_YMD
 
-const USE_THREADS := true # false for debugging; HTML5 overrides to false
+const USE_THREADS := true # false for debugging
+const HTML5_OVERRIDES_SINGLE_THREAD := true
 
 
 func _extension_init() -> void:
+	if HTML5_OVERRIDES_SINGLE_THREAD and Global.is_html5:
+		Global.use_threads = false
+	else:
+		Global.use_threads = USE_THREADS
 	print("%s (HTML5 = %s, GLES2 = %s, threads = %s)" % \
-			[EXTENSION_NAME, Global.is_html5, Global.is_gles2, USE_THREADS])
+			[EXTENSION_NAME, Global.is_html5, Global.is_gles2, Global.use_threads])
 	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
 	Global.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
@@ -57,7 +55,6 @@ func _extension_init() -> void:
 	Global.project_name = EXTENSION_NAME
 	Global.project_version = EXTENSION_VERSION
 	Global.project_version_ymd = EXTENSION_VERSION_YMD
-	Global.use_threads = USE_THREADS
 	Global.enable_save_load = false
 	Global.allow_real_world_time = true
 	Global.allow_time_reversal = true
@@ -68,7 +65,6 @@ func _extension_init() -> void:
 	Global.enable_wiki = true
 	Global.popops_can_stop_sim = false
 	if Global.is_html5:
-		Global.use_threads = false
 		ProjectBuilder.gui_nodes.erase("_MainProgBar_")
 		Global.disable_quit = true
 		Global.vertecies_per_orbit = 200
