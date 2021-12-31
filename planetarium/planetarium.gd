@@ -49,7 +49,7 @@ func _extension_init() -> void:
 	ProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	ProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	ProjectBuilder.gui_nodes.erase("_MainProgBar_")
-	ProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching
+#	ProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching # temp disabled for PWA debugging
 	ProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	ProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
 	Global.project_name = EXTENSION_NAME
