@@ -28,17 +28,20 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := Global.IVOYAGER_VERSION
 const EXTENSION_VERSION_YMD := Global.IVOYAGER_VERSION_YMD
 
+const DEBUG_BUILD := "bf61f9-a"
+
 const USE_THREADS := true # false for debugging
 const HTML5_OVERRIDES_SINGLE_THREAD := true
 
 
 func _extension_init() -> void:
+	prints(EXTENSION_NAME, DEBUG_BUILD)
 	if HTML5_OVERRIDES_SINGLE_THREAD and Global.is_html5:
 		Global.use_threads = false
 	else:
 		Global.use_threads = USE_THREADS
-	print("%s (HTML5 = %s, GLES2 = %s, threads = %s)" % \
-			[EXTENSION_NAME, Global.is_html5, Global.is_gles2, Global.use_threads])
+	print("HTML5 = %s, GLES2 = %s, threads = %s" % \
+			[Global.is_html5, Global.is_gles2, Global.use_threads])
 	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
 	Global.connect("project_inited", self, "_on_project_inited")
 	Global.connect("simulator_started", self, "_on_simulator_started")
@@ -104,4 +107,9 @@ func _on_project_inited() -> void:
 	pass
 
 func _on_simulator_started() -> void:
-	pass
+	if DEBUG_BUILD or Global.IVOYAGER_VERSION.ends_with("-dev"):
+		var project_gui: Control = Global.program.ProjectGUI
+		var version_label = project_gui.find_node("VersionLabel")
+		version_label.set_version_label("Planetarium", false, true, " ", "",
+				"\n" + str(Global.IVOYAGER_VERSION_YMD) + "\n" + DEBUG_BUILD)
+
