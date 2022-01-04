@@ -25,8 +25,8 @@
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := Global.IVOYAGER_VERSION
-const EXTENSION_VERSION_YMD := Global.IVOYAGER_VERSION_YMD
+const EXTENSION_VERSION := "0.0.10-dev"
+const EXTENSION_VERSION_YMD := 20220104
 
 const DEBUG_BUILD := "bf61f9-a"
 
@@ -35,7 +35,7 @@ const HTML5_OVERRIDES_SINGLE_THREAD := true
 
 
 func _extension_init() -> void:
-	prints(EXTENSION_NAME, DEBUG_BUILD)
+	prints(EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_VERSION_YMD, DEBUG_BUILD)
 	if HTML5_OVERRIDES_SINGLE_THREAD and Global.is_html5:
 		Global.use_threads = false
 	else:
@@ -111,5 +111,5 @@ func _on_simulator_started() -> void:
 		var project_gui: Control = Global.program.ProjectGUI
 		var version_label = project_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
-				"\n" + str(Global.IVOYAGER_VERSION_YMD) + "\n" + DEBUG_BUILD)
+				"\n" + str(EXTENSION_VERSION_YMD) + "\n" + DEBUG_BUILD)
 
