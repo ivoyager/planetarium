@@ -20,13 +20,10 @@
 
 extends PanelContainer
 
+
 func _ready():
 	var version_label = find_node("VersionLabel")
-	if Global.IVOYAGER_VERSION.ends_with("-dev"):
-		version_label.set_version_label("Planetarium", false, true, " ", "",
-				"\n" + str(Global.IVOYAGER_VERSION_YMD))
-	else:
-		version_label.set_version_label("Planetarium", false, true)
+	version_label.set_version_label("Planetarium", false, true)
 	var feedback = find_node("FeedbackLinkLabel")
 	feedback.set_hyperlink("Feedback", "https://www.ivoyager.dev/forum/")
 	var support_us = find_node("SupportUsLinkLabel")
