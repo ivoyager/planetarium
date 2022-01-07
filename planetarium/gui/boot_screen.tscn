@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://planetarium_assets/pale-blue-dot-512.jpg" type="Texture" id=1]
 [ext_resource path="res://planetarium/gui/boot_screen.gd" type="Script" id=2]
-
 
 [node name="BootScreen" type="ColorRect"]
 anchor_right = 1.0
@@ -13,59 +11,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
-ratio = 1.5
+[node name="BootLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Building the Solar System..."
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer"]
-margin_left = 153.0
-margin_right = 1287.0
-margin_bottom = 756.0
-
-[node name="PaleBlueDotRect" type="TextureRect" parent="AspectRatioContainer/HBoxContainer"]
-margin_right = 763.0
-margin_bottom = 756.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Control" parent="AspectRatioContainer/HBoxContainer"]
-margin_left = 767.0
-margin_right = 805.0
-margin_bottom = 756.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
-
-[node name="TextVBox" type="VBoxContainer" parent="AspectRatioContainer/HBoxContainer"]
-margin_left = 809.0
-margin_right = 1134.0
-margin_bottom = 756.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.85
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LoadLabel" type="Label" parent="AspectRatioContainer/HBoxContainer/TextVBox"]
-margin_right = 325.0
-margin_bottom = 14.0
-autowrap = true
-
-[node name="PBDLabel" type="Label" parent="AspectRatioContainer/HBoxContainer/TextVBox"]
-margin_top = 18.0
-margin_right = 325.0
-margin_bottom = 756.0
-size_flags_vertical = 3
-valign = 2
-autowrap = true

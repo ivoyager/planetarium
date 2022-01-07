@@ -26,9 +26,9 @@
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.10-dev"
-const EXTENSION_VERSION_YMD := 20220105
+const EXTENSION_VERSION_YMD := 20220106
 
-const DEBUG_BUILD := "bf61f9-c"
+const DEBUG_BUILD := "bf61f9-d"
 
 const USE_THREADS := true # false for debugging
 const HTML5_OVERRIDES_SINGLE_THREAD := true

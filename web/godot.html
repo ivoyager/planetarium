@@ -33,13 +33,75 @@
 			border: 1px solid #45434e;
 			box-shadow: 0 0 1px 1px #2f2d35;
 		}
+		
+		/* Planetarium Additions */
+		
+		#load-container {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			justify-content: center;
+		}
+
+		#pale-blue-dot {
+			object-fit: contain;
+			margin: 50px 0 50px 50px;
+		}
+		
+		#info-container {
+			width: 200px;
+			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+			text-align: left;
+			margin: 35px 50px 50px 50px;
+			
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			
+		}
+				
+		p {
+			color: white;
+			margin 0;
+			padding 0;
+		}
+		
+		a {
+			text-decoration: none;
+			color: #adf;
+		}
+		
+		@media screen and (max-width: 950px) {
+			load-container {
+				position: absolute;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+			}
+			#pale-blue-dot {
+				width: 400px;
+				margin: 50px 50px 0 50px;
+			}
+			#info-container {
+				width: 90%;
+				flex-direction: column-reverse;
+				text-align: center;
+				margin: 15px 50px 50px 50px;
+			}
+		}
+
+		/* END Planetarium Additions */
 
 
 		/* Status display
 		 * ============== */
 
 		#status {
-			position: absolute;
+			position: relative; /* Planetarium changed from absolute */
+			height: 42px;  /* Planetarium */
 			left: 0;
 			top: 0;
 			right: 0;
@@ -52,7 +114,7 @@
 		}
 
 		#status-progress {
-			width: 366px;
+			width: 180px;  /* Planetarium changed from 366px */
 			height: 7px;
 			background-color: #38363A;
 			border: 1px solid #444246;
@@ -62,11 +124,13 @@
 			visibility: visible;
 		}
 
+		/* Planetarium disabled
 		@media only screen and (orientation:portrait) {
 			#status-progress {
 				width: 61.8%;
 			}
 		}
+		*/
 
 		#status-progress-inner {
 			height: 100%;
@@ -119,6 +183,20 @@ $GODOT_HEAD_INCLUDE
 		HTML5 canvas appears to be unsupported in the current browser.<br />
 		Please try updating or use a different browser.
 	</canvas>
+	
+	<div id='load-container'>
+	
+	<img id='pale-blue-dot' src="pale-blue-dot-512.jpg" alt="Pale Blue Dot">
+
+	<div id='info-container'>
+		<div>
+		<p>
+			I, Voyager - Planetarium<br>
+			v0.0.10-dev (bf61f9-d)<br><br>
+			Loading...
+		</p>
+	
+	
 	<div id='status'>
 		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
@@ -133,6 +211,21 @@ $GODOT_HEAD_INCLUDE
 		</div>
 		<div id='status-notice' class='godot' style='display: none;'></div>
 	</div>
+	
+		<p>
+			<br>Please consider supporting us at our GitHub 
+			<a href='https://github.com/sponsors/charliewhitfield' target='_blank'>Sponsor's Page!</a><br><br><br>
+		</p>
+		</div>
+		<a id='pbd-caption' href='https://www.planetary.org/worlds/pale-blue-dot' target='_blank'>
+			Pale Blue Dot<br>
+			Earth as seen by Voyager 1 from 6.4 billion kilometers.
+		</a>
+		
+	</div>
+	</div>
+
+
 
 	<script type='text/javascript' src='$GODOT_URL'></script>
 	<script type='text/javascript'>//<![CDATA[
@@ -146,6 +239,8 @@ $GODOT_HEAD_INCLUDE
 			var statusProgressInner = document.getElementById('status-progress-inner');
 			var statusIndeterminate = document.getElementById('status-indeterminate');
 			var statusNotice = document.getElementById('status-notice');
+			
+			var loadContainer = document.getElementById('load-container');
 
 			var initializing = true;
 			var statusMode = 'hidden';
@@ -179,6 +274,7 @@ $GODOT_HEAD_INCLUDE
 						statusNotice.style.display = 'block';
 						break;
 					case 'hidden':
+						loadContainer.style.display = 'none';
 						break;
 					default:
 						throw new Error('Invalid status mode');
