@@ -30,11 +30,6 @@ func _set_labels() -> void:
 	var font := DynamicFont.new()
 	font.font_data = font_data
 	font.size = 26
-	if Global.is_html5:
-		var load_label: Label = find_node("LoadLabel")
-		load_label.set("custom_fonts/font", font)
-		load_label.text = "TXT_HTML5_LOADING"
-	var pbd_label: Label = find_node("PBDLabel")
-	pbd_label.set("custom_fonts/font", font)
-	pbd_label.set("custom_colors/font_color", Color.lightblue)
-	pbd_label.text = "TXT_PBD_SHORT"
+	var boot_label: Label = find_node("BootLabel")
+	boot_label.set("custom_fonts/font", font)
+

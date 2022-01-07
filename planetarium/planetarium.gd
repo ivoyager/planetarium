@@ -26,9 +26,9 @@
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.10-dev"
-const EXTENSION_VERSION_YMD := 20220104
+const EXTENSION_VERSION_YMD := 20220107
 
-const DEBUG_BUILD := "bf61f9-a"
+const DEBUG_BUILD := "bf61f9-f"
 
 const USE_THREADS := true # false for debugging
 const HTML5_OVERRIDES_SINGLE_THREAD := true
@@ -94,8 +94,8 @@ func _on_program_objects_instantiated() -> void:
 	var default_settings := settings_manager.defaults
 	if Global.is_html5:
 		default_settings.gui_size = Enums.GUISize.GUI_LARGE
-		var view_caching: ViewCaching = Global.program.ViewCaching
-		view_caching.cache_interval = 5.0
+#		var view_caching: ViewCaching = Global.program.ViewCaching
+#		view_caching.cache_interval = 5.0
 	if Global.is_gles2:
 		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
