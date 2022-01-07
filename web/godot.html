@@ -34,10 +34,10 @@
 			box-shadow: 0 0 1px 1px #2f2d35;
 		}
 		
-		/* Planetarium Additions */
+		/* Planetarium */
 		
 		#load-container {
-			position: fixed;
+			position: absolute;
 			top: 0;
 			bottom: 0;
 			left: 0;
@@ -47,26 +47,21 @@
 		}
 
 		#pale-blue-dot {
-			object-fit: contain;
-			margin: 50px 0 50px 50px;
+			margin: 100px 0 100px 50px;
 		}
 		
 		#info-container {
-			width: 200px;
+			width: 300px;
 			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
 			text-align: left;
-			margin: 35px 50px 50px 50px;
-			
+			margin: 85px 50px 100px 50px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			
 		}
 				
 		p {
 			color: white;
-			margin 0;
-			padding 0;
 		}
 		
 		a {
@@ -74,9 +69,8 @@
 			color: #adf;
 		}
 		
-		@media screen and (max-width: 950px) {
-			load-container {
-				position: absolute;
+		@media only screen and (orientation: portrait) {
+			#load-container {
 				flex-direction: column;
 				justify-content: flex-start;
 				align-items: center;
@@ -93,7 +87,7 @@
 			}
 		}
 
-		/* END Planetarium Additions */
+		/* END Planetarium */
 
 
 		/* Status display
@@ -184,6 +178,9 @@ $GODOT_HEAD_INCLUDE
 		Please try updating or use a different browser.
 	</canvas>
 	
+	<!-- Planetarium: The 'status' element is unmodified, but is now
+	     embedded within Planetarium containers. -->
+	
 	<div id='load-container'>
 	
 	<img id='pale-blue-dot' src="pale-blue-dot-512.jpg" alt="Pale Blue Dot">
@@ -192,11 +189,11 @@ $GODOT_HEAD_INCLUDE
 		<div>
 		<p>
 			I, Voyager - Planetarium<br>
-			v0.0.10-dev (bf61f9-d)<br><br>
+			v0.0.10-dev (bf61f9-f)<br><br>
 			Loading...
 		</p>
 	
-	
+
 	<div id='status'>
 		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
 		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
@@ -211,10 +208,11 @@ $GODOT_HEAD_INCLUDE
 		</div>
 		<div id='status-notice' class='godot' style='display: none;'></div>
 	</div>
+
 	
 		<p>
 			<br>Please consider supporting us at our GitHub 
-			<a href='https://github.com/sponsors/charliewhitfield' target='_blank'>Sponsor's Page!</a><br><br><br>
+			<a href='https://github.com/sponsors/charliewhitfield' target='_blank'>Sponsor's Page!</a>
 		</p>
 		</div>
 		<a id='pbd-caption' href='https://www.planetary.org/worlds/pale-blue-dot' target='_blank'>
@@ -224,8 +222,6 @@ $GODOT_HEAD_INCLUDE
 		
 	</div>
 	</div>
-
-
 
 	<script type='text/javascript' src='$GODOT_URL'></script>
 	<script type='text/javascript'>//<![CDATA[
@@ -240,7 +236,7 @@ $GODOT_HEAD_INCLUDE
 			var statusIndeterminate = document.getElementById('status-indeterminate');
 			var statusNotice = document.getElementById('status-notice');
 			
-			var loadContainer = document.getElementById('load-container');
+			var loadContainer = document.getElementById('load-container'); // Planetarium
 
 			var initializing = true;
 			var statusMode = 'hidden';
@@ -274,7 +270,7 @@ $GODOT_HEAD_INCLUDE
 						statusNotice.style.display = 'block';
 						break;
 					case 'hidden':
-						loadContainer.style.display = 'none';
+						loadContainer.style.display = 'none'; // Planetarium
 						break;
 					default:
 						throw new Error('Invalid status mode');
