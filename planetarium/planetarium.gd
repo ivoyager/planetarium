@@ -25,10 +25,9 @@
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.10-dev"
-const EXTENSION_VERSION_YMD := 20220107
-
-const DEBUG_BUILD := "g" # ymd + this displayed when version ends with "-dev"
+const EXTENSION_VERSION := "0.0.10-rc1"
+const EXTENSION_VERSION_YMD := 20220108
+const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-dev"
 
 const USE_THREADS := true # false for debugging
 const HTML5_OVERRIDES_SINGLE_THREAD := true

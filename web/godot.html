@@ -179,48 +179,47 @@ $GODOT_HEAD_INCLUDE
 	</canvas>
 	
 	<!-- Planetarium: The 'status' element is unmodified, but is now
-	     embedded within Planetarium containers. -->
+	     embedded within Planetarium content. -->
 	
 	<div id='load-container'>
 	
-	<img id='pale-blue-dot' src="pale-blue-dot-512.jpg" alt="Pale Blue Dot">
+		<img id='pale-blue-dot' src="pale-blue-dot-512.jpg" alt="Pale Blue Dot">
 
-	<div id='info-container'>
-		<div>
-		<p>
-			I, Voyager - Planetarium<br>
-			v0.0.10-dev 20220107g<br><br>
-			Loading...
-		</p>
+		<div id='info-container'>
+			<div>
+				<p>
+					I, Voyager - Planetarium<br>
+					v0.0.10-rc1<br><br>
+					Loading...
+				</p>
 	
 
-	<div id='status'>
-		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
-		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-		<div id='status-notice' class='godot' style='display: none;'></div>
-	</div>
+				<div id='status'>
+					<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
+					<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+					<div id='status-notice' class='godot' style='display: none;'></div>
+				</div>
 
 	
-		<p>
-			<br>Please consider supporting us at our GitHub 
-			<a href='https://github.com/sponsors/charliewhitfield' target='_blank'>Sponsor's Page!</a>
-		</p>
+				<p>
+					<br>Please consider supporting us at our GitHub 
+					<a href='https://github.com/sponsors/charliewhitfield' target='_blank'>Sponsor's Page!</a>
+				</p>
+			</div>
+			<a id='pbd-caption' href='https://www.planetary.org/worlds/pale-blue-dot' target='_blank'>
+				Pale Blue Dot<br>
+				Earth as seen by Voyager 1 from 6.4 billion kilometers.
+			</a>
 		</div>
-		<a id='pbd-caption' href='https://www.planetary.org/worlds/pale-blue-dot' target='_blank'>
-			Pale Blue Dot<br>
-			Earth as seen by Voyager 1 from 6.4 billion kilometers.
-		</a>
-		
-	</div>
 	</div>
 
 	<script type='text/javascript' src='$GODOT_URL'></script>
