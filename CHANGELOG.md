@@ -4,7 +4,16 @@ This file documents changes to the Planetarium project only. For changes to the 
 
 File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-See cloning and downloading instructions [here](https://www.ivoyager.dev/devs/).
+See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
+
+## [v0.0.11 Unreleased] - TBD
+
+Developed using Godot 3.4.2.stable.
+
+Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
+
+### Changes
+* Added project-level si_base_unit.gd static class and removed universe.tscn & universe.gd to support 'ivoyager' submodule changes.
 
 ## [v0.0.10] - 2022-01-09
 
@@ -24,4 +33,5 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 ##
 *Older project-level changes are documented in* [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
+[v0.0.11 Unreleased]: https://github.com/ivoyager/planetarium/compare/v0.0.10...HEAD
 [v0.0.10]: https://github.com/ivoyager/planetarium/compare/v0.0.9-alpha...v0.0.10
