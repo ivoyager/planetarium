@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://planetarium/gui/boot_screen.tscn" type="PackedScene" id=1]
-[ext_resource path="res://universe.gd" type="Script" id=2]
-
-[node name="Universe" type="Spatial"]
-script = ExtResource( 2 )
-
-[node name="BootScreen" parent="." instance=ExtResource( 1 )]

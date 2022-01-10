@@ -1,4 +1,4 @@
-# universe.gd
+# si_base_units.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,21 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-#
-#             Developers! The place to start is:
-#                ivoyager/singletons/project_builder.gd
-#                ivoyager/singletons/global.gd
-#
-# *****************************************************************************
-# Universe is outside of the ivoyager submodule so projects can easily build
-# scenes under the simulator root node. (E.g., our Planetarium adds a boot
-# screen.) Note however that the simulator root node can be changed at init by
-# setting the "universe" property in ProjectBuilder. Constants below also are
-# externalized so projects can modify, in particular METER which determines
-# simulator scale. 
+# We keep this outside of the 'ivoyager' submodule so projects can modify
+# scale, if needed. 
 
-extends Spatial
-class_name Universe
+class_name SIBaseUnits
 
 # SI base units - all internal sim values derived from these!
 const METER := 1e-13 # engine length units per meter; see Notes below

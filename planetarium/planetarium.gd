@@ -70,6 +70,10 @@ func _extension_init() -> void:
 		ProjectBuilder.gui_nodes.erase("_MainProgBar_")
 		Global.disable_quit = true
 		Global.vertecies_per_orbit = 200
+	# Add boot screen to hide messy node construction
+	var universe: Spatial = Global.get_node("/root/Universe")
+	var boot_screen: Control = preload("res://planetarium/gui/boot_screen.tscn").instance()
+	universe.add_child(boot_screen)
 
 func _on_program_objects_instantiated() -> void:
 	var model_builder: ModelBuilder = Global.program.ModelBuilder
