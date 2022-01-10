@@ -79,11 +79,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/environment_builder.gd"
 }, {
-"base": "Control",
-"class": "ExampleGameGUI",
-"language": "GDScript",
-"path": "res://ivoyager/gui_example/example_game_gui.gd"
-}, {
 "base": "Reference",
 "class": "FileUtils",
 "language": "GDScript",
@@ -243,11 +238,6 @@ _global_script_classes=[ {
 "class": "OrbitBuilder",
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/orbit_builder.gd"
-}, {
-"base": "Control",
-"class": "PBDSplashScreen",
-"language": "GDScript",
-"path": "res://ivoyager/gui_example/pbd_splash_screen.gd"
 }, {
 "base": "Node",
 "class": "PointsManager",
@@ -424,7 +414,6 @@ _global_script_class_icons={
 "Debug": "",
 "Enums": "",
 "EnvironmentBuilder": "",
-"ExampleGameGUI": "",
 "FileUtils": "",
 "FontManager": "",
 "FullScreenManager": "",
@@ -457,7 +446,6 @@ _global_script_class_icons={
 "OptionsPopup": "",
 "Orbit": "",
 "OrbitBuilder": "",
-"PBDSplashScreen": "",
 "PointsManager": "",
 "ProjectionSurface": "",
 "QtyTxtConverter": "",
