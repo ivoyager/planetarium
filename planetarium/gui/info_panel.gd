@@ -46,7 +46,7 @@ func _ready():
 	for other_panel in _other_panels:
 		other_panel.connect("item_rect_changed", self, "_resize")
 	connect("item_rect_changed", self, "_resize")
-	Global.connect("simulator_started", self, "_resize")
+	IVGlobal.connect("simulator_started", self, "_resize")
 	_selection_data.connect("resized", self, "_resize")
 	get_viewport().connect("size_changed", self, "_resize")
 
