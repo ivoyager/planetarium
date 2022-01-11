@@ -76,7 +76,7 @@ func _extension_init() -> void:
 	universe.add_child(boot_screen)
 
 func _on_program_objects_instantiated() -> void:
-	var model_builder: ModelBuilder = IVGlobal.program.ModelBuilder
+	var model_builder: IVModelBuilder = IVGlobal.program.ModelBuilder
 	model_builder.max_lazy = 10
 	var timekeeper: Timekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
