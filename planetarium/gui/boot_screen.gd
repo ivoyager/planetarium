@@ -22,11 +22,11 @@
 extends ColorRect
 
 func _ready() -> void:
-	Global.connect("translations_imported", self, "_set_labels")
-	Global.connect("simulator_started", self, "queue_free", [], CONNECT_ONESHOT)
+	IVGlobal.connect("translations_imported", self, "_set_labels")
+	IVGlobal.connect("simulator_started", self, "queue_free", [], CONNECT_ONESHOT)
 
 func _set_labels() -> void:
-	var font_data: DynamicFontData = Global.assets.primary_font_data
+	var font_data: DynamicFontData = IVGlobal.assets.primary_font_data
 	var font := DynamicFont.new()
 	font.font_data = font_data
 	font.size = 26

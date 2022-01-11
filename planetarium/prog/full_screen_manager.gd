@@ -25,8 +25,8 @@
 extends Node # See Note
 class_name FullScreenManager
 
-var _tree: SceneTree = Global.get_tree()
-var _main_menu_manager: MainMenuManager = Global.program.MainMenuManager
+var _tree: SceneTree = IVGlobal.get_tree()
+var _main_menu_manager: IVMainMenuManager = IVGlobal.program.MainMenuManager
 var _is_screen_size_testing := false
 var _is_fullscreen := false
 
@@ -35,7 +35,7 @@ func _project_init() -> void:
 			"_change_fullscreen")
 	_main_menu_manager.make_button("BUTTON_MINIMIZE", 1002, false, true, self,
 			"_change_fullscreen", [], _main_menu_manager.HIDDEN)
-	Global.connect("update_gui_needed", self, "_update_buttons")
+	IVGlobal.connect("update_gui_needed", self, "_update_buttons")
 	_tree.connect("screen_resized", self, "_on_screen_resized")
 
 func _change_fullscreen() -> void:
