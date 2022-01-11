@@ -78,14 +78,14 @@ func _extension_init() -> void:
 func _on_program_objects_instantiated() -> void:
 	var model_builder: IVModelBuilder = IVGlobal.program.ModelBuilder
 	model_builder.max_lazy = 10
-	var timekeeper: Timekeeper = IVGlobal.program.Timekeeper
+	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
-	var huds_manager: HUDsManager = IVGlobal.program.HUDsManager
+	var huds_manager: IVHUDsManager = IVGlobal.program.HUDsManager
 	huds_manager.show_names = true
 	huds_manager.show_orbits = true
-	var qty_txt_converter: QtyTxtConverter = IVGlobal.program.QtyTxtConverter
-	qty_txt_converter.exp_str = " x 10^"
-	var theme_manager: ThemeManager = IVGlobal.program.ThemeManager
+	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
+	quantity_formatter.exp_str = " x 10^"
+	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
 	var hotkeys_popup: HotkeysPopup = IVGlobal.program.HotkeysPopup
 	hotkeys_popup.remove_item("toggle_all_gui")
@@ -93,7 +93,7 @@ func _on_program_objects_instantiated() -> void:
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: OptionsPopup = IVGlobal.program.OptionsPopup
 	options_popup.remove_item("starmap")
-	var settings_manager: SettingsManager = IVGlobal.program.SettingsManager
+	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	if IVGlobal.is_html5:
 		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE

@@ -26,7 +26,7 @@ extends Node # See Note
 class_name FullScreenManager
 
 var _tree: SceneTree = IVGlobal.get_tree()
-var _main_menu_manager: MainMenuManager = IVGlobal.program.MainMenuManager
+var _main_menu_manager: IVMainMenuManager = IVGlobal.program.MainMenuManager
 var _is_screen_size_testing := false
 var _is_fullscreen := false
 
