@@ -24,7 +24,7 @@ extends Control
 class_name GUITop
 const SCENE := "res://planetarium/gui/gui_top.tscn"
 
-var selection_manager: SelectionManager
+var selection_manager: IVSelectionManager
 
 onready var _SelectionManager_: Script = IVGlobal.script_classes._SelectionManager_
 
