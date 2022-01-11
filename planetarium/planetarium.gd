@@ -87,11 +87,11 @@ func _on_program_objects_instantiated() -> void:
 	quantity_formatter.exp_str = " x 10^"
 	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
-	var hotkeys_popup: HotkeysPopup = IVGlobal.program.HotkeysPopup
+	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
 	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
-	var options_popup: OptionsPopup = IVGlobal.program.OptionsPopup
+	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
 	options_popup.remove_item("starmap")
 	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
