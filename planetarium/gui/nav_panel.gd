@@ -20,7 +20,7 @@
 
 extends PanelContainer
 
-var _settings: Dictionary = Global.settings
+var _settings: Dictionary = IVGlobal.settings
 onready var _under_moons_spacer: Control = find_node("UnderMoonsSpacer")
 var _under_moons_spacer_sizes := [55.0, 66.0, 77.0]
 
@@ -31,8 +31,8 @@ func _ready():
 		Vector2(712.0, 400.0), # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	Global.connect("update_gui_needed", self, "_resize")
-	Global.connect("setting_changed", self, "_settings_listener")
+	IVGlobal.connect("update_gui_needed", self, "_resize")
+	IVGlobal.connect("setting_changed", self, "_settings_listener")
 
 func _resize() -> void:
 	var gui_size: int = _settings.gui_size

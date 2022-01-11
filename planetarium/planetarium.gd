@@ -35,71 +35,71 @@ const HTML5_OVERRIDES_SINGLE_THREAD := true
 
 func _extension_init() -> void:
 	prints(EXTENSION_NAME, EXTENSION_VERSION, str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
-	if HTML5_OVERRIDES_SINGLE_THREAD and Global.is_html5:
-		Global.use_threads = false
+	if HTML5_OVERRIDES_SINGLE_THREAD and IVGlobal.is_html5:
+		IVGlobal.use_threads = false
 	else:
-		Global.use_threads = USE_THREADS
+		IVGlobal.use_threads = USE_THREADS
 	print("HTML5 = %s, GLES2 = %s, threads = %s" % \
-			[Global.is_html5, Global.is_gles2, Global.use_threads])
-	Global.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
-	Global.connect("project_inited", self, "_on_project_inited")
-	Global.connect("simulator_started", self, "_on_simulator_started")
-	ProjectBuilder.prog_builders.erase("_SaveBuilder_")
-	ProjectBuilder.prog_nodes.erase("_SaveManager_")
-	ProjectBuilder.gui_nodes.erase("_SaveDialog_")
-	ProjectBuilder.gui_nodes.erase("_LoadDialog_")
-	ProjectBuilder.gui_nodes.erase("_SplashScreen_")
-	ProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
-	ProjectBuilder.gui_nodes.erase("_MainProgBar_")
-#	ProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching # temp disabled for PWA debugging
-	ProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
-	ProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
-	Global.project_name = EXTENSION_NAME
-	Global.project_version = EXTENSION_VERSION
-	Global.project_version_ymd = EXTENSION_VERSION_YMD
-	Global.enable_save_load = false
-	Global.allow_real_world_time = true
-	Global.allow_time_reversal = true
-	Global.home_view_from_user_time_zone = true
-	Global.disable_pause = true
-	Global.skip_splash_screen = true
-	Global.disable_exit = true
-	Global.enable_wiki = true
-	Global.popops_can_stop_sim = false
-	if Global.is_html5:
-		ProjectBuilder.gui_nodes.erase("_MainProgBar_")
-		Global.disable_quit = true
-		Global.vertecies_per_orbit = 200
+			[IVGlobal.is_html5, IVGlobal.is_gles2, IVGlobal.use_threads])
+	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
+	IVGlobal.connect("project_inited", self, "_on_project_inited")
+	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
+	IVProjectBuilder.prog_builders.erase("_SaveBuilder_")
+	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
+	IVProjectBuilder.gui_nodes.erase("_SaveDialog_")
+	IVProjectBuilder.gui_nodes.erase("_LoadDialog_")
+	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
+	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
+	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
+#	IVProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching # temp disabled for PWA debugging
+	IVProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
+	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
+	IVGlobal.project_name = EXTENSION_NAME
+	IVGlobal.project_version = EXTENSION_VERSION
+	IVGlobal.project_version_ymd = EXTENSION_VERSION_YMD
+	IVGlobal.enable_save_load = false
+	IVGlobal.allow_real_world_time = true
+	IVGlobal.allow_time_reversal = true
+	IVGlobal.home_view_from_user_time_zone = true
+	IVGlobal.disable_pause = true
+	IVGlobal.skip_splash_screen = true
+	IVGlobal.disable_exit = true
+	IVGlobal.enable_wiki = true
+	IVGlobal.popops_can_stop_sim = false
+	if IVGlobal.is_html5:
+		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
+		IVGlobal.disable_quit = true
+		IVGlobal.vertecies_per_orbit = 200
 	# Add boot screen to hide messy node construction
-	var universe: Spatial = Global.get_node("/root/Universe")
+	var universe: Spatial = IVGlobal.get_node("/root/Universe")
 	var boot_screen: Control = preload("res://planetarium/gui/boot_screen.tscn").instance()
 	universe.add_child(boot_screen)
 
 func _on_program_objects_instantiated() -> void:
-	var model_builder: ModelBuilder = Global.program.ModelBuilder
+	var model_builder: ModelBuilder = IVGlobal.program.ModelBuilder
 	model_builder.max_lazy = 10
-	var timekeeper: Timekeeper = Global.program.Timekeeper
+	var timekeeper: Timekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
-	var huds_manager: HUDsManager = Global.program.HUDsManager
+	var huds_manager: HUDsManager = IVGlobal.program.HUDsManager
 	huds_manager.show_names = true
 	huds_manager.show_orbits = true
-	var qty_txt_converter: QtyTxtConverter = Global.program.QtyTxtConverter
+	var qty_txt_converter: QtyTxtConverter = IVGlobal.program.QtyTxtConverter
 	qty_txt_converter.exp_str = " x 10^"
-	var theme_manager: ThemeManager = Global.program.ThemeManager
+	var theme_manager: ThemeManager = IVGlobal.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
-	var hotkeys_popup: HotkeysPopup = Global.program.HotkeysPopup
+	var hotkeys_popup: HotkeysPopup = IVGlobal.program.HotkeysPopup
 	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
-	var options_popup: OptionsPopup = Global.program.OptionsPopup
+	var options_popup: OptionsPopup = IVGlobal.program.OptionsPopup
 	options_popup.remove_item("starmap")
-	var settings_manager: SettingsManager = Global.program.SettingsManager
+	var settings_manager: SettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
-	if Global.is_html5:
-		default_settings.gui_size = Enums.GUISize.GUI_LARGE
-#		var view_caching: ViewCaching = Global.program.ViewCaching
+	if IVGlobal.is_html5:
+		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
+#		var view_caching: ViewCaching = IVGlobal.program.ViewCaching
 #		view_caching.cache_interval = 5.0
-	if Global.is_gles2:
+	if IVGlobal.is_gles2:
 		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
@@ -110,8 +110,8 @@ func _on_project_inited() -> void:
 	pass
 
 func _on_simulator_started() -> void:
-	if DEBUG_BUILD or Global.IVOYAGER_VERSION.ends_with("-dev"):
-		var project_gui: Control = Global.program.ProjectGUI
+	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-dev"):
+		var project_gui: Control = IVGlobal.program.ProjectGUI
 		var version_label = project_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
 				"\n" + str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)

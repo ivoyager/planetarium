@@ -26,12 +26,12 @@ const SCENE := "res://planetarium/gui/gui_top.tscn"
 
 var selection_manager: SelectionManager
 
-onready var _SelectionManager_: Script = Global.script_classes._SelectionManager_
+onready var _SelectionManager_: Script = IVGlobal.script_classes._SelectionManager_
 
 func _project_init() -> void:
-	Global.connect("project_builder_finished", self, "_on_project_builder_finished")
-	Global.connect("system_tree_built_or_loaded", self, "_on_system_tree_built_or_loaded")
-	Global.connect("simulator_exited", self, "_on_simulator_exited")
+	IVGlobal.connect("project_builder_finished", self, "_on_project_builder_finished")
+	IVGlobal.connect("system_tree_built_or_loaded", self, "_on_system_tree_built_or_loaded")
+	IVGlobal.connect("simulator_exited", self, "_on_simulator_exited")
 	hide()
 
 func _ready():
@@ -46,7 +46,7 @@ func _ready():
 	set_date_time.connect("pressed", $TimeSetPopup, "popup")
 
 func _on_project_builder_finished() -> void:
-	theme = Global.themes.main
+	theme = IVGlobal.themes.main
 
 func _on_system_tree_built_or_loaded(is_new_game: bool) -> void:
 	if is_new_game:
