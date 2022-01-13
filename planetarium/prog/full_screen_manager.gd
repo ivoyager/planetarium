@@ -17,18 +17,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+class_name FullScreenManager
+extends Node # See Note
+
 # Note: "ObjectDB leaked at exit" errors occur on quit if this is a Reference
 # as of Godot 3.2.3; these result from passing self to MainMenuManager. This
 # shouldn't happen, but changing to Node and adding via
 # ProjectBuider.prog_nodes fixes the problem for now.
 
-extends Node # See Note
-class_name FullScreenManager
-
 var _tree: SceneTree = IVGlobal.get_tree()
 var _main_menu_manager: IVMainMenuManager = IVGlobal.program.MainMenuManager
 var _is_screen_size_testing := false
 var _is_fullscreen := false
+
 
 func _project_init() -> void:
 	_main_menu_manager.make_button("BUTTON_FULL_SCREEN", 1001, false, true, self,
@@ -38,8 +39,10 @@ func _project_init() -> void:
 	IVGlobal.connect("update_gui_needed", self, "_update_buttons")
 	_tree.connect("screen_resized", self, "_on_screen_resized")
 
+
 func _change_fullscreen() -> void:
 	OS.window_fullscreen = !OS.window_fullscreen
+
 
 func _update_buttons() -> void:
 	if _is_fullscreen == OS.window_fullscreen:
@@ -51,6 +54,7 @@ func _update_buttons() -> void:
 	else:
 		_main_menu_manager.change_button_state("BUTTON_FULL_SCREEN", _main_menu_manager.ACTIVE)
 		_main_menu_manager.change_button_state("BUTTON_MINIMIZE", _main_menu_manager.HIDDEN)
+
 
 func _on_screen_resized() -> void:
 	# In electron_app this takes a while to give correct result. Possibly other

@@ -17,11 +17,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+extends Reference
+
+# This file modifies init values in IVGlobal and classes in IVProjectBuilder.
+#
 # As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
 # App (PWA). However, it should be exportable to other, non-HTML5 platforms.
 #
-# Note: In Godot 3.x, HTML5 export should use GLES2.
-# Note2: Godot 3.4.2+ supports multithreading in HTML5 exports. We are keeping
+# In Godot 3.x, HTML5 export should use GLES2.
+# Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
@@ -72,8 +76,9 @@ func _extension_init() -> void:
 		IVGlobal.vertecies_per_orbit = 200
 	# Add boot screen to hide messy node construction
 	var universe: Spatial = IVGlobal.get_node("/root/Universe")
-	var boot_screen: Control = preload("res://planetarium/gui/boot_screen.tscn").instance()
-	universe.add_child(boot_screen)
+	var boot: Control = preload("res://planetarium/gui/boot.tscn").instance()
+	universe.add_child(boot)
+
 
 func _on_program_objects_instantiated() -> void:
 	var model_builder: IVModelBuilder = IVGlobal.program.ModelBuilder
@@ -106,8 +111,10 @@ func _on_program_objects_instantiated() -> void:
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
+
 func _on_project_inited() -> void:
 	pass
+
 
 func _on_simulator_started() -> void:
 	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-DEV"):

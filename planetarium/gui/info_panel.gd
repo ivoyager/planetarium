@@ -17,17 +17,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-# Dynamically resizes to not grow bigger than data and not cover other panels.
-
 extends PanelContainer
+
+# Dynamically resizes to not grow bigger than data and not cover other panels.
 
 const MIN_DATA_SIZE := 80.0
 const UNDER_DATA_MARGIN := 20.0
 
-onready var _selection_data: VBoxContainer = find_node("SelectionData")
-onready var _data_scroll: ScrollContainer = find_node("DataScroll")
 var _other_panels := [] # resize to not cover these
 var _suppress_resize := false
+
+onready var _selection_data: VBoxContainer = find_node("SelectionData")
+onready var _data_scroll: ScrollContainer = find_node("DataScroll")
+
 
 func _ready():
 	# widget mods
@@ -49,6 +51,7 @@ func _ready():
 	IVGlobal.connect("simulator_started", self, "_resize")
 	_selection_data.connect("resized", self, "_resize")
 	get_viewport().connect("size_changed", self, "_resize")
+
 
 func _resize() -> void:
 	if _suppress_resize:
