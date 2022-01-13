@@ -25,9 +25,9 @@
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.10"
-const EXTENSION_VERSION_YMD := 20220109
-const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-dev"
+const EXTENSION_VERSION := "0.0.11-DEV"
+const EXTENSION_VERSION_YMD := 20220113
+const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # false for debugging
 const HTML5_OVERRIDES_SINGLE_THREAD := true
@@ -51,7 +51,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
-#	IVProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching # temp disabled for PWA debugging
+	IVProjectBuilder.prog_nodes._ViewCacher_ = IVViewCacher # available but not added in base
 	IVProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
 	IVGlobal.project_name = EXTENSION_NAME
@@ -92,13 +92,13 @@ func _on_program_objects_instantiated() -> void:
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
-	options_popup.remove_item("starmap")
+	options_popup.remove_item("starmap") # web assets only have 8k starmap
 	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	if IVGlobal.is_html5:
 		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
-#		var view_caching: ViewCaching = IVGlobal.program.ViewCaching
-#		view_caching.cache_interval = 5.0
+		var view_caching: IVViewCacher = IVGlobal.program.ViewCacher
+		view_caching.cache_interval = 1.0
 	if IVGlobal.is_gles2:
 		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
@@ -110,7 +110,7 @@ func _on_project_inited() -> void:
 	pass
 
 func _on_simulator_started() -> void:
-	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-dev"):
+	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-DEV"):
 		var project_gui: Control = IVGlobal.program.ProjectGUI
 		var version_label = project_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
