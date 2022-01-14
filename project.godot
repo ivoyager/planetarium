@@ -496,6 +496,7 @@ IVProjectBuilder="*res://ivoyager/singletons/project_builder.gd"
 
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
