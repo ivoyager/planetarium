@@ -33,7 +33,7 @@ func _ready():
 		Vector2(712.0, 400.0), # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	IVGlobal.connect("update_gui_needed", self, "_resize")
+	IVGlobal.connect("update_gui_requested", self, "_resize")
 	IVGlobal.connect("setting_changed", self, "_settings_listener")
 
 
