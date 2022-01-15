@@ -17,10 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-# We keep this outside of the 'ivoyager' submodule so projects can modify
-# scale, if needed. 
-
 class_name SIBaseUnits
+
+# We keep this static class outside of the 'ivoyager' submodule so projects can
+# modify scale, if needed. 
 
 # SI base units - all internal sim values derived from these!
 const METER := 1e-13 # engine length units per meter; see Notes below
@@ -32,7 +32,7 @@ const CANDELA := 1.0
 
 # Notes on base SI units:
 #
-# See ivoyager/static/UnitDefs.gd for conversion of base SI units to derived
+# See ivoyager/static/units.gd for conversion of base SI units to derived
 # units. These affect internal float representation of quantities, but not
 # physics or display. Values here don't matter *in theory* because *everything*
 # is converted. E.g., if you double METER here, then the gravitational constant

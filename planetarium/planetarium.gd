@@ -17,17 +17,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+extends Reference
+
+# This file modifies init values in IVGlobal and classes in IVProjectBuilder.
+#
 # As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
 # App (PWA). However, it should be exportable to other, non-HTML5 platforms.
 #
-# Note: In Godot 3.x, HTML5 export should use GLES2.
-# Note2: Godot 3.4.2+ supports multithreading in HTML5 exports. We are keeping
+# In Godot 3.x, HTML5 export should use GLES2.
+# Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.10"
-const EXTENSION_VERSION_YMD := 20220109
-const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-dev"
+const EXTENSION_VERSION := "0.0.11-DEV"
+const EXTENSION_VERSION_YMD := 20220113
+const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # false for debugging
 const HTML5_OVERRIDES_SINGLE_THREAD := true
@@ -51,7 +55,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
-#	IVProjectBuilder.prog_nodes._ViewCaching_ = ViewCaching # temp disabled for PWA debugging
+	IVProjectBuilder.prog_nodes._ViewCacher_ = IVViewCacher # available but not added in base
 	IVProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
 	IVGlobal.project_name = EXTENSION_NAME
@@ -72,8 +76,9 @@ func _extension_init() -> void:
 		IVGlobal.vertecies_per_orbit = 200
 	# Add boot screen to hide messy node construction
 	var universe: Spatial = IVGlobal.get_node("/root/Universe")
-	var boot_screen: Control = preload("res://planetarium/gui/boot_screen.tscn").instance()
-	universe.add_child(boot_screen)
+	var boot: Control = preload("res://planetarium/gui/boot.tscn").instance()
+	universe.add_child(boot)
+
 
 func _on_program_objects_instantiated() -> void:
 	var model_builder: IVModelBuilder = IVGlobal.program.ModelBuilder
@@ -92,13 +97,13 @@ func _on_program_objects_instantiated() -> void:
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
-	options_popup.remove_item("starmap")
+	options_popup.remove_item("starmap") # web assets only have 8k starmap
 	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	if IVGlobal.is_html5:
 		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
-#		var view_caching: ViewCaching = IVGlobal.program.ViewCaching
-#		view_caching.cache_interval = 5.0
+		var view_caching: IVViewCacher = IVGlobal.program.ViewCacher
+		view_caching.cache_interval = 1.0
 	if IVGlobal.is_gles2:
 		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
@@ -106,13 +111,14 @@ func _on_program_objects_instantiated() -> void:
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
+
 func _on_project_inited() -> void:
 	pass
 
+
 func _on_simulator_started() -> void:
-	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-dev"):
+	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-DEV"):
 		var project_gui: Control = IVGlobal.program.ProjectGUI
 		var version_label = project_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
 				"\n" + str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
-

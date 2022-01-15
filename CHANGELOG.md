@@ -12,6 +12,9 @@ Developed using Godot 3.4.2.stable.
 
 Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
+### Added
+* (Re-)Enabled view caching. Caches current camera view every 1 sec (for HTML5 export) or on quit (all other platforms).
+
 ### Changes
 * Added project-level si_base_unit.gd static class and removed universe.tscn & universe.gd to support 'ivoyager' submodule changes.
 

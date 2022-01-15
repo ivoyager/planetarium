@@ -370,9 +370,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/tree_refs/view.gd"
 }, {
 "base": "Timer",
-"class": "IVViewCaching",
+"class": "IVViewCacher",
 "language": "GDScript",
-"path": "res://ivoyager/prog_nodes/view_caching.gd"
+"path": "res://ivoyager/prog_nodes/view_cacher.gd"
 }, {
 "base": "Reference",
 "class": "IVVisualsHelper",
@@ -467,7 +467,7 @@ _global_script_class_icons={
 "IVUnits": "",
 "IVUtils": "",
 "IVView": "",
-"IVViewCaching": "",
+"IVViewCacher": "",
 "IVVisualsHelper": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
@@ -478,6 +478,7 @@ _global_script_class_icons={
 
 config/name="I, Voyager - Planetarium"
 run/main_scene="res://ivoyager/tree_nodes/universe.tscn"
+boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -495,6 +496,7 @@ IVProjectBuilder="*res://ivoyager/singletons/project_builder.gd"
 
 gdscript/warnings/unused_signal=false
 gdscript/warnings/return_value_discarded=false
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 

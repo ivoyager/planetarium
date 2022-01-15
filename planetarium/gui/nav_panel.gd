@@ -17,12 +17,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-
 extends PanelContainer
 
+
 var _settings: Dictionary = IVGlobal.settings
-onready var _under_moons_spacer: Control = find_node("UnderMoonsSpacer")
 var _under_moons_spacer_sizes := [55.0, 66.0, 77.0]
+
+onready var _under_moons_spacer: Control = find_node("UnderMoonsSpacer")
+
 
 func _ready():
 	$ControlDraggable.default_sizes = [
@@ -31,12 +33,14 @@ func _ready():
 		Vector2(712.0, 400.0), # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	IVGlobal.connect("update_gui_needed", self, "_resize")
+	IVGlobal.connect("update_gui_requested", self, "_resize")
 	IVGlobal.connect("setting_changed", self, "_settings_listener")
+
 
 func _resize() -> void:
 	var gui_size: int = _settings.gui_size
 	_under_moons_spacer.rect_min_size.y = _under_moons_spacer_sizes[gui_size]
+
 
 func _settings_listener(setting: String, _value) -> void:
 	if setting == "gui_size":

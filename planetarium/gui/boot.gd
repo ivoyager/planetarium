@@ -1,4 +1,4 @@
-# boot_screen.gd
+# boot.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,13 +17,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-# Self-freeing boot screen.
-
 extends ColorRect
+
+# Self-freeing boot screen (hides messy node construction).
 
 func _ready() -> void:
 	IVGlobal.connect("translations_imported", self, "_set_labels")
 	IVGlobal.connect("simulator_started", self, "queue_free", [], CONNECT_ONESHOT)
+
 
 func _set_labels() -> void:
 	var font_data: DynamicFontData = IVGlobal.assets.primary_font_data
@@ -32,4 +33,3 @@ func _set_labels() -> void:
 	font.size = 26
 	var boot_label: Label = find_node("BootLabel")
 	boot_label.set("custom_fonts/font", font)
-
