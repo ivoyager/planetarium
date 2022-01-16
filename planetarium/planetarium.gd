@@ -55,6 +55,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
+	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.prog_nodes._ViewCacher_ = IVViewCacher # available but not added in base
 	IVProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
