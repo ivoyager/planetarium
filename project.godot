@@ -109,11 +109,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/font_manager.gd"
 }, {
-"base": "Reference",
-"class": "IVGUIUtils",
-"language": "GDScript",
-"path": "res://ivoyager/static/gui_utils.gd"
-}, {
 "base": "Label",
 "class": "IVHUDLabel",
 "language": "GDScript",
@@ -380,6 +375,11 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_refs/visuals_helper.gd"
 }, {
 "base": "Reference",
+"class": "IVWidgets",
+"language": "GDScript",
+"path": "res://ivoyager/static/widgets.gd"
+}, {
+"base": "Reference",
 "class": "IVWikiInitializer",
 "language": "GDScript",
 "path": "res://ivoyager/initializers/wiki_initializer.gd"
@@ -415,7 +415,6 @@ _global_script_class_icons={
 "IVEnvironmentBuilder": "",
 "IVFiles": "",
 "IVFontManager": "",
-"IVGUIUtils": "",
 "IVHUDLabel": "",
 "IVHUDOrbit": "",
 "IVHUDPoints": "",
@@ -469,6 +468,7 @@ _global_script_class_icons={
 "IVView": "",
 "IVViewCacher": "",
 "IVVisualsHelper": "",
+"IVWidgets": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
 "SIBaseUnits": ""
