@@ -21,7 +21,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 101.0
-margin_bottom = 175.0
+margin_bottom = 198.0
 mouse_filter = 2
 alignment = 1
 
@@ -44,7 +44,7 @@ size_flags_horizontal = 4
 [node name="MarginContainer2" type="MarginContainer" parent="VBox"]
 margin_top = 39.0
 margin_right = 94.0
-margin_bottom = 168.0
+margin_bottom = 191.0
 mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -55,40 +55,45 @@ custom_constants/margin_bottom = 10
 margin_left = 17.0
 margin_top = 10.0
 margin_right = 84.0
-margin_bottom = 119.0
+margin_bottom = 142.0
 mouse_filter = 2
 custom_constants/separation = 8
 
-[node name="HomePageLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+[node name="HomePage" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
 margin_top = 0.0
 margin_right = 67.0
 margin_bottom = 15.0
 
-[node name="FeedbackLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+[node name="Credits" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
 margin_top = 23.0
 margin_right = 67.0
 margin_bottom = 38.0
+
+[node name="Feedback" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+margin_top = 46.0
+margin_right = 67.0
+margin_bottom = 61.0
 bbcode_text = "[url]Feedback[/url]"
 text = "Feedback"
 
-[node name="SupportUsLinkLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
-margin_top = 46.0
+[node name="SupportUs" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 5 )]
+margin_top = 69.0
 margin_right = 67.0
-margin_bottom = 76.0
+margin_bottom = 99.0
 bbcode_text = "[url]Support Us![/url]"
 text = "Support Us!"
 
 [node name="Spacer" type="Control" parent="VBox/MarginContainer2/VBox"]
-margin_top = 84.0
+margin_top = 107.0
 margin_right = 67.0
-margin_bottom = 87.0
+margin_bottom = 110.0
 rect_min_size = Vector2( 0, 3 )
 mouse_filter = 2
 
 [node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource( 6 )]
-margin_top = 95.0
+margin_top = 118.0
 margin_right = 67.0
-margin_bottom = 109.0
+margin_bottom = 132.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 2 )]
 margin_left = 77.0

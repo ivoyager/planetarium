@@ -23,9 +23,11 @@ extends PanelContainer
 func _ready():
 	var version_label = find_node("VersionLabel")
 	version_label.set_version_label("Planetarium", false, true)
-	var feedback = find_node("FeedbackLinkLabel")
+	var credits = find_node("Credits")
+	credits.set_hyperlink("Credits", "https://github.com/ivoyager/ivoyager/blob/master/CREDITS.md")
+	var feedback = find_node("Feedback")
 	feedback.set_hyperlink("Feedback", "https://www.ivoyager.dev/forum/")
-	var support_us = find_node("SupportUsLinkLabel")
+	var support_us = find_node("SupportUs")
 	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
 	
 	$ControlDraggable.default_sizes = [
