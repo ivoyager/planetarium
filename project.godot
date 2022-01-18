@@ -149,11 +149,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/io_manager.gd"
 }, {
-"base": "Node",
-"class": "IVInputHandler",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/input_handler.gd"
-}, {
 "base": "IVCacheManager",
 "class": "IVInputMapManager",
 "language": "GDScript",
@@ -428,7 +423,6 @@ _global_script_class_icons={
 "IVHUDsManager": "",
 "IVHotkeysPopup": "",
 "IVIOManager": "",
-"IVInputHandler": "",
 "IVInputMapManager": "",
 "IVLPoint": "",
 "IVLagrangePointBuilder": "",
