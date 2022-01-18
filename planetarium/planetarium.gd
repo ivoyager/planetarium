@@ -46,7 +46,7 @@ func _extension_init() -> void:
 	print("HTML5 = %s, GLES2 = %s, threads = %s" % \
 			[IVGlobal.is_html5, IVGlobal.is_gles2, IVGlobal.use_threads])
 	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
-	IVGlobal.connect("project_inited", self, "_on_project_inited")
+#	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
 	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
 	IVProjectBuilder.prog_builders.erase("_SaveBuilder_")
 	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
@@ -59,6 +59,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.prog_nodes._ViewCacher_ = IVViewCacher # available but not added in base
 	IVProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
+	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 	IVGlobal.project_name = EXTENSION_NAME
 	IVGlobal.project_version = EXTENSION_VERSION
 	IVGlobal.project_version_ymd = EXTENSION_VERSION_YMD
@@ -75,10 +76,6 @@ func _extension_init() -> void:
 		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 		IVGlobal.disable_quit = true
 		IVGlobal.vertecies_per_orbit = 200
-	# Add boot screen to hide messy node construction
-	var universe: Spatial = IVGlobal.get_node("/root/Universe")
-	var boot: Control = preload("res://planetarium/gui/boot.tscn").instance()
-	universe.add_child(boot)
 
 
 func _on_program_objects_instantiated() -> void:
@@ -111,10 +108,6 @@ func _on_program_objects_instantiated() -> void:
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
-
-
-func _on_project_inited() -> void:
-	pass
 
 
 func _on_simulator_started() -> void:
