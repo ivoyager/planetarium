@@ -1,4 +1,4 @@
-# boot.gd
+# boot_screen.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,19 +17,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+class_name BootScreen
 extends ColorRect
+const SCENE := "res://planetarium/gui/boot_screen.tscn"
 
 # Self-freeing boot screen (hides messy node construction).
 
 func _ready() -> void:
-	IVGlobal.connect("translations_imported", self, "_set_labels")
-	IVGlobal.connect("simulator_started", self, "queue_free", [], CONNECT_ONESHOT)
-
-
-func _set_labels() -> void:
+	IVGlobal.connect("simulator_started", self, "_free", [], CONNECT_ONESHOT)
 	var font_data: DynamicFontData = IVGlobal.assets.primary_font_data
 	var font := DynamicFont.new()
 	font.font_data = font_data
 	font.size = 26
 	var boot_label: Label = find_node("BootLabel")
 	boot_label.set("custom_fonts/font", font)
+
+func _free() -> void:
+	IVGlobal.program.erase("BootScreen")
+	queue_free()

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ColorRect",
+"class": "BootScreen",
+"language": "GDScript",
+"path": "res://planetarium/gui/boot_screen.gd"
+}, {
 "base": "Node",
 "class": "FullScreenManager",
 "language": "GDScript",
@@ -302,7 +307,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "IVSelectionManager",
 "language": "GDScript",
-"path": "res://ivoyager/tree_refs/selection_manager.gd"
+"path": "res://ivoyager/tree_nodes/selection_manager.gd"
 }, {
 "base": "IVCacheManager",
 "class": "IVSettingsManager",
@@ -395,6 +400,7 @@ _global_script_classes=[ {
 "path": "res://si_base_units.gd"
 } ]
 _global_script_class_icons={
+"BootScreen": "",
 "FullScreenManager": "",
 "GUITop": "",
 "IVAssetInitializer": "",
