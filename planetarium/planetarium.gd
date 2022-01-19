@@ -57,7 +57,6 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.prog_nodes._ViewCacher_ = IVViewCacher # available but not added in base
-	IVProjectBuilder.prog_nodes._FullScreenManager_ = FullScreenManager
 	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 	IVGlobal.project_name = EXTENSION_NAME
@@ -90,6 +89,8 @@ func _on_program_objects_instantiated() -> void:
 	quantity_formatter.exp_str = " x 10^"
 	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
+	var window_manager: IVWindowManager = IVGlobal.program.WindowManager
+	window_manager.add_menu_button = true
 	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
 	hotkeys_popup.remove_item("toggle_all_gui")
 	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")

@@ -17,6 +17,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 
 ### Changes
 * Added project-level si_base_unit.gd static class and removed universe.tscn & universe.gd to support 'ivoyager' submodule changes.
+* Removed FullScreenManager from planetarium. Moved functionality to new IVWindowManager in core ivoyager.
 
 ## [v0.0.10] - 2022-01-09
 
