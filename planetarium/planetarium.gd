@@ -29,8 +29,8 @@ extends Reference
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.11-DEV"
-const EXTENSION_VERSION_YMD := 20220118
+const EXTENSION_VERSION := "0.0.11-RC1"
+const EXTENSION_VERSION_YMD := 20220119
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # false for debugging
