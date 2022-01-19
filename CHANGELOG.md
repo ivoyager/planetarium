@@ -6,7 +6,7 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
-## [v0.0.11 Unreleased] - TBD
+## [v0.0.11] - 2022-01-19
 
 Developed using Godot 3.4.2.stable AND a custom Godot build that fixes PWA caching (Faless' [3.x_pwa_prefer_cache branch](https://github.com/godotengine/godot/compare/3.x...Faless:js/3.x_pwa_prefer_cache), commit bf61f9c).
 
@@ -37,5 +37,5 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 ##
 *Older project-level changes are documented in* [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
-[v0.0.11 Unreleased]: https://github.com/ivoyager/planetarium/compare/v0.0.10...HEAD
+[v0.0.11]: https://github.com/ivoyager/planetarium/compare/v0.0.10...v0.0.11
 [v0.0.10]: https://github.com/ivoyager/planetarium/compare/v0.0.9-alpha...v0.0.10
