@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/gui/boot_screen.gd"
 }, {
-"base": "Node",
-"class": "FullScreenManager",
-"language": "GDScript",
-"path": "res://planetarium/prog/full_screen_manager.gd"
-}, {
 "base": "Control",
 "class": "GUITop",
 "language": "GDScript",
@@ -284,7 +279,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/save_manager.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "IVScheduler",
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/scheduler.gd"
@@ -389,6 +384,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/wiki_manager.gd"
 }, {
+"base": "Node",
+"class": "IVWindowManager",
+"language": "GDScript",
+"path": "res://ivoyager/prog_nodes/window_manager.gd"
+}, {
 "base": "Reference",
 "class": "SIBaseUnits",
 "language": "GDScript",
@@ -396,7 +396,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BootScreen": "",
-"FullScreenManager": "",
 "GUITop": "",
 "IVAssetInitializer": "",
 "IVAsteroidGroup": "",
@@ -471,6 +470,7 @@ _global_script_class_icons={
 "IVWidgets": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
+"IVWindowManager": "",
 "SIBaseUnits": ""
 }
 
