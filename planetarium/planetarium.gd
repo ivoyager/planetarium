@@ -29,8 +29,8 @@ extends Reference
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.11"
-const EXTENSION_VERSION_YMD := 20220119
+const EXTENSION_VERSION := "0.0.12-DEV"
+const EXTENSION_VERSION_YMD := 20220120
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # false for debugging
@@ -112,7 +112,7 @@ func _on_program_objects_instantiated() -> void:
 
 
 func _on_simulator_started() -> void:
-	if DEBUG_BUILD or IVGlobal.IVOYAGER_VERSION.ends_with("-DEV"):
+	if DEBUG_BUILD or EXTENSION_VERSION.ends_with("-DEV"):
 		var project_gui: Control = IVGlobal.program.ProjectGUI
 		var version_label = project_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
