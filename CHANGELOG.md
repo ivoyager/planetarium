@@ -12,7 +12,11 @@ Developed using Godot 3.4.2.stable AND a custom Godot build that fixes PWA cachi
 
 Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
+### Added
+* Added ViewCacher to Planetarium (replaces IVViewCacher removed from core ivoyager)
+
 ### Changes
+* Cached view now includes HUDs visibility states (orbits, names, icons, and asteroid points).
 * Updated to 'ivoyager' v0.0.13-DEV.
 
 ## [v0.0.12] - 2022-01-20

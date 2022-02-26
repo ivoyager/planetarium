@@ -359,11 +359,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/view.gd"
 }, {
-"base": "Timer",
-"class": "IVViewCacher",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/view_cacher.gd"
-}, {
 "base": "Reference",
 "class": "IVVisualsHelper",
 "language": "GDScript",
@@ -393,6 +388,11 @@ _global_script_classes=[ {
 "class": "SIBaseUnits",
 "language": "GDScript",
 "path": "res://si_base_units.gd"
+}, {
+"base": "Timer",
+"class": "ViewCacher",
+"language": "GDScript",
+"path": "res://planetarium/view_cacher.gd"
 } ]
 _global_script_class_icons={
 "BootScreen": "",
@@ -465,13 +465,13 @@ _global_script_class_icons={
 "IVUnits": "",
 "IVUtils": "",
 "IVView": "",
-"IVViewCacher": "",
 "IVVisualsHelper": "",
 "IVWidgets": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
 "IVWindowManager": "",
-"SIBaseUnits": ""
+"SIBaseUnits": "",
+"ViewCacher": ""
 }
 
 [application]

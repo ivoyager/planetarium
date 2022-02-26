@@ -56,8 +56,8 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
-	IVProjectBuilder.prog_nodes._ViewCacher_ = IVViewCacher # available but not added in base
-	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop
+	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher # planetarium/view_cacher.gd
+	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop # planetarium/gui/gui_top.gd
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 	IVGlobal.project_name = EXTENSION_NAME
 	IVGlobal.project_version = EXTENSION_VERSION
@@ -101,8 +101,8 @@ func _on_program_objects_instantiated() -> void:
 	var default_settings := settings_manager.defaults
 	if IVGlobal.is_html5:
 		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
-		var view_caching: IVViewCacher = IVGlobal.program.ViewCacher
-		view_caching.cache_interval = 1.0
+		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
+		view_cacher.cache_interval = 1.0
 	if IVGlobal.is_gles2:
 		# try to compensate for Gles2 color differences
 		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
