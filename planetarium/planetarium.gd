@@ -30,23 +30,23 @@ extends Reference
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.13-DEV"
-const EXTENSION_VERSION_YMD := 20220422
+const EXTENSION_VERSION_YMD := 20220627
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
-const USE_THREADS := true # false for debugging
-const HTML5_OVERRIDES_SINGLE_THREAD := true
+const USE_THREADS := true # set false for debugging
+const NO_THREADS_IF_HTML5 := true
 
 
 func _extension_init() -> void:
 	prints(EXTENSION_NAME, EXTENSION_VERSION, str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
-	if HTML5_OVERRIDES_SINGLE_THREAD and IVGlobal.is_html5:
+	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
 		IVGlobal.use_threads = false
 	else:
 		IVGlobal.use_threads = USE_THREADS
 	print("HTML5 = %s, GLES2 = %s, threads = %s" % \
 			[IVGlobal.is_html5, IVGlobal.is_gles2, IVGlobal.use_threads])
 	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
-#	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
+	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
 	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
 	IVProjectBuilder.prog_builders.erase("_SaveBuilder_")
 	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
@@ -109,6 +109,10 @@ func _on_program_objects_instantiated() -> void:
 		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
 		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
 		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
+
+
+func _on_project_nodes_added() -> void:
+	pass
 
 
 func _on_simulator_started() -> void:
