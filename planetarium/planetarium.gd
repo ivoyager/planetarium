@@ -30,11 +30,11 @@ extends Reference
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.13-DEV"
-const EXTENSION_VERSION_YMD := 20220710
-const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
+const EXTENSION_VERSION_YMD := 20220723
+const DEBUG_BUILD := "g" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # set false for debugging
-const NO_THREADS_IF_HTML5 := true
+const NO_THREADS_IF_HTML5 := true # can override above
 
 
 func _extension_init() -> void:
@@ -121,3 +121,21 @@ func _on_simulator_started() -> void:
 		var version_label = project_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
 				"\n" + str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
+	if IVGlobal.is_html5:
+		if JavaScript.pwa_needs_update():
+			_on_pwa_update_available()
+		else:
+			JavaScript.connect("pwa_update_available", self, "_on_pwa_update_available")
+
+
+func _on_pwa_update_available() -> void:
+	print("PWA update available!")
+	IVOneUseConfirm.new("TXT_PWA_UPDATE_AVAILABLE", self, "_update_pwa", [], false,
+			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_CONTINUE")
+
+
+func _update_pwa() -> void:
+	print("Updating PWA!")
+	JavaScript.pwa_update()
+
+
