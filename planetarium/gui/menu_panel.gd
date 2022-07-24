@@ -28,7 +28,7 @@ func _ready():
 	var feedback = find_node("Feedback")
 	feedback.set_hyperlink("Feedback", "https://www.ivoyager.dev/forum/")
 	var support_us = find_node("SupportUs")
-	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/charliewhitfield")
+	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/ivoyager")
 	
 	$ControlDraggable.default_sizes = [
 		# Zeros allow panel to shrink to content, but we need some width here
