@@ -1,6 +1,6 @@
 # Changelog
 
-This file documents changes to the Planetarium project only. For changes to the core submodule (ivoyager) and core assets (ivoyager_assets directory), see [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
+This file documents changes to the Planetarium "shell" project only. For changes to the core submodule (ivoyager) and core assets (ivoyager_assets directory), see [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
 File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -8,16 +8,17 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.13] - Unreleased
 
-Developed using Godot 3.4.2.stable AND a custom Godot build that fixes PWA caching (Faless' [3.x_pwa_prefer_cache branch](https://github.com/godotengine/godot/compare/3.x...Faless:js/3.x_pwa_prefer_cache), commit bf61f9c).
+Under development using Godot 3.5-rc7. *Requires 3.5 for new JavaScript signal & method related to PWA updating!*
 
 Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
 ### Added
 * Added ViewCacher to Planetarium (replaces IVViewCacher removed from core ivoyager)
+* Added dialog for PWA version updating using new JavaScript 'pwa_update_available' signal and 'pwa_update()' method (Requires Godot 3.5!).
 
-### Changes
+### Changed
 * Cached view now includes HUDs visibility states (orbits, names, icons, and asteroid points).
-* Updated to 'ivoyager' v0.0.13-DEV.
+* Updated submodule 'ivoyager' to latest master branch commit.
 
 ## [v0.0.12] - 2022-01-20
 
@@ -28,7 +29,10 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 ### Added
 * Update in ivoyager v0.0.12 allows caching of time info (time, speed, reverse time) when not in 'present' time.
 
-### Bug fixes
+### Changed
+* Updated submodule 'ivoyager' to v0.0.12.
+
+### Fixed
 * Update in ivoyager v0.0.12 fixes GUI for cached body start. 
 
 ## [v0.0.11] - 2022-01-19
@@ -40,9 +44,10 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 ### Added
 * (Re-)Enabled view caching. Caches current camera view every 1 sec (for HTML5 export) or on quit (all other platforms).
 
-### Changes
+### Changed
 * Added project-level si_base_unit.gd static class and removed universe.tscn & universe.gd to support 'ivoyager' submodule changes.
 * Removed FullScreenManager from planetarium. Moved functionality to new IVWindowManager in core ivoyager.
+* Updated submodule 'ivoyager' to v0.0.11.
 
 ## [v0.0.10] - 2022-01-09
 
@@ -58,6 +63,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 
 ### Changed
 * 'Boot' scene greatly simplified; previous content is now in html loading page.
+* Updated submodule 'ivoyager' to v0.0.10.
 
 ##
 *Older project-level changes are documented in* [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
