@@ -30,8 +30,8 @@ extends Reference
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.13-DEV"
-const EXTENSION_VERSION_YMD := 20220724
-const DEBUG_BUILD := "a" # ymd + this displayed when version ends with "-DEV"
+const EXTENSION_VERSION_YMD := 20220726
+const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # set false for debugging
 const NO_THREADS_IF_HTML5 := true # can override above
