@@ -8,12 +8,12 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.13] - Unreleased
 
-Under development using Godot 3.5-rc7. **Requires 3.5 for new JavaScript signal & method related to PWA updating!**
+Under development using Godot 3.5-rc7. **Requires 3.5 for new JavaScript signal & method related to PWA updating!** We're waiting for 3.5.stable for our next release!
 
 Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
 ### Added
-* Added ViewCacher to Planetarium (replaces IVViewCacher removed from core ivoyager)
+* Added ViewCacher to Planetarium (moved from 'ivoyager' submodule)
 * Added dialog for PWA version updating using new JavaScript 'pwa_update_available' signal and 'pwa_update()' method (Requires Godot 3.5!).
 
 ### Changed
