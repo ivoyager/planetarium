@@ -44,11 +44,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/body_list.gd"
 }, {
-"base": "Node",
-"class": "IVBodyRegistry",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/body_registry.gd"
-}, {
 "base": "Reference",
 "class": "IVCacheManager",
 "language": "GDScript",
@@ -402,7 +397,6 @@ _global_script_class_icons={
 "IVBody": "",
 "IVBodyBuilder": "",
 "IVBodyList": "",
-"IVBodyRegistry": "",
 "IVCacheManager": "",
 "IVCachedItemsPopup": "",
 "IVCamera": "",
