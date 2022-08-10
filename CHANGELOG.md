@@ -8,7 +8,7 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.13] - Unreleased
 
-Under development using Godot 3.5-rc7. **Requires 3.5 for new JavaScript signal & method related to PWA updating!** We're waiting for 3.5.stable for our next release!
+Under development using Godot 3.5. **Requires 3.5 for new JavaScript signal & method related to PWA updating!** 0.0.13 release coming soon!
 
 Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
