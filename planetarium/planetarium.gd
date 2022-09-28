@@ -29,12 +29,12 @@ extends Reference
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.13-DEV"
+const EXTENSION_VERSION := "0.0.13"
 const EXTENSION_VERSION_YMD := 20220928
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # set false for debugging
-const NO_THREADS_IF_HTML5 := true # can override above
+const NO_THREADS_IF_HTML5 := true # overrides above
 
 
 func _extension_init() -> void:
