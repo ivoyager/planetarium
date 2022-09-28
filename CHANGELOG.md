@@ -6,19 +6,19 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
-## [v0.0.13] - Unreleased
+## [v0.0.13] - 2022-09-28
 
-Under development using Godot 3.5. **Requires 3.5 for new JavaScript signal & method related to PWA updating!** 0.0.13 release coming soon!
+Developed using Godot 3.5.1.stable.
 
 Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
 ### Added
 * Added ViewCacher to Planetarium (moved from 'ivoyager' submodule)
-* Added dialog for PWA version updating using new JavaScript 'pwa_update_available' signal and 'pwa_update()' method (Requires Godot 3.5!).
+* Added dialog for Progressive Web App version update.
 
 ### Changed
 * Cached view now includes HUDs visibility states (orbits, names, icons, and asteroid points).
-* Updated submodule 'ivoyager' to latest master branch commit.
+* Updated submodule 'ivoyager' to v0.0.13.
 
 ## [v0.0.12] - 2022-01-20
 
@@ -68,7 +68,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 ##
 *Older project-level changes are documented in* [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
-[v0.0.13]: https://github.com/ivoyager/planetarium/compare/v0.0.12...HEAD
+[v0.0.13]: https://github.com/ivoyager/planetarium/compare/v0.0.12...v0.0.13
 [v0.0.12]: https://github.com/ivoyager/planetarium/compare/v0.0.11...v0.0.12
 [v0.0.11]: https://github.com/ivoyager/planetarium/compare/v0.0.10...v0.0.11
 [v0.0.10]: https://github.com/ivoyager/planetarium/compare/v0.0.9-alpha...v0.0.10
