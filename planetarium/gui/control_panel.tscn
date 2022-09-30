@@ -1,0 +1,131 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://planetarium/gui/control_panel.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/date_time_label.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_widgets/present_time_ckbx.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_widgets/selection_label.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ivoyager/gui_widgets/range_label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ivoyager/gui_widgets/speed_buttons.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ivoyager/gui_widgets/lat_long_label.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ivoyager/gui_widgets/view_buttons.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ivoyager/gui_widgets/track_orbit_ground_ckbxs.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=14]
+
+[node name="ControlPanel" type="PanelContainer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -207.0
+margin_top = -338.0
+margin_right = 207.0
+script = ExtResource( 1 )
+
+[node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 74.0
+margin_bottom = 27.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 582.0
+margin_bottom = 331.0
+
+[node name="SelectionLabel" parent="VBox" instance=ExtResource( 4 )]
+margin_right = 575.0
+align = 1
+
+[node name="HBox1" type="HBoxContainer" parent="VBox"]
+margin_left = 213.0
+margin_top = 18.0
+margin_right = 361.0
+margin_bottom = 32.0
+size_flags_horizontal = 4
+
+[node name="RangeLabel" parent="VBox/HBox1" instance=ExtResource( 5 )]
+margin_right = 56.0
+size_flags_horizontal = 0
+align = 2
+
+[node name="Spacer" type="Control" parent="VBox/HBox1"]
+margin_left = 60.0
+margin_right = 75.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 15, 0 )
+
+[node name="LatLongLabel" parent="VBox/HBox1" instance=ExtResource( 10 )]
+margin_left = 79.0
+margin_right = 148.0
+size_flags_horizontal = 0
+
+[node name="HBox2" type="HBoxContainer" parent="VBox"]
+margin_top = 36.0
+margin_right = 575.0
+margin_bottom = 60.0
+
+[node name="SpeedButtons" parent="VBox/HBox2" instance=ExtResource( 9 )]
+margin_top = 2.0
+margin_right = 95.0
+margin_bottom = 22.0
+size_flags_horizontal = 1
+
+[node name="PresentTimeCkbx" parent="VBox/HBox2" instance=ExtResource( 3 )]
+margin_left = 99.0
+margin_right = 123.0
+text = ""
+
+[node name="DateTimeLabel" parent="VBox/HBox2" instance=ExtResource( 2 )]
+margin_left = 127.0
+margin_top = 5.0
+margin_right = 471.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+align = 1
+
+[node name="Spacer" type="Control" parent="VBox/HBox2"]
+margin_left = 475.0
+margin_right = 575.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="HBox3" type="HBoxContainer" parent="VBox"]
+margin_top = 64.0
+margin_right = 575.0
+margin_bottom = 88.0
+
+[node name="TrackOrbitGroudCkbxs" parent="VBox/HBox3" instance=ExtResource( 12 )]
+margin_right = 480.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="FocalLengthLabel" parent="VBox/HBox3" instance=ExtResource( 14 )]
+margin_left = 484.0
+margin_top = 5.0
+margin_right = 530.0
+margin_bottom = 19.0
+
+[node name="FocalLengthButtons" parent="VBox/HBox3" instance=ExtResource( 13 )]
+margin_left = 534.0
+margin_top = 2.0
+margin_right = 575.0
+margin_bottom = 22.0
+
+[node name="ViewButtons" parent="VBox" instance=ExtResource( 11 )]
+margin_top = 92.0
+margin_right = 341.0
+margin_bottom = 112.0
+size_flags_horizontal = 0
+
+[node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
+margin_left = 558.0
+margin_top = 7.0
+margin_right = 582.0
+margin_bottom = 31.0
+
+[node name="ControlDraggable" parent="." instance=ExtResource( 8 )]

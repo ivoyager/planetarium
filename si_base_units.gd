@@ -23,7 +23,7 @@ class_name SIBaseUnits
 # modify scale, if needed. 
 
 # SI base units - all internal sim values derived from these!
-const METER := 1e-13 # engine length units per meter; see Notes below
+const METER := 1.0 # engine length units per meter; see Notes below
 const SECOND := 1.0
 const KG := 1.0
 const AMPERE := 1.0
@@ -47,3 +47,6 @@ const CANDELA := 1.0
 # likely arise from inconsistency of double versus single precision floats in
 # different parts of the Godot Engine. (Rendering of course, but also things
 # like AABB and other built-ins, I believe.)
+#
+# As of v3.5.1, trying out METER := 1.0. Maybe ok?
+
