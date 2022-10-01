@@ -29,9 +29,9 @@ func _ready():
 	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
 	date_time_label.clock_hm_format = "  %02d:%02d UT"
 	$ControlDraggable.default_sizes = [
-		Vector2(435.0, 139.0), # GUI_SMALL
-		Vector2(575.0, 168.0), # GUI_MEDIUM
-		Vector2(712.0, 200.0), # GUI_LARGE
+		Vector2(435.0, 0.0), # , 139.0), # GUI_SMALL
+		Vector2(575.0, 0.0), # , 168.0), # GUI_MEDIUM
+		Vector2(712.0, 0.0), # , 200.0), # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
 	IVGlobal.connect("update_gui_requested", self, "_resize")

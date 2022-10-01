@@ -25,12 +25,6 @@ margin_top = -338.0
 margin_right = 207.0
 script = ExtResource( 1 )
 
-[node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 74.0
-margin_bottom = 27.0
-
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
@@ -121,6 +115,12 @@ margin_top = 92.0
 margin_right = 341.0
 margin_bottom = 112.0
 size_flags_horizontal = 0
+
+[node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 74.0
+margin_bottom = 27.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
 margin_left = 558.0

@@ -43,10 +43,17 @@ func _ready():
 		Vector2(375.0, 0.0), #, 1150.0), # GUI_MEDIUM
 		Vector2(455.0, 0.0), #, 1424.0), # GUI_LARGE
 	]
-	# y-axis resizing
-	_other_panels.append(get_parent().find_node("NavPanel"))
-	for other_panel in _other_panels:
-		other_panel.connect("item_rect_changed", self, "_resize")
+	# limit panel bottom for other gui
+	for child in get_parent().get_children():
+		var control := child as Control
+		if !control or control == self:
+			continue
+		_other_panels.append(control)
+		control.connect("item_rect_changed", self, "_resize")
+	
+#	_other_panels.append(get_parent().find_node("NavPanel"))
+#	for other_panel in _other_panels:
+#		other_panel.connect("item_rect_changed", self, "_resize")
 	connect("item_rect_changed", self, "_resize")
 	IVGlobal.connect("simulator_started", self, "_resize")
 	_selection_data.connect("resized", self, "_resize")
