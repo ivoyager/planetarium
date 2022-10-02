@@ -494,8 +494,8 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=1800
-window/size/height=945
+window/size/width=2800
+window/size/height=1800
 window/dpi/allow_hidpi=true
 
 [importer_defaults]
