@@ -18,6 +18,9 @@ __meta__ = {
 }
 
 [node name="ControlPanel" parent="." instance=ExtResource( 7 )]
+margin_left = -294.5
+margin_top = -126.0
+margin_right = 294.5
 
 [node name="InfoPanel" parent="." instance=ExtResource( 3 )]
 

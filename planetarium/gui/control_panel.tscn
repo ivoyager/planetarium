@@ -69,13 +69,20 @@ margin_right = 95.0
 margin_bottom = 22.0
 size_flags_horizontal = 1
 
-[node name="PresentTimeCkbx" parent="VBox/HBox2" instance=ExtResource( 3 )]
+[node name="SetDateTime" type="Button" parent="VBox/HBox2"]
 margin_left = 99.0
-margin_right = 123.0
+margin_right = 119.0
+margin_bottom = 24.0
+hint_tooltip = "HINT_SET_TIME"
+text = "*"
+
+[node name="PresentTimeCkbx" parent="VBox/HBox2" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_right = 147.0
 text = ""
 
 [node name="DateTimeLabel" parent="VBox/HBox2" instance=ExtResource( 2 )]
-margin_left = 127.0
+margin_left = 151.0
 margin_top = 5.0
 margin_right = 471.0
 margin_bottom = 19.0

@@ -34,12 +34,6 @@ onready var _data_scroll: ScrollContainer = find_node("DataScroll")
 
 func _ready():
 	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
-	# widget mods
-	var date_time_label := find_node("DateTimeLabel")
-	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
-	date_time_label.clock_hm_format = "  %02d:%02d UT"
-	var track_orbit_ground_ckbxs := find_node("TrackOrbitGroudCkbxs")
-	track_orbit_ground_ckbxs.remove_track_label()
 	$ControlDraggable.default_sizes = [
 		Vector2(315.0, 0.0), #, 870.0), # GUI_SMALL
 		Vector2(375.0, 0.0), #, 1150.0), # GUI_MEDIUM
@@ -69,18 +63,17 @@ func _resize_vertical() -> void:
 	var data_size := _selection_data.rect_size.y
 	var data_top := _data_scroll.get_global_rect().position.y
 	var above_data_size := data_top - rect_position.y
-	var bottom_limit := INF
 	var rect := get_rect()
+	var bottom_limit: float = _world_targeting[1] # Viewport height
 	for control in _other_panels:
 		var other_rect: Rect2 = control.get_rect()
 		if rect.end.x < other_rect.position.x:
 			continue
 		if rect.position.x > other_rect.end.x:
 			continue
-		if bottom_limit > other_rect.position.y:
-			bottom_limit = other_rect.position.y
-	if bottom_limit == INF:
-		bottom_limit = _world_targeting[1] # Viewport height
+		var other_top: float = other_rect.position.y
+		if bottom_limit > other_top:
+			bottom_limit = other_top
 	if data_size + data_top > bottom_limit: # grow to external limits, unless too small
 		var min_size := bottom_limit - rect_position.y
 		if min_size < above_data_size + MIN_DATA_SIZE:
