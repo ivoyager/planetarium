@@ -104,7 +104,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/font_manager.gd"
 }, {
-"base": "Label",
+"base": "Label3D",
 "class": "IVHUDLabel",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/hud_label.gd"
@@ -234,11 +234,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/points_manager.gd"
 }, {
-"base": "Control",
-"class": "IVProjectionSurface",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/projection_surface.gd"
-}, {
 "base": "Reference",
 "class": "IVQuantityFormatter",
 "language": "GDScript",
@@ -355,11 +350,6 @@ _global_script_classes=[ {
 "path": "res://ivoyager/tree_refs/view.gd"
 }, {
 "base": "Reference",
-"class": "IVVisualsHelper",
-"language": "GDScript",
-"path": "res://ivoyager/prog_refs/visuals_helper.gd"
-}, {
-"base": "Reference",
 "class": "IVWidgets",
 "language": "GDScript",
 "path": "res://ivoyager/static/widgets.gd"
@@ -378,6 +368,11 @@ _global_script_classes=[ {
 "class": "IVWindowManager",
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/window_manager.gd"
+}, {
+"base": "Control",
+"class": "IVWorldController",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/world_controller.gd"
 }, {
 "base": "Reference",
 "class": "SIBaseUnits",
@@ -435,7 +430,6 @@ _global_script_class_icons={
 "IVOrbit": "",
 "IVOrbitBuilder": "",
 "IVPointsManager": "",
-"IVProjectionSurface": "",
 "IVQuantityFormatter": "",
 "IVRangeValue": "",
 "IVRichTextPopup": "",
@@ -459,11 +453,11 @@ _global_script_class_icons={
 "IVUnits": "",
 "IVUtils": "",
 "IVView": "",
-"IVVisualsHelper": "",
 "IVWidgets": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
 "IVWindowManager": "",
+"IVWorldController": "",
 "SIBaseUnits": "",
 "ViewCacher": ""
 }
@@ -494,8 +488,8 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=2800
-window/size/height=1800
+window/size/width=1920
+window/size/height=1080
 window/dpi/allow_hidpi=true
 
 [importer_defaults]

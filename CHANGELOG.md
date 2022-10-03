@@ -6,6 +6,15 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
+## [v0.0.14] - Not Released
+
+Developed using Godot 3.5.1.stable.
+
+New assets - WIP
+
+### Fixed
+* Excessive calls to _resize() causing info_panel.gd crash (visible as info display corruption)
+
 ## [v0.0.13] - 2022-09-28
 
 Developed using Godot 3.5.1.stable.
@@ -68,6 +77,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 ##
 *Older project-level changes are documented in* [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
+[v0.0.14]: https://github.com/ivoyager/planetarium/compare/v0.0.13...HEAD
 [v0.0.13]: https://github.com/ivoyager/planetarium/compare/v0.0.12...v0.0.13
 [v0.0.12]: https://github.com/ivoyager/planetarium/compare/v0.0.11...v0.0.12
 [v0.0.11]: https://github.com/ivoyager/planetarium/compare/v0.0.10...v0.0.11
