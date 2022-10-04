@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://planetarium/gui/gui_top.gd" type="Script" id=1]
 [ext_resource path="res://planetarium/gui/nav_panel.tscn" type="PackedScene" id=2]
@@ -7,20 +7,26 @@
 [ext_resource path="res://ivoyager/gui_mods/project_cyclable_panels.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ivoyager/gui_widgets/time_set_popup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://planetarium/gui/control_panel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://planetarium/gui/huds_panel.tscn" type="PackedScene" id=8]
 
 [node name="GUITop" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ControlPanel" parent="." instance=ExtResource( 7 )]
 margin_left = -294.5
 margin_top = -126.0
 margin_right = 294.5
+
+[node name="HUDsPanel" parent="." instance=ExtResource( 8 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 0.0
+margin_top = -56.0
+margin_right = 534.0
+margin_bottom = 76.0
 
 [node name="InfoPanel" parent="." instance=ExtResource( 3 )]
 

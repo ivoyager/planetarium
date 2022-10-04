@@ -82,9 +82,9 @@ func _on_program_objects_instantiated() -> void:
 	model_builder.max_lazy = 10
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
-	var huds_manager: IVHUDsManager = IVGlobal.program.HUDsManager
-	huds_manager.show_names = true
-	huds_manager.show_orbits = true
+#	var huds_manager: IVHUDsManager = IVGlobal.program.HUDsManager
+#	huds_manager.show_names = true
+#	huds_manager.show_orbits = true
 	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
 	quantity_formatter.exp_str = " x 10^"
 	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager

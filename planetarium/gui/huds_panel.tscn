@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://planetarium/gui/huds_panel.gd" type="Script" id=1]
+[ext_resource path="res://ivoyager/gui_widgets/body_huds_grid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
+
+[node name="HUDsPanel" type="PanelContainer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -207.0
+margin_top = -338.0
+margin_right = 207.0
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 596.0
+margin_bottom = 331.0
+mouse_filter = 2
+custom_constants/margin_right = 25
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="BodyHUDsGrid" parent="MarginContainer" instance=ExtResource( 2 )]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 564.0
+margin_bottom = 314.0
+
+[node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
+margin_left = 572.0
+margin_top = 7.0
+margin_right = 596.0
+margin_bottom = 31.0
+
+[node name="ControlDraggable" parent="." instance=ExtResource( 8 )]
