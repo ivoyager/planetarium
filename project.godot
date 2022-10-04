@@ -488,8 +488,8 @@ gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=2500
+window/size/height=1200
 window/dpi/allow_hidpi=true
 
 [importer_defaults]

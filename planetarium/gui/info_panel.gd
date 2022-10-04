@@ -35,23 +35,34 @@ onready var _data_scroll: ScrollContainer = find_node("DataScroll")
 func _ready():
 	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
 	$ControlDraggable.default_sizes = [
-		Vector2(315.0, 0.0), #, 870.0), # GUI_SMALL
-		Vector2(375.0, 0.0), #, 1150.0), # GUI_MEDIUM
-		Vector2(455.0, 0.0), #, 1424.0), # GUI_LARGE
+		Vector2(315.0, 870.0), # GUI_SMALL
+		Vector2(375.0, 1150.0), # GUI_MEDIUM
+		Vector2(455.0, 1424.0), # GUI_LARGE
 	]
 	# limit panel bottom for other gui
+	connect("item_rect_changed", self, "_on_self_item_rect_changed")
 	for child in get_parent().get_children():
 		var control := child as Control
 		if !control or control == self:
 			continue
 		_other_panels.append(control)
 		control.connect("item_rect_changed", self, "_resize_vertical")
-	connect("item_rect_changed", self, "_resize_vertical")
 	_selection_data.connect("resized", self, "_resize_vertical")
 	get_viewport().connect("size_changed", self, "_resize_vertical")
 
 
 func _on_simulator_started() -> void:
+	_suppress_resize = false
+	_resize_vertical()
+
+
+func _on_self_item_rect_changed() -> void:
+	if _suppress_resize:
+		return
+	_resize_vertical()
+	_suppress_resize = true
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 	_suppress_resize = false
 	_resize_vertical()
 
@@ -66,6 +77,8 @@ func _resize_vertical() -> void:
 	var rect := get_rect()
 	var bottom_limit: float = _world_targeting[1] # Viewport height
 	for control in _other_panels:
+		if !control.visible:
+			continue
 		var other_rect: Rect2 = control.get_rect()
 		if rect.end.x < other_rect.position.x:
 			continue
