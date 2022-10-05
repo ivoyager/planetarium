@@ -10,16 +10,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -207.0
-margin_top = -338.0
+margin_left = -159.0
+margin_top = -76.0
 margin_right = 207.0
 script = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 596.0
-margin_bottom = 331.0
+margin_right = 359.0
+margin_bottom = 69.0
 mouse_filter = 2
 custom_constants/margin_right = 25
 custom_constants/margin_top = 10
@@ -29,13 +29,13 @@ custom_constants/margin_bottom = 10
 [node name="BodyHUDsGrid" parent="MarginContainer" instance=ExtResource( 2 )]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 564.0
-margin_bottom = 314.0
+margin_right = 327.0
+margin_bottom = 52.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
-margin_left = 572.0
+margin_left = 335.0
 margin_top = 7.0
-margin_right = 596.0
+margin_right = 359.0
 margin_bottom = 31.0
 
 [node name="ControlDraggable" parent="." instance=ExtResource( 8 )]

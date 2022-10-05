@@ -21,21 +21,17 @@ margin_top = -126.0
 margin_right = 294.5
 
 [node name="HUDsPanel" parent="." instance=ExtResource( 8 )]
-anchor_left = 0.0
-anchor_right = 0.0
-margin_left = 0.0
-margin_top = -56.0
-margin_right = 534.0
-margin_bottom = 76.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -366.0
+margin_top = -180.0
+margin_right = 0.0
 
 [node name="InfoPanel" parent="." instance=ExtResource( 3 )]
 
 [node name="NavPanel" parent="." instance=ExtResource( 2 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -521.0
 margin_top = -247.0
-margin_right = 0.0
+margin_right = 521.0
 
 [node name="MenuPanel" parent="." instance=ExtResource( 4 )]
 margin_left = -77.0
