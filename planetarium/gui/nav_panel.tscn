@@ -1,14 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://planetarium/gui/nav_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_widgets/orbits_names_symbols_ckbxs.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_widgets/planet_moon_buttons.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ivoyager/gui_widgets/sssbs_ckbxs.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/sun_slice_button.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
-
 
 [node name="NavPanel" type="PanelContainer"]
 anchor_top = 1.0
@@ -23,73 +21,68 @@ __meta__ = {
 [node name="HBox" type="HBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 514.0
+margin_right = 407.0
 margin_bottom = 331.0
 mouse_filter = 2
 
 [node name="SunSliceButton" parent="HBox" instance=ExtResource( 5 )]
-margin_right = 12.0
+margin_right = 27.0
 margin_bottom = 324.0
 size_flags_horizontal = 3
 
 [node name="RightContent" type="MarginContainer" parent="HBox"]
-margin_left = 16.0
-margin_right = 507.0
+margin_left = 31.0
+margin_right = 400.0
 margin_bottom = 324.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 9.0
 
 [node name="TopVBox" type="VBoxContainer" parent="HBox/RightContent"]
-margin_right = 491.0
+margin_right = 369.0
 margin_bottom = 32.0
 mouse_filter = 2
 size_flags_vertical = 0
 
 [node name="TopHBox" type="HBoxContainer" parent="HBox/RightContent/TopVBox"]
-margin_right = 491.0
+margin_right = 369.0
 margin_bottom = 24.0
 mouse_filter = 2
 
 [node name="Spacer1" type="Control" parent="HBox/RightContent/TopVBox/TopHBox"]
-margin_right = 61.0
 margin_bottom = 24.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="OrbitsNamesSymbolsCkbxs" parent="HBox/RightContent/TopVBox/TopHBox" instance=ExtResource( 2 )]
-margin_left = 65.0
-margin_right = 426.0
+margin_left = 4.0
+margin_right = 365.0
 margin_bottom = 24.0
 
 [node name="Spacer2" type="Control" parent="HBox/RightContent/TopVBox/TopHBox"]
-margin_left = 430.0
-margin_right = 491.0
+margin_left = 369.0
+margin_right = 369.0
 margin_bottom = 24.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="PlanetMoonButtons" parent="HBox/RightContent/TopVBox" instance=ExtResource( 3 )]
 margin_top = 28.0
-margin_right = 491.0
+margin_right = 369.0
 margin_bottom = 28.0
 
 [node name="UnderMoonsSpacer" type="Control" parent="HBox/RightContent/TopVBox"]
 margin_top = 32.0
-margin_right = 491.0
+margin_right = 369.0
 margin_bottom = 32.0
 mouse_filter = 2
 
 [node name="BottomVBox" type="VBoxContainer" parent="HBox/RightContent"]
-margin_top = 244.0
-margin_right = 491.0
+margin_top = 324.0
+margin_right = 369.0
 margin_bottom = 324.0
 mouse_filter = 2
 size_flags_vertical = 8
-
-[node name="SSSBsCkbxs" parent="HBox/RightContent/BottomVBox" instance=ExtResource( 4 )]
-margin_right = 491.0
-margin_bottom = 80.0
 
 [node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
 margin_left = 7.0
@@ -98,9 +91,9 @@ margin_right = 74.0
 margin_bottom = 27.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
-margin_left = 490.0
+margin_left = 383.0
 margin_top = 7.0
-margin_right = 514.0
+margin_right = 407.0
 margin_bottom = 31.0
 
 [node name="ControlDraggable" parent="." instance=ExtResource( 8 )]
