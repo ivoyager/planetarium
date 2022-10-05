@@ -23,9 +23,9 @@ extends PanelContainer
 func _ready():
 	$ControlDraggable.default_sizes = [
 		# shrink to content
-		Vector2.ONE, # GUI_SMALL
-		Vector2.ONE, # GUI_MEDIUM
-		Vector2.ONE, # GUI_LARGE
+		Vector2.ZERO, # GUI_SMALL
+		Vector2.ZERO, # GUI_MEDIUM
+		Vector2.ZERO, # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
 	IVGlobal.connect("update_gui_requested", self, "_resize")
@@ -33,7 +33,8 @@ func _ready():
 
 
 func _resize() -> void:
-	rect_size = Vector2.ONE
+	pass
+#	rect_size = Vector2.ZERO
 
 
 func _settings_listener(setting: String, _value) -> void:
