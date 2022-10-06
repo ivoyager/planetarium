@@ -25,6 +25,7 @@ var _settings: Dictionary = IVGlobal.settings
 
 func _ready():
 	# widgets
+	$"%AsteroidsHScroll".add_bodies_from_table("asteroids")
 	$"%SpacecraftHScroll".add_bodies_from_table("spacecrafts")
 	
 	$ControlDraggable.default_sizes = [
