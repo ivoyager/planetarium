@@ -21,12 +21,12 @@ extends PanelContainer
 
 
 var _settings: Dictionary = IVGlobal.settings
-var _under_moons_spacer_sizes := [55.0, 66.0, 77.0]
-
-onready var _under_moons_spacer: Control = find_node("UnderMoonsSpacer")
 
 
 func _ready():
+	# widgets
+	$"%SpacecraftHScroll".add_bodies_from_table("spacecrafts")
+	
 	$ControlDraggable.default_sizes = [
 		Vector2(435.0, 278.0), # GUI_SMALL
 		Vector2(575.0, 336.0), # GUI_MEDIUM
@@ -38,8 +38,8 @@ func _ready():
 
 
 func _resize() -> void:
-	var gui_size: int = _settings.gui_size
-	_under_moons_spacer.rect_min_size.y = _under_moons_spacer_sizes[gui_size]
+	pass
+#	var gui_size: int = _settings.gui_size
 
 
 func _settings_listener(setting: String, _value) -> void:
