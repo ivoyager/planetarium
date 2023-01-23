@@ -2,7 +2,7 @@
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
-# Copyright 2017-2022 Charlie Whitfield
+# Copyright 2017-2023 Charlie Whitfield
 # I, Voyager is a registered trademark of Charlie Whitfield in the US
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +30,7 @@ extends Reference
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14-DEV"
-const EXTENSION_VERSION_YMD := 20221006
+const EXTENSION_VERSION_YMD := 20230123
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # set false for debugging
