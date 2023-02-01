@@ -17,6 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
+class_name InfoPanel
 extends PanelContainer
 
 # Dynamically resizes to not grow bigger than data and not cover other panels.

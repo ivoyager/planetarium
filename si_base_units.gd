@@ -18,9 +18,10 @@
 # limitations under the License.
 # *****************************************************************************
 class_name SIBaseUnits
+extends Object
 
 # We keep this static class outside of the 'ivoyager' submodule so projects can
-# modify scale, if needed. 
+# modify, if needed. 
 
 # SI base units - all internal sim values derived from these!
 const METER := 1.0 # engine length units per meter; see Notes below
@@ -38,15 +39,8 @@ const CANDELA := 1.0
 # is converted. E.g., if you double METER here, then the gravitational constant
 # will be appropriately increased by eight-fold. 
 #
-# However, in practice, proper visual display is sensitive to METER. This works
-# in conjunction with dynamic changes in Camera.near and .far (see
-# ivoyager/tree_nodes/vygr_camera.gd) to show extreems of close (asteroid-sized
-# objects) to extreems of far (200 AU solar system view).
-# For Godot 3.2.2 and before, 1e-9 or smaller worked well. With Godot 3.2.3, we
-# needed to decrease to 1e-13 to eliminate visual glitches. These problems most
-# likely arise from inconsistency of double versus single precision floats in
-# different parts of the Godot Engine. (Rendering of course, but also things
-# like AABB and other built-ins, I believe.)
-#
-# As of v3.5.1, trying out METER := 1.0. Maybe ok?
+# In past Godot versions (3.2.x and before) it was necessary to reduce METER
+# to 1e-13 to elimitate visual glitches. I guess this might have been due to
+# inconsistent implementation of double floats or conversion to single floats
+# for the GPU. This seems to be fixed as of 3.5.1.
 
