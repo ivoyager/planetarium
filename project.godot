@@ -174,11 +174,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/hud_points.gd"
 }, {
-"base": "Reference",
-"class": "IVHUDsBuilder",
-"language": "GDScript",
-"path": "res://ivoyager/prog_builders/huds_builder.gd"
-}, {
 "base": "Node",
 "class": "IVHUDsVisibility",
 "language": "GDScript",
@@ -594,6 +589,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://si_base_units.gd"
 }, {
+"base": "Reference",
+"class": "SharedInitializer",
+"language": "GDScript",
+"path": "res://ivoyager/initializers/shared_initializer.gd"
+}, {
 "base": "Timer",
 "class": "ViewCacher",
 "language": "GDScript",
@@ -633,7 +633,6 @@ _global_script_class_icons={
 "IVHUDLabel": "",
 "IVHUDOrbit": "",
 "IVHUDPoints": "",
-"IVHUDsBuilder": "",
 "IVHUDsVisibility": "",
 "IVHotkeyDialog": "",
 "IVHotkeysPopup": "",
@@ -717,6 +716,7 @@ _global_script_class_icons={
 "MenuPanel": "",
 "NavPanel": "",
 "SIBaseUnits": "",
+"SharedInitializer": "",
 "ViewCacher": ""
 }
 
