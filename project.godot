@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_builders/body_builder.gd"
 }, {
+"base": "Reference",
+"class": "IVBodyFinisher",
+"language": "GDScript",
+"path": "res://ivoyager/prog_refs/body_finisher.gd"
+}, {
 "base": "ScrollContainer",
 "class": "IVBodyHScroll",
 "language": "GDScript",
@@ -178,6 +183,11 @@ _global_script_classes=[ {
 "class": "IVHUDOrbit",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/hud_orbit.gd"
+}, {
+"base": "MultiMeshInstance",
+"class": "IVHUDOrbits",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/hud_orbits.gd"
 }, {
 "base": "MeshInstance",
 "class": "IVHUDPoints",
@@ -445,6 +455,11 @@ _global_script_classes=[ {
 "path": "res://ivoyager/prog_builders/small_bodies_builder.gd"
 }, {
 "base": "Reference",
+"class": "IVSmallBodiesFinisher",
+"language": "GDScript",
+"path": "res://ivoyager/prog_refs/small_bodies_finisher.gd"
+}, {
+"base": "Reference",
 "class": "IVSmallBodiesGroup",
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/small_bodies_group.gd"
@@ -608,6 +623,7 @@ _global_script_class_icons={
 "IVAsteroidsGrid": "",
 "IVBody": "",
 "IVBodyBuilder": "",
+"IVBodyFinisher": "",
 "IVBodyHScroll": "",
 "IVBodyHUDsGrid": "",
 "IVBodyList": "",
@@ -634,6 +650,7 @@ _global_script_class_icons={
 "IVFragmentLabel": "",
 "IVHUDLabel": "",
 "IVHUDOrbit": "",
+"IVHUDOrbits": "",
 "IVHUDPoints": "",
 "IVHUDsVisibility": "",
 "IVHotkeyDialog": "",
@@ -687,6 +704,7 @@ _global_script_class_icons={
 "IVSettingsManager": "",
 "IVSleepManager": "",
 "IVSmallBodiesBuilder": "",
+"IVSmallBodiesFinisher": "",
 "IVSmallBodiesGroup": "",
 "IVSmallBodiesGroupIndexing": "",
 "IVSpeedButtons": "",
