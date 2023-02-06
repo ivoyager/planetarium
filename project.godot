@@ -65,11 +65,6 @@ _global_script_classes=[ {
 "path": "res://ivoyager/gui_widgets/body_huds_grid.gd"
 }, {
 "base": "Reference",
-"class": "IVBodyList",
-"language": "GDScript",
-"path": "res://ivoyager/tree_refs/body_list.gd"
-}, {
-"base": "Reference",
 "class": "IVCacheManager",
 "language": "GDScript",
 "path": "res://ivoyager/prog_refs/cache_manager.gd"
@@ -172,7 +167,7 @@ _global_script_classes=[ {
 "base": "Label",
 "class": "IVFragmentLabel",
 "language": "GDScript",
-"path": "res://ivoyager/gui_widgets/fragment_label.gd"
+"path": "res://ivoyager/tree_nodes/fragment_label.gd"
 }, {
 "base": "Label3D",
 "class": "IVHUDLabel",
@@ -233,11 +228,6 @@ _global_script_classes=[ {
 "class": "IVLatLongLabel",
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/lat_long_label.gd"
-}, {
-"base": "Reference",
-"class": "IVLightBuilder",
-"language": "GDScript",
-"path": "res://ivoyager/prog_builders/light_builder.gd"
 }, {
 "base": "RichTextLabel",
 "class": "IVLinkLabel",
@@ -369,10 +359,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_admin/rich_text_popup.gd"
 }, {
-"base": "Reference",
-"class": "IVRingsBuilder",
+"base": "MeshInstance",
+"class": "IVRings",
 "language": "GDScript",
-"path": "res://ivoyager/prog_builders/rings_builder.gd"
+"path": "res://ivoyager/tree_nodes/rings.gd"
 }, {
 "base": "VBoxContainer",
 "class": "IVSSSBsCkbxs",
@@ -626,7 +616,6 @@ _global_script_class_icons={
 "IVBodyFinisher": "",
 "IVBodyHScroll": "",
 "IVBodyHUDsGrid": "",
-"IVBodyList": "",
 "IVCacheManager": "",
 "IVCachedItemsPopup": "",
 "IVCamera": "",
@@ -660,7 +649,6 @@ _global_script_class_icons={
 "IVLPoint": "",
 "IVLagrangePointBuilder": "",
 "IVLatLongLabel": "",
-"IVLightBuilder": "",
 "IVLinkLabel": "",
 "IVLoadDialog": "",
 "IVLockVisibleCkbx": "",
@@ -687,7 +675,7 @@ _global_script_class_icons={
 "IVRangeLabel": "",
 "IVRangeValue": "",
 "IVRichTextPopup": "",
-"IVRingsBuilder": "",
+"IVRings": "",
 "IVSSSBsCkbxs": "",
 "IVSaveBuilder": "",
 "IVSaveDialog": "",

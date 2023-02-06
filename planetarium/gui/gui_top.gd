@@ -49,7 +49,6 @@ func _ready():
 		panel_container.set("custom_styles/panel", style_box)
 	var set_date_time: Button = find_node("SetDateTime")
 	set_date_time.connect("pressed", $TimeSetPopup, "popup")
-	get_parent().add_child(IVFragmentLabel.new())
 
 
 func _on_project_builder_finished() -> void:

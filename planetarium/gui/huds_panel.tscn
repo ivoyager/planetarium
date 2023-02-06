@@ -40,6 +40,7 @@ margin_bottom = 14.0
 margin_top = 18.0
 margin_right = 332.0
 margin_bottom = 32.0
+columns = 4
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
 margin_left = 350.0
