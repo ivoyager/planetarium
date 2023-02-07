@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/gui/control_panel.gd"
 }, {
+"base": "MeshInstance",
+"class": "DynamicStarModel",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/dynamic_star_model.gd"
+}, {
 "base": "Control",
 "class": "GUITop",
 "language": "GDScript",
@@ -169,6 +174,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/fragment_label.gd"
 }, {
+"base": "MeshInstance",
+"class": "IVGlobeModel",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/globe_model.gd"
+}, {
 "base": "Label3D",
 "class": "IVHUDLabel",
 "language": "GDScript",
@@ -280,14 +290,14 @@ _global_script_classes=[ {
 "path": "res://ivoyager/static/math.gd"
 }, {
 "base": "Reference",
-"class": "IVModelBuilder",
-"language": "GDScript",
-"path": "res://ivoyager/prog_builders/model_builder.gd"
-}, {
-"base": "Reference",
 "class": "IVModelController",
 "language": "GDScript",
 "path": "res://ivoyager/tree_refs/model_controller.gd"
+}, {
+"base": "Reference",
+"class": "IVModelManager",
+"language": "GDScript",
+"path": "res://ivoyager/prog_refs/model_manager.gd"
 }, {
 "base": "CheckBox",
 "class": "IVMouseOnlyGUINav",
@@ -607,6 +617,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BootScreen": "",
 "ControlPanel": "",
+"DynamicStarModel": "",
 "GUITop": "",
 "HUDsPanel": "",
 "IVAssetInitializer": "",
@@ -637,6 +648,7 @@ _global_script_class_icons={
 "IVFontManager": "",
 "IVFragmentIdentifier": "",
 "IVFragmentLabel": "",
+"IVGlobeModel": "",
 "IVHUDLabel": "",
 "IVHUDOrbit": "",
 "IVHUDOrbits": "",
@@ -659,8 +671,8 @@ _global_script_class_icons={
 "IVMainMenuPopup": "",
 "IVMainProgBar": "",
 "IVMath": "",
-"IVModelBuilder": "",
 "IVModelController": "",
+"IVModelManager": "",
 "IVMouseOnlyGUINav": "",
 "IVNavigationButton": "",
 "IVOneUseConfirm": "",
