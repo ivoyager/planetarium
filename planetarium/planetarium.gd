@@ -78,8 +78,6 @@ func _extension_init() -> void:
 
 
 func _on_program_objects_instantiated() -> void:
-	var model_manager: IVModelManager = IVGlobal.program.ModelManager
-	model_manager.max_lazy = 10
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
 	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter

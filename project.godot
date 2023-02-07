@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/gui/control_panel.gd"
 }, {
-"base": "MeshInstance",
-"class": "DynamicStarModel",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/dynamic_star_model.gd"
-}, {
 "base": "Control",
 "class": "GUITop",
 "language": "GDScript",
@@ -288,11 +283,6 @@ _global_script_classes=[ {
 "class": "IVMath",
 "language": "GDScript",
 "path": "res://ivoyager/static/math.gd"
-}, {
-"base": "Reference",
-"class": "IVModelController",
-"language": "GDScript",
-"path": "res://ivoyager/tree_refs/model_controller.gd"
 }, {
 "base": "Reference",
 "class": "IVModelManager",
@@ -617,7 +607,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BootScreen": "",
 "ControlPanel": "",
-"DynamicStarModel": "",
 "GUITop": "",
 "HUDsPanel": "",
 "IVAssetInitializer": "",
@@ -671,7 +660,6 @@ _global_script_class_icons={
 "IVMainMenuPopup": "",
 "IVMainProgBar": "",
 "IVMath": "",
-"IVModelController": "",
 "IVModelManager": "",
 "IVMouseOnlyGUINav": "",
 "IVNavigationButton": "",
