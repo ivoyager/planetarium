@@ -224,6 +224,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/l_point.gd"
 }, {
+"base": "Spatial",
+"class": "IVLagrangePoint",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/lagrange_point.gd"
+}, {
 "base": "Reference",
 "class": "IVLagrangePointBuilder",
 "language": "GDScript",
@@ -373,6 +378,11 @@ _global_script_classes=[ {
 "class": "IVRings",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/rings.gd"
+}, {
+"base": "Spatial",
+"class": "IVRotatingSpace",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/rotating_space.gd"
 }, {
 "base": "VBoxContainer",
 "class": "IVSSSBsCkbxs",
@@ -658,6 +668,7 @@ _global_script_class_icons={
 "IVIOManager": "",
 "IVInputMapManager": "",
 "IVLPoint": "",
+"IVLagrangePoint": "",
 "IVLagrangePointBuilder": "",
 "IVLatLongLabel": "",
 "IVLinkLabel": "",
@@ -688,6 +699,7 @@ _global_script_class_icons={
 "IVRangeValue": "",
 "IVRichTextPopup": "",
 "IVRings": "",
+"IVRotatingSpace": "",
 "IVSSSBsCkbxs": "",
 "IVSaveBuilder": "",
 "IVSaveDialog": "",
