@@ -11,7 +11,7 @@
 [ext_resource path="res://ivoyager/gui_widgets/speed_buttons.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ivoyager/gui_widgets/lat_long_label.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ivoyager/gui_widgets/view_buttons.tscn" type="PackedScene" id=11]
-[ext_resource path="res://ivoyager/gui_widgets/track_orbit_ground_ckbxs.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ivoyager/gui_widgets/camera_up_and_tracking.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=14]
 
@@ -28,17 +28,17 @@ script = ExtResource( 1 )
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 582.0
+margin_right = 787.0
 margin_bottom = 331.0
 
 [node name="SelectionLabel" parent="VBox" instance=ExtResource( 4 )]
-margin_right = 575.0
+margin_right = 780.0
 align = 1
 
 [node name="HBox1" type="HBoxContainer" parent="VBox"]
-margin_left = 213.0
+margin_left = 316.0
 margin_top = 18.0
-margin_right = 361.0
+margin_right = 464.0
 margin_bottom = 32.0
 size_flags_horizontal = 4
 
@@ -60,7 +60,7 @@ size_flags_horizontal = 0
 
 [node name="HBox2" type="HBoxContainer" parent="VBox"]
 margin_top = 36.0
-margin_right = 575.0
+margin_right = 780.0
 margin_bottom = 60.0
 
 [node name="SpeedButtons" parent="VBox/HBox2" instance=ExtResource( 9 )]
@@ -84,37 +84,37 @@ text = ""
 [node name="DateTimeLabel" parent="VBox/HBox2" instance=ExtResource( 2 )]
 margin_left = 151.0
 margin_top = 5.0
-margin_right = 471.0
+margin_right = 676.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 align = 1
 
 [node name="Spacer" type="Control" parent="VBox/HBox2"]
-margin_left = 475.0
-margin_right = 575.0
+margin_left = 680.0
+margin_right = 780.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="HBox3" type="HBoxContainer" parent="VBox"]
 margin_top = 64.0
-margin_right = 575.0
+margin_right = 780.0
 margin_bottom = 88.0
 
-[node name="TrackOrbitGroudCkbxs" parent="VBox/HBox3" instance=ExtResource( 12 )]
-margin_right = 480.0
+[node name="CameraUpAndTracking" parent="VBox/HBox3" instance=ExtResource( 12 )]
+margin_right = 685.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="FocalLengthLabel" parent="VBox/HBox3" instance=ExtResource( 14 )]
-margin_left = 484.0
+margin_left = 689.0
 margin_top = 5.0
-margin_right = 530.0
+margin_right = 735.0
 margin_bottom = 19.0
 
 [node name="FocalLengthButtons" parent="VBox/HBox3" instance=ExtResource( 13 )]
-margin_left = 534.0
+margin_left = 739.0
 margin_top = 2.0
-margin_right = 575.0
+margin_right = 780.0
 margin_bottom = 22.0
 
 [node name="ViewButtons" parent="VBox" instance=ExtResource( 11 )]
@@ -130,9 +130,9 @@ margin_right = 74.0
 margin_bottom = 27.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
-margin_left = 558.0
+margin_left = 763.0
 margin_top = 7.0
-margin_right = 582.0
+margin_right = 787.0
 margin_bottom = 31.0
 
 [node name="ControlDraggable" parent="." instance=ExtResource( 8 )]
