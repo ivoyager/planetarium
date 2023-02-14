@@ -8,9 +8,12 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.14] - Not Released
 
-Developed using Godot 3.5.1.stable.
+Under development using Godot 3.5.2.rc2.
 
 New assets - WIP
+
+### Changed
+* Overhauled GUI to show off new spacecraft and asteroid assets in core!
 
 ### Fixed
 * Excessive calls to _resize() causing info_panel.gd crash (visible as info display corruption)
