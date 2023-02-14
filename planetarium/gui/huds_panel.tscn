@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://planetarium/gui/huds_panel.gd" type="Script" id=1]
-[ext_resource path="res://ivoyager/gui_widgets/body_huds_grid.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ivoyager/gui_widgets/asteroids_grid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ivoyager/gui_widgets/all_huds_grids.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
 
@@ -26,21 +25,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 342.0
-margin_bottom = 81.0
-
-[node name="BodyHUDsGrid" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_right = 332.0
-margin_bottom = 14.0
-
-[node name="AsteroidsGrid" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 18.0
-margin_right = 332.0
-margin_bottom = 32.0
-columns = 4
+[node name="AllHUDsGrids" parent="MarginContainer" instance=ExtResource( 2 )]
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
 margin_left = 350.0

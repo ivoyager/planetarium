@@ -26,7 +26,7 @@ extends Timer
 # set cache_interval for HTML5 exports. For non-HTML5 exports, cache will be
 # written on quit and cache_interval should not be set.
 
-const CACHE_VERSION := 5 # be careful not to crash older versions!
+const CACHE_VERSION := 6 # lower versions are not read and overwritten
 
 var cache_interval := 0.0 # s; set >0.0 to enable Timer
 var cache_file_name := "view.vbinary"

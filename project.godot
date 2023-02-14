@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/gui/huds_panel.gd"
 }, {
+"base": "VBoxContainer",
+"class": "IVAllHUDsGrids",
+"language": "GDScript",
+"path": "res://ivoyager/gui_widgets/all_huds_grids.gd"
+}, {
 "base": "Reference",
 "class": "IVAssetInitializer",
 "language": "GDScript",
@@ -624,6 +629,7 @@ _global_script_class_icons={
 "ControlPanel": "",
 "GUITop": "",
 "HUDsPanel": "",
+"IVAllHUDsGrids": "",
 "IVAssetInitializer": "",
 "IVAsteroidsGrid": "",
 "IVBody": "",
