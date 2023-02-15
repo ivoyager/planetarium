@@ -36,7 +36,10 @@ margin_bottom = 114.0
 
 [node name="TimeSetPopup" parent="." instance=ExtResource( 6 )]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -314.0
-margin_right = 314.0
-margin_bottom = 42.0
+anchor_bottom = 0.5
+margin_left = -333.0
+margin_top = -21.0
+margin_right = 333.0
+margin_bottom = 21.0

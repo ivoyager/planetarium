@@ -24,6 +24,7 @@ extends PanelContainer
 
 const MIN_DATA_SIZE := 80.0
 const UNDER_DATA_MARGIN := 20.0
+const UNDER_PANEL_GAP := 60.0
 
 var _world_targeting: Array = IVGlobal.world_targeting
 var _other_panels := [] # resize to not cover these
@@ -88,9 +89,9 @@ func _resize_vertical() -> void:
 		var other_top: float = other_rect.position.y
 		if bottom_limit > other_top:
 			bottom_limit = other_top
-	if data_size + data_top > bottom_limit: # grow to external limits, unless too small
-		var min_size := bottom_limit - rect_position.y
-		if min_size < above_data_size + MIN_DATA_SIZE:
+	if data_size + data_top > bottom_limit - UNDER_PANEL_GAP: # grow to external limits, unless too small
+		var min_size := bottom_limit - UNDER_PANEL_GAP - rect_position.y
+		if min_size < above_data_size + MIN_DATA_SIZE: # too small, just let them overlap
 			min_size = above_data_size + MIN_DATA_SIZE
 		rect_min_size.y = min_size
 	else: # shrink to content

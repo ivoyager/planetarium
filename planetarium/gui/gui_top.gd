@@ -47,8 +47,8 @@ func _ready():
 		if !panel_container:
 			continue
 		panel_container.set("custom_styles/panel", style_box)
-	var set_date_time: Button = find_node("SetDateTime")
-	set_date_time.connect("pressed", $TimeSetPopup, "popup")
+	
+	$ControlPanel.connect("time_set_requested", $TimeSetPopup, "popup")
 
 
 func _on_project_builder_finished() -> void:

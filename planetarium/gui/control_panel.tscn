@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://planetarium/gui/control_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_widgets/date_time_label.tscn" type="PackedScene" id=2]
@@ -11,9 +11,10 @@
 [ext_resource path="res://ivoyager/gui_widgets/speed_buttons.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ivoyager/gui_widgets/lat_long_label.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ivoyager/gui_widgets/view_buttons.tscn" type="PackedScene" id=11]
-[ext_resource path="res://ivoyager/gui_widgets/camera_up_and_tracking.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ivoyager/gui_widgets/up_lock_ckbx.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=14]
+[ext_resource path="res://ivoyager/gui_widgets/track_ckbxs.tscn" type="PackedScene" id=15]
 
 [node name="ControlPanel" type="PanelContainer"]
 anchor_left = 0.5
@@ -28,17 +29,17 @@ script = ExtResource( 1 )
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 787.0
+margin_right = 657.0
 margin_bottom = 331.0
 
 [node name="SelectionLabel" parent="VBox" instance=ExtResource( 4 )]
-margin_right = 780.0
+margin_right = 650.0
 align = 1
 
 [node name="HBox1" type="HBoxContainer" parent="VBox"]
-margin_left = 316.0
+margin_left = 251.0
 margin_top = 18.0
-margin_right = 464.0
+margin_right = 399.0
 margin_bottom = 32.0
 size_flags_horizontal = 4
 
@@ -60,68 +61,79 @@ size_flags_horizontal = 0
 
 [node name="HBox2" type="HBoxContainer" parent="VBox"]
 margin_top = 36.0
-margin_right = 780.0
+margin_right = 650.0
 margin_bottom = 60.0
 
 [node name="SpeedButtons" parent="VBox/HBox2" instance=ExtResource( 9 )]
 margin_top = 2.0
-margin_right = 95.0
+margin_right = 253.0
 margin_bottom = 22.0
-size_flags_horizontal = 1
-
-[node name="SetDateTime" type="Button" parent="VBox/HBox2"]
-margin_left = 99.0
-margin_right = 119.0
-margin_bottom = 24.0
-hint_tooltip = "HINT_SET_TIME"
-text = "*"
-
-[node name="PresentTimeCkbx" parent="VBox/HBox2" instance=ExtResource( 3 )]
-margin_left = 123.0
-margin_right = 147.0
-text = ""
+size_flags_horizontal = 3
 
 [node name="DateTimeLabel" parent="VBox/HBox2" instance=ExtResource( 2 )]
-margin_left = 151.0
+unique_name_in_owner = true
+margin_left = 257.0
 margin_top = 5.0
-margin_right = 676.0
+margin_right = 391.0
 margin_bottom = 19.0
-size_flags_horizontal = 3
 align = 1
 
-[node name="Spacer" type="Control" parent="VBox/HBox2"]
-margin_left = 680.0
-margin_right = 780.0
+[node name="HBox" type="HBoxContainer" parent="VBox/HBox2"]
+margin_left = 395.0
+margin_right = 650.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="PresentTimeCkbx" parent="VBox/HBox2/HBox" instance=ExtResource( 3 )]
+margin_right = 158.0
+
+[node name="SetDateTime" type="Button" parent="VBox/HBox2/HBox"]
+unique_name_in_owner = true
+margin_left = 162.0
+margin_right = 255.0
+margin_bottom = 24.0
+hint_tooltip = "HINT_SET_TIME"
+text = "BUTTON_SET"
 
 [node name="HBox3" type="HBoxContainer" parent="VBox"]
 margin_top = 64.0
-margin_right = 780.0
+margin_right = 650.0
 margin_bottom = 88.0
 
-[node name="CameraUpAndTracking" parent="VBox/HBox3" instance=ExtResource( 12 )]
-margin_right = 685.0
+[node name="UpLockCkbx" parent="VBox/HBox3" instance=ExtResource( 12 )]
+margin_right = 125.0
+size_flags_horizontal = 3
+text = "CKBX_LOCK_UP"
+
+[node name="TrackCkbxs" parent="VBox/HBox3" instance=ExtResource( 15 )]
+margin_left = 129.0
+margin_right = 555.0
+margin_bottom = 24.0
+
+[node name="HBox" type="HBoxContainer" parent="VBox/HBox3"]
+margin_left = 559.0
+margin_right = 650.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+alignment = 2
 
-[node name="FocalLengthLabel" parent="VBox/HBox3" instance=ExtResource( 14 )]
-margin_left = 689.0
+[node name="FocalLengthLabel" parent="VBox/HBox3/HBox" instance=ExtResource( 14 )]
 margin_top = 5.0
-margin_right = 735.0
+margin_right = 46.0
 margin_bottom = 19.0
 
-[node name="FocalLengthButtons" parent="VBox/HBox3" instance=ExtResource( 13 )]
-margin_left = 739.0
+[node name="FocalLengthButtons" parent="VBox/HBox3/HBox" instance=ExtResource( 13 )]
+margin_left = 50.0
 margin_top = 2.0
-margin_right = 780.0
+margin_right = 91.0
 margin_bottom = 22.0
 
 [node name="ViewButtons" parent="VBox" instance=ExtResource( 11 )]
+margin_left = 154.0
 margin_top = 92.0
-margin_right = 341.0
+margin_right = 495.0
 margin_bottom = 112.0
-size_flags_horizontal = 0
 
 [node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
 margin_left = 7.0
@@ -130,9 +142,9 @@ margin_right = 74.0
 margin_bottom = 27.0
 
 [node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
-margin_left = 763.0
+margin_left = 633.0
 margin_top = 7.0
-margin_right = 787.0
+margin_right = 657.0
 margin_bottom = 31.0
 
 [node name="ControlDraggable" parent="." instance=ExtResource( 8 )]

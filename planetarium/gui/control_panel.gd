@@ -20,30 +20,20 @@
 class_name ControlPanel
 extends PanelContainer
 
-
-var _settings: Dictionary = IVGlobal.settings
+signal time_set_requested()
 
 
 func _ready():
+	$"%SetDateTime".connect("pressed", self, "emit_signal", ["time_set_requested"])
+	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
+	
 	# widget mods
-	var date_time_label := find_node("DateTimeLabel")
-	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
-	date_time_label.clock_hm_format = "  %02d:%02d UT"
+	$"%DateTimeLabel".clock_hms_format = "  %02d:%02d:%02d UT"
+	$"%DateTimeLabel".clock_hm_format = "  %02d:%02d UT"
 	$ControlDraggable.default_sizes = [
 		Vector2(435.0, 0.0), # , 139.0), # GUI_SMALL
 		Vector2(575.0, 0.0), # , 168.0), # GUI_MEDIUM
 		Vector2(712.0, 0.0), # , 200.0), # GUI_LARGE
 	]
-	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	IVGlobal.connect("update_gui_requested", self, "_resize")
-	IVGlobal.connect("setting_changed", self, "_settings_listener")
 
 
-func _resize() -> void:
-	pass
-#	var gui_size: int = _settings.gui_size
-
-
-func _settings_listener(setting: String, _value) -> void:
-	if setting == "gui_size":
-		_resize()
