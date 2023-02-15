@@ -2,7 +2,7 @@
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
-# Copyright 2017-2022 Charlie Whitfield
+# Copyright 2017-2023 Charlie Whitfield
 # I, Voyager is a registered trademark of Charlie Whitfield in the US
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,12 +26,13 @@ extends Timer
 # set cache_interval for HTML5 exports. For non-HTML5 exports, cache will be
 # written on quit and cache_interval should not be set.
 
-const CACHE_VERSION := 2 # be careful not to crash older versions!
+const CACHE_VERSION := 6 # lower versions are not read and overwritten
 
 var cache_interval := 0.0 # s; set >0.0 to enable Timer
 var cache_file_name := "view.vbinary"
 var is_time_cache := true
 
+var _View_: Script
 var _cache_dir: String = IVGlobal.cache_dir
 var _camera: IVCamera
 
@@ -39,6 +40,7 @@ onready var _timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 
 
 func _project_init() -> void:
+	_View_ = IVGlobal.script_classes._View_
 	var dir = Directory.new()
 	if dir.open(_cache_dir) != OK:
 		dir.make_dir(_cache_dir)
@@ -90,7 +92,8 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	selection_manager.erase_history()
 	# Select to set selection history & GUI, then move camera to view
 	selection_manager.select_by_name(selection_name)
-	_camera.move_to_view(view, true)
+	view.set_camera_state(_camera)
+	view.set_huds_visibility()
 	if has_time_cache:
 		_timekeeper.set_time(cache[2])
 		_timekeeper.change_speed(0, cache[3])
@@ -118,7 +121,9 @@ func _write_cache() -> void:
 	var file := _get_file(File.WRITE)
 	if !file:
 		return
-	var view := _camera.create_view()
+	var view: IVView = _View_.new()
+	view.remember_camera_state(_camera)
+	view.remember_huds_visibility()
 	var view_dict := inst2dict(view)
 	var cache := [CACHE_VERSION, view_dict]
 	if is_time_cache and !_timekeeper.is_real_world_time:

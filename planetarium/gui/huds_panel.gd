@@ -1,4 +1,4 @@
-# menu_panel.gd
+# huds_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,24 +17,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name MenuPanel
+class_name HUDsPanel
 extends PanelContainer
 
 
 func _ready():
-	var version_label = find_node("VersionLabel")
-	version_label.set_version_label("Planetarium", false, true)
-	var credits = find_node("Credits")
-	credits.set_hyperlink("Credits", "https://github.com/ivoyager/ivoyager/blob/master/CREDITS.md")
-	var feedback = find_node("Feedback")
-	feedback.set_hyperlink("Feedback", "https://www.ivoyager.dev/forum/")
-	var support_us = find_node("SupportUs")
-	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/ivoyager")
-	
 	$ControlDraggable.default_sizes = [
-		# Zeros allow panel to shrink to content, but we need some width here
-		# so our "Support Us!" RichTextLabel doesn't wrap.
-		Vector2(75.0, 0.0), # GUI_SMALL
-		Vector2(100.0, 0.0), # GUI_MEDIUM
-		Vector2(125.0, 0.0), # GUI_LARGE
+		# shrink to content
+		Vector2.ZERO, # GUI_SMALL
+		Vector2.ZERO, # GUI_MEDIUM
+		Vector2.ZERO, # GUI_LARGE
 	]
+	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
+	IVGlobal.connect("update_gui_requested", self, "_resize")
+	IVGlobal.connect("setting_changed", self, "_settings_listener")
+
+
+func _resize() -> void:
+	pass
+#	rect_size = Vector2.ZERO
+
+
+func _settings_listener(setting: String, _value) -> void:
+	if setting == "gui_size":
+		_resize()

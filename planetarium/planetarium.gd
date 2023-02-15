@@ -2,7 +2,7 @@
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
-# Copyright 2017-2022 Charlie Whitfield
+# Copyright 2017-2023 Charlie Whitfield
 # I, Voyager is a registered trademark of Charlie Whitfield in the US
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,8 +29,8 @@ extends Reference
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.13"
-const EXTENSION_VERSION_YMD := 20220928
+const EXTENSION_VERSION := "0.0.14-DEV"
+const EXTENSION_VERSION_YMD := 20230215
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := true # set false for debugging
@@ -78,13 +78,8 @@ func _extension_init() -> void:
 
 
 func _on_program_objects_instantiated() -> void:
-	var model_builder: IVModelBuilder = IVGlobal.program.ModelBuilder
-	model_builder.max_lazy = 10
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
-	var huds_manager: IVHUDsManager = IVGlobal.program.HUDsManager
-	huds_manager.show_names = true
-	huds_manager.show_orbits = true
 	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
 	quantity_formatter.exp_str = " x 10^"
 	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
