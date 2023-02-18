@@ -379,11 +379,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/rotating_space.gd"
 }, {
-"base": "VBoxContainer",
-"class": "IVSSSBsCkbxs",
-"language": "GDScript",
-"path": "res://ivoyager/gui_widgets/sssbs_ckbxs.gd"
-}, {
 "base": "Reference",
 "class": "IVSaveBuilder",
 "language": "GDScript",
@@ -699,7 +694,6 @@ _global_script_class_icons={
 "IVRichTextPopup": "",
 "IVRings": "",
 "IVRotatingSpace": "",
-"IVSSSBsCkbxs": "",
 "IVSaveBuilder": "",
 "IVSaveDialog": "",
 "IVSaveManager": "",
