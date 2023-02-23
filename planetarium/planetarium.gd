@@ -48,6 +48,9 @@ func _extension_init() -> void:
 	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
 	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
 	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
+	var planetarium_gui: PlanetariumGUI = IVFiles.make_object_or_scene(PlanetariumGUI)
+	IVProjectBuilder.top_gui = planetarium_gui
+	
 	IVProjectBuilder.prog_builders.erase("_SaveBuilder_")
 	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
 	IVProjectBuilder.gui_nodes.erase("_SaveDialog_")
@@ -56,8 +59,8 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
-	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher # planetarium/view_cacher.gd
-	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop # planetarium/gui/gui_top.gd
+	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
+#	IVProjectBuilder.gui_nodes._ProjectGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 	IVGlobal.project_name = EXTENSION_NAME
 	IVGlobal.project_version = EXTENSION_VERSION
@@ -113,8 +116,8 @@ func _on_project_nodes_added() -> void:
 
 func _on_simulator_started() -> void:
 	if DEBUG_BUILD or EXTENSION_VERSION.ends_with("-DEV"):
-		var project_gui: Control = IVGlobal.program.ProjectGUI
-		var version_label = project_gui.find_node("VersionLabel")
+		var top_gui: Control = IVGlobal.program.TopGUI
+		var version_label = top_gui.find_node("VersionLabel")
 		version_label.set_version_label("Planetarium", false, true, " ", "",
 				"\n" + str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
 	if IVGlobal.is_html5:

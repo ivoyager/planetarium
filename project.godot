@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/gui/control_panel.gd"
 }, {
-"base": "Control",
-"class": "GUITop",
-"language": "GDScript",
-"path": "res://planetarium/gui/gui_top.gd"
-}, {
 "base": "PanelContainer",
 "class": "HUDsPanel",
 "language": "GDScript",
@@ -162,7 +157,7 @@ _global_script_classes=[ {
 "base": "Viewport",
 "class": "IVFragmentIdentifier",
 "language": "GDScript",
-"path": "res://ivoyager/tree_nodes/fragment_identifier.gd"
+"path": "res://ivoyager/prog_nodes/fragment_identifier.gd"
 }, {
 "base": "Label",
 "class": "IVFragmentLabel",
@@ -524,6 +519,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/prog_nodes/timekeeper.gd"
 }, {
+"base": "Control",
+"class": "IVTopGUI",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/top_gui.gd"
+}, {
 "base": "HBoxContainer",
 "class": "IVTrackCkbxs",
 "language": "GDScript",
@@ -538,6 +538,11 @@ _global_script_classes=[ {
 "class": "IVUnits",
 "language": "GDScript",
 "path": "res://ivoyager/static/units.gd"
+}, {
+"base": "Spatial",
+"class": "IVUniverse",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/universe.gd"
 }, {
 "base": "CheckBox",
 "class": "IVUpLockCkbx",
@@ -604,6 +609,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://planetarium/gui/nav_panel.gd"
 }, {
+"base": "Control",
+"class": "PlanetariumGUI",
+"language": "GDScript",
+"path": "res://planetarium/gui/planetarium_gui.gd"
+}, {
 "base": "Object",
 "class": "SIBaseUnits",
 "language": "GDScript",
@@ -622,7 +632,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BootScreen": "",
 "ControlPanel": "",
-"GUITop": "",
 "HUDsPanel": "",
 "IVAllHUDs": "",
 "IVAssetInitializer": "",
@@ -723,9 +732,11 @@ _global_script_class_icons={
 "IVTimeSetter": "",
 "IVTimeSetterPopup": "",
 "IVTimekeeper": "",
+"IVTopGUI": "",
 "IVTrackCkbxs": "",
 "IVTranslationImporter": "",
 "IVUnits": "",
+"IVUniverse": "",
 "IVUpLockCkbx": "",
 "IVUtils": "",
 "IVVersionLabel": "",
@@ -739,6 +750,7 @@ _global_script_class_icons={
 "InfoPanel": "",
 "MenuPanel": "",
 "NavPanel": "",
+"PlanetariumGUI": "",
 "SIBaseUnits": "",
 "SharedInitializer": "",
 "ViewCacher": ""

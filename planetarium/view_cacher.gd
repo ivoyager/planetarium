@@ -84,8 +84,8 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	var view: IVView = cache[1]
 	var selection_name := view.selection_name
 	var has_time_cache := is_time_cache and cache.size() > 2
-	var project_gui: Control = IVGlobal.program.ProjectGUI
-	var selection_manager: IVSelectionManager = project_gui.selection_manager
+	var top_gui: Control = IVGlobal.program.TopGUI
+	var selection_manager: IVSelectionManager = top_gui.selection_manager
 	if !selection_manager:
 		return
 	print("Moving camera to cached view", " and setting cached time" if has_time_cache else "")

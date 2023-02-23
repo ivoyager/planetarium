@@ -1,4 +1,4 @@
-# gui_top.gd
+# planetarium_gui.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,9 +17,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name GUITop
+class_name PlanetariumGUI
 extends Control
-const SCENE := "res://planetarium/gui/gui_top.tscn"
+const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
 
 # Scenes instanced by IVProjectBuilder need SCENE constant above.
 #
