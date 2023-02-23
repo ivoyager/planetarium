@@ -30,7 +30,7 @@ extends Reference
 
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14-DEV"
-const EXTENSION_VERSION_YMD := 20230218
+const EXTENSION_VERSION_YMD := 20230222
 const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
 
 const USE_THREADS := false # set false for debugging
@@ -100,10 +100,11 @@ func _on_program_objects_instantiated() -> void:
 		view_cacher.cache_interval = 1.0
 	if IVGlobal.is_gles2:
 		# try to compensate for Gles2 color differences
-		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
-		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
-		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
-		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
+		pass
+#		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
+#		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
+#		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
+#		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 
 func _on_project_nodes_added() -> void:

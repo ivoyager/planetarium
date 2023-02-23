@@ -21,9 +21,6 @@ class_name NavPanel
 extends PanelContainer
 
 
-var _settings: Dictionary = IVGlobal.settings
-
-
 func _ready():
 	# widgets
 	$"%AsteroidsHScroll".add_bodies_from_table("asteroids")
@@ -35,15 +32,4 @@ func _ready():
 		Vector2(712.0, 400.0), # GUI_LARGE
 	]
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
-	IVGlobal.connect("update_gui_requested", self, "_resize")
-	IVGlobal.connect("setting_changed", self, "_settings_listener")
 
-
-func _resize() -> void:
-	pass
-#	var gui_size: int = _settings.gui_size
-
-
-func _settings_listener(setting: String, _value) -> void:
-	if setting == "gui_size":
-		_resize()
