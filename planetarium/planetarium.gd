@@ -61,10 +61,11 @@ func _extension_init() -> void:
 	IVGlobal.project_ymd = EXTENSION_YMD
 	
 	IVGlobal.enable_save_load = false
+	IVGlobal.allow_time_setting = true
 	IVGlobal.allow_real_world_time = true
 	IVGlobal.allow_time_reversal = true
 	IVGlobal.home_view_from_user_time_zone = true
-	IVGlobal.disable_pause = true
+	IVGlobal.disable_pause = true # FIXME: pause is freezing camera
 	IVGlobal.skip_splash_screen = true
 	IVGlobal.disable_exit = true
 	IVGlobal.enable_wiki = true

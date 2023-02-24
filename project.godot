@@ -569,10 +569,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/view_buttons.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "IVViewManager",
 "language": "GDScript",
-"path": "res://ivoyager/prog_refs/view_manager.gd"
+"path": "res://ivoyager/prog_nodes/view_manager.gd"
 }, {
 "base": "Object",
 "class": "IVWidgets",

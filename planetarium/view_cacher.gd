@@ -91,8 +91,8 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	selection_manager.erase_history()
 	# Select to set selection history & GUI, then move camera to view
 	selection_manager.select_by_name(selection_name)
-	view.set_camera_state(_camera)
-	view.set_huds_visibility()
+	view.set_camera_state(true)
+	view.set_huds_state()
 	if has_time_cache:
 		_timekeeper.set_time(cache[2])
 		_timekeeper.change_speed(0, cache[3])
@@ -121,8 +121,8 @@ func _write_cache() -> void:
 	if !file:
 		return
 	var view: IVView = _View_.new()
-	view.remember_camera_state(_camera)
-	view.remember_huds_visibility()
+	view.save_camera_state()
+	view.save_huds_state()
 	var view_dict := inst2dict(view)
 	var cache := [CACHE_VERSION, view_dict]
 	if !_timekeeper.is_real_world_time:
