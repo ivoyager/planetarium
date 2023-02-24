@@ -87,6 +87,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
+	IVProjectBuilder.move_top_gui_children_to_index = [null, null, "PlanetariumGUI"]
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 
 
