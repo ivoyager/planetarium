@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/body_huds.gd"
 }, {
+"base": "Node",
+"class": "IVBodyHUDsVisibility",
+"language": "GDScript",
+"path": "res://ivoyager/prog_nodes/body_huds_visibility.gd"
+}, {
 "base": "Reference",
 "class": "IVCacheManager",
 "language": "GDScript",
@@ -189,11 +194,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/hud_points.gd"
 }, {
-"base": "Node",
-"class": "IVHUDsVisibility",
-"language": "GDScript",
-"path": "res://ivoyager/prog_nodes/huds_visibility.gd"
-}, {
 "base": "ConfirmationDialog",
 "class": "IVHotkeyDialog",
 "language": "GDScript",
@@ -320,11 +320,6 @@ _global_script_classes=[ {
 "path": "res://ivoyager/tree_nodes/orbit_space.gd"
 }, {
 "base": "HBoxContainer",
-"class": "IVOrbitsNamesSymbolsCkbxs",
-"language": "GDScript",
-"path": "res://ivoyager/gui_widgets/orbits_names_symbols_ckbxs.gd"
-}, {
-"base": "HBoxContainer",
 "class": "IVPlanetMoonButtons",
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/planet_moon_buttons.gd"
@@ -368,6 +363,11 @@ _global_script_classes=[ {
 "class": "IVRotatingSpace",
 "language": "GDScript",
 "path": "res://ivoyager/tree_nodes/rotating_space.gd"
+}, {
+"base": "Node",
+"class": "IVSBGHUDsVisibility",
+"language": "GDScript",
+"path": "res://ivoyager/prog_nodes/sbg_huds_visibility.gd"
 }, {
 "base": "Reference",
 "class": "IVSaveBuilder",
@@ -569,6 +569,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/view_buttons.gd"
 }, {
+"base": "Reference",
+"class": "IVViewManager",
+"language": "GDScript",
+"path": "res://ivoyager/prog_refs/view_manager.gd"
+}, {
 "base": "Object",
 "class": "IVWidgets",
 "language": "GDScript",
@@ -640,6 +645,7 @@ _global_script_class_icons={
 "IVBodyFinisher": "",
 "IVBodyHScroll": "",
 "IVBodyHUDs": "",
+"IVBodyHUDsVisibility": "",
 "IVCacheManager": "",
 "IVCachedItemsPopup": "",
 "IVCamera": "",
@@ -666,7 +672,6 @@ _global_script_class_icons={
 "IVHUDOrbit": "",
 "IVHUDOrbits": "",
 "IVHUDPoints": "",
-"IVHUDsVisibility": "",
 "IVHotkeyDialog": "",
 "IVHotkeysPopup": "",
 "IVIOManager": "",
@@ -692,7 +697,6 @@ _global_script_class_icons={
 "IVOrbit": "",
 "IVOrbitBuilder": "",
 "IVOrbitSpace": "",
-"IVOrbitsNamesSymbolsCkbxs": "",
 "IVPlanetMoonButtons": "",
 "IVPresentTimeCkbx": "",
 "IVProjectCyclablePanels": "",
@@ -702,6 +706,7 @@ _global_script_class_icons={
 "IVRichTextPopup": "",
 "IVRings": "",
 "IVRotatingSpace": "",
+"IVSBGHUDsVisibility": "",
 "IVSaveBuilder": "",
 "IVSaveDialog": "",
 "IVSaveManager": "",
@@ -742,6 +747,7 @@ _global_script_class_icons={
 "IVVersionLabel": "",
 "IVView": "",
 "IVViewButtons": "",
+"IVViewManager": "",
 "IVWidgets": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
