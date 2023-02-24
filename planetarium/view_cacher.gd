@@ -92,7 +92,7 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	# Select to set selection history & GUI, then move camera to view
 	selection_manager.select_by_name(selection_name)
 	view.set_camera_state(true)
-	view.set_huds_state()
+	view.set_huds_visibility_state()
 	if has_time_cache:
 		_timekeeper.set_time(cache[2])
 		_timekeeper.change_speed(0, cache[3])
