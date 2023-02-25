@@ -26,11 +26,10 @@ extends Timer
 # set cache_interval for HTML5 exports. For non-HTML5 exports, cache will be
 # written on quit and cache_interval should not be set.
 
-const CACHE_VERSION := 6 # lower versions are not read and overwritten
+const CACHE_VERSION := 7 # lower versions are not read and overwritten
 
 var cache_interval := 0.0 # s; set >0.0 to enable Timer
 var cache_file_name := "view.vbinary"
-var is_time_cache := true
 
 var _View_: Script
 var _cache_dir: String = IVGlobal.cache_dir
@@ -83,17 +82,17 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 		return
 	var view: IVView = cache[1]
 	var selection_name := view.selection_name
-	var has_time_cache := is_time_cache and cache.size() > 2
-	var project_gui: Control = IVGlobal.program.ProjectGUI
-	var selection_manager: IVSelectionManager = project_gui.selection_manager
+	var has_time_cache := cache.size() > 2
+	var top_gui: Control = IVGlobal.program.TopGUI
+	var selection_manager: IVSelectionManager = top_gui.selection_manager
 	if !selection_manager:
 		return
 	print("Moving camera to cached view", " and setting cached time" if has_time_cache else "")
 	selection_manager.erase_history()
 	# Select to set selection history & GUI, then move camera to view
 	selection_manager.select_by_name(selection_name)
-	view.set_camera_state(_camera)
-	view.set_huds_visibility()
+	view.set_camera_state(true)
+	view.set_huds_visibility_state()
 	if has_time_cache:
 		_timekeeper.set_time(cache[2])
 		_timekeeper.change_speed(0, cache[3])
@@ -122,11 +121,11 @@ func _write_cache() -> void:
 	if !file:
 		return
 	var view: IVView = _View_.new()
-	view.remember_camera_state(_camera)
-	view.remember_huds_visibility()
+	view.save_camera_state()
+	view.save_huds_state()
 	var view_dict := inst2dict(view)
 	var cache := [CACHE_VERSION, view_dict]
-	if is_time_cache and !_timekeeper.is_real_world_time:
+	if !_timekeeper.is_real_world_time:
 		# cache.size() > 2
 		cache.append(_timekeeper.time)
 		cache.append(_timekeeper.speed_index)

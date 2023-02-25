@@ -22,8 +22,6 @@ extends PanelContainer
 
 
 func _ready():
-	var version_label = find_node("VersionLabel")
-	version_label.set_version_label("Planetarium", false, true)
 	var credits = find_node("Credits")
 	credits.set_hyperlink("Credits", "https://github.com/ivoyager/ivoyager/blob/master/CREDITS.md")
 	var feedback = find_node("Feedback")

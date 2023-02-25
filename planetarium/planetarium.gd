@@ -29,26 +29,55 @@ extends Reference
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.14-DEV"
-const EXTENSION_VERSION_YMD := 20230222
-const DEBUG_BUILD := "" # ymd + this displayed when version ends with "-DEV"
+const EXTENSION_VERSION := "0.0.14"
+const EXTENSION_BUILD := ""
+const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
+const EXTENSION_YMD := 20230225 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
 
 
 func _extension_init() -> void:
-	prints(EXTENSION_NAME, EXTENSION_VERSION, str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
+	
+	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
+			str(EXTENSION_YMD)])
+			
+	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
+	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
+	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
+	
 	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
 		IVGlobal.use_threads = false
 	else:
 		IVGlobal.use_threads = USE_THREADS
-	print("HTML5 = %s, GLES2 = %s, threads = %s" % \
-			[IVGlobal.is_html5, IVGlobal.is_gles2, IVGlobal.use_threads])
-	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
-	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
-	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
-	IVProjectBuilder.prog_builders.erase("_SaveBuilder_")
+	print("HTML5 = %s, GLES2 = %s, threads = %s"
+			% [IVGlobal.is_html5, IVGlobal.is_gles2, IVGlobal.use_threads])
+	
+	IVGlobal.project_name = EXTENSION_NAME
+	IVGlobal.project_version = EXTENSION_VERSION
+	IVGlobal.project_build = EXTENSION_BUILD
+	IVGlobal.project_state = EXTENSION_STATE
+	IVGlobal.project_ymd = EXTENSION_YMD
+	
+	IVGlobal.enable_save_load = false
+	IVGlobal.allow_time_setting = true
+	IVGlobal.allow_real_world_time = true
+	IVGlobal.allow_time_reversal = true
+	IVGlobal.home_view_from_user_time_zone = true
+	IVGlobal.pause_only_stops_time = true
+	IVGlobal.skip_splash_screen = true
+	IVGlobal.disable_exit = true
+	IVGlobal.enable_wiki = true
+	IVGlobal.popops_can_stop_sim = false
+	
+	if IVGlobal.is_html5:
+		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
+		IVGlobal.disable_quit = true
+		IVGlobal.vertecies_per_orbit = 200
+		
+	# class changes
+	IVProjectBuilder.prog_refs.erase("_SaveBuilder_")
 	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
 	IVProjectBuilder.gui_nodes.erase("_SaveDialog_")
 	IVProjectBuilder.gui_nodes.erase("_LoadDialog_")
@@ -56,25 +85,9 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
-	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher # planetarium/view_cacher.gd
-	IVProjectBuilder.gui_nodes._ProjectGUI_ = GUITop # planetarium/gui/gui_top.gd
+	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
+	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
-	IVGlobal.project_name = EXTENSION_NAME
-	IVGlobal.project_version = EXTENSION_VERSION
-	IVGlobal.project_version_ymd = EXTENSION_VERSION_YMD
-	IVGlobal.enable_save_load = false
-	IVGlobal.allow_real_world_time = true
-	IVGlobal.allow_time_reversal = true
-	IVGlobal.home_view_from_user_time_zone = true
-	IVGlobal.disable_pause = true
-	IVGlobal.skip_splash_screen = true
-	IVGlobal.disable_exit = true
-	IVGlobal.enable_wiki = true
-	IVGlobal.popops_can_stop_sim = false
-	if IVGlobal.is_html5:
-		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
-		IVGlobal.disable_quit = true
-		IVGlobal.vertecies_per_orbit = 200
 
 
 func _on_program_objects_instantiated() -> void:
@@ -108,15 +121,10 @@ func _on_program_objects_instantiated() -> void:
 
 
 func _on_project_nodes_added() -> void:
-	pass
+	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "OptionsPopup", true)
 
 
 func _on_simulator_started() -> void:
-	if DEBUG_BUILD or EXTENSION_VERSION.ends_with("-DEV"):
-		var project_gui: Control = IVGlobal.program.ProjectGUI
-		var version_label = project_gui.find_node("VersionLabel")
-		version_label.set_version_label("Planetarium", false, true, " ", "",
-				"\n" + str(EXTENSION_VERSION_YMD) + DEBUG_BUILD)
 	if IVGlobal.is_html5:
 		if JavaScript.pwa_needs_update():
 			_on_pwa_update_available()
