@@ -164,11 +164,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program/fragment_identifier.gd"
 }, {
-"base": "Label",
-"class": "IVFragmentLabel",
-"language": "GDScript",
-"path": "res://ivoyager/tree_nodes/fragment_label.gd"
-}, {
 "base": "MeshInstance",
 "class": "IVGlobeModel",
 "language": "GDScript",
@@ -288,6 +283,11 @@ _global_script_classes=[ {
 "class": "IVMouseOnlyGUINav",
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/mouse_only_gui_nav.gd"
+}, {
+"base": "Label",
+"class": "IVMouseTargetLabel",
+"language": "GDScript",
+"path": "res://ivoyager/tree_nodes/mouse_target_label.gd"
 }, {
 "base": "Button",
 "class": "IVNavigationButton",
@@ -666,7 +666,6 @@ _global_script_class_icons={
 "IVFocalLengthButtons": "",
 "IVFontManager": "",
 "IVFragmentIdentifier": "",
-"IVFragmentLabel": "",
 "IVGlobeModel": "",
 "IVHUDLabel": "",
 "IVHUDOrbit": "",
@@ -691,6 +690,7 @@ _global_script_class_icons={
 "IVModelManager": "",
 "IVModelSpace": "",
 "IVMouseOnlyGUINav": "",
+"IVMouseTargetLabel": "",
 "IVNavigationButton": "",
 "IVOneUseConfirm": "",
 "IVOptionsPopup": "",
