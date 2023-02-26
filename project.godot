@@ -60,9 +60,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/gui_widgets/body_huds.gd"
 }, {
 "base": "Node",
-"class": "IVBodyHUDsVisibility",
+"class": "IVBodyHUDsState",
 "language": "GDScript",
-"path": "res://ivoyager/program/body_huds_visibility.gd"
+"path": "res://ivoyager/program/body_huds_state.gd"
 }, {
 "base": "Reference",
 "class": "IVCacheManager",
@@ -645,7 +645,7 @@ _global_script_class_icons={
 "IVBodyFinisher": "",
 "IVBodyHScroll": "",
 "IVBodyHUDs": "",
-"IVBodyHUDsVisibility": "",
+"IVBodyHUDsState": "",
 "IVCacheManager": "",
 "IVCachedItemsPopup": "",
 "IVCamera": "",
