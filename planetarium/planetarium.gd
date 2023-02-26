@@ -105,12 +105,13 @@ func _on_program_objects_instantiated() -> void:
 	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
 	options_popup.remove_item("starmap") # web assets only have 8k starmap
+
 	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
 	if IVGlobal.is_html5:
-		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
-		view_cacher.cache_interval = 1.0
+		view_cacher.cache_interval = 2.0
+		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
 	if IVGlobal.is_gles2:
 		# try to compensate for Gles2 color differences
 		pass
