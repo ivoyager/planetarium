@@ -85,6 +85,8 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
+	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
+	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
@@ -122,7 +124,7 @@ func _on_program_objects_instantiated() -> void:
 
 
 func _on_project_nodes_added() -> void:
-	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "OptionsPopup", true)
+	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
 
 func _on_simulator_started() -> void:
