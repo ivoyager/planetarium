@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230225 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230226 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above

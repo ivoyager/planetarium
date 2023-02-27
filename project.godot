@@ -365,9 +365,9 @@ _global_script_classes=[ {
 "path": "res://ivoyager/tree_nodes/rotating_space.gd"
 }, {
 "base": "Node",
-"class": "IVSBGHUDsVisibility",
+"class": "IVSBGHUDsState",
 "language": "GDScript",
-"path": "res://ivoyager/program/sbg_huds_visibility.gd"
+"path": "res://ivoyager/program/sbg_huds_state.gd"
 }, {
 "base": "Reference",
 "class": "IVSaveBuilder",
@@ -706,7 +706,7 @@ _global_script_class_icons={
 "IVRichTextPopup": "",
 "IVRings": "",
 "IVRotatingSpace": "",
-"IVSBGHUDsVisibility": "",
+"IVSBGHUDsState": "",
 "IVSaveBuilder": "",
 "IVSaveDialog": "",
 "IVSaveManager": "",
