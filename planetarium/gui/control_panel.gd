@@ -20,11 +20,8 @@
 class_name ControlPanel
 extends PanelContainer
 
-signal time_set_requested()
-
 
 func _ready():
-	$"%SetDateTime".connect("pressed", self, "emit_signal", ["time_set_requested"])
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
 	# widget mods

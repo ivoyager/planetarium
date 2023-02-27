@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://planetarium/gui/control_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_widgets/date_time_label.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=14]
 [ext_resource path="res://ivoyager/gui_widgets/track_ckbxs.tscn" type="PackedScene" id=15]
+[ext_resource path="res://ivoyager/gui_widgets/time_set_button.tscn" type="PackedScene" id=16]
 
 [node name="ControlPanel" type="PanelContainer"]
 anchor_left = 0.5
@@ -88,13 +89,7 @@ alignment = 2
 [node name="PresentTimeCkbx" parent="VBox/HBox2/HBox" instance=ExtResource( 3 )]
 margin_right = 158.0
 
-[node name="SetDateTime" type="Button" parent="VBox/HBox2/HBox"]
-unique_name_in_owner = true
-margin_left = 162.0
-margin_right = 255.0
-margin_bottom = 24.0
-hint_tooltip = "HINT_SET_TIME"
-text = "BUTTON_SET"
+[node name="TimeSetButton" parent="VBox/HBox2/HBox" instance=ExtResource( 16 )]
 
 [node name="HBox3" type="HBoxContainer" parent="VBox"]
 margin_top = 64.0
