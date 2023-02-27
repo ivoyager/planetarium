@@ -1,12 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://planetarium/gui/planetarium_gui.gd" type="Script" id=1]
-[ext_resource path="res://ivoyager/gui_widgets/time_set_popup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ivoyager/gui_popups/time_set_popup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://planetarium/gui/menu_panel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://planetarium/gui/nav_panel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://planetarium/gui/info_panel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://planetarium/gui/control_panel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://planetarium/gui/huds_panel.tscn" type="PackedScene" id=7]
+
 
 [node name="PlanetariumGUI" type="Control"]
 anchor_right = 1.0
