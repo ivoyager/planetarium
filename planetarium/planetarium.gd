@@ -90,6 +90,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._TimeSetPopup_ = IVTimeSetPopup
+	IVProjectBuilder.gui_nodes._ViewSavePopup_ = IVViewSavePopup
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 
 

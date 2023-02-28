@@ -569,6 +569,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/program/view_manager.gd"
 }, {
+"base": "Button",
+"class": "IVViewSaveButton",
+"language": "GDScript",
+"path": "res://ivoyager/gui_widgets/view_save_button.gd"
+}, {
+"base": "PopupPanel",
+"class": "IVViewSavePopup",
+"language": "GDScript",
+"path": "res://ivoyager/gui_popups/view_save_popup.gd"
+}, {
 "base": "Object",
 "class": "IVWidgets",
 "language": "GDScript",
@@ -742,6 +752,8 @@ _global_script_class_icons={
 "IVView": "",
 "IVViewButtons": "",
 "IVViewManager": "",
+"IVViewSaveButton": "",
+"IVViewSavePopup": "",
 "IVWidgets": "",
 "IVWikiInitializer": "",
 "IVWikiManager": "",
