@@ -249,7 +249,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_popups/main_menu_popup.gd"
 }, {
-"base": "ProgressBar",
+"base": "Reference",
 "class": "IVMainProgBar",
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/main_prog_bar.gd"
@@ -569,6 +569,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/view_collection.gd"
 }, {
+"base": "Reference",
+"class": "IVViewDefaults",
+"language": "GDScript",
+"path": "res://ivoyager/program/view_defaults.gd"
+}, {
 "base": "Node",
 "class": "IVViewManager",
 "language": "GDScript",
@@ -762,6 +767,7 @@ _global_script_class_icons={
 "IVView": "",
 "IVViewButtons": "",
 "IVViewCollection": "",
+"IVViewDefaults": "",
 "IVViewManager": "",
 "IVViewSaveButton": "",
 "IVViewSavePopup": "",
