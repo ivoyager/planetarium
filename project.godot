@@ -589,7 +589,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ivoyager/gui_popups/view_save_popup.gd"
 }, {
-"base": "HBoxContainer",
+"base": "VBoxContainer",
 "class": "IVViewSaver",
 "language": "GDScript",
 "path": "res://ivoyager/gui_widgets/view_saver.gd"

@@ -28,6 +28,9 @@ func _ready():
 	$"%DateTimeLabel".clock_hms_format = "  %02d:%02d:%02d UT"
 	$"%DateTimeLabel".clock_hm_format = "  %02d:%02d UT"
 	
+	var view_saver: IVViewSaver = $"%ViewSaveButton".get_view_saver()
+	view_saver.find_node("TimeCkbx").text = "CKBX_TIME"
+	
 	$"%ViewCollection".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
 			IVView.ALL, IVView.ALL_CAMERA,
 			[tr("BUTTON_ZOOM"), tr("BUTTON_45_DEG"), tr("BUTTON_TOP")])
