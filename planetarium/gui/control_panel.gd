@@ -27,6 +27,11 @@ func _ready():
 	# widget mods
 	$"%DateTimeLabel".clock_hms_format = "  %02d:%02d:%02d UT"
 	$"%DateTimeLabel".clock_hm_format = "  %02d:%02d UT"
+	
+	$"%ViewCollection".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
+			IVViewManager.ALL_VIEW_STATE, IVViewManager.CAMERA_STATE,
+			[tr("BUTTON_ZOOM"), tr("BUTTON_45_DEG"), tr("BUTTON_TOP")])
+	
 	$ControlDraggable.default_sizes = [
 		Vector2(435.0, 0.0), # , 139.0), # GUI_SMALL
 		Vector2(575.0, 0.0), # , 168.0), # GUI_MEDIUM

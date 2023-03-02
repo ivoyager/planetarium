@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://planetarium/gui/control_panel.gd" type="Script" id=1]
 [ext_resource path="res://ivoyager/gui_widgets/date_time_label.tscn" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://ivoyager/gui_widgets/focal_length_label.tscn" type="PackedScene" id=14]
 [ext_resource path="res://ivoyager/gui_widgets/track_ckbxs.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ivoyager/gui_widgets/time_set_button.tscn" type="PackedScene" id=16]
+[ext_resource path="res://ivoyager/gui_widgets/view_save_button.tscn" type="PackedScene" id=17]
+[ext_resource path="res://ivoyager/gui_widgets/view_collection.tscn" type="PackedScene" id=18]
 
 [node name="ControlPanel" type="PanelContainer"]
 anchor_left = 0.5
@@ -124,11 +126,24 @@ margin_top = 2.0
 margin_right = 91.0
 margin_bottom = 22.0
 
-[node name="ViewButtons" parent="VBox" instance=ExtResource( 11 )]
-margin_left = 154.0
+[node name="ViewCollection" parent="VBox" instance=ExtResource( 18 )]
+unique_name_in_owner = true
 margin_top = 92.0
-margin_right = 495.0
+margin_right = 650.0
 margin_bottom = 112.0
+
+[node name="ViewSaveButton" parent="VBox/ViewCollection" instance=ExtResource( 17 )]
+unique_name_in_owner = true
+margin_left = 0.0
+margin_right = 103.0
+margin_bottom = 20.0
+
+[node name="ViewButtons" parent="VBox/ViewCollection" instance=ExtResource( 11 )]
+margin_left = 107.0
+margin_top = 0.0
+margin_right = 448.0
+margin_bottom = 20.0
+size_flags_horizontal = 0
 
 [node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
 margin_left = 7.0
