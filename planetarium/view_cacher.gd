@@ -31,7 +31,7 @@ extends Timer
 var cache_interval := 0.0 # s; set >0.0 to enable Timer (HTML5 only!)
 var cache_name := "current"
 var cach_set := "view_cacher"
-var cache_flags := IVViewManager.ALL_VIEW_STATE | IVViewManager.INSTANT_CAMERA_MOVE
+var view_flags := IVView.ALL
 
 var _view_manager: IVViewManager
 
@@ -55,7 +55,7 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 		start()
 	else:
 		paused = true
-	_view_manager.set_view(cache_name, cach_set, true, cache_flags)
+	_view_manager.set_view(cache_name, cach_set, true, true)
 
 
 func _on_timeout() -> void:
@@ -64,5 +64,5 @@ func _on_timeout() -> void:
 
 
 func _cache_now() -> void:
-	_view_manager.save_view(cache_name, cach_set, true, cache_flags)
+	_view_manager.save_view(cache_name, cach_set, true, view_flags)
 

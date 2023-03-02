@@ -132,18 +132,17 @@ margin_top = 92.0
 margin_right = 650.0
 margin_bottom = 112.0
 
-[node name="ViewSaveButton" parent="VBox/ViewCollection" instance=ExtResource( 17 )]
-unique_name_in_owner = true
-margin_left = 0.0
-margin_right = 103.0
-margin_bottom = 20.0
-
 [node name="ViewButtons" parent="VBox/ViewCollection" instance=ExtResource( 11 )]
-margin_left = 107.0
 margin_top = 0.0
-margin_right = 448.0
+margin_right = 341.0
 margin_bottom = 20.0
 size_flags_horizontal = 0
+
+[node name="ViewSaveButton" parent="VBox/ViewCollection" instance=ExtResource( 17 )]
+unique_name_in_owner = true
+margin_left = 345.0
+margin_right = 448.0
+margin_bottom = 20.0
 
 [node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
 margin_left = 7.0

@@ -29,7 +29,7 @@ func _ready():
 	$"%DateTimeLabel".clock_hm_format = "  %02d:%02d UT"
 	
 	$"%ViewCollection".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
-			IVViewManager.ALL_VIEW_STATE, IVViewManager.CAMERA_STATE,
+			IVView.ALL, IVView.ALL_CAMERA,
 			[tr("BUTTON_ZOOM"), tr("BUTTON_45_DEG"), tr("BUTTON_TOP")])
 	
 	$ControlDraggable.default_sizes = [
