@@ -21,6 +21,17 @@ class_name ControlPanel
 extends PanelContainer
 
 
+var reserved_view_names := [
+	tr("BUTTON_ZOOM"),
+	tr("BUTTON_45_DEG"),
+	tr("BUTTON_TOP"),
+	tr("BUTTON_HOME"),
+	tr("BUTTON_CISLUNAR"),
+	tr("BUTTON_SYSTEM"),
+	tr("BUTTON_ASTEROIDS"),
+]
+
+
 func _ready():
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
@@ -31,9 +42,8 @@ func _ready():
 	var view_saver: IVViewSaver = $"%ViewSaveButton".get_view_saver()
 	view_saver.find_node("TimeCkbx").text = "CKBX_TIME"
 	
-	$"%ViewCollection".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
-			IVView.ALL, IVView.ALL_CAMERA,
-			[tr("BUTTON_ZOOM"), tr("BUTTON_45_DEG"), tr("BUTTON_TOP")])
+	$"%ViewSaveFlow".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
+			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
 	
 	$ControlDraggable.default_sizes = [
 		Vector2(435.0, 0.0), # , 139.0), # GUI_SMALL
