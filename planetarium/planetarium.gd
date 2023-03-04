@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230226 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230304 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -62,9 +62,8 @@ func _extension_init() -> void:
 	
 	IVGlobal.enable_save_load = false
 	IVGlobal.allow_time_setting = true
-	IVGlobal.allow_real_world_time = true
 	IVGlobal.allow_time_reversal = true
-	IVGlobal.home_view_from_user_time_zone = true
+	IVGlobal.allow_time_zone_from_system = true
 	IVGlobal.pause_only_stops_time = true
 	IVGlobal.skip_splash_screen = true
 	IVGlobal.disable_exit = true
@@ -85,6 +84,8 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
 	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
+	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
+	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
@@ -122,7 +123,7 @@ func _on_program_objects_instantiated() -> void:
 
 
 func _on_project_nodes_added() -> void:
-	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "OptionsPopup", true)
+	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
 
 func _on_simulator_started() -> void:

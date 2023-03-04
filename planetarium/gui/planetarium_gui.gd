@@ -38,8 +38,6 @@ func _ready():
 		if !panel_container:
 			continue
 		panel_container.set("custom_styles/panel", style_box)
-	
-	$ControlPanel.connect("time_set_requested", $TimeSetPopup, "popup")
 
 
 func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:
