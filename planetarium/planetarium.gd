@@ -63,12 +63,16 @@ func _extension_init() -> void:
 	IVGlobal.enable_save_load = false
 	IVGlobal.allow_time_setting = true
 	IVGlobal.allow_time_reversal = true
-	IVGlobal.allow_time_zone_from_system = true
 	IVGlobal.pause_only_stops_time = true
 	IVGlobal.skip_splash_screen = true
 	IVGlobal.disable_exit = true
 	IVGlobal.enable_wiki = true
 	IVGlobal.popops_can_stop_sim = false
+	
+	var time_zone := Time.get_time_zone_from_system()
+	if time_zone and time_zone.has("bias"):
+		IVGlobal.home_longitude = time_zone.bias * TAU / 1440.0
+	
 	
 	if IVGlobal.is_html5:
 		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
