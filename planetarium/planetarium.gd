@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230304 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230312 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -90,6 +90,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
+	IVProjectBuilder.prog_nodes._GUIToggler_ = GUIToggler
 	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
@@ -104,10 +105,9 @@ func _on_program_objects_instantiated() -> void:
 	theme_manager.main_menu_font = "gui_main"
 	var window_manager: IVWindowManager = IVGlobal.program.WindowManager
 	window_manager.add_menu_button = true
-	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
-	hotkeys_popup.remove_item("toggle_all_gui")
-	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
-	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
+#	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
+#	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
+#	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
 	options_popup.remove_item("starmap") # web assets only have 8k starmap
 

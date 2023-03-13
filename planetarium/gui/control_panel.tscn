@@ -5,7 +5,7 @@
 [ext_resource path="res://ivoyager/gui_widgets/now_ckbx.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ivoyager/gui_widgets/selection_label.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ivoyager/gui_widgets/range_label.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ivoyager/gui_mods/panel_lock_visible_ckbx.tscn" type="PackedScene" id=6]
+[ext_resource path="res://planetarium/gui/lock_visible_ckbx.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ivoyager/gui_widgets/speed_buttons.tscn" type="PackedScene" id=9]
@@ -203,7 +203,7 @@ margin_top = 7.0
 margin_right = 74.0
 margin_bottom = 27.0
 
-[node name="PanelLockVisibleCkbx" parent="." instance=ExtResource( 6 )]
+[node name="LockVisibleCkbx" parent="." instance=ExtResource( 6 )]
 margin_left = 978.0
 margin_top = 7.0
 margin_right = 1002.0
