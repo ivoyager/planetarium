@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230312 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230313 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -99,6 +99,8 @@ func _extension_init() -> void:
 func _on_program_objects_instantiated() -> void:
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
+	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
+	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
 	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
 	quantity_formatter.exp_str = " x 10^"
 	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
