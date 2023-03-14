@@ -21,12 +21,13 @@ class_name HUDsPanel
 extends PanelContainer
 
 
+
 func _ready():
-	$ControlDraggable.default_sizes = [
-		# shrink to content
-		Vector2.ZERO, # GUI_SMALL
-		Vector2.ZERO, # GUI_MEDIUM
-		Vector2.ZERO, # GUI_LARGE
-	]
-	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
+	$ControlDraggable.set_size_to_content()
+	var view_save_flow: IVViewSaveFlow = find_node("ViewSaveFlow")
+	view_save_flow.connect("resized", self, "_reset_size")
+
+
+func _reset_size() -> void:
+	rect_size = Vector2.ZERO
 

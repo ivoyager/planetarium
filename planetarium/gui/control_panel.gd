@@ -34,6 +34,11 @@ var reserved_view_names := [
 
 func _ready():
 	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
+	$ControlDraggable.default_sizes = [
+		Vector2(435.0, 0.0), # GUI_SMALL
+		Vector2(575.0, 0.0), # GUI_MEDIUM
+		Vector2(712.0, 0.0), # GUI_LARGE
+	]
 	
 	# widget mods
 	$"%DateTimeLabel".clock_hms_format = "  %02d:%02d:%02d UT"
@@ -44,11 +49,9 @@ func _ready():
 	
 	$"%ViewSaveFlow".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
 			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
-	
-	$ControlDraggable.default_sizes = [
-		Vector2(435.0, 0.0), # , 139.0), # GUI_SMALL
-		Vector2(575.0, 0.0), # , 168.0), # GUI_MEDIUM
-		Vector2(712.0, 0.0), # , 200.0), # GUI_LARGE
-	]
+	$"%ViewSaveFlow".connect("resized", self, "_reset_size")
 
+
+func _reset_size() -> void:
+	rect_size = Vector2.ZERO
 
