@@ -32,9 +32,9 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230314 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230315 # displayed if EXTENSION_STATE = 'dev'
 
-const USE_THREADS := false # set false for debugging
+const USE_THREADS := true # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
 
 
@@ -72,7 +72,6 @@ func _extension_init() -> void:
 	var time_zone := Time.get_time_zone_from_system()
 	if time_zone and time_zone.has("bias"):
 		IVGlobal.home_longitude = time_zone.bias * TAU / 1440.0
-	
 	
 	if IVGlobal.is_html5:
 		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
@@ -120,17 +119,15 @@ func _on_program_objects_instantiated() -> void:
 		view_cacher.cache_interval = 2.0
 		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
 	if IVGlobal.is_gles2:
-		# try to compensate for Gles2 color differences
+		# try to compensate for Gles2 color differences?
 		pass
-#		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
-#		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
-#		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
-#		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 
 func _on_project_nodes_added() -> void:
 	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
+
+# progressive web app (PWA) updating
 
 func _on_simulator_started() -> void:
 	if IVGlobal.is_html5:
