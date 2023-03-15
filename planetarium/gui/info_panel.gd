@@ -79,8 +79,6 @@ func _resize_vertical() -> void:
 	var rect := get_rect()
 	var bottom_limit: float = _world_targeting[1] # Viewport height
 	for control in _other_panels:
-		if !control.visible:
-			continue
 		var other_rect: Rect2 = control.get_rect()
 		if rect.end.x < other_rect.position.x:
 			continue

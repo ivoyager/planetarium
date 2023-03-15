@@ -8,12 +8,12 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.14] - Not Released
 
-Under development using Godot 3.5.2.rc2.
+Under development using Godot 3.5.2.
 
 New develpment assets! Find link in core changelog [here](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
 
 ### Changed
-* Overhauled Planetarium GUI to show off new spacecraft and asteroid assets in core!
+* Overhauled GUI to interact with new content and systems in core.
 
 ### Fixed
 * Excessive calls to _resize() causing info_panel.gd crash (visible as info display corruption)
