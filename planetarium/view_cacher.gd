@@ -39,13 +39,13 @@ var _view_manager: IVViewManager
 func _project_init() -> void:
 	_view_manager = IVGlobal.program.ViewManager
 	IVGlobal.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
-	IVGlobal.connect("about_to_stop_before_quit", self, "_cache_now")
+	IVGlobal.connect("about_to_stop_before_quit", self, "_cache_now", [false])
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_QUIT_REQUEST: # does NOT work for HTML5 export!
 		if IVGlobal.state.is_started_or_about_to_start:
-			_cache_now()
+			_cache_now(false)
 
 
 func _on_about_to_start_simulator(_is_new_game: bool) -> void:
@@ -67,6 +67,6 @@ func _on_timeout() -> void:
 	start()
 
 
-func _cache_now() -> void:
-	_view_manager.save_view(cache_name, cach_set, true, view_flags)
+func _cache_now(allow_threaded_cache_write := true) -> void:
+	_view_manager.save_view(cache_name, cach_set, true, view_flags, allow_threaded_cache_write)
 
