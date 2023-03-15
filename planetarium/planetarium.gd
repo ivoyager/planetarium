@@ -31,10 +31,10 @@ extends Reference
 const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.14"
 const EXTENSION_BUILD := ""
-const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230304 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_STATE := "" # 'dev', 'alpha', 'beta', 'rc', ''
+const EXTENSION_YMD := 20230315 # displayed if EXTENSION_STATE = 'dev'
 
-const USE_THREADS := false # set false for debugging
+const USE_THREADS := true # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
 
 
@@ -63,12 +63,15 @@ func _extension_init() -> void:
 	IVGlobal.enable_save_load = false
 	IVGlobal.allow_time_setting = true
 	IVGlobal.allow_time_reversal = true
-	IVGlobal.allow_time_zone_from_system = true
 	IVGlobal.pause_only_stops_time = true
 	IVGlobal.skip_splash_screen = true
 	IVGlobal.disable_exit = true
 	IVGlobal.enable_wiki = true
 	IVGlobal.popops_can_stop_sim = false
+	
+	var time_zone := Time.get_time_zone_from_system()
+	if time_zone and time_zone.has("bias"):
+		IVGlobal.home_longitude = time_zone.bias * TAU / 1440.0
 	
 	if IVGlobal.is_html5:
 		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
@@ -86,6 +89,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
+	IVProjectBuilder.prog_nodes._GUIToggler_ = GUIToggler
 	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
@@ -94,16 +98,17 @@ func _extension_init() -> void:
 func _on_program_objects_instantiated() -> void:
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
+	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
+	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
 	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
 	quantity_formatter.exp_str = " x 10^"
 	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
 	theme_manager.main_menu_font = "gui_main"
 	var window_manager: IVWindowManager = IVGlobal.program.WindowManager
 	window_manager.add_menu_button = true
-	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
-	hotkeys_popup.remove_item("toggle_all_gui")
-	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
-	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
+#	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
+#	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
+#	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
 	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
 	options_popup.remove_item("starmap") # web assets only have 8k starmap
 
@@ -114,17 +119,15 @@ func _on_program_objects_instantiated() -> void:
 		view_cacher.cache_interval = 2.0
 		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
 	if IVGlobal.is_gles2:
-		# try to compensate for Gles2 color differences
+		# try to compensate for Gles2 color differences?
 		pass
-#		default_settings.planet_orbit_color =  Color(0.6,0.6,0.2)
-#		default_settings.dwarf_planet_orbit_color = Color(0.1,0.9,0.2)
-#		default_settings.moon_orbit_color = Color(0.3,0.3,0.9)
-#		default_settings.minor_moon_orbit_color = Color(0.6,0.2,0.6)
 
 
 func _on_project_nodes_added() -> void:
 	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
+
+# progressive web app (PWA) updating
 
 func _on_simulator_started() -> void:
 	if IVGlobal.is_html5:

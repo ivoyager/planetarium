@@ -1,4 +1,4 @@
-# huds_panel.gd
+# gui_toggler.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,17 +17,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name HUDsPanel
-extends PanelContainer
+class_name GUIToggler
+extends Node
+
+
+signal all_gui_toggled(is_visible)
+
+
+var hidden_panels := []
+
+
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.is_action_pressed("toggle_all_gui"):
+		emit_signal("all_gui_toggled", !hidden_panels.empty())
+		get_tree().set_input_as_handled()
+
+
+func register_visibility(panel: Control, is_visible: bool) -> void:
+	if is_visible:
+		hidden_panels.erase(panel)
+	elif !hidden_panels.has(panel):
+		hidden_panels.append(panel)
 
 
 
-func _ready():
-	$ControlDraggable.set_size_to_content()
-	var view_save_flow: IVViewSaveFlow = find_node("ViewSaveFlow")
-	view_save_flow.connect("resized", self, "_reset_size")
-
-
-func _reset_size() -> void:
-	rect_size = Vector2.ZERO
 
