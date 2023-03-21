@@ -26,10 +26,8 @@ func _ready():
 	$"%AsteroidsHScroll".add_bodies_from_table("asteroids")
 	$"%SpacecraftHScroll".add_bodies_from_table("spacecrafts")
 	
-	$ControlDraggable.default_sizes = [
-		Vector2(435.0, 278.0), # GUI_SMALL
-		Vector2(575.0, 336.0), # GUI_MEDIUM
-		Vector2(712.0, 400.0), # GUI_LARGE
-	]
-	$ControlDraggable.max_default_screen_proportions = Vector2(0.55, 0.45)
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 278.0))
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 336.0))
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 400.0))
+	$ControlMod.max_default_screen_proportions = Vector2(0.55, 0.45)
 
