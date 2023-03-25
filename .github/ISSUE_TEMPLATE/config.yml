@@ -6,5 +6,5 @@ contact_links:
     about: Please open an issue in our ivoyager repository.
 
   - name: Feature proposal
-    url: https://www.ivoyager.dev/forum/
-    about: Please submit feature proposals at our forum!
+    url: https://github.com/orgs/ivoyager/discussions
+    about: Please submit feature proposals in our discussion forum!
