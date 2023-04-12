@@ -29,10 +29,7 @@ func _ready():
 	var support_us = find_node("SupportUs")
 	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/ivoyager")
 	
-	$ControlDraggable.default_sizes = [
-		# Zeros allow panel to shrink to content, but we need some width here
-		# so our "Support Us!" RichTextLabel doesn't wrap.
-		Vector2(75.0, 0.0), # GUI_SMALL
-		Vector2(100.0, 0.0), # GUI_MEDIUM
-		Vector2(125.0, 0.0), # GUI_LARGE
-	]
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(75.0, 0.0))
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(100.0, 0.0))
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(125.0, 0.0))
+

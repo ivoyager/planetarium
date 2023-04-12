@@ -36,11 +36,10 @@ onready var _data_scroll: ScrollContainer = find_node("DataScroll")
 
 func _ready():
 	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
-	$ControlDraggable.default_sizes = [
-		Vector2(315.0, 870.0), # GUI_SMALL
-		Vector2(375.0, 1150.0), # GUI_MEDIUM
-		Vector2(455.0, 1424.0), # GUI_LARGE
-	]
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(315.0, 870.0))
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(375.0, 1150.0))
+	$ControlMod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(455.0, 1424.0))
+
 	# limit panel bottom for other gui
 	connect("item_rect_changed", self, "_on_self_item_rect_changed")
 	for child in get_parent().get_children():

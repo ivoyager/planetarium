@@ -75,4 +75,4 @@ margin_top = 7.0
 margin_right = 407.0
 margin_bottom = 31.0
 
-[node name="ControlDraggable" parent="." instance=ExtResource( 8 )]
+[node name="ControlMod" parent="." instance=ExtResource( 8 )]
