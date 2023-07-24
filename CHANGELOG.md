@@ -12,6 +12,8 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 Developed for Godot 3.5.2. **This is the final release using Godot 3.x!**
 
+Requires non-Git-tracked **ivoyager_assets-0.0.14**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
+
 ### Changed
 * Updated submodule 'ivoyager' to v0.0.15.
 
