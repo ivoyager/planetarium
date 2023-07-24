@@ -6,6 +6,15 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
+2023-07-24 **We're migrating to Godot 4.1.1!** Look for initial work in a new *4.x* branch. When this is somewhat functional, it will be merged into the *master* branch. v0.0.16 and subsequent releases will use Godot 4.x.
+
+## [v0.0.15] - 2023-07-24
+
+Developed for Godot 3.5.2. **This is the final release using Godot 3.x!**
+
+### Changed
+* Updated submodule 'ivoyager' to v0.0.15.
+
 ## [v0.0.14] - 2023-03-15
 
 Developed for Godot 3.5.2.
@@ -80,6 +89,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 
 ##
 
+[v0.0.15]: https://github.com/ivoyager/planetarium/compare/v0.0.14...v0.0.15
 [v0.0.14]: https://github.com/ivoyager/planetarium/compare/v0.0.13...v0.0.14
 [v0.0.13]: https://github.com/ivoyager/planetarium/compare/v0.0.12...v0.0.13
 [v0.0.12]: https://github.com/ivoyager/planetarium/compare/v0.0.11...v0.0.12
