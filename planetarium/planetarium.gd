@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-extends Reference
+extends RefCounted
 
 # This file modifies init values in IVGlobal and classes in IVProjectBuilder.
 #
@@ -43,9 +43,9 @@ func _extension_init() -> void:
 	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
 			str(EXTENSION_YMD)])
 			
-	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
-	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
-	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
+	IVGlobal.connect("project_objects_instantiated", Callable(self, "_on_program_objects_instantiated"))
+	IVGlobal.connect("project_nodes_added", Callable(self, "_on_project_nodes_added"))
+	IVGlobal.connect("simulator_started", Callable(self, "_on_simulator_started"))
 	
 	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
 		IVGlobal.use_threads = false
@@ -134,7 +134,7 @@ func _on_simulator_started() -> void:
 		if JavaScript.pwa_needs_update():
 			_on_pwa_update_available()
 		else:
-			JavaScript.connect("pwa_update_available", self, "_on_pwa_update_available")
+			JavaScript.connect("pwa_update_available", Callable(self, "_on_pwa_update_available"))
 
 
 func _on_pwa_update_available() -> void:

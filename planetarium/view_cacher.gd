@@ -38,8 +38,8 @@ var _view_manager: IVViewManager
 
 func _project_init() -> void:
 	_view_manager = IVGlobal.program.ViewManager
-	IVGlobal.connect("about_to_start_simulator", self, "_on_about_to_start_simulator")
-	IVGlobal.connect("about_to_stop_before_quit", self, "_cache_now", [false])
+	IVGlobal.connect("about_to_start_simulator", Callable(self, "_on_about_to_start_simulator"))
+	IVGlobal.connect("about_to_stop_before_quit", Callable(self, "_cache_now").bind(false))
 
 
 func _notification(what: int) -> void:
@@ -50,7 +50,7 @@ func _notification(what: int) -> void:
 
 func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	if cache_interval > 0.0:
-		connect("timeout", self, "_on_timeout")
+		connect("timeout", Callable(self, "_on_timeout"))
 		wait_time = cache_interval
 		start()
 	else:

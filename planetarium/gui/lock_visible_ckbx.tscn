@@ -3,9 +3,9 @@
 [ext_resource path="res://planetarium/gui/lock_visible_ckbx.gd" type="Script" id=1]
 
 [node name="LockVisibleCkbx" type="CheckBox"]
-margin_right = 24.0
-margin_bottom = 24.0
-hint_tooltip = "HINT_VIS_ON_MO_CKBX"
+offset_right = 24.0
+offset_bottom = 24.0
+tooltip_text = "HINT_VIS_ON_MO_CKBX"
 size_flags_horizontal = 8
 size_flags_vertical = 0
 pressed = true

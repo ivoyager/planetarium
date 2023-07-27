@@ -43,13 +43,13 @@ func _ready():
 	$"%DateTimeLabel".clock_hm_format = "  %02d:%02d UT"
 	
 	var view_saver: IVViewSaver = $"%ViewSaveButton".get_view_saver()
-	view_saver.find_node("TimeCkbx").text = "CKBX_TIME"
+	view_saver.find_child("TimeCkbx").text = "CKBX_TIME"
 	
 	$"%ViewSaveFlow".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
 			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
-	$"%ViewSaveFlow".connect("resized", self, "_reset_size")
+	$"%ViewSaveFlow".connect("resized", Callable(self, "_reset_size"))
 
 
 func _reset_size() -> void:
-	rect_size = Vector2.ZERO
+	size = Vector2.ZERO
 
