@@ -1,6 +1,7 @@
 # ignore:
 ~*
 *.translation
+\.godot/
 \.import/
 ivoyager_assets*/
 export/
