@@ -27,10 +27,10 @@ signal all_gui_toggled(is_visible)
 var hidden_panels := []
 
 
-func _unhandled_key_input(event: InputEventKey) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_all_gui"):
-		emit_signal("all_gui_toggled", !hidden_panels.empty())
-		get_tree().set_input_as_handled()
+		emit_signal("all_gui_toggled", !hidden_panels.is_empty())
+		get_viewport().set_input_as_handled()
 
 
 func register_visibility(panel: Control, is_visible: bool) -> void:

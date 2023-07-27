@@ -7,56 +7,56 @@
 [ext_resource path="res://ivoyager/gui_widgets/selection_data.tscn" type="PackedScene" id=13]
 
 [node name="InfoPanel" type="PanelContainer"]
-margin_right = 334.0
-margin_bottom = 480.0
+offset_right = 334.0
+offset_bottom = 480.0
 script = ExtResource( 5 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 327.0
-margin_bottom = 473.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 327.0
+offset_bottom = 473.0
 mouse_filter = 2
-custom_constants/margin_right = 25
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBox" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 295.0
-margin_bottom = 456.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 295.0
+offset_bottom = 456.0
 mouse_filter = 2
 
 [node name="SelectionWikiLink" parent="MarginContainer/VBox" instance=ExtResource( 10 )]
-margin_top = 0.0
-margin_right = 285.0
-margin_bottom = 15.0
+offset_top = 0.0
+offset_right = 285.0
+offset_bottom = 15.0
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBox"]
-margin_top = 19.0
-margin_right = 285.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 0, 12 )
+offset_top = 19.0
+offset_right = 285.0
+offset_bottom = 31.0
+custom_minimum_size = Vector2( 0, 12 )
 mouse_filter = 2
 
 [node name="DataScroll" type="ScrollContainer" parent="MarginContainer/VBox"]
-margin_top = 35.0
-margin_right = 285.0
-margin_bottom = 446.0
+offset_top = 35.0
+offset_right = 285.0
+offset_bottom = 446.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="SelectionData" parent="MarginContainer/VBox/DataScroll" instance=ExtResource( 13 )]
-margin_right = 285.0
-margin_bottom = 0.0
+offset_right = 285.0
+offset_bottom = 0.0
 
 [node name="LockVisibleCkbx" parent="." instance=ExtResource( 1 )]
-margin_left = 303.0
-margin_top = 7.0
-margin_right = 327.0
-margin_bottom = 31.0
+offset_left = 303.0
+offset_top = 7.0
+offset_right = 327.0
+offset_bottom = 31.0
 
 [node name="ControlMod" parent="." instance=ExtResource( 2 )]

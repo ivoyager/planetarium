@@ -40,17 +40,17 @@ var _is_panel_visible := true
 
 var _panel_container: PanelContainer
 
-onready var _gui_toggler: GUIToggler = IVGlobal.program.GUIToggler
+@onready var _gui_toggler: GUIToggler = IVGlobal.program.GUIToggler
 
 
 func _ready():
-	IVGlobal.connect("run_state_changed", self, "_on_run_state_changed")
-	IVGlobal.connect("setting_changed", self, "_settings_listener")
-	_gui_toggler.connect("all_gui_toggled", self, "set_pressed")
+	IVGlobal.connect("run_state_changed", Callable(self, "_on_run_state_changed"))
+	IVGlobal.connect("setting_changed", Callable(self, "_settings_listener"))
+	_gui_toggler.connect("all_gui_toggled", Callable(self, "set_pressed"))
 	_set_ancestor_panel_container()
 	if _panel_container:
-		_panel_container.connect("item_rect_changed", self, "_adjust_detection_rect")
-	connect("toggled", self, "_on_toggled")
+		_panel_container.connect("item_rect_changed", Callable(self, "_adjust_detection_rect"))
+	connect("toggled", Callable(self, "_on_toggled"))
 	set_process_input(false)
 
 
@@ -76,9 +76,9 @@ func set_ckbx_hidden():
 
 func set_panel_container(panel_container: PanelContainer):
 	if _panel_container:
-		_panel_container.disconnect("item_rect_changed", self, "_adjust_detection_rect")
+		_panel_container.disconnect("item_rect_changed", Callable(self, "_adjust_detection_rect"))
 	_panel_container = panel_container
-	_panel_container.connect("item_rect_changed", self, "_adjust_detection_rect")
+	_panel_container.connect("item_rect_changed", Callable(self, "_adjust_detection_rect"))
 
 
 func _on_run_state_changed(is_running: bool) -> void:
@@ -97,8 +97,8 @@ func _set_ancestor_panel_container() -> void:
 
 
 func _adjust_detection_rect() -> void:
-	_detection_rect.position = _panel_container.rect_position - detection_margins
-	_detection_rect.size = _panel_container.rect_size + 2.0 * detection_margins
+	_detection_rect.position = _panel_container.position - detection_margins
+	_detection_rect.size = _panel_container.size + 2.0 * detection_margins
 
 
 func _on_toggled(is_pressed: bool) -> void:
@@ -117,8 +117,8 @@ func _temp_show_for_resize() -> void:
 		return
 	# Container mods need up to 2 frames to resize
 	_panel_container.show()
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	await get_tree().idle_frame
+	await get_tree().idle_frame
 	_panel_container.hide()
 
 

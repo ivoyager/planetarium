@@ -14,12 +14,12 @@ mouse_filter = 2
 script = ExtResource( 1 )
 
 [node name="ControlPanel" parent="." instance=ExtResource( 6 )]
-margin_left = -442.5
-margin_top = -150.0
-margin_right = 442.5
+offset_left = -442.5
+offset_top = -150.0
+offset_right = 442.5
 
 [node name="HUDsPanel" parent="." instance=ExtResource( 7 )]
-margin_left = -612.0
+offset_left = -612.0
 
 [node name="NavPanel" parent="." instance=ExtResource( 4 )]
 
