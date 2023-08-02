@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.16"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230724 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230802 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -43,9 +43,9 @@ func _extension_init() -> void:
 	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
 			str(EXTENSION_YMD)])
 			
-	IVGlobal.connect("project_objects_instantiated", Callable(self, "_on_program_objects_instantiated"))
-	IVGlobal.connect("project_nodes_added", Callable(self, "_on_project_nodes_added"))
-	IVGlobal.connect("simulator_started", Callable(self, "_on_simulator_started"))
+	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
+	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
+	IVGlobal.simulator_started.connect(_on_simulator_started)
 	
 	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
 		IVGlobal.use_threads = false
@@ -92,59 +92,65 @@ func _extension_init() -> void:
 #	IVProjectBuilder.prog_nodes._GUIToggler_ = GUIToggler
 #	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
 #	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
-#	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
+	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 
 
 func _on_program_objects_instantiated() -> void:
-	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
-	timekeeper.start_real_world_time = true
-	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
-	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
-	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
-	quantity_formatter.exp_str = " x 10^"
-	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
-	theme_manager.main_menu_font = "gui_main"
-	var window_manager: IVWindowManager = IVGlobal.program.WindowManager
-	window_manager.add_menu_button = true
+	pass
+#	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
+#	timekeeper.start_real_world_time = true
+#	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
+#	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
+#	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
+#	quantity_formatter.exp_str = " x 10^"
+#	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
+#	theme_manager.main_menu_font = "gui_main"
+#	var window_manager: IVWindowManager = IVGlobal.program.WindowManager
+#	window_manager.add_menu_button = true
 #	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
 #	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 #	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
-	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
-	options_popup.remove_item("starmap") # web assets only have 8k starmap
+#	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
+#	options_popup.remove_item("starmap") # web assets only have 8k starmap
 
-	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
-	var default_settings := settings_manager.defaults
-	if IVGlobal.is_html5:
-		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
-		view_cacher.cache_interval = 2.0
-		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
-	if IVGlobal.is_gles2:
-		# try to compensate for Gles2 color differences?
-		pass
+#	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
+#	var default_settings := settings_manager.defaults
+#
+#	if IVGlobal.is_html5:
+#		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
+#		view_cacher.cache_interval = 2.0
+#		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
+
 
 
 func _on_project_nodes_added() -> void:
-	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
+	pass
+#	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
 
 # progressive web app (PWA) updating
 
 func _on_simulator_started() -> void:
-	if IVGlobal.is_html5:
-		if JavaScript.pwa_needs_update():
-			_on_pwa_update_available()
-		else:
-			JavaScript.connect("pwa_update_available", Callable(self, "_on_pwa_update_available"))
+	# FIXME34
+	pass
+#	if IVGlobal.is_html5:
+#		if JavaScript.pwa_needs_update():
+#			_on_pwa_update_available()
+#		else:
+#			JavaScript.connect("pwa_update_available", Callable(self, "_on_pwa_update_available"))
 
 
 func _on_pwa_update_available() -> void:
-	print("PWA update available!")
-	IVOneUseConfirm.new("TXT_PWA_UPDATE_AVAILABLE", self, "_update_pwa", [], false,
-			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_CONTINUE")
+	# FIXME34
+	pass
+#	print("PWA update available!")
+#	IVOneUseConfirm.new("TXT_PWA_UPDATE_AVAILABLE", self, "_update_pwa", [], false,
+#			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_CONTINUE")
 
 
 func _update_pwa() -> void:
-	print("Updating PWA!")
-	JavaScript.pwa_update()
-
+	# FIXME34
+	pass
+#	print("Updating PWA!")
+#	JavaScript.pwa_update()
 

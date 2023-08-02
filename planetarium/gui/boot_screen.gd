@@ -21,17 +21,16 @@ class_name BootScreen
 extends ColorRect
 const SCENE := "res://planetarium/gui/boot_screen.tscn"
 
-# Self-freeing boot screen (hides messy node construction).
+# Self-freeing boot screen hides messy node construction.
 
 func _ready() -> void:
-	IVGlobal.connect("simulator_started", Callable(self, "_free").bind(), CONNECT_ONE_SHOT)
-	var font_data: FontFile = IVGlobal.assets.primary_font_data
-	var font := FontFile.new()
-	font.font_data = font_data
-	font.size = 26
+	IVGlobal.simulator_started.connect(_free, CONNECT_ONE_SHOT)
+	var font: FontFile = IVGlobal.assets.primary_font_data
+	font.fixed_size = 26
 	var boot_label: Label = find_child("BootLabel")
 	boot_label.set("theme_override_fonts/font", font)
 
 func _free() -> void:
 	IVGlobal.program.erase("BootScreen")
 	queue_free()
+

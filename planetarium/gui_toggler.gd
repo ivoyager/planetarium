@@ -28,8 +28,8 @@ var hidden_panels := []
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_all_gui"):
-		emit_signal("all_gui_toggled", !hidden_panels.is_empty())
+	if event.is_action_pressed(&"toggle_all_gui"):
+		all_gui_toggled.emit(!hidden_panels.is_empty())
 		get_viewport().set_input_as_handled()
 
 
@@ -38,7 +38,4 @@ func register_visibility(panel: Control, is_visible: bool) -> void:
 		hidden_panels.erase(panel)
 	elif !hidden_panels.has(panel):
 		hidden_panels.append(panel)
-
-
-
 
