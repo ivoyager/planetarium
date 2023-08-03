@@ -25,7 +25,7 @@ const SCENE := "res://planetarium/gui/boot_screen.tscn"
 
 func _ready() -> void:
 	IVGlobal.simulator_started.connect(_free, CONNECT_ONE_SHOT)
-	var font: FontFile = IVGlobal.assets.primary_font_data
+	var font: FontFile = IVGlobal.assets.primary_font.duplicate()
 	font.fixed_size = 26
 	var boot_label: Label = find_child("BootLabel")
 	boot_label.set("theme_override_fonts/font", font)
