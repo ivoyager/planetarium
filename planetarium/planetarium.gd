@@ -42,7 +42,11 @@ func _extension_init() -> void:
 	
 	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
 			str(EXTENSION_YMD)])
-			
+	
+	if OS.is_debug_build:
+		# print all signals emitted from IVGlobal
+		IVDebug.signal_all_verbosely(IVGlobal, "IVGlobal")
+	
 	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
 	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
 	IVGlobal.simulator_started.connect(_on_simulator_started)
@@ -79,8 +83,8 @@ func _extension_init() -> void:
 		IVGlobal.vertecies_per_orbit = 200
 		
 	# class changes
-	IVProjectBuilder.prog_refs.erase("_SaveBuilder_")
-	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
+	IVProjectBuilder.program_refcounteds.erase("_SaveBuilder_")
+	IVProjectBuilder.program_nodes.erase("_SaveManager_")
 	IVProjectBuilder.gui_nodes.erase("_SaveDialog_")
 	IVProjectBuilder.gui_nodes.erase("_LoadDialog_")
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
@@ -89,16 +93,16 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
-#	IVProjectBuilder.prog_nodes._GUIToggler_ = GUIToggler
-#	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
+#	IVProjectBuilder.program_nodes._GUIToggler_ = GUIToggler
+#	IVProjectBuilder.program_nodes._ViewCacher_ = ViewCacher
 #	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 
 
 func _on_program_objects_instantiated() -> void:
 	pass
-#	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
-#	timekeeper.start_real_world_time = true
+	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
+	timekeeper.start_real_world_time = true
 #	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
 #	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
 #	var quantity_formatter: IVQuantityFormatter = IVGlobal.program.QuantityFormatter
