@@ -34,13 +34,10 @@ const CANDELA := 1.0
 # Notes on base SI units:
 #
 # See ivoyager/static/units.gd for conversion of base SI units to derived
-# units. These affect internal float representation of quantities, but not
-# physics or display. Values here don't matter *in theory* because *everything*
-# is converted. E.g., if you double METER here, then the gravitational constant
-# will be appropriately increased by eight-fold. 
+# units. These values should affect internal float representation of quantities
+# only. Values here don't matter to the simulation as long as all quantities 
+# are correctly converted to internal units (or from in the case of GUI). 
 #
 # In past Godot versions (3.2.x and before) it was necessary to reduce METER
-# to 1e-13 to elimitate visual glitches. I guess this might have been due to
-# inconsistent implementation of double floats or conversion to single floats
-# for the GPU. This seems to be fixed as of 3.5.1.
+# to 1e-13 to elimitate visual glitches. This seems to be fixed as of 3.5.1.
 
