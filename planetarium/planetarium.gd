@@ -37,15 +37,17 @@ const EXTENSION_YMD := 20230804 # displayed if EXTENSION_STATE = 'dev'
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
 
+const VERBOSE_GLOBAL_SIGNALS := true
+const VERBOSE_STATEMANAGER_SIGNALS := true
+
 
 func _extension_init() -> void:
 	
 	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
 			str(EXTENSION_YMD)])
 	
-	if OS.is_debug_build:
-		# print all signals emitted from IVGlobal
-		IVDebug.signal_all_verbosely(IVGlobal, "IVGlobal")
+	if OS.is_debug_build and VERBOSE_GLOBAL_SIGNALS:
+		IVDebug.signal_verbosely_all(IVGlobal, "Global")
 	
 	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
 	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
@@ -100,7 +102,11 @@ func _extension_init() -> void:
 
 
 func _on_program_objects_instantiated() -> void:
-	pass
+	
+	if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
+		var state_manager: IVStateManager = IVGlobal.program.StateManager
+		IVDebug.signal_verbosely_all(state_manager, "StateManager")
+	
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
 	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
@@ -148,8 +154,8 @@ func _on_pwa_update_available() -> void:
 	# FIXME34
 	pass
 #	print("PWA update available!")
-#	IVOneUseConfirm.new("TXT_PWA_UPDATE_AVAILABLE", self, "_update_pwa", [], false,
-#			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_CONTINUE")
+#	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
+#			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_RUN_WITHOUT_UPDATE")
 
 
 func _update_pwa() -> void:
