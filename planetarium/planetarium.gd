@@ -107,6 +107,8 @@ func _on_program_objects_instantiated() -> void:
 		var state_manager: IVStateManager = IVGlobal.program.StateManager
 		IVDebug.signal_verbosely_all(state_manager, "StateManager")
 	
+	IVGlobal.get_viewport().gui_embed_subwindows = true
+	
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
 	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
