@@ -25,6 +25,7 @@ const SCENE := "res://planetarium/gui/boot_screen.tscn"
 
 func _ready() -> void:
 	IVGlobal.simulator_started.connect(_free, CONNECT_ONE_SHOT)
+	@warning_ignore("unsafe_method_access")
 	var font: FontFile = IVGlobal.assets.primary_font.duplicate()
 	font.fixed_size = 26
 	var boot_label: Label = find_child("BootLabel")
