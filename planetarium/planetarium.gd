@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.16"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230807 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230808 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -97,7 +97,7 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
 	IVProjectBuilder.program_nodes._GUIToggler_ = GUIToggler
 	IVProjectBuilder.program_nodes._ViewCacher_ = ViewCacher
-#	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
+	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 
 
@@ -137,7 +137,7 @@ func _on_program_objects_instantiated() -> void:
 
 func _on_project_nodes_added() -> void:
 	pass
-#	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
+	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
 
 # progressive web app (PWA) updating

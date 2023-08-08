@@ -1,0 +1,145 @@
+[gd_scene load_steps=19 format=3 uid="uid://ba7271tsjvr4o"]
+
+[ext_resource type="Script" path="res://planetarium/gui/control_panel.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b8lhpum4e5tps" path="res://ivoyager/gui_widgets/date_time_label.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://ivoyager/gui_widgets/now_ckbx.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://ivoyager/gui_widgets/selection_label.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://ivoyager/gui_widgets/range_label.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://ivoyager/gui_widgets/selection_buttons.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://ivoyager/gui_widgets/speed_buttons.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://welwpw4boyv8" path="res://ivoyager/gui_widgets/lat_long_label.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://cwnvxi44ijkr4" path="res://ivoyager/gui_widgets/up_lock_ckbx.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://ivoyager/gui_widgets/focal_length_buttons.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://d20srsljisybk" path="res://ivoyager/gui_widgets/focal_length_label.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://b1mkm7ajlvvm0" path="res://ivoyager/gui_widgets/track_ckbxs.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://bgk3lju7s35t" path="res://ivoyager/gui_widgets/time_set_button.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://do2jvg01jte0i" path="res://ivoyager/gui_widgets/view_save_button.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://bvs2mb8bj8gfn" path="res://ivoyager/gui_widgets/view_save_flow.tscn" id="18"]
+[ext_resource type="PackedScene" uid="uid://bcl70ysl6yces" path="res://ivoyager/gui_widgets/view_button.tscn" id="19"]
+
+[node name="ControlPanel" type="PanelContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -338.0
+offset_right = 207.0
+script = ExtResource("1")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SelectionLabel" parent="VBox" instance=ExtResource("4")]
+layout_mode = 2
+
+[node name="HBox1" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RangeLabel" parent="VBox/HBox1" instance=ExtResource("5")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Spacer" type="Control" parent="VBox/HBox1"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="LatLongLabel" parent="VBox/HBox1" instance=ExtResource("10")]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBox2" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="NowCkbx" parent="VBox/HBox2" instance=ExtResource("3")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DateTimeLabel" parent="VBox/HBox2" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SpeedButtons" parent="VBox/HBox2" instance=ExtResource("9")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="TimeSetButton" parent="VBox/HBox2/SpeedButtons" instance=ExtResource("16")]
+layout_mode = 2
+
+[node name="HBox3" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="UpLockCkbx" parent="VBox/HBox3" instance=ExtResource("12")]
+layout_mode = 2
+text = "CKBX_LOCK_UP"
+
+[node name="TrackCkbxs" parent="VBox/HBox3" instance=ExtResource("15")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="VBox/HBox3"]
+layout_mode = 2
+alignment = 2
+
+[node name="FocalLengthLabel" parent="VBox/HBox3/HBox" instance=ExtResource("14")]
+layout_mode = 2
+
+[node name="FocalLengthButtons" parent="VBox/HBox3/HBox" instance=ExtResource("13")]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Home" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_HOME"
+
+[node name="Cislunar" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_CISLUNAR"
+
+[node name="System" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_SYSTEM"
+
+[node name="Asteroids" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_ASTEROIDS"
+
+[node name="Spacer" type="Control" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Zoom" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_ZOOM"
+
+[node name="Fortyfive" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_45_DEG"
+
+[node name="Top" parent="VBox/HBox" instance=ExtResource("19")]
+layout_mode = 2
+text = "BUTTON_TOP"
+
+[node name="ViewSaveFlow" parent="VBox" instance=ExtResource("18")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ViewSaveButton" parent="VBox/ViewSaveFlow" instance=ExtResource("17")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SelectionButtons" parent="." instance=ExtResource("7")]
+layout_mode = 2
+
+[node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
+layout_mode = 2
+
+[node name="ControlMod" parent="." instance=ExtResource("8")]

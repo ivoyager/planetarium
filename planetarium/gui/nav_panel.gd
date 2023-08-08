@@ -1,4 +1,4 @@
-# huds_panel.gd
+# nav_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,17 +17,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name HUDsPanel
+class_name NavPanel
 extends PanelContainer
 
 
-
 func _ready():
-	$ControlMod.init_min_size(-1, Vector2.ZERO)
-	var view_save_flow: IVViewSaveFlow = find_child("ViewSaveFlow")
-	view_save_flow.connect("resized", Callable(self, "_reset_size"))
-
-
-func _reset_size() -> void:
-	size = Vector2.ZERO
+	# widgets
+	($"%AsteroidsHScroll" as IVBodyHScroll).add_bodies_from_table("asteroids")
+	($"%SpacecraftHScroll" as IVBodyHScroll).add_bodies_from_table("spacecrafts")
+	
+	var mod: IVControlDraggable = $ControlMod
+	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 278.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 336.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 400.0))
+	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
 

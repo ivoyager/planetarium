@@ -1,4 +1,4 @@
-# planetarium_gui.gd
+# huds_panel.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,32 +17,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name PlanetariumGUI
-extends Control
-const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
+class_name HUDsPanel
+extends PanelContainer
 
-# Scenes instanced by IVProjectBuilder need SCENE constant above.
-
-
-func _project_init() -> void:
-	IVGlobal.connect("system_tree_built_or_loaded", Callable(self, "_on_system_tree_built_or_loaded"))
-	IVGlobal.connect("simulator_exited", Callable(self, "_on_simulator_exited"))
-	hide()
 
 
 func _ready():
-	var style_box := StyleBoxFlat.new()
-	style_box.bg_color = Color(1.0, 1.0, 1.0, 0.1) # almost transparent
-	for child in get_children():
-		var panel_container := child as PanelContainer
-		if !panel_container:
-			continue
-		panel_container.set("theme_override_styles/panel", style_box)
+	($ControlMod as IVControlDraggable).init_min_size(-1, Vector2.ZERO)
+	var view_save_flow: IVViewSaveFlow = find_child("ViewSaveFlow")
+	view_save_flow.resized.connect(_reset_size)
 
 
-func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:
-	show()
+func _reset_size() -> void:
+	size = Vector2.ZERO
 
-
-func _on_simulator_exited() -> void:
-	hide()
