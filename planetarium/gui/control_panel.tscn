@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://ivoyager/gui_widgets/now_ckbx.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://ivoyager/gui_widgets/selection_label.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://ivoyager/gui_widgets/range_label.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://ivoyager/gui_widgets/selection_buttons.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://ivoyager/gui_widgets/speed_buttons.tscn" id="9"]
@@ -35,6 +35,7 @@ layout_mode = 2
 
 [node name="SelectionLabel" parent="VBox" instance=ExtResource("4")]
 layout_mode = 2
+horizontal_alignment = 1
 
 [node name="HBox1" type="HBoxContainer" parent="VBox"]
 layout_mode = 2

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dglsn48wnive"]
 
-[ext_resource type="PackedScene" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="2"]
 [ext_resource type="Script" path="res://planetarium/gui/info_panel.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://dbmmj34clrl2a" path="res://ivoyager/gui_widgets/selection_wiki_link.tscn" id="10"]
