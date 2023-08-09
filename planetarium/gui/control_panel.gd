@@ -1,0 +1,60 @@
+# control_panel.gd
+# This file is part of I, Voyager
+# https://ivoyager.dev
+# *****************************************************************************
+# Copyright 2017-2023 Charlie Whitfield
+# I, Voyager is a registered trademark of Charlie Whitfield in the US
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# *****************************************************************************
+class_name ControlPanel
+extends PanelContainer
+
+
+var reserved_view_names: Array[String] = [
+	tr(&"BUTTON_ZOOM"),
+	tr(&"BUTTON_45_DEG"),
+	tr(&"BUTTON_TOP"),
+	tr(&"BUTTON_HOME"),
+	tr(&"BUTTON_CISLUNAR"),
+	tr(&"BUTTON_SYSTEM"),
+	tr(&"BUTTON_ASTEROIDS"),
+]
+
+
+func _ready() -> void:
+	var mod: IVControlDraggable = $ControlMod
+	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
+	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
+	
+	# widget mods
+	var date_time_label: IVDateTimeLabel = $"%DateTimeLabel"
+	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
+	date_time_label.clock_hm_format = "  %02d:%02d UT"
+	
+	var view_save_button: IVViewSaveButton = $"%ViewSaveButton"
+	var view_saver: IVViewSaver = view_save_button.get_view_saver()
+	var time_ckbx: CheckBox = view_saver.find_child(&"TimeCkbx")
+	time_ckbx.text = "CKBX_TIME"
+	
+	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
+	view_save_flow.init(view_save_button, "LABEL_VIEW1", "PL", true,
+			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
+	view_save_flow.resized.connect(_reset_size)
+
+
+func _reset_size() -> void:
+	size = Vector2.ZERO
+

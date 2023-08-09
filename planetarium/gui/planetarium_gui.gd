@@ -1,4 +1,4 @@
-# nav_panel.gd
+# planetarium_gui.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,17 +17,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name NavPanel
-extends PanelContainer
+class_name PlanetariumGUI
+extends Control
+const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
+
+# Scenes instanced by IVProjectBuilder need SCENE constant above.
+
+
+func _project_init() -> void:
+	IVGlobal.system_tree_built_or_loaded.connect(_on_system_tree_built_or_loaded)
+	IVGlobal.simulator_exited.connect(_on_simulator_exited)
+	hide()
 
 
 func _ready():
-	# widgets
-	$"%AsteroidsHScroll".add_bodies_from_table("asteroids")
-	$"%SpacecraftHScroll".add_bodies_from_table("spacecrafts")
-	
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 278.0))
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 336.0))
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 400.0))
-	$ControlMod.max_default_screen_proportions = Vector2(0.55, 0.45)
+	var style_box := StyleBoxFlat.new()
+	style_box.bg_color = Color(1.0, 1.0, 1.0, 0.1) # almost transparent
+	for child in get_children():
+		var panel_container := child as PanelContainer
+		if !panel_container:
+			continue
+		panel_container.set("theme_override_styles/panel", style_box)
+
+
+func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:
+	show()
+
+
+func _on_simulator_exited() -> void:
+	hide()
 
