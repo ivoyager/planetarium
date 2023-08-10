@@ -8,4 +8,5 @@ offset_bottom = 24.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 tooltip_text = "HINT_VIS_ON_MO_CKBX"
+button_pressed = true
 script = ExtResource("1")

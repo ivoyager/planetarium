@@ -42,6 +42,10 @@ gdscript/warnings/static_called_on_instance=0
 window/size/viewport_width=2500
 window/size/viewport_height=1200
 
+[filesystem]
+
+import/blender/enabled=false
+
 [importer_defaults]
 
 texture={
