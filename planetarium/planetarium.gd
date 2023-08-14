@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-extends Reference
+extends RefCounted
 
 # This file modifies init values in IVGlobal and classes in IVProjectBuilder.
 #
@@ -29,23 +29,29 @@ extends Reference
 # single thread for maximum browser compatibility.
 
 const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.15"
+const EXTENSION_VERSION := "0.0.16"
 const EXTENSION_BUILD := ""
-const EXTENSION_STATE := "" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230724 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
+const EXTENSION_YMD := 20230814 # displayed if EXTENSION_STATE = 'dev'
 
-const USE_THREADS := true # set false for debugging
+const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
+
+const VERBOSE_GLOBAL_SIGNALS := true
+const VERBOSE_STATEMANAGER_SIGNALS := true
 
 
 func _extension_init() -> void:
 	
 	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
 			str(EXTENSION_YMD)])
-			
-	IVGlobal.connect("project_objects_instantiated", self, "_on_program_objects_instantiated")
-	IVGlobal.connect("project_nodes_added", self, "_on_project_nodes_added")
-	IVGlobal.connect("simulator_started", self, "_on_simulator_started")
+	
+	if OS.is_debug_build and VERBOSE_GLOBAL_SIGNALS:
+		IVDebug.signal_verbosely_all(IVGlobal, "Global")
+	
+	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
+	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
+	IVGlobal.simulator_started.connect(_on_simulator_started)
 	
 	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
 		IVGlobal.use_threads = false
@@ -79,8 +85,8 @@ func _extension_init() -> void:
 		IVGlobal.vertecies_per_orbit = 200
 		
 	# class changes
-	IVProjectBuilder.prog_refs.erase("_SaveBuilder_")
-	IVProjectBuilder.prog_nodes.erase("_SaveManager_")
+	IVProjectBuilder.program_refcounteds.erase("_SaveBuilder_")
+	IVProjectBuilder.program_nodes.erase("_SaveManager_")
 	IVProjectBuilder.gui_nodes.erase("_SaveDialog_")
 	IVProjectBuilder.gui_nodes.erase("_LoadDialog_")
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
@@ -89,13 +95,20 @@ func _extension_init() -> void:
 	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
 	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
 	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
-	IVProjectBuilder.prog_nodes._GUIToggler_ = GUIToggler
-	IVProjectBuilder.prog_nodes._ViewCacher_ = ViewCacher
+	IVProjectBuilder.program_nodes._GUIToggler_ = GUIToggler
+	IVProjectBuilder.program_nodes._ViewCacher_ = ViewCacher
 	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
 	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 
 
 func _on_program_objects_instantiated() -> void:
+	
+	if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
+		var state_manager: IVStateManager = IVGlobal.program.StateManager
+		IVDebug.signal_verbosely_all(state_manager, "StateManager")
+	
+	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
+	
 	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
 	timekeeper.start_real_world_time = true
 	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
@@ -109,42 +122,47 @@ func _on_program_objects_instantiated() -> void:
 #	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
 #	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
 #	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
-	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
-	options_popup.remove_item("starmap") # web assets only have 8k starmap
+#	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
+#	options_popup.remove_item("starmap") # web assets only have 8k starmap
 
-	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
-	var default_settings := settings_manager.defaults
-	if IVGlobal.is_html5:
-		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
-		view_cacher.cache_interval = 2.0
-		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
-	if IVGlobal.is_gles2:
-		# try to compensate for Gles2 color differences?
-		pass
+#	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
+#	var default_settings := settings_manager.defaults
+#
+#	if IVGlobal.is_html5:
+#		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
+#		view_cacher.cache_interval = 2.0
+#		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
+
 
 
 func _on_project_nodes_added() -> void:
+	pass
 	IVProjectBuilder.move_top_gui_child_to_sibling("PlanetariumGUI", "MouseTargetLabel", false)
 
 
 # progressive web app (PWA) updating
 
 func _on_simulator_started() -> void:
-	if IVGlobal.is_html5:
-		if JavaScript.pwa_needs_update():
-			_on_pwa_update_available()
-		else:
-			JavaScript.connect("pwa_update_available", self, "_on_pwa_update_available")
+	# FIXME34
+	pass
+#	if IVGlobal.is_html5:
+#		if JavaScript.pwa_needs_update():
+#			_on_pwa_update_available()
+#		else:
+#			JavaScript.connect("pwa_update_available", Callable(self, "_on_pwa_update_available"))
 
 
 func _on_pwa_update_available() -> void:
-	print("PWA update available!")
-	IVOneUseConfirm.new("TXT_PWA_UPDATE_AVAILABLE", self, "_update_pwa", [], false,
-			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_CONTINUE")
+	# FIXME34
+	pass
+#	print("PWA update available!")
+#	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
+#			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_RUN_WITHOUT_UPDATE")
 
 
 func _update_pwa() -> void:
-	print("Updating PWA!")
-	JavaScript.pwa_update()
-
+	# FIXME34
+	pass
+#	print("Updating PWA!")
+#	JavaScript.pwa_update()
 

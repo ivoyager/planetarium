@@ -21,35 +21,40 @@ class_name ControlPanel
 extends PanelContainer
 
 
-var reserved_view_names := [
-	tr("BUTTON_ZOOM"),
-	tr("BUTTON_45_DEG"),
-	tr("BUTTON_TOP"),
-	tr("BUTTON_HOME"),
-	tr("BUTTON_CISLUNAR"),
-	tr("BUTTON_SYSTEM"),
-	tr("BUTTON_ASTEROIDS"),
+var reserved_view_names: Array[String] = [
+	tr(&"BUTTON_ZOOM"),
+	tr(&"BUTTON_45_DEG"),
+	tr(&"BUTTON_TOP"),
+	tr(&"BUTTON_HOME"),
+	tr(&"BUTTON_CISLUNAR"),
+	tr(&"BUTTON_SYSTEM"),
+	tr(&"BUTTON_ASTEROIDS"),
 ]
 
 
-func _ready():
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
-	$ControlMod.max_default_screen_proportions = Vector2(0.55, 0.45)
+func _ready() -> void:
+	var mod: IVControlDraggable = $ControlMod
+	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
+	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
 	# widget mods
-	$"%DateTimeLabel".clock_hms_format = "  %02d:%02d:%02d UT"
-	$"%DateTimeLabel".clock_hm_format = "  %02d:%02d UT"
+	var date_time_label: IVDateTimeLabel = $"%DateTimeLabel"
+	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
+	date_time_label.clock_hm_format = "  %02d:%02d UT"
 	
-	var view_saver: IVViewSaver = $"%ViewSaveButton".get_view_saver()
-	view_saver.find_node("TimeCkbx").text = "CKBX_TIME"
+	var view_save_button: IVViewSaveButton = $"%ViewSaveButton"
+	var view_saver: IVViewSaver = view_save_button.get_view_saver()
+	var time_ckbx: CheckBox = view_saver.find_child(&"TimeCkbx")
+	time_ckbx.text = "CKBX_TIME"
 	
-	$"%ViewSaveFlow".init($"%ViewSaveButton", "LABEL_VIEW1", "PL", true,
+	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
+	view_save_flow.init(view_save_button, "LABEL_VIEW1", "PL", true,
 			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
-	$"%ViewSaveFlow".connect("resized", self, "_reset_size")
+	view_save_flow.resized.connect(_reset_size)
 
 
 func _reset_size() -> void:
-	rect_size = Vector2.ZERO
+	size = Vector2.ZERO
 

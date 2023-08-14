@@ -1,62 +1,44 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://dglsn48wnive"]
 
-[ext_resource path="res://planetarium/gui/lock_visible_ckbx.tscn" type="PackedScene" id=1]
-[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=2]
-[ext_resource path="res://planetarium/gui/info_panel.gd" type="Script" id=5]
-[ext_resource path="res://ivoyager/gui_widgets/selection_wiki_link.tscn" type="PackedScene" id=10]
-[ext_resource path="res://ivoyager/gui_widgets/selection_data.tscn" type="PackedScene" id=13]
+[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="2"]
+[ext_resource type="Script" path="res://planetarium/gui/info_panel.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://dbmmj34clrl2a" path="res://ivoyager/gui_widgets/selection_wiki_link.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://b58glkdlp7x1i" path="res://ivoyager/gui_widgets/selection_data.tscn" id="13"]
 
 [node name="InfoPanel" type="PanelContainer"]
-margin_right = 334.0
-margin_bottom = 480.0
-script = ExtResource( 5 )
+offset_right = 334.0
+offset_bottom = 480.0
+script = ExtResource("5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 327.0
-margin_bottom = 473.0
+layout_mode = 2
 mouse_filter = 2
-custom_constants/margin_right = 25
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 10
 
 [node name="VBox" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 295.0
-margin_bottom = 456.0
+layout_mode = 2
 mouse_filter = 2
 
-[node name="SelectionWikiLink" parent="MarginContainer/VBox" instance=ExtResource( 10 )]
-margin_top = 0.0
-margin_right = 285.0
-margin_bottom = 15.0
+[node name="SelectionWikiLink" parent="MarginContainer/VBox" instance=ExtResource("10")]
+layout_mode = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBox"]
-margin_top = 19.0
-margin_right = 285.0
-margin_bottom = 31.0
-rect_min_size = Vector2( 0, 12 )
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
 mouse_filter = 2
 
 [node name="DataScroll" type="ScrollContainer" parent="MarginContainer/VBox"]
-margin_top = 35.0
-margin_right = 285.0
-margin_bottom = 446.0
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal_enabled = false
 
-[node name="SelectionData" parent="MarginContainer/VBox/DataScroll" instance=ExtResource( 13 )]
-margin_right = 285.0
-margin_bottom = 0.0
+[node name="SelectionData" parent="MarginContainer/VBox/DataScroll" instance=ExtResource("13")]
+layout_mode = 2
 
-[node name="LockVisibleCkbx" parent="." instance=ExtResource( 1 )]
-margin_left = 303.0
-margin_top = 7.0
-margin_right = 327.0
-margin_bottom = 31.0
+[node name="LockVisibleCkbx" parent="." instance=ExtResource("1")]
+layout_mode = 2
 
-[node name="ControlMod" parent="." instance=ExtResource( 2 )]
+[node name="ControlMod" parent="." instance=ExtResource("2")]

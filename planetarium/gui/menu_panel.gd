@@ -22,14 +22,17 @@ extends PanelContainer
 
 
 func _ready():
-	var credits = find_node("Credits")
+	var homepage: IVLinkLabel = %HomePage
+	homepage.set_hyperlink("I, Voyager", "https://ivoyager.dev")
+	var credits: IVLinkLabel = %Credits
 	credits.set_hyperlink("Credits", "https://github.com/ivoyager/ivoyager/blob/master/CREDITS.md")
-	var feedback = find_node("Feedback")
-	feedback.set_hyperlink("Feedback", "https://www.ivoyager.dev/forum/")
-	var support_us = find_node("SupportUs")
+	var feedback: IVLinkLabel = %Feedback
+	feedback.set_hyperlink("Feedback", "https://github.com/orgs/ivoyager/discussions")
+	var support_us: IVLinkLabel = %SupportUs
 	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/ivoyager")
 	
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(75.0, 0.0))
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(100.0, 0.0))
-	$ControlMod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(125.0, 0.0))
+	var mod: IVControlDraggable = $ControlMod
+	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(75.0, 0.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(100.0, 0.0))
+	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(125.0, 0.0))
 

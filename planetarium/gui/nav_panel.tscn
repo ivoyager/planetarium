@@ -1,78 +1,59 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://diafd62ta13cn"]
 
-[ext_resource path="res://planetarium/gui/nav_panel.gd" type="Script" id=1]
-[ext_resource path="res://ivoyager/gui_widgets/body_h_scroll.tscn" type="PackedScene" id=2]
-[ext_resource path="res://ivoyager/gui_widgets/planet_moon_buttons.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ivoyager/gui_widgets/sun_slice_button.tscn" type="PackedScene" id=5]
-[ext_resource path="res://planetarium/gui/lock_visible_ckbx.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ivoyager/gui_widgets/selection_buttons.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ivoyager/gui_mods/control_draggable.tscn" type="PackedScene" id=8]
+[ext_resource type="Script" path="res://planetarium/gui/nav_panel.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bgja2vd1iswvn" path="res://ivoyager/gui_widgets/body_h_scroll.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cre322bqbtbtd" path="res://ivoyager/gui_widgets/planet_moon_buttons.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://wcxctits85co" path="res://ivoyager/gui_widgets/sun_slice_button.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://ivoyager/gui_widgets/selection_buttons.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="8"]
 
 [node name="NavPanel" type="PanelContainer"]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -338.0
-margin_right = 414.0
-script = ExtResource( 1 )
+offset_top = -338.0
+offset_right = 414.0
+script = ExtResource("1")
 
 [node name="HBox" type="HBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 407.0
-margin_bottom = 331.0
+layout_mode = 2
 mouse_filter = 2
 
-[node name="SunSliceButton" parent="HBox" instance=ExtResource( 5 )]
-margin_right = 39.0
-margin_bottom = 324.0
+[node name="SunSliceButton" parent="HBox" instance=ExtResource("5")]
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="RightContent" type="MarginContainer" parent="HBox"]
-margin_left = 43.0
-margin_right = 400.0
-margin_bottom = 324.0
-mouse_filter = 2
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
-
-[node name="VBox" type="VBoxContainer" parent="HBox/RightContent"]
-margin_right = 357.0
-margin_bottom = 324.0
 mouse_filter = 2
 
-[node name="PlanetMoonButtons" parent="HBox/RightContent/VBox" instance=ExtResource( 3 )]
-margin_right = 357.0
-margin_bottom = 0.0
+[node name="VBox" type="VBoxContainer" parent="HBox/RightContent"]
+layout_mode = 2
+mouse_filter = 2
 
-[node name="AsteroidsHScroll" parent="HBox/RightContent/VBox" instance=ExtResource( 2 )]
+[node name="PlanetMoonButtons" parent="HBox/RightContent/VBox" instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="AsteroidsHScroll" parent="HBox/RightContent/VBox" instance=ExtResource("2")]
 unique_name_in_owner = true
-margin_top = 4.0
-margin_right = 357.0
-margin_bottom = 162.0
-hint_tooltip = "LABEL_VISITED_ASTEROIDS"
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "LABEL_VISITED_ASTEROIDS"
 
-[node name="SpacecraftHScroll" parent="HBox/RightContent/VBox" instance=ExtResource( 2 )]
+[node name="SpacecraftHScroll" parent="HBox/RightContent/VBox" instance=ExtResource("2")]
 unique_name_in_owner = true
-margin_top = 166.0
-margin_right = 357.0
-margin_bottom = 324.0
-hint_tooltip = "LABEL_SPACECRAFT"
-mouse_filter = 1
+layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "LABEL_SPACECRAFT"
 
-[node name="SelectionButtons" parent="." instance=ExtResource( 7 )]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 74.0
-margin_bottom = 27.0
+[node name="SelectionButtons" parent="." instance=ExtResource("7")]
+layout_mode = 2
 
-[node name="LockVisibleCkbx" parent="." instance=ExtResource( 6 )]
-margin_left = 383.0
-margin_top = 7.0
-margin_right = 407.0
-margin_bottom = 31.0
+[node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
+layout_mode = 2
 
-[node name="ControlMod" parent="." instance=ExtResource( 8 )]
+[node name="ControlMod" parent="." instance=ExtResource("8")]

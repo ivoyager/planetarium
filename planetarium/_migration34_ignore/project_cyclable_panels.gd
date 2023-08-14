@@ -46,8 +46,8 @@ var _last_panel_container: PanelContainer
 var _last_panel_container_was_hidden: bool
 var _child_idx := -1
 
-onready var _tree: SceneTree = get_tree()
-onready var _parent: Control = get_parent()
+@onready var _tree: SceneTree = get_tree()
+@onready var _parent: Control = get_parent()
 
 
 func _unhandled_key_input(event):

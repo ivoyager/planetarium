@@ -40,17 +40,17 @@ var _is_panel_visible := true
 
 var _panel_container: PanelContainer
 
-onready var _gui_toggler: GUIToggler = IVGlobal.program.GUIToggler
+@onready var _gui_toggler: GUIToggler = IVGlobal.program.GUIToggler
 
 
 func _ready():
-	IVGlobal.connect("run_state_changed", self, "_on_run_state_changed")
-	IVGlobal.connect("setting_changed", self, "_settings_listener")
-	_gui_toggler.connect("all_gui_toggled", self, "set_pressed")
+	IVGlobal.run_state_changed.connect(_on_run_state_changed)
+	IVGlobal.setting_changed.connect(_settings_listener)
+	_gui_toggler.all_gui_toggled.connect(set_pressed)
 	_set_ancestor_panel_container()
 	if _panel_container:
-		_panel_container.connect("item_rect_changed", self, "_adjust_detection_rect")
-	connect("toggled", self, "_on_toggled")
+		_panel_container.item_rect_changed.connect(_adjust_detection_rect)
+	toggled.connect(_on_toggled)
 	set_process_input(false)
 
 
@@ -58,15 +58,19 @@ func _input(event: InputEvent) -> void:
 	# We process input only when in mouse-over mode
 	if !_is_running:
 		return
-	if event is InputEventMouseButton:
-		_is_mouse_button_pressed = event.pressed # don't show/hide GUIs during mouse drag
-	elif event is InputEventMouseMotion:
-		if _is_mouse_button_pressed:
-			return # don't show/hide during mouse drag!
-		var new_visible := _detection_rect.has_point(event.position)
-		if _is_panel_visible != new_visible:
-			_is_panel_visible = new_visible
-			_panel_container.visible = new_visible
+	var mouse_event := event as InputEventMouse
+	if !mouse_event:
+		return
+	var mouse_button_event := mouse_event as InputEventMouseButton
+	if mouse_button_event:
+		_is_mouse_button_pressed = mouse_button_event.pressed # don't show/hide GUIs during mouse drag
+		return
+	if _is_mouse_button_pressed:
+		return # don't show/hide during mouse drag!
+	var new_visible := _detection_rect.has_point(mouse_event.position)
+	if _is_panel_visible != new_visible:
+		_is_panel_visible = new_visible
+		_panel_container.visible = new_visible
 
 
 func set_ckbx_hidden():
@@ -76,9 +80,9 @@ func set_ckbx_hidden():
 
 func set_panel_container(panel_container: PanelContainer):
 	if _panel_container:
-		_panel_container.disconnect("item_rect_changed", self, "_adjust_detection_rect")
+		_panel_container.item_rect_changed.disconnect(_adjust_detection_rect)
 	_panel_container = panel_container
-	_panel_container.connect("item_rect_changed", self, "_adjust_detection_rect")
+	_panel_container.item_rect_changed.connect(_adjust_detection_rect)
 
 
 func _on_run_state_changed(is_running: bool) -> void:
@@ -97,12 +101,12 @@ func _set_ancestor_panel_container() -> void:
 
 
 func _adjust_detection_rect() -> void:
-	_detection_rect.position = _panel_container.rect_position - detection_margins
-	_detection_rect.size = _panel_container.rect_size + 2.0 * detection_margins
+	_detection_rect.position = _panel_container.position - detection_margins
+	_detection_rect.size = _panel_container.size + 2.0 * detection_margins
 
 
-func _on_toggled(is_pressed: bool) -> void:
-	if is_pressed:
+func _on_toggled(toggle_pressed: bool) -> void:
+	if toggle_pressed:
 		set_process_input(false)
 		_panel_container.show()
 		_gui_toggler.register_visibility(self, true)
@@ -117,11 +121,12 @@ func _temp_show_for_resize() -> void:
 		return
 	# Container mods need up to 2 frames to resize
 	_panel_container.show()
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	await get_tree().process_frame
+	await get_tree().process_frame
 	_panel_container.hide()
 
 
 func _settings_listener(setting: String, _value) -> void:
 	if setting == "gui_size":
 		_temp_show_for_resize()
+

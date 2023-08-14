@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://c4wt6rs2mwd7l"]
 
-[ext_resource path="res://planetarium/gui/lock_visible_ckbx.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://planetarium/gui/lock_visible_ckbx.gd" id="1"]
 
 [node name="LockVisibleCkbx" type="CheckBox"]
-margin_right = 24.0
-margin_bottom = 24.0
-hint_tooltip = "HINT_VIS_ON_MO_CKBX"
+offset_right = 24.0
+offset_bottom = 24.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-pressed = true
-script = ExtResource( 1 )
+tooltip_text = "HINT_VIS_ON_MO_CKBX"
+button_pressed = true
+script = ExtResource("1")

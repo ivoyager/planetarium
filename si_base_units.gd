@@ -21,7 +21,7 @@ class_name SIBaseUnits
 extends Object
 
 # We keep this static class outside of the 'ivoyager' submodule so projects can
-# modify, if needed. 
+# modify base units (in particular, METER for scale). 
 
 # SI base units - all internal sim values derived from these!
 const METER := 1.0 # engine length units per meter; see Notes below
@@ -34,13 +34,14 @@ const CANDELA := 1.0
 # Notes on base SI units:
 #
 # See ivoyager/static/units.gd for conversion of base SI units to derived
-# units. These affect internal float representation of quantities, but not
-# physics or display. Values here don't matter *in theory* because *everything*
-# is converted. E.g., if you double METER here, then the gravitational constant
-# will be appropriately increased by eight-fold. 
+# units. These values *SHOULD NOT* affect simulator operation as long as all
+# dimensional quantities are correctly converted to and from internal units.
+# Quantities are converted to or from internal units by (respectively)
+# multiplying by or dividing by the appropriate IVUnits constant.
+#
+# FIXME: Scale *does* currently matter! The sim works but View and/or camera
+# ranging is buggy if METER != 1.0.
 #
 # In past Godot versions (3.2.x and before) it was necessary to reduce METER
-# to 1e-13 to elimitate visual glitches. I guess this might have been due to
-# inconsistent implementation of double floats or conversion to single floats
-# for the GPU. This seems to be fixed as of 3.5.1.
+# to 1e-13 to elimitate visual glitches. This seems to be fixed as of 3.5.1.
 
