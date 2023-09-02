@@ -1,3 +1,6 @@
 [submodule "ivoyager"]
 	path = ivoyager
 	url = https://github.com/ivoyager/ivoyager
+[submodule "addons/ivoyager_table_importer"]
+	path = addons/ivoyager_table_importer
+	url = https://github.com/ivoyager/ivoyager_table_importer
