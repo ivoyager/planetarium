@@ -24,7 +24,7 @@ name="I, Voyager - Planetarium"
 
 [autoload]
 
-IVTableData="*res://ivoyager/tables_temp/table_data.gd"
+IVTableData="*res://addons/ivoyager_table_importer/table_data.gd"
 IVGlobal="*res://ivoyager/singletons/global.gd"
 IVProjectBuilder="*res://ivoyager/singletons/project_builder.gd"
 
