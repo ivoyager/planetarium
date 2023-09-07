@@ -1,7 +1,18 @@
-# ignore:
-~*
+# I, Voyager project ignores:
+
+# Godot
+/.godot/
+/.import/
+export.cfg
+export_presets.cfg
 *.translation
-\.godot/
-\.import/
-ivoyager_assets*/
-export/
+
+# GitHub
+/.github/
+
+# I, Voyager
+/ivoyager_assets/
+
+# Misc
+/export/
+~*
