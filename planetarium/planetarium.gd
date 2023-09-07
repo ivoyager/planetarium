@@ -32,7 +32,7 @@ const EXTENSION_NAME := "Planetarium"
 const EXTENSION_VERSION := "0.0.16"
 const EXTENSION_BUILD := ""
 const EXTENSION_STATE := "dev" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230904 # displayed if EXTENSION_STATE = 'dev'
+const EXTENSION_YMD := 20230907 # displayed if EXTENSION_STATE = 'dev'
 
 const USE_THREADS := false # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -73,6 +73,7 @@ func _extension_init() -> void:
 	IVGlobal.skip_splash_screen = true
 	IVGlobal.disable_exit = true
 	IVGlobal.enable_wiki = true
+	IVGlobal.enable_precisions = true
 	IVGlobal.popops_can_stop_sim = false
 	
 	var time_zone := Time.get_time_zone_from_system()
