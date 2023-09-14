@@ -126,7 +126,7 @@ func _temp_show_for_resize() -> void:
 	_panel_container.hide()
 
 
-func _settings_listener(setting: String, _value) -> void:
-	if setting == "gui_size":
+func _settings_listener(setting: StringName, _value: Variant) -> void:
+	if setting == &"gui_size":
 		_temp_show_for_resize()
 
