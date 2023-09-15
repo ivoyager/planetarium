@@ -24,7 +24,7 @@ extends PanelContainer
 
 func _ready():
 	($ControlMod as IVControlDraggable).init_min_size(-1, Vector2.ZERO)
-	var view_save_flow: IVViewSaveFlow = find_child("ViewSaveFlow")
+	var view_save_flow: IVViewSaveFlow = find_child(&"ViewSaveFlow")
 	view_save_flow.resized.connect(_reset_size)
 
 

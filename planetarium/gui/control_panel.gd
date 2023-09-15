@@ -21,14 +21,14 @@ class_name ControlPanel
 extends PanelContainer
 
 
-var reserved_view_names: Array[String] = [
-	tr(&"BUTTON_ZOOM"),
-	tr(&"BUTTON_45_DEG"),
-	tr(&"BUTTON_TOP"),
-	tr(&"BUTTON_HOME"),
-	tr(&"BUTTON_CISLUNAR"),
-	tr(&"BUTTON_SYSTEM"),
-	tr(&"BUTTON_ASTEROIDS"),
+var reserved_view_names: Array[StringName] = [
+	&"BUTTON_ZOOM",
+	&"BUTTON_45_DEG",
+	&"BUTTON_TOP",
+	&"BUTTON_HOME",
+	&"BUTTON_CISLUNAR",
+	&"BUTTON_SYSTEM",
+	&"BUTTON_ASTEROIDS",
 ]
 
 
@@ -50,7 +50,7 @@ func _ready() -> void:
 	time_ckbx.text = "CKBX_TIME"
 	
 	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
-	view_save_flow.init(view_save_button, "LABEL_VIEW1", "PL", true,
+	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
 			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
 	view_save_flow.resized.connect(_reset_size)
 

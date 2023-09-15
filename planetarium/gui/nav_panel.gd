@@ -23,8 +23,8 @@ extends PanelContainer
 
 func _ready():
 	# widgets
-	($"%AsteroidsHScroll" as IVBodyHScroll).add_bodies_from_table("asteroids")
-	($"%SpacecraftHScroll" as IVBodyHScroll).add_bodies_from_table("spacecrafts")
+	($"%AsteroidsHScroll" as IVBodyHScroll).add_bodies_from_table(&"asteroids")
+	($"%SpacecraftHScroll" as IVBodyHScroll).add_bodies_from_table(&"spacecrafts")
 	
 	var mod: IVControlDraggable = $ControlMod
 	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 278.0))
