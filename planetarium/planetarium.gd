@@ -24,7 +24,6 @@ extends RefCounted
 # As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
 # App (PWA). However, it should be exportable to other, non-HTML5 platforms.
 #
-# In Godot 3.x, HTML5 export should use GLES2.
 # Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
 # single thread for maximum browser compatibility.
 
@@ -57,8 +56,7 @@ func _extension_init() -> void:
 		IVGlobal.use_threads = false
 	else:
 		IVGlobal.use_threads = USE_THREADS
-	print("HTML5 = %s, GLES2 = %s, threads = %s"
-			% [IVGlobal.is_html5, IVGlobal.is_gles2, IVGlobal.use_threads])
+	print("HTML5 = %s, threads = %s" % [IVGlobal.is_html5, IVGlobal.use_threads])
 	
 	IVGlobal.project_name = EXTENSION_NAME
 	IVGlobal.project_version = EXTENSION_VERSION
