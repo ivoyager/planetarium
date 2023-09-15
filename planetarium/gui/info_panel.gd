@@ -30,8 +30,8 @@ var _world_targeting: Array = IVGlobal.world_targeting
 var _other_panels: Array[Control] = [] # resize to not cover these
 var _suppress_resize := true
 
-@onready var _selection_data: VBoxContainer = find_child("SelectionData")
-@onready var _data_scroll: ScrollContainer = find_child("DataScroll")
+@onready var _selection_data: VBoxContainer = find_child(&"SelectionData")
+@onready var _data_scroll: ScrollContainer = find_child(&"DataScroll")
 
 
 func _ready():

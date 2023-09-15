@@ -40,7 +40,7 @@ var _is_panel_visible := true
 
 var _panel_container: PanelContainer
 
-@onready var _gui_toggler: GUIToggler = IVGlobal.program.GUIToggler
+@onready var _gui_toggler: GUIToggler = IVGlobal.program[&"GUIToggler"]
 
 
 func _ready():

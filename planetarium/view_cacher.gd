@@ -29,15 +29,15 @@ extends Timer
 # should not be set. The Timer functionality will not be used.
 
 var cache_interval := 0.0 # s; set >0.0 to enable Timer (HTML5 only!)
-var cache_name := "current"
-var cach_set := "view_cacher"
+var cache_name := &"current"
+var cach_set := &"view_cacher"
 var view_flags := IVView.ALL
 
 var _view_manager: IVViewManager
 
 
 func _project_init() -> void:
-	_view_manager = IVGlobal.program.ViewManager
+	_view_manager = IVGlobal.program[&"ViewManager"]
 	IVGlobal.about_to_start_simulator.connect(_on_about_to_start_simulator)
 	IVGlobal.about_to_stop_before_quit.connect(_cache_now.bind(false))
 
@@ -58,8 +58,8 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	if _view_manager.has_view(cache_name, cach_set, true):
 		_view_manager.set_view(cache_name, cach_set, true, true)
 	else:
-		var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
-		view_defaults.set_view("Home", true)
+		var view_defaults: IVViewDefaults = IVGlobal.program[&"ViewDefaults"]
+		view_defaults.set_view(&"Home", true)
 
 
 func _on_timeout() -> void:
