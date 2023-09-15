@@ -118,3 +118,7 @@ file_logging/enable_file_logging=true
 [physics_2d]
 
 motion_fix_enabled=true
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
