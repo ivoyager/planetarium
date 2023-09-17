@@ -122,3 +122,22 @@ motion_fix_enabled=true
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+
+[shader_globals]
+
+iv_time={
+"type": "float",
+"value": 0.0
+}
+iv_mouse_fragcoord={
+"type": "vec2",
+"value": Vector2(0, 0)
+}
+iv_fragment_id_cycler={
+"type": "float",
+"value": 0.0
+}
+iv_fragment_id_range={
+"type": "float",
+"value": 0.0
+}
