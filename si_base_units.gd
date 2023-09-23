@@ -34,13 +34,13 @@ const CANDELA := 1.0
 # Notes on base SI units:
 #
 # See ivoyager/static/units.gd for conversion of base SI units to derived
-# units. These values *SHOULD NOT* affect simulator operation as long as all
-# dimensional quantities are correctly converted to and from internal units.
-# Quantities are converted to or from internal units by (respectively)
+# units. These values should not affect simulator operation *IN THEORY* as long
+# as all dimensional quantities are correctly converted to and from internal
+# units. Quantities are converted to or from internal units by (respectively)
 # multiplying by or dividing by the appropriate IVUnits constant.
 #
-# FIXME: Scale *does* currently matter! The sim works but View and/or camera
-# ranging is buggy if METER != 1.0.
+# In practice, low METER values like 1e-9 begin to break camera code when at
+# small targets due to small non-equal values being evaluated as equal.
 #
 # In past Godot versions (3.2.x and before) it was necessary to reduce METER
 # to 1e-13 to elimitate visual glitches. This seems to be fixed as of 3.5.1.
