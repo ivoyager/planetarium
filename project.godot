@@ -24,6 +24,8 @@ name="I, Voyager - Planetarium"
 
 [debug]
 
+file_logging/enable_file_logging=true
+gdscript/warnings/exclude_addons=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/unsafe_property_access=1
 gdscript/warnings/unsafe_method_access=1
