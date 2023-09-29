@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://planetarium/gui/menu_panel.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dl2ymdlh1ak58" path="res://ivoyager/gui_widgets/main_menu.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://dqwafuo72wscj" path="res://ivoyager/gui_widgets/link_label.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://bkokwngymmnyk" path="res://ivoyager/gui_widgets/version_label.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dl2ymdlh1ak58" path="res://addons/ivoyager_core/gui_widgets/main_menu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dqwafuo72wscj" path="res://addons/ivoyager_core/gui_widgets/link_label.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bkokwngymmnyk" path="res://addons/ivoyager_core/gui_widgets/version_label.tscn" id="6"]
 
 [node name="MenuPanel" type="PanelContainer"]
 anchors_preset = 1

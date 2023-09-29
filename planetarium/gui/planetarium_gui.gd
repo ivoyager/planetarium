@@ -21,7 +21,7 @@ class_name PlanetariumGUI
 extends Control
 const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
 
-# Scenes instanced by IVProjectBuilder need SCENE constant above.
+# Scenes instanced by IVCoreInitializer need SCENE constant above.
 
 
 func _project_init() -> void:

@@ -19,7 +19,7 @@
 # *****************************************************************************
 extends RefCounted
 
-# This file modifies init values in IVGlobal and classes in IVProjectBuilder.
+# This file modifies init values in IVGlobal and classes in IVCoreInitializer.
 #
 # As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
 # App (PWA). However, it should be exportable to other, non-HTML5 platforms.
@@ -79,25 +79,25 @@ func _extension_init() -> void:
 		IVGlobal.home_longitude = time_zone.bias * TAU / 1440.0
 	
 	if IVGlobal.is_html5:
-		IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
+		IVCoreInitializer.gui_nodes.erase("_MainProgBar_")
 		IVGlobal.disable_quit = true
 		IVGlobal.vertecies_per_orbit = 200
 		
 	# class changes
-	IVProjectBuilder.program_refcounteds.erase("_SaveBuilder_")
-	IVProjectBuilder.program_nodes.erase("_SaveManager_")
-	IVProjectBuilder.gui_nodes.erase("_SaveDialog_")
-	IVProjectBuilder.gui_nodes.erase("_LoadDialog_")
-	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
-	IVProjectBuilder.gui_nodes.erase("_MainMenuPopup_")
-	IVProjectBuilder.gui_nodes.erase("_MainProgBar_")
-	IVProjectBuilder.gui_nodes.erase("_CreditsPopup_")
-	IVProjectBuilder.gui_nodes.erase("_GameGUI_")
-	IVProjectBuilder.gui_nodes.erase("_SplashScreen_")
-	IVProjectBuilder.program_nodes._GUIToggler_ = GUIToggler
-	IVProjectBuilder.program_nodes._ViewCacher_ = ViewCacher
-	IVProjectBuilder.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
-	IVProjectBuilder.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
+	IVCoreInitializer.program_refcounteds.erase("_SaveBuilder_")
+	IVCoreInitializer.program_nodes.erase("_SaveManager_")
+	IVCoreInitializer.gui_nodes.erase("_SaveDialog_")
+	IVCoreInitializer.gui_nodes.erase("_LoadDialog_")
+	IVCoreInitializer.gui_nodes.erase("_SplashScreen_")
+	IVCoreInitializer.gui_nodes.erase("_MainMenuPopup_")
+	IVCoreInitializer.gui_nodes.erase("_MainProgBar_")
+	IVCoreInitializer.gui_nodes.erase("_CreditsPopup_")
+	IVCoreInitializer.gui_nodes.erase("_GameGUI_")
+	IVCoreInitializer.gui_nodes.erase("_SplashScreen_")
+	IVCoreInitializer.program_nodes._GUIToggler_ = GUIToggler
+	IVCoreInitializer.program_nodes._ViewCacher_ = ViewCacher
+	IVCoreInitializer.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
+	IVCoreInitializer.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
 	
 	# static class changes
 	IVQFormat.exponent_str = " x 10^"
@@ -137,7 +137,7 @@ func _on_program_objects_instantiated() -> void:
 
 func _on_project_nodes_added() -> void:
 	pass
-	IVProjectBuilder.move_top_gui_child_to_sibling(&"PlanetariumGUI", &"MouseTargetLabel", false)
+	IVCoreInitializer.move_top_gui_child_to_sibling(&"PlanetariumGUI", &"MouseTargetLabel", false)
 
 
 # progressive web app (PWA) updating

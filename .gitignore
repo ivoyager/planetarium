@@ -5,6 +5,6 @@
 export.cfg
 export_presets.cfg
 *.translation
-/ivoyager_assets/
+/addons/ivoyager_assets/
 /export/
 ~*
