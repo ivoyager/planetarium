@@ -1,4 +1,4 @@
-# planetarium.gd
+# initializer.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -27,11 +27,7 @@ extends RefCounted
 # Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
 # single thread for maximum browser compatibility.
 
-const EXTENSION_NAME := "Planetarium"
-const EXTENSION_VERSION := "0.0.16"
-const EXTENSION_BUILD := ""
-const EXTENSION_STATE := "" # 'dev', 'alpha', 'beta', 'rc', ''
-const EXTENSION_YMD := 20230925 # displayed if EXTENSION_STATE = 'dev'
+const VERSION := "v0.0.17-dev"
 
 const USE_THREADS := true # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -40,12 +36,11 @@ const VERBOSE_GLOBAL_SIGNALS := false
 const VERBOSE_STATEMANAGER_SIGNALS := false
 
 
-func _extension_init() -> void:
+func _init() -> void:
 	
-	print("%s %s%s-%s %s" % [EXTENSION_NAME, EXTENSION_VERSION, EXTENSION_BUILD, EXTENSION_STATE,
-			str(EXTENSION_YMD)])
+	print("Planetarium %s - https://ivoyager.dev" % VERSION)
 	
-	if OS.is_debug_build and VERBOSE_GLOBAL_SIGNALS:
+	if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
 		IVDebug.signal_verbosely_all(IVGlobal, "Global")
 	
 	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
@@ -58,11 +53,8 @@ func _extension_init() -> void:
 		IVGlobal.use_threads = USE_THREADS
 	print("HTML5 = %s, threads = %s" % [IVGlobal.is_html5, IVGlobal.use_threads])
 	
-	IVGlobal.project_name = EXTENSION_NAME
-	IVGlobal.project_version = EXTENSION_VERSION
-	IVGlobal.project_build = EXTENSION_BUILD
-	IVGlobal.project_state = EXTENSION_STATE
-	IVGlobal.project_ymd = EXTENSION_YMD
+	IVGlobal.project_name = "Planetarium"
+	IVGlobal.project_version = VERSION
 	
 	IVGlobal.enable_save_load = false
 	IVGlobal.allow_time_setting = true
@@ -136,14 +128,13 @@ func _on_program_objects_instantiated() -> void:
 
 
 func _on_project_nodes_added() -> void:
-	pass
 	IVCoreInitializer.move_top_gui_child_to_sibling(&"PlanetariumGUI", &"MouseTargetLabel", false)
 
 
 # progressive web app (PWA) updating
 
 func _on_simulator_started() -> void:
-	# FIXME34
+	# FIXME GODOT4 MIGRATION: PWA function after we have HTML5 export
 	pass
 #	if IVGlobal.is_html5:
 #		if JavaScript.pwa_needs_update():
@@ -153,7 +144,7 @@ func _on_simulator_started() -> void:
 
 
 func _on_pwa_update_available() -> void:
-	# FIXME34
+	# FIXME GODOT4 MIGRATION: PWA function after we have HTML5 export
 	pass
 #	print("PWA update available!")
 #	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
@@ -161,7 +152,7 @@ func _on_pwa_update_available() -> void:
 
 
 func _update_pwa() -> void:
-	# FIXME34
+	# FIXME GODOT4 MIGRATION: PWA function after we have HTML5 export
 	pass
 #	print("Updating PWA!")
 #	JavaScript.pwa_update()
