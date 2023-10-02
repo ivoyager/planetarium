@@ -19,7 +19,7 @@
 # *****************************************************************************
 extends RefCounted
 
-# This file modifies init values in IVGlobal and classes in IVCoreInitializer.
+# This file modifies ivoyager_core settings and classes.
 #
 # As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
 # App (PWA). However, it should be exportable to other, non-HTML5 platforms.
@@ -48,32 +48,32 @@ func _init() -> void:
 	IVGlobal.simulator_started.connect(_on_simulator_started)
 	
 	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
-		IVGlobal.use_threads = false
+		IVCoreSettings.use_threads = false
 	else:
-		IVGlobal.use_threads = USE_THREADS
-	print("HTML5 = %s, threads = %s" % [IVGlobal.is_html5, IVGlobal.use_threads])
+		IVCoreSettings.use_threads = USE_THREADS
+	print("HTML5 = %s, threads = %s" % [IVGlobal.is_html5, IVCoreSettings.use_threads])
 	
-	IVGlobal.project_name = "Planetarium"
-	IVGlobal.project_version = VERSION
+	IVCoreSettings.project_name = "Planetarium"
+	IVCoreSettings.project_version = VERSION
 	
-	IVGlobal.enable_save_load = false
-	IVGlobal.allow_time_setting = true
-	IVGlobal.allow_time_reversal = true
-	IVGlobal.pause_only_stops_time = true
-	IVGlobal.skip_splash_screen = true
-	IVGlobal.disable_exit = true
-	IVGlobal.enable_wiki = true
-	IVGlobal.enable_precisions = true
-	IVGlobal.popops_can_stop_sim = false
+	IVCoreSettings.enable_save_load = false
+	IVCoreSettings.allow_time_setting = true
+	IVCoreSettings.allow_time_reversal = true
+	IVCoreSettings.pause_only_stops_time = true
+	IVCoreSettings.skip_splash_screen = true
+	IVCoreSettings.disable_exit = true
+	IVCoreSettings.enable_wiki = true
+	IVCoreSettings.enable_precisions = true
+	IVCoreSettings.popops_can_stop_sim = false
 	
 	var time_zone := Time.get_time_zone_from_system()
 	if time_zone and time_zone.has("bias"):
-		IVGlobal.home_longitude = time_zone.bias * TAU / 1440.0
+		IVCoreSettings.home_longitude = time_zone.bias * TAU / 1440.0
 	
 	if IVGlobal.is_html5:
 		IVCoreInitializer.gui_nodes.erase("_MainProgBar_")
-		IVGlobal.disable_quit = true
-		IVGlobal.vertecies_per_orbit = 200
+		IVCoreSettings.disable_quit = true
+		IVCoreSettings.vertecies_per_orbit = 200
 		
 	# class changes
 	IVCoreInitializer.program_refcounteds.erase("_SaveBuilder_")
