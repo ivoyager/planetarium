@@ -24,7 +24,7 @@ const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
 # Scenes instanced by IVCoreInitializer need SCENE constant above.
 
 
-func _project_init() -> void:
+func _ivcore_init() -> void:
 	IVGlobal.system_tree_built_or_loaded.connect(_on_system_tree_built_or_loaded)
 	IVGlobal.simulator_exited.connect(_on_simulator_exited)
 	hide()
