@@ -71,25 +71,25 @@ func _init() -> void:
 		IVCoreSettings.home_longitude = time_zone.bias * TAU / 1440.0
 	
 	if IVGlobal.is_html5:
-		IVCoreInitializer.gui_nodes.erase("_MainProgBar_")
+		IVCoreInitializer.gui_nodes.erase("MainProgBar")
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
 		
 	# class changes
-	IVCoreInitializer.program_refcounteds.erase("_SaveBuilder_")
-	IVCoreInitializer.program_nodes.erase("_SaveManager_")
-	IVCoreInitializer.gui_nodes.erase("_SaveDialog_")
-	IVCoreInitializer.gui_nodes.erase("_LoadDialog_")
-	IVCoreInitializer.gui_nodes.erase("_SplashScreen_")
-	IVCoreInitializer.gui_nodes.erase("_MainMenuPopup_")
-	IVCoreInitializer.gui_nodes.erase("_MainProgBar_")
-	IVCoreInitializer.gui_nodes.erase("_CreditsPopup_")
-	IVCoreInitializer.gui_nodes.erase("_GameGUI_")
-	IVCoreInitializer.gui_nodes.erase("_SplashScreen_")
-	IVCoreInitializer.program_nodes._GUIToggler_ = GUIToggler
-	IVCoreInitializer.program_nodes._ViewCacher_ = ViewCacher
-	IVCoreInitializer.gui_nodes._PlanetariumGUI_ = PlanetariumGUI
-	IVCoreInitializer.gui_nodes._BootScreen_ = BootScreen # added on top; self-frees
+	IVCoreInitializer.program_refcounteds.erase("SaveBuilder")
+	IVCoreInitializer.program_nodes.erase("SaveManager")
+	IVCoreInitializer.gui_nodes.erase("SaveDialog")
+	IVCoreInitializer.gui_nodes.erase("LoadDialog")
+	IVCoreInitializer.gui_nodes.erase("SplashScreen")
+	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
+	IVCoreInitializer.gui_nodes.erase("MainProgBar")
+	IVCoreInitializer.gui_nodes.erase("CreditsPopup")
+	IVCoreInitializer.gui_nodes.erase("GameGUI")
+	IVCoreInitializer.gui_nodes.erase("SplashScreen")
+	IVCoreInitializer.program_nodes["GUIToggler"] = GUIToggler
+	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
+	IVCoreInitializer.gui_nodes["PlanetariumGUI"] = PlanetariumGUI
+	IVCoreInitializer.gui_nodes["BootScreen"] = BootScreen # added on top; self-frees
 	
 	# static class changes
 	IVQFormat.exponent_str = " x 10^"
@@ -98,18 +98,18 @@ func _init() -> void:
 func _on_program_objects_instantiated() -> void:
 	
 	if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
-		var state_manager: IVStateManager = IVGlobal.program.StateManager
+		var state_manager: IVStateManager = IVGlobal.program[&"StateManager"]
 		IVDebug.signal_verbosely_all(state_manager, "StateManager")
 	
 	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
 	
-	var timekeeper: IVTimekeeper = IVGlobal.program.Timekeeper
+	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
 	timekeeper.start_real_world_time = true
-	var view_defaults: IVViewDefaults = IVGlobal.program.ViewDefaults
+	var view_defaults: IVViewDefaults = IVGlobal.program[&"ViewDefaults"]
 	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
-	var theme_manager: IVThemeManager = IVGlobal.program.ThemeManager
-	theme_manager.main_menu_font = "gui_main"
-	var window_manager: IVWindowManager = IVGlobal.program.WindowManager
+	var theme_manager: IVThemeManager = IVGlobal.program[&"ThemeManager"]
+	theme_manager.main_menu_font = &"gui_main"
+	var window_manager: IVWindowManager = IVGlobal.program[&"WindowManager"]
 	window_manager.add_menu_button = true
 #	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
 #	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
