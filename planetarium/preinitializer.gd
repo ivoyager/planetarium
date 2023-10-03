@@ -1,4 +1,4 @@
-# initializer.gd
+# preinitializer.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -55,8 +55,6 @@ func _init() -> void:
 	
 	IVCoreSettings.project_name = "Planetarium"
 	IVCoreSettings.project_version = VERSION
-	
-	IVCoreSettings.enable_save_load = false
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
 	IVCoreSettings.pause_only_stops_time = true
@@ -76,22 +74,15 @@ func _init() -> void:
 		IVCoreSettings.vertecies_per_orbit = 200
 		
 	# class changes
-	IVCoreInitializer.program_refcounteds.erase("SaveBuilder")
-	IVCoreInitializer.program_nodes.erase("SaveManager")
-	IVCoreInitializer.gui_nodes.erase("SaveDialog")
-	IVCoreInitializer.gui_nodes.erase("LoadDialog")
-	IVCoreInitializer.gui_nodes.erase("SplashScreen")
+	IVCoreInitializer.remove_save_load_system = true
 	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
 	IVCoreInitializer.gui_nodes.erase("MainProgBar")
-	IVCoreInitializer.gui_nodes.erase("CreditsPopup")
-	IVCoreInitializer.gui_nodes.erase("GameGUI")
-	IVCoreInitializer.gui_nodes.erase("SplashScreen")
 	IVCoreInitializer.program_nodes["GUIToggler"] = GUIToggler
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
 	IVCoreInitializer.gui_nodes["PlanetariumGUI"] = PlanetariumGUI
 	IVCoreInitializer.gui_nodes["BootScreen"] = BootScreen # added on top; self-frees
 	
-	# static class changes
+	# other singleton changes
 	IVQFormat.exponent_str = " x 10^"
 
 
