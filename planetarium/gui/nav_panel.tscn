@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://diafd62ta13cn"]
 
 [ext_resource type="Script" path="res://planetarium/gui/nav_panel.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bgja2vd1iswvn" path="res://ivoyager/gui_widgets/body_h_scroll.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://cre322bqbtbtd" path="res://ivoyager/gui_widgets/planet_moon_buttons.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://wcxctits85co" path="res://ivoyager/gui_widgets/sun_slice_button.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bgja2vd1iswvn" path="res://addons/ivoyager_core/gui_widgets/body_h_scroll.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cre322bqbtbtd" path="res://addons/ivoyager_core/gui_widgets/planet_moon_buttons.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://wcxctits85co" path="res://addons/ivoyager_core/gui_widgets/sun_slice_button.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://ivoyager/gui_widgets/selection_buttons.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://ivoyager/gui_mods/control_draggable.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="8"]
 
 [node name="NavPanel" type="PanelContainer"]
 anchors_preset = 2

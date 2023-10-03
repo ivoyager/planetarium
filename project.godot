@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="I, Voyager - Planetarium"
-run/main_scene="res://ivoyager/tree_nodes/universe.tscn"
+run/main_scene="res://addons/ivoyager_core/tree_nodes/universe.tscn"
 config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -19,17 +19,13 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://web/jupiter-144.png"
 icon="res://jupiter-icon-128.png"
-main_scene="res://universe.tscn"
+main_scene="res://addons/ivoyager_core/tree_nodes/universe.tscn"
 name="I, Voyager - Planetarium"
-
-[autoload]
-
-IVGlobal="*res://ivoyager/singletons/global.gd"
-IVProjectBuilder="*res://ivoyager/singletons/project_builder.gd"
-IVTableData="*res://addons/ivoyager_table_importer/table_data.gd"
 
 [debug]
 
+file_logging/enable_file_logging=true
+gdscript/warnings/exclude_addons=false
 gdscript/warnings/unused_signal=false
 gdscript/warnings/unsafe_property_access=1
 gdscript/warnings/unsafe_method_access=1
@@ -45,7 +41,7 @@ window/size/viewport_height=1200
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ivoyager_table_importer/plugin.cfg")
+enabled=PackedStringArray("res://addons/ivoyager_core/plugin.cfg", "res://addons/ivoyager_table_importer/plugin.cfg")
 
 [filesystem]
 
@@ -122,22 +118,3 @@ motion_fix_enabled=true
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
-
-[shader_globals]
-
-iv_time={
-"type": "float",
-"value": 0.0
-}
-iv_mouse_fragcoord={
-"type": "vec2",
-"value": Vector2(0, 0)
-}
-iv_fragment_id_cycler={
-"type": "float",
-"value": 0.0
-}
-iv_fragment_id_range={
-"type": "float",
-"value": 0.0
-}
