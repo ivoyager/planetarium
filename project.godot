@@ -19,7 +19,7 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://web/jupiter-144.png"
 icon="res://jupiter-icon-128.png"
-main_scene="res://universe.tscn"
+main_scene="res://addons/ivoyager_core/tree_nodes/universe.tscn"
 name="I, Voyager - Planetarium"
 
 [debug]

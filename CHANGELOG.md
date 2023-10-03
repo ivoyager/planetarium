@@ -1,6 +1,6 @@
 # Changelog
 
-This file documents changes to the Planetarium "shell" project only. For changes to the core submodule (ivoyager) and core assets (ivoyager_assets directory), see [ivoyager/CHANGELOG.md](https://github.com/ivoyager/ivoyager/blob/master/CHANGELOG.md).
+This file documents changes to the Planetarium "shell" project only. For changes to the core simulator code, see [ivoyager_core/CHANGELOG.md](https://github.com/ivoyager/ivoyager_core/blob/master/CHANGELOG.md).
 
 File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -8,11 +8,9 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.17] - Not Released
 
-**Note: _master_ branch may be in a broken state for a few days while we reorganize project structure.** Release v0.0.16 is a fully functional Godot 4.x build.
-
 Under development using Godot 4.1.1.
 
-Requires non-Git-tracked **ivoyager_assets-0.0.16**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
+Requires non-Git-tracked **ivoyager_assets-0.0.17**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
 
 ### Changed
 * Replaced submodule [ivoyager](https://github.com/ivoyager/ivoyager) with addons/[ivoyager_core](https://github.com/ivoyager/ivoyager_core), which now operates as an editor plugin.

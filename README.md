@@ -1,7 +1,5 @@
 # Planetarium
 
-**Note: _master_ branch may be in a broken state for a few days while we reorganize project structure.** Release v0.0.16 is a fully functional Godot 4.x build.
-
 This repository uses submodules! To clone using git:
 
 `git clone --recursive git://github.com/ivoyager/planetarium.git`
