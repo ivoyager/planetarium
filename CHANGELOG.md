@@ -6,11 +6,11 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
-## [v0.0.17] - Not Released
+## [v0.0.17] - 2023-10-03
 
-Under development using Godot 4.1.1.
+Developed for Godot 4.1.1.
 
-Requires non-Git-tracked **ivoyager_assets-0.0.17**; find in [ivoyager releases](https://github.com/ivoyager/ivoyager/releases).
+Requires non-Git-tracked **ivoyager_assets-0.0.17**. Download from [ivoyager releases](https://github.com/ivoyager/ivoyager/releases) and add as res://addons/ivoyager_assets.
 
 ### Changed
 * Replaced submodule [ivoyager](https://github.com/ivoyager/ivoyager) with addons/[ivoyager_core](https://github.com/ivoyager/ivoyager_core), which now operates as an editor plugin.
@@ -113,7 +113,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
-[v0.0.17]: https://github.com/ivoyager/planetarium/compare/v0.0.16...HEAD
+[v0.0.17]: https://github.com/ivoyager/planetarium/compare/v0.0.16...v0.0.17
 [v0.0.16]: https://github.com/ivoyager/planetarium/compare/v0.0.15...v0.0.16
 [v0.0.15]: https://github.com/ivoyager/planetarium/compare/v0.0.14...v0.0.15
 [v0.0.14]: https://github.com/ivoyager/planetarium/compare/v0.0.13...v0.0.14

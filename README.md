@@ -1,14 +1,19 @@
 # Planetarium
 
+[Homepage](https://www.ivoyager.dev)  
+[Forum](https://www.ivoyager.dev/forum)  
+[Issues](https://github.com/ivoyager/ivoyager_core/issues)
+[Changelog](https://github.com/ivoyager/planetarium/blob/master/CHANGELOG.md)
+
+### Installation
+
 This repository uses submodules! To clone using git:
 
 `git clone --recursive git://github.com/ivoyager/planetarium.git`
 
+Assets are not Git-tracked and must be downloaded and added manually. Find the latest `ivoyager_assets` release with ivoyager_core releases [here](https://github.com/ivoyager/ivoyager_core/releases). Add this to your addons directory.
 
-
-[Homepage](https://www.ivoyager.dev)  
-[Forum](https://www.ivoyager.dev/forum)  
-[Issues](https://github.com/ivoyager/ivoyager/issues)
+After above steps, your addons directory will contain three subdirectories: `ivoyager_assets`, `ivoyager_core`, and `ivoyager_table_importer`.
 
 ### What is I, Voyager?
 I, Voyager is
