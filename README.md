@@ -2,7 +2,7 @@
 
 [Homepage](https://www.ivoyager.dev)  
 [Forum](https://www.ivoyager.dev/forum)  
-[Issues](https://github.com/ivoyager/ivoyager_core/issues)
+[Issues](https://github.com/ivoyager/ivoyager_core/issues)  
 [Changelog](https://github.com/ivoyager/planetarium/blob/master/CHANGELOG.md)
 
 ### Installation
