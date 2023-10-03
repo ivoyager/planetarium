@@ -2,8 +2,8 @@ blank_issues_enabled: false
 
 contact_links:
   - name: Bugs, astronomical inaccuracies, or other problems
-    url: https://github.com/ivoyager/ivoyager/issues
-    about: Please open an issue in our ivoyager repository.
+    url: https://github.com/ivoyager/ivoyager_core/issues
+    about: Please open an issue in ivoyager_core repository.
 
   - name: Feature proposal
     url: https://github.com/orgs/ivoyager/discussions
