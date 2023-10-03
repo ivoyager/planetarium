@@ -10,7 +10,7 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 Developed for Godot 4.1.1.
 
-Requires non-Git-tracked **ivoyager_assets-0.0.17**. Download from [ivoyager releases](https://github.com/ivoyager/ivoyager/releases) and add as res://addons/ivoyager_assets.
+Requires non-Git-tracked **ivoyager_assets-0.0.17**. Download from ivoyager_core [releases](https://github.com/ivoyager/ivoyager_core/releases) and add as res://addons/ivoyager_assets.
 
 ### Changed
 * Replaced submodule [ivoyager](https://github.com/ivoyager/ivoyager) with addons/[ivoyager_core](https://github.com/ivoyager/ivoyager_core), which now operates as an editor plugin.
