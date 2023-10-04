@@ -7,6 +7,8 @@
 
 ### Installation
 
+Find more detailed instructions at our [Developers Page](https://www.ivoyager.dev/developers/).
+
 This repository uses submodules! To clone using git:
 
 `git clone --recursive git://github.com/ivoyager/planetarium.git`
