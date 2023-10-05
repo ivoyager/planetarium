@@ -102,6 +102,10 @@ ui_down={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/ivoyager_table_importer/text/units_numbers_text.en.translation")
+
 [locale]
 
 test="en"
