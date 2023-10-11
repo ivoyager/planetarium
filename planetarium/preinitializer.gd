@@ -27,7 +27,7 @@ extends RefCounted
 # Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
 # single thread for maximum browser compatibility.
 
-const VERSION := "v0.0.17-dev"
+const VERSION := "v0.0.18-dev"
 
 const USE_THREADS := true # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
