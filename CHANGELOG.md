@@ -8,11 +8,12 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.18] - Not Released
 
-Under development using Godot 4.2.beta1. _Has backward breaking changes!_
+Under development using Godot 4.2.beta2. _Has backward breaking changes!_
 
 Requires non-Git-tracked, non-release **ivoyager_assets-0.0.18.dev.20231019**; find [here](https://github.com/ivoyager/non_release_assets/releases/tag/2023-10-19).    
 
 ### Changed
+* Gets project version from project.godot.
 * Updated plugin 'ivoyager_core' to v0.0.18.dev (_master_ branch).
 * Updated plugin 'ivoyager_table_importer' to v0.0.7.dev (_master_ branch).
 

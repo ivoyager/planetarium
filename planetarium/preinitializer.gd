@@ -27,7 +27,6 @@ extends RefCounted
 # Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
 # single thread for maximum browser compatibility.
 
-const VERSION := "v0.0.18.dev"
 
 const USE_THREADS := true # set false for debugging
 const NO_THREADS_IF_HTML5 := true # overrides above
@@ -36,9 +35,11 @@ const VERBOSE_GLOBAL_SIGNALS := false
 const VERBOSE_STATEMANAGER_SIGNALS := false
 
 
+
 func _init() -> void:
 	
-	print("Planetarium %s - https://ivoyager.dev" % VERSION)
+	var version: String = ProjectSettings.get_setting("application/config/version")
+	print("Planetarium %s - https://ivoyager.dev" % version)
 	
 	if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
 		IVDebug.signal_verbosely_all(IVGlobal, "Global")
@@ -54,7 +55,7 @@ func _init() -> void:
 	print("HTML5 = %s, threads = %s" % [IVGlobal.is_html5, IVCoreSettings.use_threads])
 	
 	IVCoreSettings.project_name = "Planetarium"
-	IVCoreSettings.project_version = VERSION
+	IVCoreSettings.project_version = version
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
 	IVCoreSettings.pause_only_stops_time = true
