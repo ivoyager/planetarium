@@ -21,7 +21,7 @@ class_name GUIToggler
 extends Node
 
 
-signal all_gui_toggled(is_visible)
+signal all_gui_toggled(is_visible: bool)
 
 
 var hidden_panels := []

@@ -21,7 +21,7 @@ class_name NavPanel
 extends PanelContainer
 
 
-func _ready():
+func _ready() -> void:
 	# widgets
 	($"%AsteroidsHScroll" as IVBodyHScroll).add_bodies_from_table(&"asteroids")
 	($"%SpacecraftHScroll" as IVBodyHScroll).add_bodies_from_table(&"spacecrafts")

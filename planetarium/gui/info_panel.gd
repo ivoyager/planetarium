@@ -34,7 +34,7 @@ var _suppress_resize := true
 @onready var _data_scroll: ScrollContainer = find_child(&"DataScroll")
 
 
-func _ready():
+func _ready() -> void:
 	IVGlobal.simulator_started.connect(_on_simulator_started)
 	var mod: IVControlDraggable = $ControlMod
 	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(315.0, 870.0))

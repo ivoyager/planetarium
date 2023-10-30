@@ -21,7 +21,7 @@ class_name MenuPanel
 extends PanelContainer
 
 
-func _ready():
+func _ready() -> void:
 	var homepage: IVLinkLabel = %HomePage
 	homepage.set_hyperlink("I, Voyager", "https://ivoyager.dev")
 	var credits: IVLinkLabel = %Credits

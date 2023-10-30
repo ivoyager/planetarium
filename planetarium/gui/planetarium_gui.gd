@@ -30,7 +30,7 @@ func _ivcore_init() -> void:
 	hide()
 
 
-func _ready():
+func _ready() -> void:
 	pass
 	
 	# FIXME: I don't know how to do themes!
