@@ -1,4 +1,4 @@
-# preinitializer.gd
+# initializer.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -19,21 +19,12 @@
 # *****************************************************************************
 extends RefCounted
 
-# This file modifies ivoyager_core settings and classes.
-#
-# As of v0.0.10, the Planetarium is mainly being developed as a Progressive Web
-# App (PWA). However, it should be exportable to other, non-HTML5 platforms.
-#
-# Godot 3.4.2+ supports multithreading in HTML5 exports. But we are keeping
-# single thread for maximum browser compatibility.
-
+# This file modifies ivoyager_core & ivoyager_table_importer operation.
 
 const USE_THREADS := true # set false for debugging
-const NO_THREADS_IF_HTML5 := true # overrides above
-
+const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
 const VERBOSE_GLOBAL_SIGNALS := false
 const VERBOSE_STATEMANAGER_SIGNALS := false
-
 
 
 func _init() -> void:
@@ -47,12 +38,9 @@ func _init() -> void:
 	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
 	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
 	IVGlobal.simulator_started.connect(_on_simulator_started)
-	
-	if NO_THREADS_IF_HTML5 and IVGlobal.is_html5:
-		IVCoreSettings.use_threads = false
-	else:
-		IVCoreSettings.use_threads = USE_THREADS
-	print("HTML5 = %s, threads = %s" % [IVGlobal.is_html5, IVCoreSettings.use_threads])
+	var is_web := OS.has_feature("web")
+	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
+	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
 	
 	IVCoreSettings.project_name = "Planetarium"
 	IVCoreSettings.project_version = version
@@ -69,7 +57,7 @@ func _init() -> void:
 	if time_zone and time_zone.has("bias"):
 		IVCoreSettings.home_longitude = time_zone.bias * TAU / 1440.0
 	
-	if IVGlobal.is_html5:
+	if is_web:
 		IVCoreInitializer.gui_nodes.erase("MainProgBar")
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
@@ -109,43 +97,35 @@ func _on_program_objects_instantiated() -> void:
 #	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
 #	options_popup.remove_item("starmap") # web assets only have 8k starmap
 
-#	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
-#	var default_settings := settings_manager.defaults
-#
-#	if IVGlobal.is_html5:
-#		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
-#		view_cacher.cache_interval = 2.0
-#		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
+	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
+	var default_settings := settings_manager.defaults
 
+	if OS.has_feature("web"):
+		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
+		view_cacher.cache_interval = 2.0
+		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
 
 
 func _on_project_nodes_added() -> void:
 	IVCoreInitializer.move_top_gui_child_to_sibling(&"PlanetariumGUI", &"MouseTargetLabel", false)
 
 
-# progressive web app (PWA) updating
-
 func _on_simulator_started() -> void:
-	# FIXME GODOT4 MIGRATION: PWA function after we have HTML5 export
-	pass
-#	if IVGlobal.is_html5:
-#		if JavaScript.pwa_needs_update():
-#			_on_pwa_update_available()
-#		else:
-#			JavaScript.connect("pwa_update_available", Callable(self, "_on_pwa_update_available"))
+	if OS.has_feature("web"):
+		# progressive web app (PWA) updating
+		if JavaScriptBridge.pwa_needs_update():
+			_on_pwa_update_available()
+		else:
+			JavaScriptBridge.pwa_update_available.connect(_on_pwa_update_available)
 
 
 func _on_pwa_update_available() -> void:
-	# FIXME GODOT4 MIGRATION: PWA function after we have HTML5 export
-	pass
-#	print("PWA update available!")
-#	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
-#			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_RUN_WITHOUT_UPDATE")
+	print("PWA update available!")
+	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
+			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_RUN_WITHOUT_UPDATE")
 
 
 func _update_pwa() -> void:
-	# FIXME GODOT4 MIGRATION: PWA function after we have HTML5 export
-	pass
-#	print("Updating PWA!")
-#	JavaScript.pwa_update()
+	print("Updating PWA!")
+	JavaScriptBridge.pwa_update()
 
