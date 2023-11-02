@@ -25,29 +25,26 @@ extends Node
 # We change scale and add a few units (commented).
 #
 # As of Godot 4.2.beta4, there are lighting bugs related to scale that are
-# platform specific. We have to manullly update METER here for export platform.
+# platform specific. We have to manually update METER here for export platform.
 #
 # Windows:
 #   METER = 1.0 works great.
 #   METER = 1e-3 looks ok for all existing bodies.
 #   METER = 1e-4 causes 'lights out' when approaching smallest object (Juno).
-#   METER = 1e-10 caues 'lights out' for Moon & smaller (but see below).
+#   METER = 1e-10 caues 'lights out' for Moon & smaller.
 #
 # HTML5:
 #   METER = 1.0 causes unlit everywhere with irregular light 'patches'.
 #   METER = 1e-3 causes above but only when at larger planets.
 #   METER = 1e-4 causes shadow edge issue at larger planets. (But no hint of Windows issue above.)
 #   METER = 1e-5 as above but less. Self-shadowing artifact?
-#   METER = 1e-10 lighting ok for all tested (but see below)
-#
-# (Note: METER <= 1e-6 causes ivoyager_core camera errors at small objects.
-# This is due to Vector3's w/ small floats being evaluated as equal.) 
-# 
+#   METER = 1e-7 lighting ok for all tested. (Harsh shadow border? Need to compare w/ below.)
+#   METER = 1e-10 lighting ok for all tested.
 
 
 # SI base units
 const SECOND := 1.0
-const METER := 1e-6
+const METER := 1.0 # 1e-7 works for HTML5 export, as of Godot 4.2.beta4
 const KG := 1.0
 const AMPERE := 1.0
 const KELVIN := 1.0
