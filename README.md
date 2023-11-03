@@ -7,13 +7,13 @@
 
 ### Installation
 
-Find more detailed instructions at our [Developers Page](https://www.ivoyager.dev/developers/).
+Find detailed instructions at our [Developers Page](https://www.ivoyager.dev/developers/).
 
 This repository uses submodules! To clone using git:
 
 `git clone --recursive git://github.com/ivoyager/planetarium.git`
 
-Assets are not Git-tracked and must be downloaded and added manually. Find the latest `ivoyager_assets` release with ivoyager_core releases [here](https://github.com/ivoyager/ivoyager_core/releases). Add this to your addons directory.
+**NEW!** As of v0.0.18, the editor plugin will manage assets download and version updates (assets are not Git-tracked). Just press 'Download' at the editor prompt.
 
 After above steps, your addons directory will contain three subdirectories: `ivoyager_assets`, `ivoyager_core`, and `ivoyager_table_importer`.
 

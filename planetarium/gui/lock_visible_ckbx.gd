@@ -43,7 +43,7 @@ var _panel_container: PanelContainer
 @onready var _gui_toggler: GUIToggler = IVGlobal.program[&"GUIToggler"]
 
 
-func _ready():
+func _ready() -> void:
 	IVGlobal.run_state_changed.connect(_on_run_state_changed)
 	IVGlobal.setting_changed.connect(_settings_listener)
 	_gui_toggler.all_gui_toggled.connect(set_pressed)
@@ -73,12 +73,12 @@ func _input(event: InputEvent) -> void:
 		_panel_container.visible = new_visible
 
 
-func set_ckbx_hidden():
+func set_ckbx_hidden() -> void:
 	hide()
 	set_process_input(true)
 
 
-func set_panel_container(panel_container: PanelContainer):
+func set_panel_container(panel_container: PanelContainer) -> void:
 	if _panel_container:
 		_panel_container.item_rect_changed.disconnect(_adjust_detection_rect)
 	_panel_container = panel_container
