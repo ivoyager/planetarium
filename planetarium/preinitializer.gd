@@ -1,4 +1,4 @@
-# initializer.gd
+# preinitializer.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -63,7 +63,6 @@ func _init() -> void:
 		IVCoreSettings.vertecies_per_orbit = 200
 		
 	# class changes
-	IVCoreInitializer.remove_save_load_system = true
 	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
 	IVCoreInitializer.gui_nodes.erase("MainProgBar")
 	IVCoreInitializer.program_nodes["GUIToggler"] = GUIToggler
