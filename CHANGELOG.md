@@ -13,7 +13,6 @@ Under development using Godot 4.2.2.
 ### Changed
 * Updated plugin 'ivoyager_core' to v0.0.19.dev.
 * Updated plugin 'ivoyager_table_importer' to v0.0.8.dev.
-* Updated plugin 'ivoyager_tree_saver' to v0.0.2.dev.
 
 
 ## [v0.0.18] - 2024-03-15
