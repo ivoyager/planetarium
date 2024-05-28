@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bevu554s76x0f"]
+[gd_scene load_steps=10 format=3 uid="uid://bevu554s76x0f"]
 
 [ext_resource type="Script" path="res://planetarium/gui/menu_panel.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cvv4u4ctix3v5" path="res://addons/ivoyager_core/gui_widgets/full_screen_button.tscn" id="2_spw6t"]
 [ext_resource type="PackedScene" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dl2ymdlh1ak58" path="res://addons/ivoyager_core/gui_widgets/main_menu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://boc2r4d0eomdr" path="res://addons/ivoyager_core/gui_widgets/options_button.tscn" id="3_4hcos"]
+[ext_resource type="PackedScene" uid="uid://pjw4ki1qswq0" path="res://addons/ivoyager_core/gui_widgets/hotkeys_button.tscn" id="4_1edhr"]
 [ext_resource type="PackedScene" uid="uid://dqwafuo72wscj" path="res://addons/ivoyager_core/gui_widgets/link_label.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dcw1843unaohr" path="res://addons/ivoyager_core/gui_widgets/quit_button.tscn" id="5_caym3"]
 [ext_resource type="PackedScene" uid="uid://bkokwngymmnyk" path="res://addons/ivoyager_core/gui_widgets/version_label.tscn" id="6"]
 
 [node name="MenuPanel" type="PanelContainer"]
@@ -28,9 +31,22 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
-[node name="MainMenu" parent="VBox/MarginContainer1" instance=ExtResource("4")]
+[node name="MenuVBox" type="VBoxContainer" parent="VBox/MarginContainer1"]
 layout_mode = 2
 size_flags_horizontal = 4
+
+[node name="FullScreenButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("2_spw6t")]
+layout_mode = 2
+
+[node name="OptionsButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("3_4hcos")]
+layout_mode = 2
+
+[node name="HotkeysButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("4_1edhr")]
+layout_mode = 2
+
+[node name="QuitButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("5_caym3")]
+layout_mode = 2
+force_quit = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBox"]
 layout_mode = 2
