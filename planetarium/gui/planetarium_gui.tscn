@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://saqlfgqcbicy"]
+[gd_scene load_steps=10 format=3 uid="uid://saqlfgqcbicy"]
 
 [ext_resource type="Script" path="res://planetarium/gui/planetarium_gui.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bevu554s76x0f" path="res://planetarium/gui/menu_panel.tscn" id="3"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dglsn48wnive" path="res://planetarium/gui/info_panel.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://ba7271tsjvr4o" path="res://planetarium/gui/control_panel.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://whpgdl66sqph" path="res://planetarium/gui/huds_panel.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://do6i0el4c00jr" path="res://addons/ivoyager_core/gui_popups/options_popup.tscn" id="7_oreo0"]
+[ext_resource type="PackedScene" uid="uid://b2fdgq3tjd8wq" path="res://addons/ivoyager_core/gui_popups/hotkeys_popup.tscn" id="8_4fy06"]
+[ext_resource type="PackedScene" uid="uid://c87vdfooqojd1" path="res://addons/ivoyager_core/gui_popups/confirmation.tscn" id="9_rlm5q"]
 
 [node name="PlanetariumGUI" type="Control"]
 layout_mode = 3
@@ -42,3 +45,9 @@ layout_mode = 1
 [node name="MenuPanel" parent="." instance=ExtResource("3")]
 layout_mode = 1
 grow_horizontal = 0
+
+[node name="OptionsPopup" parent="." instance=ExtResource("7_oreo0")]
+
+[node name="HotkeysPopup" parent="." instance=ExtResource("8_4fy06")]
+
+[node name="Confirmation" parent="." instance=ExtResource("9_rlm5q")]
