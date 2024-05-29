@@ -24,30 +24,10 @@ const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
 # Scenes instanced by IVCoreInitializer need SCENE constant above.
 
 
-func _ivcore_init() -> void:
+func _ready() -> void:
 	IVGlobal.system_tree_built_or_loaded.connect(_on_system_tree_built_or_loaded)
 	IVGlobal.simulator_exited.connect(_on_simulator_exited)
 	hide()
-
-
-func _ready() -> void:
-	pass
-	
-	# FIXME: I don't know how to do themes!
-	
-#	var style_box := StyleBoxFlat.new()
-#	style_box.bg_color = Color(1.0, 1.0, 1.0, 0.8) # almost transparent
-#
-##	This doesn't work:
-#	var main_theme: Theme = IVGlobal.themes.main
-#	main_theme.set_stylebox("normal", "PanelContainer", style_box)
-	
-##	This works:
-#	for child in get_children():
-#		var panel_container := child as PanelContainer
-#		if !panel_container:
-#			continue
-#		panel_container.set("theme_override_styles/panel", style_box)
 
 
 func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:

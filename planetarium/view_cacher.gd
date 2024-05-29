@@ -36,7 +36,7 @@ var view_flags := IVView.ALL
 var _view_manager: IVViewManager
 
 
-func _ivcore_init() -> void:
+func _ready() -> void:
 	_view_manager = IVGlobal.program[&"ViewManager"]
 	IVGlobal.about_to_start_simulator.connect(_on_about_to_start_simulator)
 	IVGlobal.about_to_stop_before_quit.connect(_cache_now.bind(false))

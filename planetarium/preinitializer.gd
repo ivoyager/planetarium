@@ -88,14 +88,7 @@ func _on_program_objects_instantiated() -> void:
 	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
 	var theme_manager: IVThemeManager = IVGlobal.program[&"ThemeManager"]
 	theme_manager.main_menu_font = &"gui_main"
-	var window_manager: IVWindowManager = IVGlobal.program[&"WindowManager"]
-	window_manager.add_menu_button = true
-#	var hotkeys_popup: IVHotkeysPopup = IVGlobal.program.HotkeysPopup
-#	hotkeys_popup.add_item("cycle_next_panel", "LABEL_CYCLE_NEXT_PANEL", "LABEL_GUI")
-#	hotkeys_popup.add_item("cycle_prev_panel", "LABEL_CYCLE_LAST_PANEL", "LABEL_GUI")
-#	var options_popup: IVOptionsPopup = IVGlobal.program.OptionsPopup
-#	options_popup.remove_item("starmap") # web assets only have 8k starmap
-
+	
 	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
 	var default_settings := settings_manager.defaults
 
