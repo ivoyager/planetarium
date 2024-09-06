@@ -120,4 +120,3 @@ func _on_pwa_update_available() -> void:
 func _update_pwa() -> void:
 	print("Updating PWA!")
 	JavaScriptBridge.pwa_update()
-

@@ -129,4 +129,3 @@ func _temp_show_for_resize() -> void:
 func _settings_listener(setting: StringName, _value: Variant) -> void:
 	if setting == &"gui_size":
 		_temp_show_for_resize()
-

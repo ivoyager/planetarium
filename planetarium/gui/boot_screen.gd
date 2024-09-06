@@ -34,4 +34,3 @@ func _ready() -> void:
 func _free() -> void:
 	IVGlobal.program.erase(&"BootScreen")
 	queue_free()
-

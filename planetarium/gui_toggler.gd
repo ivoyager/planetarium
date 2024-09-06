@@ -38,4 +38,3 @@ func register_visibility(panel: Control, is_visible: bool) -> void:
 		hidden_panels.erase(panel)
 	elif !hidden_panels.has(panel):
 		hidden_panels.append(panel)
-

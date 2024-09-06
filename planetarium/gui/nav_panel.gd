@@ -31,4 +31,3 @@ func _ready() -> void:
 	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 336.0))
 	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 400.0))
 	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
-

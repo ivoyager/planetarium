@@ -96,4 +96,3 @@ func _resize_vertical() -> void:
 		custom_minimum_size.y = data_size + above_data_size + UNDER_DATA_MARGIN
 	size.y = custom_minimum_size.y
 	_suppress_resize = false
-

@@ -69,4 +69,3 @@ func _on_timeout() -> void:
 
 func _cache_now(allow_threaded_cache_write := true) -> void:
 	_view_manager.save_view(cache_name, cach_set, true, view_flags, allow_threaded_cache_write)
-
