@@ -213,4 +213,3 @@ var unit_lambdas := {
 	&"degF" : func convert_fahrenheit(x: float, to_internal := true) -> float:
 		return  (x + 459.67) / 1.8 if to_internal else x * 1.8 - 459.67,
 }
-

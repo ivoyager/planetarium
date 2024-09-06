@@ -36,4 +36,3 @@ func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:
 
 func _on_simulator_exited() -> void:
 	hide()
-

@@ -8,11 +8,11 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.19] - Not Released
 
-Under development using Godot 4.2.2.
+Under development using Godot 4.3.
 
 ### Changed
-* Updated plugin 'ivoyager_core' to v0.0.19.dev.
-* Updated plugin 'ivoyager_table_importer' to v0.0.8.dev.
+* Ongoing updates: plugin 'ivoyager_core' to v0.0.19.dev.
+* Ongoing updates: plugin 'ivoyager_table_importer' to v0.0.8.dev.
 
 
 ## [v0.0.18] - 2024-03-15

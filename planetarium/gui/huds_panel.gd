@@ -30,4 +30,3 @@ func _ready() -> void:
 
 func _reset_size() -> void:
 	size = Vector2.ZERO
-
