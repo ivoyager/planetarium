@@ -153,3 +153,7 @@ iv_fragment_id_range={
 "type": "float",
 "value": 0.0
 }
+iv_sun_global_positions={
+"type": "mat3",
+"value": Basis(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
