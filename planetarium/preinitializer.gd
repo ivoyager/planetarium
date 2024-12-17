@@ -105,10 +105,12 @@ func _on_project_nodes_added() -> void:
 func _on_simulator_started() -> void:
 	if OS.has_feature("web"):
 		# progressive web app (PWA) updating
-		if JavaScriptBridge.pwa_needs_update():
+		var pwa_needs_update := JavaScriptBridge.pwa_needs_update()
+		print("PWA nees update: ", pwa_needs_update)
+		if pwa_needs_update:
 			_on_pwa_update_available()
-		else:
-			JavaScriptBridge.pwa_update_available.connect(_on_pwa_update_available)
+			return
+		JavaScriptBridge.pwa_update_available.connect(_on_pwa_update_available)
 
 
 func _on_pwa_update_available() -> void:

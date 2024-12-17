@@ -1,338 +1,268 @@
 <!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
-<head>
-	<meta charset='utf-8' />
-	<meta name='viewport' content='width=device-width, user-scalable=no' />
-	<title>$GODOT_PROJECT_NAME</title>
-	<style type='text/css'>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<title>$GODOT_PROJECT_NAME</title>
+		<style>
+html, body, #canvas {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
 
-		body {
-			touch-action: none;
-			margin: 0;
-			border: 0 none;
-			padding: 0;
-			text-align: center;
-			background-color: black;
-		}
+body {
+	color: white;
+	background-color: black;
+	overflow: hidden;
+	touch-action: none;
+}
 
-		#canvas {
-			display: block;
-			margin: 0;
-			color: white;
-		}
+#canvas {
+	display: block;
+}
 
-		#canvas:focus {
-			outline: none;
-		}
+#canvas:focus {
+	outline: none;
+}
 
-		.godot {
-			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-			color: #e0e0e0;
-			background-color: #3b3943;
-			background-image: linear-gradient(to bottom, #403e48, #35333c);
-			border: 1px solid #45434e;
-			box-shadow: 0 0 1px 1px #2f2d35;
-		}
+/* Planetarium modified */
+
+#status {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+}
+
+#status-splash {
+	margin: 100px 0 100px 50px;
+}
+
+#info-container {
+	width: 300px;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	text-align: left;
+	margin: 85px 50px 100px 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
 		
-		/* Planetarium */
-		
-		#load-container {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			display: flex;
-			justify-content: center;
-		}
+p {
+	color: white;
+}
 
-		#pale-blue-dot {
-			margin: 100px 0 100px 50px;
-		}
-		
-		#info-container {
-			width: 300px;
-			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-			text-align: left;
-			margin: 85px 50px 100px 50px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-		}
-				
-		p {
-			color: white;
-		}
-		
-		a {
-			text-decoration: none;
-			color: #adf;
-		}
-		
-		@media only screen and (orientation: portrait) {
-			#load-container {
-				flex-direction: column;
-				justify-content: flex-start;
-				align-items: center;
-			}
-			#pale-blue-dot {
-				width: 400px;
-				margin: 50px 50px 0 50px;
-			}
-			#info-container {
-				width: 90%;
-				flex-direction: column-reverse;
-				text-align: center;
-				margin: 15px 50px 50px 50px;
-			}
-		}
+a {
+	text-decoration: none;
+	color: #adf;
+}
 
-		/* END Planetarium */
+#status-progress, #status-notice {
+	display: none;
+}
+
+#status-progress {
+	width: 180px;
+	height: 7px;
+	background-color: #38363A;
+	border: 1px solid #444246;
+	padding: 1px;
+	box-shadow: 0 0 2px 1px #1B1C22;
+	border-radius: 2px;
+	visibility: visible;
+}
+
+#status-notice {
+	background-color: #5b3943;
+	border-radius: 0.5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	line-height: 1.3;
+	margin: 0 2rem;
+	overflow: hidden;
+	padding: 1rem;
+	text-align: center;
+	z-index: 1;
+}
+
+@media only screen and (orientation: portrait) {
+	#status {
+		flex-direction: column;
+		align-items: center;
+	}
+	#status-splash {
+		width: 400px;
+		margin: 50px 50px 0 50px;
+	}
+	#info-container {
+		width: 90%;
+		flex-direction: column-reverse;
+		text-align: center;
+		align-items: center;
+		margin: 15px 50px 50px 50px;
+		justify-content: center;
+	}
+}
+
+/* END Planetarium */
 
 
-		/* Status display
-		 * ============== */
 
-		#status {
-			position: relative; /* Planetarium changed from absolute */
-			height: 42px;  /* Planetarium */
-			left: 0;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			/* don't consume click events - make children visible explicitly */
-			visibility: hidden;
-		}
+		</style>
+		$GODOT_HEAD_INCLUDE
+	</head>
+	<body>
+		<canvas id="canvas">
+			Your browser does not support the canvas tag.
+		</canvas>
 
-		#status-progress {
-			width: 180px;  /* Planetarium changed from 366px */
-			height: 7px;
-			background-color: #38363A;
-			border: 1px solid #444246;
-			padding: 1px;
-			box-shadow: 0 0 2px 1px #1B1C22;
-			border-radius: 2px;
-			visibility: visible;
-		}
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
 
-		/* Planetarium disabled
-		@media only screen and (orientation:portrait) {
-			#status-progress {
-				width: 61.8%;
-			}
-		}
-		*/
-
-		#status-progress-inner {
-			height: 100%;
-			width: 0;
-			box-sizing: border-box;
-			transition: width 0.5s linear;
-			background-color: #202020;
-			border: 1px solid #222223;
-			box-shadow: 0 0 1px 1px #27282E;
-			border-radius: 3px;
-		}
-
-		#status-indeterminate {
-			height: 42px;
-			visibility: visible;
-			position: relative;
-		}
-
-		#status-indeterminate > div {
-			width: 4.5px;
-			height: 0;
-			border-style: solid;
-			border-width: 9px 3px 0 3px;
-			border-color: #2b2b2b transparent transparent transparent;
-			transform-origin: center 21px;
-			position: absolute;
-		}
-
-		#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
-		#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
-		#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
-		#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
-		#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
-		#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
-		#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
-		#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
-
-		#status-notice {
-			margin: 0 100px;
-			line-height: 1.3;
-			visibility: visible;
-			padding: 4px 6px;
-			visibility: visible;
-		}
-	</style>
-$GODOT_HEAD_INCLUDE
-</head>
-<body>
-	<canvas id='canvas'>
-		HTML5 canvas appears to be unsupported in the current browser.<br />
-		Please try updating or use a different browser.
-	</canvas>
-	
-	<!-- Planetarium: The 'status' element is unmodified, but is now
-	     embedded within Planetarium content. -->
-	
-	<div id='load-container'>
-	
-		<img id='pale-blue-dot' src="pale_blue_dot_453x614.jpg" alt="Pale Blue Dot">
-
-		<div id='info-container'>
-			<div>
-				<p>
-					I, Voyager - Planetarium<br>
-					v0.0.19a<br><br>
-					Loading...
-				</p>
-				<div id='status'>
-					<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
-					<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>
-					<div id='status-notice' class='godot' style='display: none;'></div>
+		<div id='status'>
+			<!-- Planetarium:
+			Redirected status-splash.
+			Embedded status-progress & status-notice within info-container.
+			-->
+			<img id='status-splash' src="pale_blue_dot_453x614.jpg" alt="Pale Blue Dot">
+			<div id='info-container'>
+				<div>
+					<p>
+						I, Voyager - Planetarium<br>
+						v0.0.19m<br><br>
+						Loading...
+					</p>
+					<progress id="status-progress"></progress>
+					<div id="status-notice"></div>
+					<p>
+						<br>You can install the Planetarium!<br>
+					</p>
+					<p>
+						After download, look for the install icon in the URL bar of your browser.<br>
+					</p>
+					<p>
+						Please consider supporting us at our GitHub 
+						<a href='https://github.com/sponsors/ivoyager' target='_blank'>Sponsor's Page!</a>
+					</p>
 				</div>
-				<p>
-					<br>You can install the Planetarium!<br>
-				</p>
-				<p>
-					After download, look for the install icon in the URL bar of your browser.<br>
-				</p>
-				<p>
-					Please consider supporting us at our GitHub 
-					<a href='https://github.com/sponsors/ivoyager' target='_blank'>Sponsor's Page!</a>
-				</p>
+				<a id='pbd-caption' href='https://www.planetary.org/worlds/pale-blue-dot' target='_blank'>
+					Pale Blue Dot<br><br>
+					Earth as seen by Voyager 1 from 6.4 billion kilometers.
+				</a>
 			</div>
-			<a id='pbd-caption' href='https://www.planetary.org/worlds/pale-blue-dot' target='_blank'>
-				Pale Blue Dot<br>
-				Earth as seen by Voyager 1 from 6.4 billion kilometers.
-			</a>
 		</div>
-	</div>
 
-	<script type='text/javascript' src='$GODOT_URL'></script>
-	<script type='text/javascript'>//<![CDATA[
+		<script src="$GODOT_URL"></script>
+		<script>
+const GODOT_CONFIG = $GODOT_CONFIG;
+const GODOT_THREADS_ENABLED = $GODOT_THREADS_ENABLED;
+const engine = new Engine(GODOT_CONFIG);
 
-		const GODOT_CONFIG = $GODOT_CONFIG;
-		var engine = new Engine(GODOT_CONFIG);
+(function () {
+	const statusOverlay = document.getElementById('status');
+	const statusProgress = document.getElementById('status-progress');
+	const statusNotice = document.getElementById('status-notice');
 
-		(function() {
-			const INDETERMINATE_STATUS_STEP_MS = 100;
-			var statusProgress = document.getElementById('status-progress');
-			var statusProgressInner = document.getElementById('status-progress-inner');
-			var statusIndeterminate = document.getElementById('status-indeterminate');
-			var statusNotice = document.getElementById('status-notice');
-			
-			var loadContainer = document.getElementById('load-container'); // Planetarium
+	let initializing = true;
+	let statusMode = '';
 
-			var initializing = true;
-			var statusMode = 'hidden';
+	function setStatusMode(mode) {
+		if (statusMode === mode || !initializing) {
+			return;
+		}
+		if (mode === 'hidden') {
+			statusOverlay.remove();
+			initializing = false;
+			return;
+		}
+		statusOverlay.style.visibility = 'visible';
+		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
+		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
+		statusMode = mode;
+	}
 
-			var animationCallbacks = [];
-			function animate(time) {
-				animationCallbacks.forEach(callback => callback(time));
-				requestAnimationFrame(animate);
+	function setStatusNotice(text) {
+		while (statusNotice.lastChild) {
+			statusNotice.removeChild(statusNotice.lastChild);
+		}
+		const lines = text.split('\n');
+		lines.forEach((line) => {
+			statusNotice.appendChild(document.createTextNode(line));
+			statusNotice.appendChild(document.createElement('br'));
+		});
+	}
+
+	function displayFailureNotice(err) {
+		console.error(err);
+		if (err instanceof Error) {
+			setStatusNotice(err.message);
+		} else if (typeof err === 'string') {
+			setStatusNotice(err);
+		} else {
+			setStatusNotice('An unknown error occurred.');
+		}
+		setStatusMode('notice');
+		initializing = false;
+	}
+
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
+
+	if (missing.length !== 0) {
+		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+			let serviceWorkerRegistrationPromise;
+			try {
+				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
+			} catch (err) {
+				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
 			}
-			requestAnimationFrame(animate);
-
-			function setStatusMode(mode) {
-
-				if (statusMode === mode || !initializing)
-					return;
-				[statusProgress, statusIndeterminate, statusNotice].forEach(elem => {
-					elem.style.display = 'none';
-				});
-				animationCallbacks = animationCallbacks.filter(function(value) {
-					return (value != animateStatusIndeterminate);
-				});
-				switch (mode) {
-					case 'progress':
-						statusProgress.style.display = 'block';
-						break;
-					case 'indeterminate':
-						statusIndeterminate.style.display = 'block';
-						animationCallbacks.push(animateStatusIndeterminate);
-						break;
-					case 'notice':
-						statusNotice.style.display = 'block';
-						break;
-					case 'hidden':
-						loadContainer.style.display = 'none'; // Planetarium
-						break;
-					default:
-						throw new Error('Invalid status mode');
+			// There's a chance that installing the service worker would fix the issue
+			Promise.race([
+				serviceWorkerRegistrationPromise.then((registration) => {
+					if (registration != null) {
+						return Promise.reject(new Error('Service worker already exists.'));
+					}
+					return registration;
+				}).then(() => engine.installServiceWorker()),
+				// For some reason, `getRegistration()` can stall
+				new Promise((resolve) => {
+					setTimeout(() => resolve(), 2000);
+				}),
+			]).then(() => {
+				// Reload if there was no error.
+				window.location.reload();
+			}).catch((err) => {
+				console.error('Error while registering service worker:', err);
+			});
+		} else {
+			// Display the message as usual
+			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+			displayFailureNotice(missingMsg + missing.join('\n'));
+		}
+	} else {
+		setStatusMode('progress');
+		engine.startGame({
+			'onProgress': function (current, total) {
+				if (current > 0 && total > 0) {
+					statusProgress.value = current;
+					statusProgress.max = total;
+				} else {
+					statusProgress.removeAttribute('value');
+					statusProgress.removeAttribute('max');
 				}
-				statusMode = mode;
-			}
-
-			function animateStatusIndeterminate(ms) {
-				var i = Math.floor(ms / INDETERMINATE_STATUS_STEP_MS % 8);
-				if (statusIndeterminate.children[i].style.borderTopColor == '') {
-					Array.prototype.slice.call(statusIndeterminate.children).forEach(child => {
-						child.style.borderTopColor = '';
-					});
-					statusIndeterminate.children[i].style.borderTopColor = '#dfdfdf';
-				}
-			}
-
-			function setStatusNotice(text) {
-				while (statusNotice.lastChild) {
-					statusNotice.removeChild(statusNotice.lastChild);
-				}
-				var lines = text.split('\n');
-				lines.forEach((line) => {
-					statusNotice.appendChild(document.createTextNode(line));
-					statusNotice.appendChild(document.createElement('br'));
-				});
-			};
-
-			function displayFailureNotice(err) {
-				var msg = err.message || err;
-				console.error(msg);
-				setStatusNotice(msg);
-				setStatusMode('notice');
-				initializing = false;
-			};
-
-			if (!Engine.isWebGLAvailable()) {
-				displayFailureNotice('WebGL not available');
-			} else {
-				setStatusMode('indeterminate');
-				engine.startGame({
-					'onProgress': function (current, total) {
-						if (total > 0) {
-							statusProgressInner.style.width = current/total * 100 + '%';
-							setStatusMode('progress');
-							if (current === total) {
-								// wait for progress bar animation
-								setTimeout(() => {
-									setStatusMode('indeterminate');
-								}, 500);
-							}
-						} else {
-							setStatusMode('indeterminate');
-						}
-					},
-				}).then(() => {
-					setStatusMode('hidden');
-					initializing = false;
-				}, displayFailureNotice);
-			}
-		})();
-	//]]></script>
-</body>
+			},
+		}).then(() => {
+			setStatusMode('hidden');
+		}, displayFailureNotice);
+	}
+}());
+		</script>
+	</body>
 </html>
