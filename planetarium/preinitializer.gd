@@ -19,7 +19,7 @@
 # *****************************************************************************
 extends RefCounted
 
-# This file modifies ivoyager_core & ivoyager_table_importer operation.
+# This file modifies operation if plugins ivoyager_core & ivoyager_units.
 
 const USE_THREADS := true # set false for debugging
 const DISABLE_THREADS_IF_WEB := true # override for browser compatibility

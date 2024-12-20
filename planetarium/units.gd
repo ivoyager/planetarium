@@ -19,11 +19,12 @@
 # *****************************************************************************
 extends Node
 
-# Replacement singleton 'IVUnits'.
-#
-# Almost exact copy of ivoyager_table_importer/singletons/units.gd.
-# We change scale and add a few units (commented).
-#
+## Planetarium's IVUnits singleton
+##
+## This file replaces the plugin template file at addons/ivoyager_units/units.gd.
+## It's mostly unchanged except for sim scale (const METER) and a few added
+## units. See the class file for comments about scale in project exports.[br][br]
+
 # As of Godot 4.2.beta4, there are lighting bugs related to scale that are
 # platform specific. We have to manually update METER here for export platform.
 #
