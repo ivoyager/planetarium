@@ -45,6 +45,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="QuitButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("5_caym3")]
+unique_name_in_owner = true
 layout_mode = 2
 force_quit = true
 
