@@ -1,5 +1,7 @@
 # Progressive Web App (PWA) Deployment
 
+Note: As of Godot 4.3, most PWA functionality seems to be broken. There is no caching or offline operation.
+
 Godot 3.4.1 introduced [PWA](https://web.dev/what-are-pwas/) functionality, but it's still a little rough to deploy as of Godot 4.2.1.
 
 These files are referenced in export_presets.config and used to generate the HTML5 export:
