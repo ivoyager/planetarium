@@ -4,3 +4,9 @@
 [submodule "addons/ivoyager_core"]
 	path = addons/ivoyager_core
 	url = https://github.com/ivoyager/ivoyager_core
+[submodule "addons/ivoyager_units"]
+	path = addons/ivoyager_units
+	url = https://github.com/ivoyager/ivoyager_units
+[submodule "addons/ivoyager_tables"]
+	path = addons/ivoyager_tables
+	url = https://github.com/ivoyager/ivoyager_tables
