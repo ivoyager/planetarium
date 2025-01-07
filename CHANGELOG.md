@@ -6,9 +6,9 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
-## [v0.0.21] - Unreleased
+## [v0.0.21] - 2025-01-07
 
-Under development using Godot 4.3.
+Developed using Godot 4.3.
 
 ### Changed
 * Updated plugin 'ivoyager_core' to v0.0.21.
@@ -150,7 +150,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
-[v0.0.21]: https://github.com/ivoyager/planetarium/compare/v0.0.20...HEAD
+[v0.0.21]: https://github.com/ivoyager/planetarium/compare/v0.0.20...v0.0.21
 [v0.0.20]: https://github.com/ivoyager/planetarium/compare/v0.0.19...v0.0.20
 [v0.0.19]: https://github.com/ivoyager/planetarium/compare/v0.0.18...v0.0.19
 [v0.0.18]: https://github.com/ivoyager/planetarium/compare/v0.0.17...v0.0.18
