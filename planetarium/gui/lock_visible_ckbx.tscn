@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4wt6rs2mwd7l"]
 
-[ext_resource type="Script" path="res://planetarium/gui/lock_visible_ckbx.gd" id="1"]
+[ext_resource type="Script" uid="uid://bsu0lnp0pjbn8" path="res://planetarium/gui/lock_visible_ckbx.gd" id="1"]
 
 [node name="LockVisibleCkbx" type="CheckBox"]
 offset_right = 24.0

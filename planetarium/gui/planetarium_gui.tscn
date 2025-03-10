@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://saqlfgqcbicy"]
 
-[ext_resource type="Script" path="res://planetarium/gui/planetarium_gui.gd" id="1"]
+[ext_resource type="Script" uid="uid://c4siwtcxwvw4j" path="res://planetarium/gui/planetarium_gui.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bevu554s76x0f" path="res://planetarium/gui/menu_panel.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://diafd62ta13cn" path="res://planetarium/gui/nav_panel.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dglsn48wnive" path="res://planetarium/gui/info_panel.tscn" id="5"]
