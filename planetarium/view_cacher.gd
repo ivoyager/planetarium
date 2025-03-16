@@ -28,10 +28,12 @@ extends Timer
 # For non-HTML5 exports, cache will be written on quit and cache_interval
 # should not be set. The Timer functionality will not be used.
 
+const ViewFlags := IVView.ViewFlags
+
 var cache_interval := 0.0 # s; set >0.0 to enable Timer (HTML5 only!)
 var cache_name := &"current"
 var cach_set := &"view_cacher"
-var view_flags := IVView.ALL
+var view_flags := ViewFlags.VIEWFLAGS_ALL
 
 var _view_manager: IVViewManager
 

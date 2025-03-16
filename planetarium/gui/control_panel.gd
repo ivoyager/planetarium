@@ -21,6 +21,8 @@ class_name ControlPanel
 extends PanelContainer
 
 
+const ViewFlags := IVView.ViewFlags
+
 var reserved_view_names: Array[StringName] = [
 	&"BUTTON_ZOOM",
 	&"BUTTON_45_DEG",
@@ -51,7 +53,7 @@ func _ready() -> void:
 	
 	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
 	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
-			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
+			ViewFlags.VIEWFLAGS_ALL, ViewFlags.VIEWFLAGS_ALL_CAMERA, reserved_view_names)
 	view_save_flow.resized.connect(_reset_size)
 
 
