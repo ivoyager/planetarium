@@ -60,8 +60,7 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	if _view_manager.has_view(cache_name, cach_set, true):
 		_view_manager.set_view(cache_name, cach_set, true, true)
 	else:
-		var view_defaults: IVViewDefaults = IVGlobal.program[&"ViewDefaults"]
-		view_defaults.set_view(&"Home", true)
+		_view_manager.set_table_view(&"VIEW_HOME", true)
 
 
 func _on_timeout() -> void:
