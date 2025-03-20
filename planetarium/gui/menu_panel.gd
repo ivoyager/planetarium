@@ -32,9 +32,9 @@ func _ready() -> void:
 	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/ivoyager")
 	
 	var mod: IVControlDraggable = $ControlMod
-	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(75.0, 0.0))
-	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(100.0, 0.0))
-	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(125.0, 0.0))
+	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(75.0, 0.0))
+	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(100.0, 0.0))
+	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(125.0, 0.0))
 	
 	prints('OS.has_feature("web")', OS.has_feature("web"))
 	

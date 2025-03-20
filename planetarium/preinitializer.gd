@@ -95,7 +95,7 @@ func _on_program_objects_instantiated() -> void:
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
 		view_cacher.cache_interval = 2.0
-		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
+		default_settings.gui_size = IVGlobal.GUISize.GUI_LARGE
 
 
 func _on_project_nodes_added() -> void:
