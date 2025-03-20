@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://ba7271tsjvr4o"]
 
-[ext_resource type="Script" path="res://planetarium/gui/control_panel.gd" id="1"]
+[ext_resource type="Script" uid="uid://bwtmii13a7exf" path="res://planetarium/gui/control_panel.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b8lhpum4e5tps" path="res://addons/ivoyager_core/gui_widgets/date_time_label.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://addons/ivoyager_core/gui_widgets/now_ckbx.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://addons/ivoyager_core/gui_widgets/selection_label.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://addons/ivoyager_core/gui_widgets/range_label.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bh05kj1lc1y01" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://addons/ivoyager_core/gui_widgets/speed_buttons.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://welwpw4boyv8" path="res://addons/ivoyager_core/gui_widgets/lat_long_label.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://chl27l6aiico8" path="res://addons/ivoyager_core/gui_widgets/focal_length_control.tscn" id="11_13kj6"]
@@ -91,19 +91,19 @@ layout_mode = 2
 
 [node name="Home" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_HOME"
+text = "VIEW_HOME"
 
 [node name="Cislunar" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_CISLUNAR"
+text = "VIEW_CISLUNAR"
 
 [node name="System" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_SYSTEM"
+text = "VIEW_SYSTEM"
 
 [node name="Asteroids" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_ASTEROIDS"
+text = "VIEW_ASTEROIDS"
 
 [node name="Spacer" type="Control" parent="VBox/HBox"]
 layout_mode = 2
@@ -111,15 +111,15 @@ size_flags_horizontal = 3
 
 [node name="Zoom" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_ZOOM"
+text = "VIEW_ZOOM"
 
 [node name="Fortyfive" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_45_DEG"
+text = "VIEW_FORTYFIVE"
 
 [node name="Top" parent="VBox/HBox" instance=ExtResource("19")]
 layout_mode = 2
-text = "BUTTON_TOP"
+text = "VIEW_TOP"
 
 [node name="ViewSaveFlow" parent="VBox" instance=ExtResource("18")]
 unique_name_in_owner = true

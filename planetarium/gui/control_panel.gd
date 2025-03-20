@@ -21,6 +21,8 @@ class_name ControlPanel
 extends PanelContainer
 
 
+const ViewFlags := IVView.ViewFlags
+
 var reserved_view_names: Array[StringName] = [
 	&"BUTTON_ZOOM",
 	&"BUTTON_45_DEG",
@@ -34,9 +36,9 @@ var reserved_view_names: Array[StringName] = [
 
 func _ready() -> void:
 	var mod: IVControlDraggable = $ControlMod
-	mod.init_min_size(IVEnums.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
-	mod.init_min_size(IVEnums.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
-	mod.init_min_size(IVEnums.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
+	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
+	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
+	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
 	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
 	# widget mods
@@ -51,7 +53,7 @@ func _ready() -> void:
 	
 	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
 	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
-			IVView.ALL, IVView.ALL_CAMERA, reserved_view_names)
+			ViewFlags.VIEWFLAGS_ALL, ViewFlags.VIEWFLAGS_ALL_CAMERA, reserved_view_names)
 	view_save_flow.resized.connect(_reset_size)
 
 

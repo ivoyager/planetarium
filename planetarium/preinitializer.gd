@@ -84,8 +84,8 @@ func _on_program_objects_instantiated() -> void:
 	
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
 	timekeeper.start_real_world_time = true
-	var view_defaults: IVViewDefaults = IVGlobal.program[&"ViewDefaults"]
-	view_defaults.move_home_at_start = false # ViewCacher does initial camera move
+	var view_manager: IVViewManager = IVGlobal.program[&"ViewManager"]
+	view_manager.move_home_at_start = false # ViewCacher does initial camera move
 	var theme_manager: IVThemeManager = IVGlobal.program[&"ThemeManager"]
 	theme_manager.main_menu_font = &"gui_main"
 	
@@ -95,7 +95,7 @@ func _on_program_objects_instantiated() -> void:
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
 		view_cacher.cache_interval = 2.0
-		default_settings.gui_size = IVEnums.GUISize.GUI_LARGE
+		default_settings.gui_size = IVGlobal.GUISize.GUI_LARGE
 
 
 func _on_project_nodes_added() -> void:

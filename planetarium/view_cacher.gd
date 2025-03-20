@@ -28,10 +28,12 @@ extends Timer
 # For non-HTML5 exports, cache will be written on quit and cache_interval
 # should not be set. The Timer functionality will not be used.
 
+const ViewFlags := IVView.ViewFlags
+
 var cache_interval := 0.0 # s; set >0.0 to enable Timer (HTML5 only!)
 var cache_name := &"current"
 var cach_set := &"view_cacher"
-var view_flags := IVView.ALL
+var view_flags := ViewFlags.VIEWFLAGS_ALL
 
 var _view_manager: IVViewManager
 
@@ -58,8 +60,7 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 	if _view_manager.has_view(cache_name, cach_set, true):
 		_view_manager.set_view(cache_name, cach_set, true, true)
 	else:
-		var view_defaults: IVViewDefaults = IVGlobal.program[&"ViewDefaults"]
-		view_defaults.set_view(&"Home", true)
+		_view_manager.set_table_view(&"VIEW_HOME", true)
 
 
 func _on_timeout() -> void:
