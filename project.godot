@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="I, Voyager - Planetarium"
-config/version="v0.0.23.dev"
+config/version="v0.0.23"
 run/main_scene="uid://dyca8o73ks7n4"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0, 0, 0, 1)
