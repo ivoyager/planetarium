@@ -6,12 +6,20 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
+## [v0.0.24] - UNRELEASED
+
+Developed using Godot 4.4.
+
+### Changed
+* Set `IVUnits.METER := 2e3` to support new shadows fix.
+* Updated plugin ivoyager_core to v0.0.24.dev.
+* Updated plugin ivoyager_tables to v0.0.3.dev.
+
 ## [v0.0.23] - 2025-03-20
 
 Developed using Godot 4.4.
 
 ### Changed
-
 * Typed all dictionaries.
 * Many code updates for plugin changes.
 * Updated plugin ivoyager_core to v0.0.23.
@@ -170,6 +178,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
+[v0.0.24]: https://github.com/ivoyager/planetarium/compare/v0.0.23...HEAD
 [v0.0.23]: https://github.com/ivoyager/planetarium/compare/v0.0.22...v0.0.23
 [v0.0.22]: https://github.com/ivoyager/planetarium/compare/v0.0.21...v0.0.22
 [v0.0.21]: https://github.com/ivoyager/planetarium/compare/v0.0.20...v0.0.21
