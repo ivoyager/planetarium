@@ -26,10 +26,10 @@ const MIN_DATA_SIZE := 80.0
 const UNDER_DATA_MARGIN := 20.0
 const UNDER_PANEL_GAP := 60.0
 
-var _world_targeting: Array = IVGlobal.world_targeting
 var _other_panels: Array[Control] = [] # resize to not cover these
 var _suppress_resize := true
 
+@onready var _world_controller: IVWorldController = IVGlobal.program[&"WorldController"]
 @onready var _selection_data: VBoxContainer = find_child(&"SelectionData")
 @onready var _data_scroll: ScrollContainer = find_child(&"DataScroll")
 
@@ -77,7 +77,7 @@ func _resize_vertical() -> void:
 	var data_top := _data_scroll.get_global_rect().position.y
 	var above_data_size := data_top - position.y
 	var rect := get_rect()
-	var bottom_limit: float = _world_targeting[1] # SubViewport height
+	var bottom_limit := _world_controller.veiwport_height
 	for control in _other_panels:
 		var other_rect: Rect2 = control.get_rect()
 		if rect.end.x < other_rect.position.x:
