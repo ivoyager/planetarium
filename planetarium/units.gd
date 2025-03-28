@@ -26,8 +26,8 @@ extends Node
 ## units. See the class file for comments about scale in project exports.[br][br]
 
 # Scale update for Godot 4.4 (v0.0.24.dev):
-# For the IVDynamicLight system, we need METER ~ 2e-3. Larger breaks moon
-# shadows on Jupiter. Self-shadow quality on ISS is already affected at 2e-3
+# For the IVDynamicLight system, we need METER ~ 1e-3. Larger breaks moon
+# shadows on Jupiter. Self-shadow quality on ISS is already affected at 1e-3
 # but gets much worse at smaller values. 
 
 # COMMENTS BELOW ARE OBSOLETE as of Godot 4.4! (Keeping for reference.)
@@ -53,7 +53,7 @@ extends Node
 
 # SI base units
 const SECOND := 1.0
-const METER := 2e-3 # see notes above
+const METER := 1e-3 # see notes above
 const KG := 1.0
 const AMPERE := 1.0
 const KELVIN := 1.0
