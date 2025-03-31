@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="I, Voyager - Planetarium"
-config/version="v0.0.24.dev"
+config/version="v0.0.24"
 run/main_scene="uid://dyca8o73ks7n4"
 config/features=PackedStringArray("4.4")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -133,7 +133,11 @@ motion_fix_enabled=true
 
 [rendering]
 
+lights_and_shadows/directional_shadow/size=16384
+lights_and_shadows/directional_shadow/16_bits=false
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+anti_aliasing/quality/use_taa=true
 
 [shader_globals]
 
@@ -156,4 +160,8 @@ iv_fragment_id_range={
 iv_sun_global_positions={
 "type": "mat3",
 "value": Basis(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+iv_vec2_randf={
+"type": "vec2",
+"value": Vector2(0, 0)
 }

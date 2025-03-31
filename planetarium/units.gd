@@ -19,41 +19,51 @@
 # *****************************************************************************
 extends Node
 
-## Planetarium's IVUnits singleton
+## Replacement IVUnits singleton
 ##
 ## This file replaces the plugin template file at addons/ivoyager_units/units.gd.
-## It's mostly unchanged except for sim scale (const METER) and a few added
-## units. See the class file for comments about scale in project exports.[br][br]
+## It is unchanged except for sim scale ([constant METER]).[br][br]
+##
+## WARNING: Lighting and shadows are EXTREMELY sensitive to scale, and the
+## specific issues (and best setting) vary with Godot versions. See class file
+## comments in the Planetarium's 
+## [url=https://github.com/ivoyager/planetarium/blob/master/planetarium/units.gd]
+## units.gd[/url] for a running record of issues and the current recommended
+## METER value.
 
-# Scale update for Godot 4.4 (v0.0.24.dev):
-# For the IVDynamicLight system, we need METER ~ 2e-3. Larger breaks moon
-# shadows on Jupiter. Self-shadow quality on ISS is already affected at 2e-3
-# but gets much worse at smaller values. 
-
-# COMMENTS BELOW ARE OBSOLETE as of Godot 4.4! (Keeping for reference.)
+# Scale notes:
+#
+# Godot 4.4 update after shadows work (v0.0.24.dev):
+# For the IVDynamicLight system, we need METER ~ 1e-3. Larger breaks moon
+# shadows on Jupiter. Self-shadow quality on ISS is already affected at 1e-3
+# but gets much worse at smaller values. Needs testing in HTML5 export.
+#
+# Godot 4.3 update. Problems for HTML5 as below. However, Windows now appears
+# ok at 1e-10. Perhaps smaller value should be our base value (again)?
+#
+# COMMENTS BELOW ARE OBSOLETE, but keeping for reference.
+#
 # As of Godot 4.2.beta4, there are lighting bugs related to scale that are
 # platform specific. We have to manually update METER here for export platform.
 #
-# Windows:
-#   METER = 1.0 works great.
-#   METER = 1e-3 looks ok for all existing bodies.
-#   METER = 1e-4 causes 'lights out' when approaching smallest object (Juno).
-#   METER = 1e-10 caues 'lights out' for Moon & smaller.
+# Windows [these notes are OBSOLETE]:
+#  METER = 1.0 works great.
+#  METER = 1e-3 looks ok for all existing bodies.
+#  METER = 1e-4 causes 'lights out' when approaching smallest object (Juno).
+#  METER = 1e-10 caues 'lights out' for Moon & smaller.
 #
-# HTML5:
-#   METER = 1.0 causes unlit everywhere with irregular light 'patches'.
-#   METER = 1e-3 causes above but only when at larger planets.
-#   METER = 1e-4 causes shadow edge issue at larger planets. (But no hint of Windows issue above.)
-#   METER = 1e-5 as above but less. Self-shadowing artifact?
-#   METER = 1e-7 lighting ok for all tested. (Harsh shadow border? Need to compare w/ below.)
-#   METER = 1e-10 lighting ok for all tested.
-#
-# Godot 4.3 update. Problems for HTML5 as above. However, Windows now appears
-# ok at 1e-10. Perhaps smaller value should be our base value (again)?
+# HTML5 [these notes are OBSOLETE]:
+#  METER = 1.0 causes unlit everywhere with irregular light 'patches'.
+#  METER = 1e-3 causes above but only when at larger planets.
+#  METER = 1e-4 causes shadow edge issue at larger planets. (But no hint of Windows issue above.)
+#  METER = 1e-5 as above but less. Self-shadowing artifact?
+#  METER = 1e-7 lighting ok for all tested. (Harsh shadow border? Need to compare w/ below.)
+#  METER = 1e-10 lighting ok for all tested.
+
 
 # SI base units
 const SECOND := 1.0
-const METER := 2e-3 # see notes above
+const METER := 1e-3 # see notes above
 const KG := 1.0
 const AMPERE := 1.0
 const KELVIN := 1.0
@@ -100,6 +110,7 @@ const GRAVITATIONAL_CONSTANT := 6.67430e-11 * METER ** 3 / (KG * SECOND ** 2)
 #
 # We look for unit symbol first in unit_multipliers and then in unit_lambdas.
 
+## Conversion multipliers for units that are linear with zero-intersect.
 var unit_multipliers: Dictionary[StringName, float] = {
 	# Duplicated symbols have leading underscore.
 	# See IVQFormat for unit display strings.
@@ -216,6 +227,8 @@ var unit_multipliers: Dictionary[StringName, float] = {
 	&"TiB" : 8.0 * 1024.0 ** 4,
 }
 
+## Conversion lambdas for units that are nonlinear or have non-zero intersect,
+## e.g., celsius and fahrenheit.
 var unit_lambdas: Dictionary[StringName, Callable] = {
 	&"degC" : func convert_celsius(x: float, to_internal := true) -> float:
 		return x + 273.15 if to_internal else x - 273.15,
