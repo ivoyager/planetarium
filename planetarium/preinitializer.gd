@@ -61,6 +61,7 @@ func _init() -> void:
 		IVCoreInitializer.gui_nodes.erase("MainProgBar")
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
+		IVSettingsManager.defaults[&"gui_size"] = IVGlobal.GUISize.GUI_LARGE
 		
 	# class changes
 	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
@@ -89,13 +90,9 @@ func _on_program_objects_instantiated() -> void:
 	var theme_manager: IVThemeManager = IVGlobal.program[&"ThemeManager"]
 	theme_manager.main_menu_font = &"gui_main"
 	
-	var settings_manager: IVSettingsManager = IVGlobal.program.SettingsManager
-	var default_settings := settings_manager.defaults
-
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
 		view_cacher.cache_interval = 2.0
-		default_settings.gui_size = IVGlobal.GUISize.GUI_LARGE
 
 
 func _on_project_nodes_added() -> void:
