@@ -32,6 +32,7 @@ IVTableData="*res://addons/ivoyager_tables/table_data.gd"
 IVGlobal="*res://addons/ivoyager_core/editor_plugin/../singletons/global.gd"
 IVCoreSettings="*res://addons/ivoyager_core/editor_plugin/../singletons/core_settings.gd"
 IVCoreInitializer="*res://addons/ivoyager_core/editor_plugin/../singletons/core_initializer.gd"
+IVAstronomy="*res://addons/ivoyager_core/editor_plugin/../singletons/astronomy.gd"
 
 [debug]
 
