@@ -36,7 +36,5 @@ func _ready() -> void:
 	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(100.0, 0.0))
 	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(125.0, 0.0))
 	
-	prints('OS.has_feature("web")', OS.has_feature("web"))
-	
 	if OS.has_feature("web"):
 		%QuitButton.queue_free()
