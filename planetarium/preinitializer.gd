@@ -49,7 +49,6 @@ func _init() -> void:
 	IVCoreSettings.pause_only_stops_time = true
 	IVCoreSettings.skip_splash_screen = true
 	IVCoreSettings.disable_exit = true
-	IVCoreSettings.enable_wiki = true
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false
 	
@@ -64,6 +63,7 @@ func _init() -> void:
 		IVSettingsManager.defaults[&"gui_size"] = IVGlobal.GUISize.GUI_LARGE
 		
 	# class changes
+	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
 	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
 	IVCoreInitializer.gui_nodes.erase("MainProgBar")
 	IVCoreInitializer.program_nodes["GUIToggler"] = GUIToggler
@@ -73,6 +73,9 @@ func _init() -> void:
 	
 	# other singleton changes
 	IVQFormat.exponent_str = " x 10^"
+	
+	# static class changes
+	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
 
 
 func _on_program_objects_instantiated() -> void:
@@ -91,6 +94,8 @@ func _on_program_objects_instantiated() -> void:
 	theme_manager.main_menu_font = &"gui_main"
 	var table_orbit_builder: IVTableOrbitBuilder = IVGlobal.program[&"TableOrbitBuilder"]
 	table_orbit_builder.use_real_planet_orbits = true
+	var wiki_manager: IVWikiManager = IVGlobal.program[&"WikiManager"]
+	wiki_manager.open_external_page = true
 	
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
