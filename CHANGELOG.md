@@ -8,10 +8,12 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 ## [v0.0.26] - UNRELEASED
 
-Developed using Godot 4.5.beta1
+Developed using Godot 4.5.beta7.
 
 ### Changed
 * Updated plugin ivoyager_core to v0.0.26.dev.
+* Updated plugin ivoyager_tables to v0.0.5.dev.
+* Updated plugin ivoyager_units to v0.0.5.dev.
 
 ## [v0.0.25] - 2025-06-12
 
