@@ -90,8 +90,6 @@ func _on_program_objects_instantiated() -> void:
 	timekeeper.start_real_world_time = true
 	var view_manager: IVViewManager = IVGlobal.program[&"ViewManager"]
 	view_manager.move_home_at_start = false # ViewCacher does initial camera move
-	var theme_manager: IVThemeManager = IVGlobal.program[&"ThemeManager"]
-	theme_manager.main_menu_font = &"gui_main"
 	var table_orbit_builder: IVTableOrbitBuilder = IVGlobal.program[&"TableOrbitBuilder"]
 	table_orbit_builder.use_real_planet_orbits = true
 	var wiki_manager: IVWikiManager = IVGlobal.program[&"WikiManager"]
