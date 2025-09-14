@@ -21,18 +21,17 @@ class_name BootScreen
 extends ColorRect
 const SCENE := "res://planetarium/gui/boot_screen.tscn"
 
-# Self-freeing boot screen hides messy node construction.
+## Self-freeing boot screen hides messy node construction.
+##
+## This boot screen exists (and is visible?) before IVThemeManager, so it uses
+## ProjectSettings/gui/theme/custom and /gui/theme/custom_font. Font size is
+## set by Theme Overrides in child BootLabel.
 
-var primary_font_path := "res://addons/ivoyager_assets/fonts/Roboto-NotoSansSymbols-merged.ttf"
 
 
 func _ready() -> void:
 	IVGlobal.simulator_started.connect(_free, CONNECT_ONE_SHOT)
-	@warning_ignore("unsafe_method_access")
-	var font: FontFile = load(primary_font_path)
-	font.fixed_size = 26
-	var boot_label: Label = find_child(&"BootLabel")
-	boot_label.set(&"theme_override_fonts/font", font)
+
 
 func _free() -> void:
 	IVGlobal.program.erase(&"BootScreen")
