@@ -2,7 +2,9 @@
 
 This document provides copyright and license information for third-party software and files used in "I, Voyager" software distributed from https://www.ivoyager.dev and https://github.com/ivoyager.
 
-**Contact:** Charlie Whitfield (<mail@ivoyager.dev>)
+The master version of this file is maintained [here](https://github.com/ivoyager/ivoyager_core/blob/master/3RD_PARTY.md).
+
+**Contact:** Charlie Whitfield (mail@ivoyager.dev)
 
 ---
 
@@ -21,31 +23,35 @@ I, Voyager software distributions run on the [Godot Engine](https://godotengine.
 These files are located in subdirectories of `/addons/ivoyager_assets/` in project development builds and distributed from [this repository](https://github.com/ivoyager/asset_downloads), except where noted otherwise. Many of the images here were modified by Charlie Whitfield.
 
 
-### Updated Jupiter map by Björn Jónsson
+### World maps by Björn Jónsson (from Planetary Society)
 
-The image is a merge of Cassini and Juno images by Björn Jónsson, downloaded from https://www.planetary.org/space-images/merged-cassini-and-juno.
+Files were downloaded from https://www.planetary.org/space-images, and reduced in size from much larger file images.
 
-- **Files:**  
-  - `/maps/Jupiter.albedo.new.BjornJonsson.4096.jpg`  
-  - `/2d_bodies/Jupiter.256.png` (projected image derived from above)
+Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes).
+
+- **Files:**
+  - `/maps/Europa.albedo.8192.jpg`
+  - `/maps/Jupiter.albedo.8192.jpg`
 - **Copyright:** Björn Jónsson
 - **License:** [CC-BY-3.0](#cc-by-30)
 
 
-### Other world maps by Björn Jónsson
+### World maps by Björn Jónsson (from bjj.mmedia.is)
 
-Some files were downloaded directly from https://bjj.mmedia.is/data/planetary_maps.html and others from NASA or NOAA FTP sites. The latter are marked with "?" because their origin was not indicated, but strongly suspected to be Björn Jónsson. Color adjustments by Charlie Whitfield; in particular, Neptune was adjusted to match published images [here](https://academic.oup.com/mnras/article/527/4/11521/7511973?login=false).
+Files were downloaded from https://bjj.mmedia.is/data/planetary_maps.html.
 
-- **Files:**  
-  - `/maps/Venus.albedo.BjornJonsson.CWreprocessed.4096.jpg`
-  - `/maps/Saturn.albedo.noaa.2048.jpg` (?)
-  - `/maps/Io.albedo.noaa.4096.jpg` (?)
-  - `/maps/Europa.albedo.noaa.4096.jpg` (?)
-  - `/maps/Ganymede.albedo.noaa.4096.jpg` (?)
-  - `/maps/Callisto.albedo.noaa.2048.jpg` (?)
-  - `/maps/Rhea.albedo.noaa.4096.jpg` (?)
-  - `/maps/Neptune.albedo.2024recolor.4096.jpg` (?)
-  - `/bodies_2d/*` (includes projected images derived from above)
+Neptune color was significantly adjusted by Charlie Whitfield to match published images [here](https://academic.oup.com/mnras/article/527/4/11521/7511973).
+
+Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes).
+
+- **Files:**
+  - `/maps/Callisto.albedo.1800.jpg`
+  - `/maps/Ganymede.albedo.1800.jpg`
+  - `/maps/Io.albedo.3600.jpg`
+  - `/maps/Neptune.albedo.4096.jpg`
+  - `/maps/Rhea.albedo.1800.jpg`
+  - `/maps/Saturn.albedo.2880.jpg`
+  - `/maps/Venus.albedo.4096.jpg`
 - **Copyright:** Björn Jónsson
 - **License:** See full website notice [here](https://bjj.mmedia.is/data/planetary_maps.html). Excerpt:
 ```
@@ -60,9 +66,9 @@ Jónsson" or something equivalent.
 
 File downloaded from https://planetpixelemporium.com/sun.html.
 
-- **Files:**  
-  - `*/maps/Sun.albedo.JHT.CWreprocessed.4096.jpg`  
-  - `*/2d_bodies/Sun.256.png` (projected image derived from above)
+Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes).
+
+- **File:** `/maps/Sun.emission.4096.jpg`  
 - **Copyright:** James Hastings-Trew
 - **License:** See full website notice [here](https://planetpixelemporium.com/planets.html). Excerpt:
 ```
@@ -79,18 +85,61 @@ the maps, without my permission.
 
 Most NASA images and models are in the public domain. Use is governed by [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/).
 
-All 3D models were downloaded from https://science.nasa.gov/3d-resources/. Starmaps were downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2020").
+Many world maps were modified by Charlie Whitfield. These modifications include substantial color adjustments to Mercury, Mars, Ceres and Uranus. Grid lines were added to unimaged areas of the moons of Uranus and Neptune.
 
-Many world maps were modified by Charlie Whitfield. E.g., grid marks were added to unimaged areas of the moons of Uranus and Neptune. 
+Starmaps were downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2020"). Some image processing was applied by Charlie Whitfield.
+
+All 3D models were downloaded from https://science.nasa.gov/3d-resources/. Model subdirectories each contain the downloaded file (usually *.glb extension) and files extracted from the model by Godot's importer.
+
+Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes and 3D models).
 
 - **Files:**
-  - `/maps/*` (all world maps not covered in sections above)
-  - `/models/*` (all 3D models)
-  - `/bodies_2d/*` (includes projected images derived from above)
-  - `/starmaps/*` (all files)
+  - `/maps/Ariel.albedo.2048.jpg`
+  - `/maps/Ceres.albedo.4096.jpg`
+  - `/maps/Charon.albedo.4096.jpg`
+  - `/maps/Dione.albedo.4096.jpg`
+  - `/maps/Earth.albedo.8192.jpg`
+  - `/maps/Enceladus.albedo.4096.jpg`
+  - `/maps/Iapetus.albedo.4096.jpg`
+  - `/maps/Mars.albedo.4096.jpg`
+  - `/maps/Mercury.albedo.4096.jpg`
+  - `/maps/Miranda.albedo.2048.jpg`
+  - `/maps/Moon.albedo.4096.jpg`
+  - `/maps/Oberon.albedo.2048.jpg`
+  - `/maps/Phoebe.albedo.2048.jpg`
+  - `/maps/Pluto.albedo.4096.jpg`
+  - `/maps/Tethys.albedo.4096.jpg`
+  - `/maps/Titania.albedo.2048.jpg`
+  - `/maps/Triton.albedo.4096.jpg`
+  - `/maps/Umbriel.albedo.2048.jpg`
+  - `/starmaps/starmap_8k.jpg`
+  - `/starmaps/starmap_16k.jpg`
   - `pale_blue_dot.png` is distributed in the [Project Template repository](https://github.com/ivoyager/project_template).
   - `pale_blue_dot_453x614.jpg` is distributed in web-based deployments of the [Planetarium app](https://www.ivoyager.dev/planetarium/).
-- **License:** Public Domain
+- **Model subdirectories:**
+  - `/models/arrokoth/*`
+  - `/models/bennu/*`
+  - `/models/deimos/*`
+  - `/models/eros/*`
+  - `/models/hubble/*`
+  - `/models/hyperion/*`
+  - `/models/iss/*`
+  - `/models/itokawa/*`
+  - `/models/juno/*`
+  - `/models/mimas/*`
+  - `/models/phobos/*`
+  - `/models/vesta/*`
+- **Copyright:** Public Domain
+- **License:** Public Domain; see [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/).
+
+
+### Blue noise by Christoph Peters
+
+File downloaded from https://momentsingraphics.de/BlueNoise.html.
+
+- **File:** `/noise/blue_noise_1024.png`
+- **Copyright:** Public domain
+- **License:** [CC0 1.0 Universal](#cc0-10)
 
 
 ### Roboto / Noto Sans Symbols fonts
@@ -100,6 +149,7 @@ The font file used is a merge of Roboto and Noto Sans Symbols, both [Google Font
 - **File:** `/fonts/Roboto-NotoSansSymbols-merged.ttf`
 - **Copyright:** Google LLC
 - **License:** [SIL OPEN FONT LICENSE Version 1.1](#sil-open-font-licence-version-10)
+
 
 ---
 
@@ -467,6 +517,136 @@ The font file used is a merge of Roboto and Noto Sans Symbols, both [Google Font
  
  Creative Commons may be contacted at http://creativecommons.org/.
 ```
+
+### CC0 1.0
+
+[CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/)
+
+
+```
+Creative Commons Legal Code
+
+CC0 1.0 Universal
+
+	CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+	LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+	ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+	INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+	REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+	PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+	THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+	HEREUNDER.
+
+Statement of Purpose
+
+The laws of most jurisdictions throughout the world automatically confer
+exclusive Copyright and Related Rights (defined below) upon the creator
+and subsequent owner(s) (each and all, an "owner") of an original work of
+authorship and/or a database (each, a "Work").
+
+Certain owners wish to permanently relinquish those rights to a Work for
+the purpose of contributing to a commons of creative, cultural and
+scientific works ("Commons") that the public can reliably and without fear
+of later claims of infringement build upon, modify, incorporate in other
+works, reuse and redistribute as freely as possible in any form whatsoever
+and for any purposes, including without limitation commercial purposes.
+These owners may contribute to the Commons to promote the ideal of a free
+culture and the further production of creative, cultural and scientific
+works, or to gain reputation or greater distribution for their Work in
+part through the use and efforts of others.
+
+For these and/or other purposes and motivations, and without any
+expectation of additional consideration or compensation, the person
+associating CC0 with a Work (the "Affirmer"), to the extent that he or she
+is an owner of Copyright and Related Rights in the Work, voluntarily
+elects to apply CC0 to the Work and publicly distribute the Work under its
+terms, with knowledge of his or her Copyright and Related Rights in the
+Work and the meaning and intended legal effect of CC0 on those rights.
+
+1. Copyright and Related Rights. A Work made available under CC0 may be
+protected by copyright and related or neighboring rights ("Copyright and
+Related Rights"). Copyright and Related Rights include, but are not
+limited to, the following:
+
+  i. the right to reproduce, adapt, distribute, perform, display,
+	 communicate, and translate a Work;
+ ii. moral rights retained by the original author(s) and/or performer(s);
+iii. publicity and privacy rights pertaining to a person's image or
+	 likeness depicted in a Work;
+ iv. rights protecting against unfair competition in regards to a Work,
+	 subject to the limitations in paragraph 4(a), below;
+  v. rights protecting the extraction, dissemination, use and reuse of data
+	 in a Work;
+ vi. database rights (such as those arising under Directive 96/9/EC of the
+	 European Parliament and of the Council of 11 March 1996 on the legal
+	 protection of databases, and under any national implementation
+	 thereof, including any amended or successor version of such
+	 directive); and
+vii. other similar, equivalent or corresponding rights throughout the
+	 world based on applicable law or treaty, and any national
+	 implementations thereof.
+
+2. Waiver. To the greatest extent permitted by, but not in contravention
+of, applicable law, Affirmer hereby overtly, fully, permanently,
+irrevocably and unconditionally waives, abandons, and surrenders all of
+Affirmer's Copyright and Related Rights and associated claims and causes
+of action, whether now known or unknown (including existing as well as
+future claims and causes of action), in the Work (i) in all territories
+worldwide, (ii) for the maximum duration provided by applicable law or
+treaty (including future time extensions), (iii) in any current or future
+medium and for any number of copies, and (iv) for any purpose whatsoever,
+including without limitation commercial, advertising or promotional
+purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
+member of the public at large and to the detriment of Affirmer's heirs and
+successors, fully intending that such Waiver shall not be subject to
+revocation, rescission, cancellation, termination, or any other legal or
+equitable action to disrupt the quiet enjoyment of the Work by the public
+as contemplated by Affirmer's express Statement of Purpose.
+
+3. Public License Fallback. Should any part of the Waiver for any reason
+be judged legally invalid or ineffective under applicable law, then the
+Waiver shall be preserved to the maximum extent permitted taking into
+account Affirmer's express Statement of Purpose. In addition, to the
+extent the Waiver is so judged Affirmer hereby grants to each affected
+person a royalty-free, non transferable, non sublicensable, non exclusive,
+irrevocable and unconditional license to exercise Affirmer's Copyright and
+Related Rights in the Work (i) in all territories worldwide, (ii) for the
+maximum duration provided by applicable law or treaty (including future
+time extensions), (iii) in any current or future medium and for any number
+of copies, and (iv) for any purpose whatsoever, including without
+limitation commercial, advertising or promotional purposes (the
+"License"). The License shall be deemed effective as of the date CC0 was
+applied by Affirmer to the Work. Should any part of the License for any
+reason be judged legally invalid or ineffective under applicable law, such
+partial invalidity or ineffectiveness shall not invalidate the remainder
+of the License, and in such case Affirmer hereby affirms that he or she
+will not (i) exercise any of his or her remaining Copyright and Related
+Rights in the Work or (ii) assert any associated claims and causes of
+action with respect to the Work, in either case contrary to Affirmer's
+express Statement of Purpose.
+
+4. Limitations and Disclaimers.
+
+ a. No trademark or patent rights held by Affirmer are waived, abandoned,
+	surrendered, licensed or otherwise affected by this document.
+ b. Affirmer offers the Work as-is and makes no representations or
+	warranties of any kind concerning the Work, express, implied,
+	statutory or otherwise, including without limitation warranties of
+	title, merchantability, fitness for a particular purpose, non
+	infringement, or the absence of latent or other defects, accuracy, or
+	the present or absence of errors, whether or not discoverable, all to
+	the greatest extent permissible under applicable law.
+ c. Affirmer disclaims responsibility for clearing rights of other persons
+	that may apply to the Work or any use thereof, including without
+	limitation any person's Copyright and Related Rights in the Work.
+	Further, Affirmer disclaims responsibility for obtaining any necessary
+	consents, permissions or other rights required for any use of the
+	Work.
+ d. Affirmer understands and acknowledges that Creative Commons is not a
+	party to this document and has no duty or obligation with respect to
+	this CC0 or use of the Work.
+```
+
 
 ### SIL OPEN FONT LICENSE Version 1.1
 
