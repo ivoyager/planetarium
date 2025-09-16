@@ -1,214 +1,162 @@
-# Copyright and license information for 3rd party files in I, Voyager.
-# ==============================================================================
-#
-# The aim of this file is to document copyright and licence information for
-# every 3rd party (or modified from 3rd party) file distributed in the following
-# repositores:
-#     https://github.com/ivoyager/ivoyager
-#     https://github.com/ivoyager/planetarium
-#     https://github.com/ivoyager/project_template
-#     https://github.com/ivoyager/non_release_assets
-# including binary and asset files distributed via repository "releases". In
-# typical code distributions, these files will be found in subdirectories named
-# "ivoyager_assets", "planetarium_assets", etc.
-#
-# This file uses globbing patterns to identify files based on their names or
-# directories within repositories and/or project software distributions.
-#
-# This file is intended to become a machine readable file (format:
-# https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/) but this
-# is not likely to be the case in its present form.
-#
-# Licenses are given with their debian/copyright short name (or SPDX identifier
-# if no standard short name exists) and are all included in plain text at the
-# end of this file (in alphabetical order). Some copyrighted material includes
-# additional usage notice (or has only usage notice with no specified licence).
-# In these cases website source and relavant usage text is reproduced below the
-# licnese field.
+# Third-Party Copyright and License Information
 
------------------------------------------------------------------------
+This document provides copyright and license information for third-party software and files used in "I, Voyager" software distributed from https://www.ivoyager.dev and https://github.com/ivoyager.
 
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: I, Voyager
-Upstream-Contact: Charlie Whitfield <mail@ivoyager.dev>
-Source: https://github.com/ivoyager/ivoyager
- https://github.com/ivoyager/ivoyager_planetarium
- https://github.com/ivoyager/ivoyager_project_template
+**Contact:** Charlie Whitfield (<mail@ivoyager.dev>)
 
-Files: godot*.exe
-Comment: Godot Engine
- Godot Engine executables are distributed in repository "releases".
- A list of Godot Engine contributors is at:
- https://github.com/godotengine/godot/blob/master/AUTHORS.md.
-Copyright: 2007-2020, Juan Linietsky, Ariel Manzur.
- 2014-2020, Godot Engine contributors.
-License: Expat
+---
 
-Files: *.gd
- *.tscn
- *.shader
-Comment: I, Voyager code files
- Code files were generated using the Godot Engine editor.
-Copyright: 2017-2024, Charles Whitfield
-Licence: Apache-2.0
+## Software
 
-Files: */solar_system/*.csv
- */asteroid_binaries/*.vbinary
-Comment: I, Voyager Solar System data files
- Data were assembled from a variety of public domain sources. Large body orbit
- and physical characteristics were primarily from JPL Solar System Dynamics
- (https://ssd.jpl.nasa.gov) and NASA PDS (https://pds.nasa.gov/). Asteroid
- binaries were generated from data files at Asteroids Dynamic Site (AstDyS-2; https://newton.spacedys.com/astdys2).
-Copyright: 2017-2020, Charlie Whitfield
-Licence: Apache-2.0
+### Godot Engine
 
-Files: */fonts/Roboto-Regular.ttf
-Comment: Roboto TrueType font
-Copyright: 2011, Google Inc.
-Licence: Apache-2.0
+I, Voyager software distributions run on the [Godot Engine](https://godotengine.org/) and were developed using the Godot Engine editor. Licencing information for files used in Godot Engine can be found [here](https://github.com/godotengine/godot/blob/master/COPYRIGHT.txt).
 
-File: */misc/pale_blue_dot.P36254.nasa_jpl-caltech.png
-Comment: NASA Solar System Exploration
- Voyager 1's Pale Blue Dot
- Modified by Charlie Whitfield
- Usage: https://www.nasa.gov/multimedia/guidelines/index.html
-Licence: public-domain
-
-Files: */starfields/starmap_16k.jpg
-Comment: NASA/Goddard Space Flight Center Scientific Visualization Studio
- Deep Star Maps
- Modified by Charlie Whitfield
- Usage: https://www.nasa.gov/multimedia/guidelines/index.html
-Licence: public-domain
-
-Files: */globe_wraps/Earth.albedo.nasa.land_ocean_ice_cloud_4k.jpg
- */2d_bodies/Earth.256.png
-Comment: NASA Visible Earth
- The Blue Marble: Land Surface, Ocean Color, Sea Ice and Clouds
- Usage: https://www.nasa.gov/multimedia/guidelines/index.html
-Licence: public-domain
-
-Files: */globe_wraps/Jupiter.albedo.new.BjornJonsson.4096.jpg
- */2d_bodies/Jupiter.256.png
-Comment: Merged Cassini and Juno global map of Jupiter
-Copyright: 2018, Björn Jónsson
-Licence: CC-BY-3.0
-
-Files: */globe_wraps/Neptune.albedo.BjornJonsson.CWreprocessed.4096.jpg
- */globe_wraps/Venus.albedo.BjornJonsson.CWreprocessed.4096.jpg
- */2d_bodies/Neptune.256.png
- */2d_bodies/Venus.256.png
- */planet_rings/saturn_rings.png
-Comment: Björn Jónsson planetary maps
- https://bjj.mmedia.is/data/planetary_maps.html
- Planet color adjustments by Charlie Whitfield. Saturn Rings were processed
- into single image by Charlie Whitfield.
-Copyright: 1998-2011, 2012, Björn Jónsson
-Licence: website-notice-1
-
-Files: */globe_wraps/Sun.albedo.JHT.CWreprocessed.4096.jpg
- */2d_bodies/Sun.256.png
- */2d_bodies/Sun_slice.256.png
-Comment: James Hastings-Trew sun map
- http://planetpixelemporium.com/planets.html
- Modified by Charlie Whitfield
-Copyright: 2006, James Hastings-Trew
-Licence: website-notice-2
-
-Files: *globe_wraps/Ariel.albedo.partial.noaa.2048.jpg
- */globe_wraps/Callisto.albedo.noaa.2400.jpg
- */globe_wraps/Ceres.albedo.noaa.CWcolored.4096.jpg
- */globe_wraps/Charon.albedo.partial.noaa.4096.jpg
- */globe_wraps/Dione.albedo.noaa.4096.jpg
- */globe_wraps/Enceladus.albedo.noaa.4096.jpg
- */globe_wraps/Europa.albedo.noaa.4096.jpg
- */globe_wraps/Ganymede.albedo.noaa.4096.jpg
- */globe_wraps/Iapetus.albedo.noaa.4096.jpg
- */globe_wraps/Io.albedo.noaa.4096.jpg
- */globe_wraps/Mars.albedo.noaa.CWreprocessed.4096.jpg
- */globe_wraps/Mercury.albedo.GlobalColor2017.CWreprocessed.4096.jpg
- */globe_wraps/Mimas.albedo.noaa.4096.jpg
- */globe_wraps/Miranda.albedo.partial.2048.jpg
- */globe_wraps/Moon.albedo.noaa.4096.jpg
- */globe_wraps/Oberon.albedo.partial.noaa.2048.jpg
- */globe_wraps/Phoebe.albedo.partial.noaa.4096.jpg
- */globe_wraps/Pluto.albedo.partial.noaa.4096.jpg
- */globe_wraps/Rhea.albedo.noaa.4096.jpg
- */globe_wraps/Saturn.albedo.noaa.2880.jpg
- */globe_wraps/Tethys.albedo.noaa.4096.jpg
- */globe_wraps/Titan.albedo.noaa.2k.jpg
- */globe_wraps/Titania.albedo.partial.noaa.2048.jpg
- */globe_wraps/Triton.albedo.incomplete.noaa.4096.jpg
- */globe_wraps/Umbriel.albedo.partial.noaa.3600.jpg
- */globe_wraps/Uranus.albedo.noaa.1024.jpg
- */globe_wraps/Vesta.albedo.noaa.4096.jpg
- */2d_bodies/Ariel.256.png
- */2d_bodies/Callisto.256.png
- */2d_bodies/Ceres.256.png
- */2d_bodies/Charon.256.png
- */2d_bodies/Dione.256.png
- */2d_bodies/Enceladus.256.png
- */2d_bodies/Europa.256.png
- */2d_bodies/Ganymede.256.png
- */2d_bodies/Iapetus.256.png
- */2d_bodies/Io.256.png
- */2d_bodies/Mars.256.png
- */2d_bodies/Mercury.256.png
- */2d_bodies/Miranda.256.png
- */2d_bodies/Moon.256.png
- */2d_bodies/Oberon.256.png
- */2d_bodies/Pluto.256.png
- */2d_bodies/Rhea.256.png
- */2d_bodies/Saturn.256.png
- */2d_bodies/Tethys.256.png
- */2d_bodies/Titan.256.png
- */2d_bodies/Titania.256.png
- */2d_bodies/Triton.256.png
- */2d_bodies/Umbriel.256.png
- */2d_bodies/Uranus.256.png
-Comment: NOAA Science On a Sphere planet and moon maps
- Usage: https://sos.noaa.gov/copyright-information
-Licence: public-domain
+- **Copyright:** 2014-present, Godot Engine [contributors](https://github.com/godotengine/godot/blob/master/AUTHORS.md); 2007-2014, Juan Linietsky, Ariel Manzur  
+- **License:** [MIT](#mit)
 
 
-Licence: Apache-2.0
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- .
-     http://www.apache.org/licenses/LICENSE-2.0
- .
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+## Files
 
-License: CC-BY-3.0
+These files are located in subdirectories of `/addons/ivoyager_assets/` in project development builds and distributed from [this repository](https://github.com/ivoyager/asset_downloads), except where noted otherwise. Many of the images here were modified by Charlie Whitfield.
+
+
+### Updated Jupiter map by Björn Jónsson
+
+The image is a merge of Cassini and Juno images by Björn Jónsson, downloaded from https://www.planetary.org/space-images/merged-cassini-and-juno.
+
+- **Files:**  
+  - `/maps/Jupiter.albedo.new.BjornJonsson.4096.jpg`  
+  - `/2d_bodies/Jupiter.256.png` (projected image derived from above)
+- **Copyright:** Björn Jónsson
+- **License:** [CC-BY-3.0](#cc-by-30)
+
+
+### Other world maps by Björn Jónsson
+
+Some files were downloaded directly from https://bjj.mmedia.is/data/planetary_maps.html and others from NASA or NOAA FTP sites. The latter are marked with "?" because their origin was not indicated, but strongly suspected to be Björn Jónsson. Color adjustments by Charlie Whitfield; in particular, Neptune was adjusted to match published images [here](https://academic.oup.com/mnras/article/527/4/11521/7511973?login=false).
+
+- **Files:**  
+  - `/maps/Venus.albedo.BjornJonsson.CWreprocessed.4096.jpg`
+  - `/maps/Saturn.albedo.noaa.2048.jpg` (?)
+  - `/maps/Io.albedo.noaa.4096.jpg` (?)
+  - `/maps/Europa.albedo.noaa.4096.jpg` (?)
+  - `/maps/Ganymede.albedo.noaa.4096.jpg` (?)
+  - `/maps/Callisto.albedo.noaa.2048.jpg` (?)
+  - `/maps/Rhea.albedo.noaa.4096.jpg` (?)
+  - `/maps/Neptune.albedo.2024recolor.4096.jpg` (?)
+  - `/bodies_2d/*` (includes projected images derived from above)
+- **Copyright:** Björn Jónsson
+- **License:** See full website notice [here](https://bjj.mmedia.is/data/planetary_maps.html). Excerpt:
+```
+All the planetary maps available on these pages are publicly available.
+You do not need a special permission to use them but if you do then
+please mention their origin in your work, e.g. "created by Björn
+Jónsson" or something equivalent.
+```
+
+
+### Sun map by James Hastings-Trew 
+
+File downloaded from https://planetpixelemporium.com/sun.html.
+
+- **Files:**  
+  - `*/maps/Sun.albedo.JHT.CWreprocessed.4096.jpg`  
+  - `*/2d_bodies/Sun.256.png` (projected image derived from above)
+- **Copyright:** James Hastings-Trew
+- **License:** See full website notice [here](https://planetpixelemporium.com/planets.html). Excerpt:
+```
+The maps are free to download and use as source material or resource in
+artwork or rendering (CGI or real time) in any kind of project - personal,
+commercial, broadcast, or display. You are not free to redistribute the
+maps "as is" in any medium - online, CD, for sale, etc. where the primary
+intent is to distribute the maps themselves and not the result of using
+the maps, without my permission.
+```
+
+
+### NASA images and models
+
+Most NASA images and models are in the public domain. Use is governed by [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/).
+
+All 3D models were downloaded from https://science.nasa.gov/3d-resources/. Starmaps were downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2020").
+
+Many world maps were modified by Charlie Whitfield. E.g., grid marks were added to unimaged areas of the moons of Uranus and Neptune. 
+
+- **Files:**
+  - `/maps/*` (all world maps not covered in sections above)
+  - `/models/*` (all 3D models)
+  - `/bodies_2d/*` (includes projected images derived from above)
+  - `/starmaps/*` (all files)
+  - `pale_blue_dot.png` is distributed in the [Project Template repository](https://github.com/ivoyager/project_template).
+  - `pale_blue_dot_453x614.jpg` is distributed in web-based deployments of the [Planetarium app](https://www.ivoyager.dev/planetarium/).
+- **License:** Public Domain
+
+
+### Roboto / Noto Sans Symbols fonts
+
+The font file used is a merge of Roboto and Noto Sans Symbols, both [Google Fonts](https://fonts.google.com/).
+
+- **File:** `/fonts/Roboto-NotoSansSymbols-merged.ttf`
+- **Copyright:** Google LLC
+- **License:** [SIL OPEN FONT LICENSE Version 1.1](#sil-open-font-licence-version-10)
+
+---
+
+## Licenses in Detail
+
+### MIT
+
+```
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ 
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+
+### CC-BY-3.0
+
+[Creative Commons Attribution 3.0 Unported](http://creativecommons.org/licenses/by/3.0/)
+
+```
  Creative Commons Attribution 3.0 Unported
- .
+ 
  CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
  LEGAL SERVICES. DISTRIBUTION OF THIS LICENSE DOES NOT CREATE AN
  ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS INFORMATION
  ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES REGARDING THE
  INFORMATION PROVIDED, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
  ITS USE.
- .
+ 
  License
- .
+ 
  THE WORK (AS DEFINED BELOW) IS PROVIDED UNDER THE TERMS OF THIS CREATIVE
  COMMONS PUBLIC LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY
  COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS
  AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
- .
+ 
  BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND AGREE
  TO BE BOUND BY THE TERMS OF THIS LICENSE. TO THE EXTENT THIS LICENSE MAY
  BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU THE RIGHTS
  CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH TERMS AND
  CONDITIONS.
- .
+ 
  1. Definitions
- .
+ 
  a. "Adaptation" means a work based upon the Work, or upon the Work and
  other pre-existing works, such as a translation, adaptation, derivative
  work, arrangement of music or other alterations of a literary or
@@ -221,7 +169,7 @@ License: CC-BY-3.0
  phonogram, the synchronization of the Work in timed-relation with a
  moving image ("synching") will be considered an Adaptation for the
  purpose of this License.
- .
+ 
  b. "Collection" means a collection of literary or artistic works, such
  as encyclopedias and anthologies, or performances, phonograms or
  broadcasts, or other works or subject matter other than works listed in
@@ -232,14 +180,14 @@ License: CC-BY-3.0
  themselves, which together are assembled into a collective whole. A work
  that constitutes a Collection will not be considered an Adaptation (as
  defined above) for the purposes of this License.
- .
+ 
  c.  "Distribute" means to make available to the public the original and
  copies of the Work or Adaptation, as appropriate, through sale or other
  transfer of ownership.
- .
+ 
  d. "Licensor" means the individual, individuals, entity or entities that
  offer(s) the Work under the terms of this License.
- .
+ 
  e. "Original Author" means, in the case of a literary or artistic work,
  the individual, individuals, entity or entities who created the Work or
  if no individual or entity can be identified, the publisher; and in
@@ -250,7 +198,7 @@ License: CC-BY-3.0
  being the person or legal entity who first fixes the sounds of a
  performance or other sounds; and, (iii) in the case of broadcasts, the
  organization that transmits the broadcast.
- .
+ 
  f. "Work" means the literary and/or artistic work offered under the
  terms of this License including without limitation any production in the
  literary, scientific and artistic domain, whatever may be the mode or
@@ -268,13 +216,13 @@ License: CC-BY-3.0
  compilation of data to the extent it is protected as a copyrightable
  work; or a work performed by a variety or circus performer to the extent
  it is not otherwise considered a literary or artistic work.
- .
+ 
  g. "You" means an individual or entity exercising rights under this
  License who has not previously violated the terms of this License with
  respect to the Work, or who has received express permission from the
  Licensor to exercise rights under this License despite a previous
  violation.
- .
+ 
  h. "Publicly Perform" means to perform public recitations of the Work
  and to communicate to the public those public recitations, by any means
  or process, including by wire or wireless means or public digital
@@ -284,68 +232,68 @@ License: CC-BY-3.0
  means or process and the communication to the public of the performances
  of the Work, including by public digital performance; to broadcast and
  rebroadcast the Work by any means including signs, sounds or images.
- .
+ 
  i. "Reproduce" means to make copies of the Work by any means including
  without limitation by sound or visual recordings and the right of
  fixation and reproducing fixations of the Work, including storage of a
  protected performance or phonogram in digital form or other electronic
  medium.
- .
+ 
  2. Fair Dealing Rights. Nothing in this License is intended to reduce,
  limit, or restrict any uses free from copyright or rights arising from
  limitations or exceptions that are provided for in connection with the
  copyright protection under copyright law or other applicable laws.
- .
+ 
  3. License Grant. Subject to the terms and conditions of this License,
  Licensor hereby grants You a worldwide, royalty-free, non-exclusive,
  perpetual (for the duration of the applicable copyright) license to
  exercise the rights in the Work as stated below:
- .
+ 
  a. to Reproduce the Work, to incorporate the Work into one or more
  Collections, and to Reproduce the Work as incorporated in the
  Collections;
- .
+ 
  b. to create and Reproduce Adaptations provided that any such
  Adaptation, including any translation in any medium, takes reasonable
  steps to clearly label, demarcate or otherwise identify that changes
  were made to the original Work. For example, a translation could be
  marked "The original work was translated from English to Spanish," or a
  modification could indicate "The original work has been modified.";
- .
+ 
  c. to Distribute and Publicly Perform the Work including as incorporated
  in Collections; and,
- .
+ 
  d. to Distribute and Publicly Perform Adaptations.
- .
+ 
  e. For the avoidance of doubt:
- .
+ 
  i. Non-waivable Compulsory License Schemes. In those jurisdictions in
  which the right to collect royalties through any statutory or compulsory
  licensing scheme cannot be waived, the Licensor reserves the exclusive
  right to collect such royalties for any exercise by You of the rights
  granted under this License;
- .
+ 
  ii. Waivable Compulsory License Schemes. In those jurisdictions in which
  the right to collect royalties through any statutory or compulsory
  licensing scheme can be waived, the Licensor waives the exclusive right
  to collect such royalties for any exercise by You of the rights granted
  under this License; and,
- .
+ 
  iii. Voluntary License Schemes. The Licensor waives the right to collect
  royalties, whether individually or, in the event that the Licensor is a
  member of a collecting society that administers voluntary licensing
  schemes, via that society, from any exercise by You of the rights
  granted under this License.
- .
+ 
  The above rights may be exercised in all media and formats whether now
  known or hereafter devised. The above rights include the right to make
  such modifications as are technically necessary to exercise the rights
  in other media and formats. Subject to Section 8(f), all rights not
  expressly granted by Licensor are hereby reserved.
- .
+ 
  4. Restrictions. The license granted in Section 3 above is expressly
  made subject to and limited by the following restrictions:
- .
+ 
  a. You may Distribute or Publicly Perform the Work only under the terms
  of this License. You must include a copy of, or the Uniform Resource
  Identifier (URI) for, this License with every copy of the Work You
@@ -367,7 +315,7 @@ License: CC-BY-3.0
  requested. If You create an Adaptation, upon notice from any Licensor
  You must, to the extent practicable, remove from the Adaptation any
  credit as required by Section 4(b), as requested.
- .
+ 
  b. If You Distribute, or Publicly Perform the Work or any Adaptations or
  Collections, You must, unless a request has been made pursuant to
  Section 4(a), keep intact all copyright notices for the Work and
@@ -398,7 +346,7 @@ License: CC-BY-3.0
  as appropriate, of You or Your use of the Work, without the separate,
  express prior written permission of the Original Author, Licensor and/or
  Attribution Parties.
- .
+ 
  c. Except as otherwise agreed in writing by the Licensor or as may be
  otherwise permitted by applicable law, if You Reproduce, Distribute or
  Publicly Perform the Work either by itself or as part of any Adaptations
@@ -413,9 +361,9 @@ License: CC-BY-3.0
  fullest extent permitted by the applicable national law, to enable You
  to reasonably exercise Your right under Section 3(b) of this License
  (right to make Adaptations) but not otherwise.
- .
+ 
  5. Representations, Warranties and Disclaimer
- .
+ 
  UNLESS OTHERWISE MUTUALLY AGREED TO BY THE PARTIES IN WRITING, LICENSOR
  OFFERS THE WORK AS-IS AND MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY
  KIND CONCERNING THE WORK, EXPRESS, IMPLIED, STATUTORY OR OTHERWISE,
@@ -424,15 +372,15 @@ License: CC-BY-3.0
  LATENT OR OTHER DEFECTS, ACCURACY, OR THE PRESENCE OF ABSENCE OF ERRORS,
  WHETHER OR NOT DISCOVERABLE. SOME JURISDICTIONS DO NOT ALLOW THE
  EXCLUSION OF IMPLIED WARRANTIES, SO SUCH EXCLUSION MAY NOT APPLY TO YOU.
- .
+ 
  6. Limitation on Liability. EXCEPT TO THE EXTENT REQUIRED BY APPLICABLE
  LAW, IN NO EVENT WILL LICENSOR BE LIABLE TO YOU ON ANY LEGAL THEORY FOR
  ANY SPECIAL, INCIDENTAL, CONSEQUENTIAL, PUNITIVE OR EXEMPLARY DAMAGES
  ARISING OUT OF THIS LICENSE OR THE USE OF THE WORK, EVEN IF LICENSOR HAS
  BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- .
+ 
  7. Termination
- .
+ 
  a. This License and the rights granted hereunder will terminate
  automatically upon any breach by You of the terms of this License.
  Individuals or entities who have received Adaptations or Collections
@@ -440,7 +388,7 @@ License: CC-BY-3.0
  terminated provided such individuals or entities remain in full
  compliance with those licenses. Sections 1, 2, 5, 6, 7, and 8 will
  survive any termination of this License.
- .
+ 
  b. Subject to the above terms and conditions, the license granted here
  is perpetual (for the duration of the applicable copyright in the Work).
  Notwithstanding the above, Licensor reserves the right to release the
@@ -450,25 +398,25 @@ License: CC-BY-3.0
  required to be, granted under the terms of this License), and this
  License will continue in full force and effect unless terminated as
  stated above.
- .
+ 
  8. Miscellaneous
- .
+ 
  a. Each time You Distribute or Publicly Perform the Work or a
  Collection, the Licensor offers to the recipient a license to the Work
  on the same terms and conditions as the license granted to You under
  this License.
- .
+ 
  b. Each time You Distribute or Publicly Perform an Adaptation, Licensor
  offers to the recipient a license to the original Work on the same terms
  and conditions as the license granted to You under this License.
- .
+ 
  c. If any provision of this License is invalid or unenforceable under
  applicable law, it shall not affect the validity or enforceability of
  the remainder of the terms of this License, and without further action
  by the parties to this agreement, such provision shall be reformed to
  the minimum extent necessary to make such provision valid and
  enforceable.
- .
+ 
  d. No term or provision of this License shall be deemed waived and no
  breach consented to unless such waiver or consent shall be in writing
  and signed by the party to be charged with such waiver or consent. This
@@ -477,10 +425,10 @@ License: CC-BY-3.0
  agreements or representations with respect to the Work not specified
  here. Licensor shall not be bound by any additional provisions that may
  appear in any communication from You.
- .
+ 
  e. This License may not be modified without the mutual written agreement
  of the Licensor and You.
- .
+ 
  f. The rights granted under, and the subject matter referenced, in this
  License were drafted utilizing the terminology of the Berne Convention
  for the Protection of Literary and Artistic Works (as amended on
@@ -495,9 +443,9 @@ License: CC-BY-3.0
  not granted under this License, such additional rights are deemed to be
  included in the License; this License is not intended to restrict the
  license of any rights under applicable law.
- .
+ 
  Creative Commons Notice
- .
+ 
  Creative Commons is not a party to this License, and makes no warranty
  whatsoever in connection with the Work. Creative Commons will not be
  liable to You or any party on any legal theory for any damages
@@ -516,41 +464,94 @@ License: CC-BY-3.0
  published on its website or otherwise made available upon request from
  time to time. For the avoidance of doubt, this trademark restriction
  does not form part of this License.
- .
+ 
  Creative Commons may be contacted at http://creativecommons.org/.
+```
 
-License: Expat
- Permission is hereby granted, free of charge, to any person obtaining
- a copy of this software and associated documentation files (the
- "Software"), to deal in the Software without restriction, including
- without limitation the rights to use, copy, modify, merge, publish,
- distribute, sublicense, and/or sell copies of the Software, and to
- permit persons to whom the Software is furnished to do so, subject to
- the following conditions:
- .
- The above copyright notice and this permission notice shall be
- included in all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
-Licence: website-notice-1
- https://bjj.mmedia.is/data/planetary_maps.html
- "All the planetary maps available on these pages are publicly available. You
- do not need a special permission to use them but if you do then please mention
- their origin in your work."
- 
-Licence: website-notice-2
- http://planetpixelemporium.com/planets.html
- "The maps are free to download and use as source material or resource in
- artwork or rendering (CGI or real time) in any kind of project - personal,
- commercial, broadcast, or display. You are not free to redistribute the maps
- "as is" in any medium - online, CD, for sale, etc. where the primary intent is
- to distribute the maps themselves and not the result of using the maps,
- without my permission."
- 
+### SIL OPEN FONT LICENSE Version 1.1
+
+[SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007](https://openfontlicense.org/open-font-license-official-text/)
+```
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+```
