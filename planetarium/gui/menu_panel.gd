@@ -22,14 +22,6 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	var homepage: IVLinkLabel = %HomePage
-	homepage.set_hyperlink("I, Voyager", "https://ivoyager.dev")
-	var credits: IVLinkLabel = %Credits
-	credits.set_hyperlink("Credits", "https://github.com/ivoyager/ivoyager/blob/master/CREDITS.md")
-	var feedback: IVLinkLabel = %Feedback
-	feedback.set_hyperlink("Feedback", "https://github.com/orgs/ivoyager/discussions")
-	var support_us: IVLinkLabel = %SupportUs
-	support_us.set_hyperlink("Support Us!", "https://github.com/sponsors/ivoyager")
 	
 	var mod: IVControlDraggable = $ControlMod
 	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(75.0, 0.0))
