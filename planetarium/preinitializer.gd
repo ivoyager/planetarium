@@ -30,7 +30,7 @@ const VERBOSE_STATEMANAGER_SIGNALS := false
 func _init() -> void:
 	
 	var version: String = ProjectSettings.get_setting("application/config/version")
-	print("Planetarium %s - https://ivoyager.dev" % version)
+	print("Planetarium v%s - https://ivoyager.dev" % version)
 	
 	if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
 		IVDebug.signal_verbosely_all(IVGlobal, "Global")
@@ -42,8 +42,6 @@ func _init() -> void:
 	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
 	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
 	
-	IVCoreSettings.project_name = "Planetarium"
-	IVCoreSettings.project_version = version
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
 	IVCoreSettings.pause_only_stops_time = true

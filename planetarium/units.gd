@@ -33,6 +33,11 @@ extends Node
 
 # Scale notes:
 #
+# Godot 4.5 update:
+# METER = 1e-3 looks good in editor and Windows export (lighting and shadows)
+# and HTML5 export (lighting) at all target object scales. Did not test other
+# values.
+#
 # Godot 4.4 update after shadows work (v0.0.24.dev):
 # For the IVDynamicLight system, we need METER ~ 1e-3. Larger breaks moon
 # shadows on Jupiter. Self-shadow quality on ISS is already affected at 1e-3

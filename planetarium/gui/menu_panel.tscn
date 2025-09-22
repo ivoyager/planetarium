@@ -93,6 +93,7 @@ mouse_filter = 2
 
 [node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource("6")]
 layout_mode = 2
+prepend = "v"
 
 [node name="LockVisibleCkbx" parent="." instance=ExtResource("2")]
 layout_mode = 2
