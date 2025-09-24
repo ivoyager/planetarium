@@ -70,7 +70,7 @@ func _init() -> void:
 	IVCoreInitializer.gui_nodes["BootScreen"] = BootScreen # added on top; self-frees
 	
 	# other singleton changes
-	IVQFormat.exponent_str = " x 10^"
+	IVQFormat.exponent_str = " ×10^"
 	
 	# static class changes
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")

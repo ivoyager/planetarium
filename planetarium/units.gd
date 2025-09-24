@@ -21,8 +21,10 @@ extends Node
 
 ## Replacement IVUnits singleton
 ##
-## This file replaces the plugin template file at addons/ivoyager_units/units.gd.
-## It is unchanged except for sim scale ([constant METER]).[br][br]
+## This file replaces the "Units" plugin template file at
+## [code]addons/ivoyager_units/units.gd[/code] as set in res://ivoyager_override.cfg.
+##
+## It is unchanged except for comments and sim scale ([constant METER]).[br][br]
 ##
 ## WARNING: Lighting and shadows are EXTREMELY sensitive to scale, and the
 ## specific issues (and best setting) vary with Godot versions. See class file
@@ -106,20 +108,14 @@ const WEBER := VOLT * SECOND
 const TESLA := WEBER / METER ** 2
 const GRAVITATIONAL_CONSTANT := 6.67430e-11 * METER ** 3 / (KG * SECOND ** 2)
 
-# Unit symbols below mostly follow:
-# https://en.wikipedia.org/wiki/International_System_of_Units
-#
-# IVConvert.convert_quantity() can convert compound units such as 'm/s^2'.
-# However, dictionary lookup is faster so consider adding commonly used
-# compound units as keys in unit_multipliers. 
-#
-# We look for unit symbol first in unit_multipliers and then in unit_lambdas.
 
 ## Conversion multipliers for units that are linear with zero-intersect.
+## Internal unit symbols must be unique. However, redundant symbol usage can
+## be specified for display in [IVQFormat] (e.g., &"g" for gram and &"g0" for
+## g-force both display as "g"). 
+## Default units are mostly (but not all) SI units that follow:
+## [url]https://en.wikipedia.org/wiki/International_System_of_Units[/url].
 var unit_multipliers: Dictionary[StringName, float] = {
-	# Duplicated symbols have leading underscore.
-	# See IVQFormat for unit display strings.
-	
 	# time
 	&"s" : SECOND,
 	&"min" : MINUTE,
@@ -145,7 +141,7 @@ var unit_multipliers: Dictionary[StringName, float] = {
 	&"t" : TONNE,
 	# angle
 	&"rad" : 1.0,
-	&"deg" : DEG,
+	&"deg" : DEG, # IVQFormat displays as °
 	# temperature
 	&"K" : KELVIN,
 	# frequency
@@ -166,7 +162,7 @@ var unit_multipliers: Dictionary[StringName, float] = {
 	&"c" : SPEED_OF_LIGHT,
 	# acceleration/gravity
 	&"m/s^2" : METER / SECOND ** 2,
-	&"_g" : STANDARD_GRAVITY,
+	&"g0" : STANDARD_GRAVITY, # IVQFormat displays as g
 	# angular velocity
 	&"rad/s" : 1.0 / SECOND, 
 	&"deg/d" : DEG / DAY,
@@ -230,10 +226,17 @@ var unit_multipliers: Dictionary[StringName, float] = {
 	&"MiB" : 8.0 * 1024.0 ** 2,
 	&"GiB" : 8.0 * 1024.0 ** 3,
 	&"TiB" : 8.0 * 1024.0 ** 4,
+	# misc
+	&"percent" : 100.0, # e.g., display x = 0.55 as "55%" (see IVQFormat)
+	&"ppm" : 1e6,
+	&"ppb" : 1e9,
 }
 
-## Conversion lambdas for units that are nonlinear or have non-zero intersect,
-## e.g., celsius and fahrenheit.
+## Conversion lambdas for units that are nonlinear or have non-zero intersect
+## (e.g., celsius and fahrenheit). All lambdas must have method signature
+## [code](x: float, to_internal: bool)[/code] where [param x] is the quantity
+## and [param to_internal] specifies conversion to internal (true) or from
+## internal (false).
 var unit_lambdas: Dictionary[StringName, Callable] = {
 	&"degC" : func convert_celsius(x: float, to_internal := true) -> float:
 		return x + 273.15 if to_internal else x - 273.15,
