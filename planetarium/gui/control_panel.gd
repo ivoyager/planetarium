@@ -42,9 +42,8 @@ func _ready() -> void:
 	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
 	# widget mods
-	var date_time_label: IVDateTimeLabel = $"%DateTimeLabel"
-	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
-	date_time_label.clock_hm_format = "  %02d:%02d UT"
+
+	
 	var view_save_button: IVViewSaveButton = $"%ViewSaveButton"
 	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
 	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
