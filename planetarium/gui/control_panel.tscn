@@ -76,7 +76,6 @@ layout_mode = 2
 
 [node name="UpLockCkbx" parent="VBox/HBox3" instance=ExtResource("12")]
 layout_mode = 2
-text = "CKBX_LOCK_UP"
 
 [node name="TrackCkbxs" parent="VBox/HBox3" instance=ExtResource("15")]
 layout_mode = 2

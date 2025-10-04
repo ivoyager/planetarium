@@ -45,12 +45,7 @@ func _ready() -> void:
 	var date_time_label: IVDateTimeLabel = $"%DateTimeLabel"
 	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
 	date_time_label.clock_hm_format = "  %02d:%02d UT"
-	
 	var view_save_button: IVViewSaveButton = $"%ViewSaveButton"
-	var view_saver: IVViewSaver = view_save_button.get_view_saver()
-	var time_ckbx: CheckBox = view_saver.find_child(&"TimeCkbx")
-	time_ckbx.text = "CKBX_TIME"
-	
 	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
 	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
 			ViewFlags.VIEWFLAGS_ALL, ViewFlags.VIEWFLAGS_ALL_CAMERA, reserved_view_names)
