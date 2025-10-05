@@ -21,18 +21,6 @@ class_name ControlPanel
 extends PanelContainer
 
 
-const ViewFlags := IVView.ViewFlags
-
-var reserved_view_names: Array[StringName] = [
-	&"BUTTON_ZOOM",
-	&"BUTTON_45_DEG",
-	&"BUTTON_TOP",
-	&"BUTTON_HOME",
-	&"BUTTON_CISLUNAR",
-	&"BUTTON_SYSTEM",
-	&"BUTTON_ASTEROIDS",
-]
-
 
 func _ready() -> void:
 	var mod: IVControlDraggable = $ControlMod
@@ -41,14 +29,8 @@ func _ready() -> void:
 	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
 	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
-	# widget mods
-
-	
-	var view_save_button: IVViewSaveButton = $"%ViewSaveButton"
-	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
-	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
-			ViewFlags.VIEWFLAGS_ALL, ViewFlags.VIEWFLAGS_ALL_CAMERA, reserved_view_names)
-	view_save_flow.resized.connect(_reset_size)
+	# Panal expands with ViewCollection but does not shrink. Needs reset.
+	(%ViewCollection as Control).resized.connect(_reset_size)
 
 
 func _reset_size() -> void:

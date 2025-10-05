@@ -26,6 +26,7 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
 [node name="AllHUDs" parent="MarginContainer" instance=ExtResource("2")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
