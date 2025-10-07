@@ -85,44 +85,44 @@ alignment = 1
 [node name="FocalLengthControl" parent="VBox/HBox3" instance=ExtResource("11_13kj6")]
 layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="VBox"]
+[node name="DefaultViewsHBox" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 
-[node name="Home" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="Home" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_HOME"
 default_view = &"VIEW_HOME"
 
-[node name="Cislunar" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="Cislunar" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_CISLUNAR"
 default_view = &"VIEW_CISLUNAR"
 
-[node name="System" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="System" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_SYSTEM"
 default_view = &"VIEW_SYSTEM"
 
-[node name="Asteroids" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="Asteroids" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_ASTEROIDS"
 default_view = &"VIEW_ASTEROIDS"
 
-[node name="Spacer" type="Control" parent="VBox/HBox"]
+[node name="Spacer" type="Control" parent="VBox/DefaultViewsHBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Zoom" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="Zoom" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_ZOOM"
 default_view = &"VIEW_ZOOM"
 
-[node name="Fortyfive" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="Fortyfive" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_FORTYFIVE"
 default_view = &"VIEW_FORTYFIVE"
 
-[node name="Top" parent="VBox/HBox" instance=ExtResource("19")]
+[node name="Top" parent="VBox/DefaultViewsHBox" instance=ExtResource("19")]
 layout_mode = 2
 text = "VIEW_TOP"
 default_view = &"VIEW_TOP"
@@ -131,7 +131,7 @@ default_view = &"VIEW_TOP"
 unique_name_in_owner = true
 layout_mode = 2
 collection_name = "CP"
-reserved_names = Array[String](["VIEW_HOME", "VIEW_CISLUNAR", "VIEW_SYSTEM", "VIEW_ASTEROIDS", "VIEW_ZOOM", "VIEW_45_DEG", "VIEW_TOP"])
+external_button_containers = Array[NodePath]([NodePath("../DefaultViewsHBox")])
 
 [node name="ViewSaveButton" parent="VBox/ViewCollection" instance=ExtResource("17")]
 layout_mode = 2
