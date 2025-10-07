@@ -130,9 +130,8 @@ default_view = &"VIEW_TOP"
 [node name="ViewCollection" parent="VBox" instance=ExtResource("13_jbnqr")]
 unique_name_in_owner = true
 layout_mode = 2
-collection_name = &"control_panel"
-reserved_names = Array[StringName]([&"VIEW_HOME", &"VIEW_CISLUNAR", &"VIEW_SYSTEM", &"VIEW_ASTEROIDS", &"VIEW_ZOOM", &"VIEW_45_DEG", &"VIEW_TOP"])
-edit_view_name = &"LABEL_VIEW1"
+collection_name = "CP"
+reserved_names = Array[String](["VIEW_HOME", "VIEW_CISLUNAR", "VIEW_SYSTEM", "VIEW_ASTEROIDS", "VIEW_ZOOM", "VIEW_45_DEG", "VIEW_TOP"])
 
 [node name="ViewSaveButton" parent="VBox/ViewCollection" instance=ExtResource("17")]
 layout_mode = 2
