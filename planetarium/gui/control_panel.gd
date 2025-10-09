@@ -29,7 +29,7 @@ func _ready() -> void:
 	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
 	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
 	
-	# Panal expands with ViewCollection but does not shrink. Needs reset.
+	# Panal expands with ViewCollection changes but does not shrink. Needs reset.
 	(%ViewCollection as Control).resized.connect(_reset_size)
 
 
