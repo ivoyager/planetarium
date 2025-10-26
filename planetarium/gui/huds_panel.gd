@@ -23,8 +23,10 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	($ControlMod as IVControlDraggable).init_min_size(-1, Vector2.ZERO)
+	#($ControlMod as IVControlDraggable).init_min_size(-1, Vector2.ZERO)
 	(%AllHUDs as Control).resized.connect(_reset_size)
+	
+	print(is_visible_in_tree())
 
 
 func _reset_size() -> void:

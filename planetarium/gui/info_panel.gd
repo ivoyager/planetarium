@@ -36,10 +36,10 @@ var _suppress_resize := true
 
 func _ready() -> void:
 	IVGlobal.simulator_started.connect(_on_simulator_started)
-	var mod: IVControlDraggable = $ControlMod
-	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(315.0, 870.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(375.0, 1150.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(455.0, 1424.0))
+	#var mod: IVControlDraggable = $ControlMod
+	#mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(315.0, 870.0))
+	#mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(375.0, 1150.0))
+	#mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(455.0, 1424.0))
 
 	# limit panel bottom for other gui
 	item_rect_changed.connect(_on_self_item_rect_changed)

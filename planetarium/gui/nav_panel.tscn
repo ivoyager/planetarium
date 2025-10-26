@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://wcxctits85co" path="res://addons/ivoyager_core/gui_widgets/sun_slice_button.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://bh05kj1lc1y01" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="7_vibof"]
 
 [node name="NavPanel" type="PanelContainer"]
 anchors_preset = 2
@@ -56,4 +56,5 @@ layout_mode = 2
 [node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
 layout_mode = 2
 
-[node name="ControlMod" parent="." instance=ExtResource("8")]
+[node name="ControlModResizable" parent="." instance=ExtResource("7_vibof")]
+sizes = Array[Vector2]([Vector2(435, 278), Vector2(575, 336), Vector2(712, 400)])

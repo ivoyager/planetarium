@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://addons/ivoyager_core/gui_widgets/range_label.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://bh05kj1lc1y01" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://addons/ivoyager_core/gui_widgets/speed_buttons.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://welwpw4boyv8" path="res://addons/ivoyager_core/gui_widgets/lat_long_label.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://chl27l6aiico8" path="res://addons/ivoyager_core/gui_widgets/focal_length_control.tscn" id="11_13kj6"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b1mkm7ajlvvm0" path="res://addons/ivoyager_core/gui_widgets/track_ckbxs.tscn" id="15"]
 [ext_resource type="PackedScene" uid="uid://bgk3lju7s35t" path="res://addons/ivoyager_core/gui_widgets/time_set_button.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://do2jvg01jte0i" path="res://addons/ivoyager_core/gui_widgets/view_save_button.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="17_jbnqr"]
 [ext_resource type="PackedScene" uid="uid://bcl70ysl6yces" path="res://addons/ivoyager_core/gui_widgets/view_button.tscn" id="19"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbnqr"]
@@ -147,4 +147,5 @@ layout_mode = 2
 [node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
 layout_mode = 2
 
-[node name="ControlMod" parent="." instance=ExtResource("8")]
+[node name="ControlModResizable" parent="." instance=ExtResource("17_jbnqr")]
+sizes = Array[Vector2]([Vector2(435, 0), Vector2(575, 0), Vector2(712, 0)])

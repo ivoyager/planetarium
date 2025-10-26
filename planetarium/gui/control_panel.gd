@@ -23,12 +23,6 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	var mod: IVControlDraggable = $ControlMod
-	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
-	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
-	
 	# Panal expands with ViewCollection changes but does not shrink. Needs reset.
 	(%ViewCollection as Control).resized.connect(_reset_size)
 
