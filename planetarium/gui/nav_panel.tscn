@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://diafd62ta13cn"]
+[gd_scene load_steps=7 format=3 uid="uid://diafd62ta13cn"]
 
-[ext_resource type="Script" uid="uid://cpkvpc48lfev1" path="res://planetarium/gui/nav_panel.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bgja2vd1iswvn" path="res://addons/ivoyager_core/gui_widgets/body_h_scroll.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cre322bqbtbtd" path="res://addons/ivoyager_core/gui_widgets/planet_moon_buttons.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://3ofokqme2067" path="res://addons/ivoyager_core/gui_widgets/nav_button_box.tscn" id="4_yp30r"]
 [ext_resource type="PackedScene" uid="uid://wcxctits85co" path="res://addons/ivoyager_core/gui_widgets/sun_slice_button.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
@@ -14,7 +13,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -338.0
 offset_right = 414.0
-script = ExtResource("1")
+grow_vertical = 0
 
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -38,17 +37,29 @@ mouse_filter = 2
 [node name="PlanetMoonButtons" parent="HBox/RightContent/VBox" instance=ExtResource("3")]
 layout_mode = 2
 
-[node name="AsteroidsHScroll" parent="HBox/RightContent/VBox" instance=ExtResource("2")]
-unique_name_in_owner = true
+[node name="AsteroidsScroll" type="ScrollContainer" parent="HBox/RightContent/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "LABEL_VISITED_ASTEROIDS"
+follow_focus = true
+draw_focus_border = true
+vertical_scroll_mode = 0
 
-[node name="SpacecraftHScroll" parent="HBox/RightContent/VBox" instance=ExtResource("2")]
-unique_name_in_owner = true
+[node name="AsteroidsBox" parent="HBox/RightContent/VBox/AsteroidsScroll" instance=ExtResource("4_yp30r")]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "LABEL_SPACECRAFT"
+body_tables = Array[StringName]([&"asteroids"])
+
+[node name="SpacecraftsScroll" type="ScrollContainer" parent="HBox/RightContent/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+draw_focus_border = true
+vertical_scroll_mode = 0
+
+[node name="SpacecraftsBox" parent="HBox/RightContent/VBox/SpacecraftsScroll" instance=ExtResource("4_yp30r")]
+layout_mode = 2
+size_flags_vertical = 3
+body_tables = Array[StringName]([&"spacecrafts"])
 
 [node name="SelectionButtons" parent="." instance=ExtResource("7")]
 layout_mode = 2
