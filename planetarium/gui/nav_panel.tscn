@@ -37,6 +37,7 @@ mouse_filter = 2
 
 [node name="NavButtonsSystem" parent="HBox/RightContent/VBox" instance=ExtResource("2_vibof")]
 layout_mode = 2
+moon_scroll_proportion = 100.0
 
 [node name="AsteroidsScroll" type="ScrollContainer" parent="HBox/RightContent/VBox"]
 layout_mode = 2
@@ -70,4 +71,3 @@ layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("7_vibof")]
 base_size = Vector2(575, 336)
-resize_again_delay = 1
