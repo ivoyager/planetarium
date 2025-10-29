@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://diafd62ta13cn"]
 
-[ext_resource type="PackedScene" uid="uid://cre322bqbtbtd" path="res://addons/ivoyager_core/gui_widgets/planet_moon_buttons.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://3ofokqme2067" path="res://addons/ivoyager_core/gui_widgets/nav_button_box.tscn" id="4_yp30r"]
-[ext_resource type="PackedScene" uid="uid://wcxctits85co" path="res://addons/ivoyager_core/gui_widgets/sun_slice_button.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://t13lvtablxvu" path="res://addons/ivoyager_core/gui_widgets/nav_button.tscn" id="1_rujde"]
+[ext_resource type="PackedScene" uid="uid://cjtauq7kev3vl" path="res://addons/ivoyager_core/gui_widgets/nav_buttons_system.tscn" id="2_vibof"]
+[ext_resource type="PackedScene" uid="uid://3ofokqme2067" path="res://addons/ivoyager_core/gui_widgets/nav_buttons_box.tscn" id="4_yp30r"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="7_vibof"]
@@ -19,9 +19,10 @@ grow_vertical = 0
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SunSliceButton" parent="HBox" instance=ExtResource("5")]
+[node name="NavButton" parent="HBox" instance=ExtResource("1_rujde")]
 layout_mode = 2
-size_flags_horizontal = 3
+body_name = &"STAR_SUN"
+use_texture_slice = true
 
 [node name="RightContent" type="MarginContainer" parent="HBox"]
 layout_mode = 2
@@ -34,7 +35,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PlanetMoonButtons" parent="HBox/RightContent/VBox" instance=ExtResource("3")]
+[node name="NavButtonsSystem" parent="HBox/RightContent/VBox" instance=ExtResource("2_vibof")]
 layout_mode = 2
 
 [node name="AsteroidsScroll" type="ScrollContainer" parent="HBox/RightContent/VBox"]
@@ -68,4 +69,5 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("7_vibof")]
-sizes = Array[Vector2]([Vector2(435, 278), Vector2(575, 336), Vector2(712, 400)])
+base_size = Vector2(575, 336)
+resize_again_delay = 1

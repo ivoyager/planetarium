@@ -48,7 +48,7 @@ force_quit = true
 layout_mode = 2
 
 [node name="ControlModResizable" parent="MarginContainer/VBox/Spacer" instance=ExtResource("9_xhnrs")]
-sizes = Array[Vector2]([Vector2(0, 2), Vector2(0, 5), Vector2(0, 8)])
+base_size = Vector2(0, 4)
 
 [node name="HomePage" parent="MarginContainer/VBox" instance=ExtResource("5")]
 unique_name_in_owner = true
@@ -78,7 +78,7 @@ open_external_url = true
 layout_mode = 2
 
 [node name="ControlModResizable" parent="MarginContainer/VBox/Spacer2" instance=ExtResource("9_xhnrs")]
-sizes = Array[Vector2]([Vector2(0, 2), Vector2(0, 5), Vector2(0, 8)])
+base_size = Vector2(0, 4)
 
 [node name="VersionLabel" parent="MarginContainer/VBox" instance=ExtResource("6")]
 layout_mode = 2

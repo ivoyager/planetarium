@@ -28,4 +28,5 @@ func _ready() -> void:
 
 
 func _reset_size() -> void:
-	size = Vector2.ZERO
+	var x := size.x
+	size = Vector2(x, 0.0)

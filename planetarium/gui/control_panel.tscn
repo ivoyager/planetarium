@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://ba7271tsjvr4o"]
 
-[ext_resource type="Script" uid="uid://bwtmii13a7exf" path="res://planetarium/gui/control_panel.gd" id="1"]
+[ext_resource type="Script" uid="uid://bwtmii13a7exf" path="res://planetarium/gui/control_panel.gd" id="1_jbnqr"]
 [ext_resource type="PackedScene" uid="uid://b8lhpum4e5tps" path="res://addons/ivoyager_core/gui_widgets/date_time_label.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://addons/ivoyager_core/gui_widgets/now_ckbx.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://addons/ivoyager_core/gui_widgets/selection_label.tscn" id="4"]
@@ -30,10 +30,11 @@ anchor_bottom = 1.0
 offset_left = -207.0
 offset_top = -338.0
 offset_right = 207.0
-script = ExtResource("1")
+script = ExtResource("1_jbnqr")
 
 [node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="SelectionLabel" parent="VBox" instance=ExtResource("4")]
 layout_mode = 2
@@ -148,4 +149,5 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("17_jbnqr")]
-sizes = Array[Vector2]([Vector2(435, 0), Vector2(575, 0), Vector2(712, 0)])
+base_size = Vector2(600, 0)
+resize_again_delay = 1
