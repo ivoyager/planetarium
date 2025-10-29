@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cnyglo7c86jmi" path="res://planetarium/gui/menu_panel.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cvv4u4ctix3v5" path="res://addons/ivoyager_core/gui_widgets/full_screen_button.tscn" id="2_spw6t"]
-[ext_resource type="PackedScene" uid="uid://bh05kj1lc1y01" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://boc2r4d0eomdr" path="res://addons/ivoyager_core/gui_widgets/options_button.tscn" id="3_4hcos"]
 [ext_resource type="PackedScene" uid="uid://pjw4ki1qswq0" path="res://addons/ivoyager_core/gui_widgets/hotkeys_button.tscn" id="4_1edhr"]
 [ext_resource type="PackedScene" uid="uid://dqwafuo72wscj" path="res://addons/ivoyager_core/gui_widgets/link_label.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dcw1843unaohr" path="res://addons/ivoyager_core/gui_widgets/quit_button.tscn" id="5_caym3"]
 [ext_resource type="PackedScene" uid="uid://bkokwngymmnyk" path="res://addons/ivoyager_core/gui_widgets/version_label.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="9_xhnrs"]
 
 [node name="MenuPanel" type="PanelContainer"]
 anchors_preset = 1
@@ -18,12 +18,7 @@ offset_left = -108.0
 offset_bottom = 182.0
 script = ExtResource("1")
 
-[node name="VBox" type="VBoxContainer" parent="."]
-layout_mode = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="MarginContainer1" type="MarginContainer" parent="VBox"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 10
@@ -31,71 +26,65 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
 
-[node name="MenuVBox" type="VBoxContainer" parent="VBox/MarginContainer1"]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/separation = 6
 
-[node name="FullScreenButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("2_spw6t")]
-layout_mode = 2
-
-[node name="OptionsButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("3_4hcos")]
+[node name="FullScreenButton" parent="MarginContainer/VBox" instance=ExtResource("2_spw6t")]
 layout_mode = 2
 
-[node name="HotkeysButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("4_1edhr")]
+[node name="OptionsButton" parent="MarginContainer/VBox" instance=ExtResource("3_4hcos")]
 layout_mode = 2
 
-[node name="QuitButton" parent="VBox/MarginContainer1/MenuVBox" instance=ExtResource("5_caym3")]
+[node name="HotkeysButton" parent="MarginContainer/VBox" instance=ExtResource("4_1edhr")]
+layout_mode = 2
+
+[node name="QuitButton" parent="MarginContainer/VBox" instance=ExtResource("5_caym3")]
 unique_name_in_owner = true
 layout_mode = 2
 force_quit = true
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBox"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBox"]
 layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 17
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="VBox" type="VBoxContainer" parent="VBox/MarginContainer2"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 8
+[node name="ControlModResizable" parent="MarginContainer/VBox/Spacer" instance=ExtResource("9_xhnrs")]
+base_size = Vector2(0, 4)
 
-[node name="HomePage" parent="VBox/MarginContainer2/VBox" instance=ExtResource("5")]
+[node name="HomePage" parent="MarginContainer/VBox" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[url=\"https://ivoyager.dev\"]I, Voyager[/url]"
 open_external_url = true
 
-[node name="Credits" parent="VBox/MarginContainer2/VBox" instance=ExtResource("5")]
+[node name="Credits" parent="MarginContainer/VBox" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[url=\"https://github.com/ivoyager/ivoyager_core/blob/master/CREDITS.md\"]Credits[/url]"
 open_external_url = true
 
-[node name="Feedback" parent="VBox/MarginContainer2/VBox" instance=ExtResource("5")]
+[node name="Feedback" parent="MarginContainer/VBox" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[url=\"https://github.com/orgs/ivoyager/discussions\"]Feedback[/url]"
 open_external_url = true
 
-[node name="SupportUs" parent="VBox/MarginContainer2/VBox" instance=ExtResource("5")]
+[node name="SupportUs" parent="MarginContainer/VBox" instance=ExtResource("5")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[url=\"https://github.com/sponsors/ivoyager\"]Support Us![/url]"
 open_external_url = true
 
-[node name="Spacer" type="Control" parent="VBox/MarginContainer2/VBox"]
-custom_minimum_size = Vector2(0, 3)
+[node name="Spacer2" type="Control" parent="MarginContainer/VBox"]
 layout_mode = 2
-mouse_filter = 2
 
-[node name="VersionLabel" parent="VBox/MarginContainer2/VBox" instance=ExtResource("6")]
+[node name="ControlModResizable" parent="MarginContainer/VBox/Spacer2" instance=ExtResource("9_xhnrs")]
+base_size = Vector2(0, 4)
+
+[node name="VersionLabel" parent="MarginContainer/VBox" instance=ExtResource("6")]
 layout_mode = 2
 prepend = "v"
 
 [node name="LockVisibleCkbx" parent="." instance=ExtResource("2")]
 layout_mode = 2
 
-[node name="ControlMod" parent="." instance=ExtResource("3")]
+[node name="ControlModResizable" parent="." instance=ExtResource("9_xhnrs")]

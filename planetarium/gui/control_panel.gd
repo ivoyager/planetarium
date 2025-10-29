@@ -21,41 +21,12 @@ class_name ControlPanel
 extends PanelContainer
 
 
-const ViewFlags := IVView.ViewFlags
-
-var reserved_view_names: Array[StringName] = [
-	&"BUTTON_ZOOM",
-	&"BUTTON_45_DEG",
-	&"BUTTON_TOP",
-	&"BUTTON_HOME",
-	&"BUTTON_CISLUNAR",
-	&"BUTTON_SYSTEM",
-	&"BUTTON_ASTEROIDS",
-]
-
 
 func _ready() -> void:
-	var mod: IVControlDraggable = $ControlMod
-	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(435.0, 0.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(575.0, 0.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(712.0, 0.0))
-	mod.max_default_screen_proportions = Vector2(0.55, 0.45)
-	
-	# widget mods
-	var date_time_label: IVDateTimeLabel = $"%DateTimeLabel"
-	date_time_label.clock_hms_format = "  %02d:%02d:%02d UT"
-	date_time_label.clock_hm_format = "  %02d:%02d UT"
-	
-	var view_save_button: IVViewSaveButton = $"%ViewSaveButton"
-	var view_saver: IVViewSaver = view_save_button.get_view_saver()
-	var time_ckbx: CheckBox = view_saver.find_child(&"TimeCkbx")
-	time_ckbx.text = "CKBX_TIME"
-	
-	var view_save_flow: IVViewSaveFlow = $"%ViewSaveFlow"
-	view_save_flow.init(view_save_button, &"LABEL_VIEW1", &"PL", true,
-			ViewFlags.VIEWFLAGS_ALL, ViewFlags.VIEWFLAGS_ALL_CAMERA, reserved_view_names)
-	view_save_flow.resized.connect(_reset_size)
+	# Panal expands with ViewCollection changes but does not shrink. Needs reset.
+	(%ViewCollection as Control).resized.connect(_reset_size)
 
 
 func _reset_size() -> void:
-	size = Vector2.ZERO
+	var x := size.x
+	size = Vector2(x, 0.0)

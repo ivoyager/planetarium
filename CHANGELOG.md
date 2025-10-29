@@ -10,9 +10,10 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 Now release candidate for I, Voyager "beta"!
 
-Under development using Godot 4.5.
+Under development using Godot 4.5.1.
 
 ### Changed
+* Updated GUI for new Core plugin widgets.
 * Replaced 3RD_PARTY.txt with updated and more human-readable 3RD_PARTY.md, and updated CREDITS.md.
 * Updated plugin ivoyager_core to v0.1.rc.
 * Updated plugin ivoyager_tables to v0.1.rc.

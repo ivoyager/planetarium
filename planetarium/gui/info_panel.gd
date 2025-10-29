@@ -20,79 +20,34 @@
 class_name InfoPanel
 extends PanelContainer
 
-# Dynamically resizes to not grow bigger than data and not cover other panels.
+# This panel changes its own vertical size in response to SelectionData size
+# changes. Note that $ControlModResizable will override this an truncate y
+# if there is a PanelContainer below (from panel_under_spacing).
 
-const MIN_DATA_SIZE := 80.0
-const UNDER_DATA_MARGIN := 20.0
-const UNDER_PANEL_GAP := 60.0
+const NONDATA_BASE_SIZE := 95.0
 
-var _other_panels: Array[Control] = [] # resize to not cover these
-var _suppress_resize := true
+var _settings := IVGlobal.settings
+var _gui_size_multipliers := IVCoreSettings.gui_size_multipliers
+var _data_height := 0.0
+var _suppress_resize := false
 
-@onready var _world_controller: IVWorldController = IVGlobal.program[&"WorldController"]
-@onready var _selection_data: VBoxContainer = find_child(&"SelectionData")
-@onready var _data_scroll: ScrollContainer = find_child(&"DataScroll")
+
+@onready var _selection_data: VBoxContainer = %SelectionData
+
 
 
 func _ready() -> void:
-	IVGlobal.simulator_started.connect(_on_simulator_started)
-	var mod: IVControlDraggable = $ControlMod
-	mod.init_min_size(IVGlobal.GUISize.GUI_SMALL, Vector2(315.0, 870.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_MEDIUM, Vector2(375.0, 1150.0))
-	mod.init_min_size(IVGlobal.GUISize.GUI_LARGE, Vector2(455.0, 1424.0))
-
-	# limit panel bottom for other gui
-	item_rect_changed.connect(_on_self_item_rect_changed)
-	for child in get_parent().get_children():
-		var control := child as Control
-		if !control or control == self:
-			continue
-		_other_panels.append(control)
-		control.item_rect_changed.connect(_resize_vertical)
-	_selection_data.resized.connect(_resize_vertical)
-	get_viewport().size_changed.connect(_resize_vertical)
+	_selection_data.resized.connect(_resize)
 
 
-func _on_simulator_started() -> void:
-	_suppress_resize = false
-	_resize_vertical()
-
-
-func _on_self_item_rect_changed() -> void:
+func _resize() -> void:
 	if _suppress_resize:
 		return
-	_resize_vertical()
-	_suppress_resize = true
-	await get_tree().process_frame
-	await get_tree().process_frame
-	_suppress_resize = false
-	_resize_vertical()
-
-
-func _resize_vertical() -> void:
-	if _suppress_resize:
+	if _data_height == _selection_data.size.y:
 		return
 	_suppress_resize = true
-	var data_size := _selection_data.size.y
-	var data_top := _data_scroll.get_global_rect().position.y
-	var above_data_size := data_top - position.y
-	var rect := get_rect()
-	var bottom_limit := _world_controller.veiwport_height
-	for control in _other_panels:
-		var other_rect: Rect2 = control.get_rect()
-		if rect.end.x < other_rect.position.x:
-			continue
-		if rect.position.x > other_rect.end.x:
-			continue
-		var other_top: float = other_rect.position.y
-		if bottom_limit > other_top:
-			bottom_limit = other_top
-	if data_size + data_top > bottom_limit - UNDER_PANEL_GAP: # grow to external limits, unless too small
-		var min_size := bottom_limit - UNDER_PANEL_GAP - position.y
-		if min_size < above_data_size + MIN_DATA_SIZE: # too small, just let them overlap
-			min_size = above_data_size + MIN_DATA_SIZE
-		custom_minimum_size.y = min_size
-	else: # shrink to content
-		custom_minimum_size.y = data_size + above_data_size + UNDER_DATA_MARGIN
-	size.y = custom_minimum_size.y
+	_data_height = _selection_data.size.y
+	var gui_size: int = _settings[&"gui_size"]
+	var nondata_height := NONDATA_BASE_SIZE * _gui_size_multipliers[gui_size]
+	size.y = _data_height + nondata_height
 	_suppress_resize = false

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dglsn48wnive"]
 
 [ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://bh05kj1lc1y01" path="res://addons/ivoyager_core/gui_mods/control_draggable.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://dcy30ki8dt6lw" path="res://addons/ivoyager_core/gui_widgets/selection_data.tscn" id="3_krqkh"]
 [ext_resource type="Script" uid="uid://dwsajkolfrkre" path="res://planetarium/gui/info_panel.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="5_krqkh"]
 [ext_resource type="PackedScene" uid="uid://dbmmj34clrl2a" path="res://addons/ivoyager_core/gui_widgets/selection_wiki_link.tscn" id="10"]
 
 [node name="InfoPanel" type="PanelContainer"]
@@ -27,18 +27,26 @@ mouse_filter = 2
 layout_mode = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/VBox"]
-custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 mouse_filter = 2
+
+[node name="ControlModResizable" parent="MarginContainer/VBox/Spacer" instance=ExtResource("5_krqkh")]
+base_size = Vector2(0, 12)
 
 [node name="DataScroll" type="ScrollContainer" parent="MarginContainer/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="SelectionData" parent="MarginContainer/VBox/DataScroll" instance=ExtResource("3_krqkh")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="LockVisibleCkbx" parent="." instance=ExtResource("1")]
 layout_mode = 2
 
-[node name="ControlMod" parent="." instance=ExtResource("2")]
+[node name="ControlModResizable" parent="." instance=ExtResource("5_krqkh")]
+base_size = Vector2(390, -1)
+resize_again_delay = 2
+panel_under_spacing = 50.0
