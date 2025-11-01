@@ -21,6 +21,8 @@ class_name HUDsPanel
 extends PanelContainer
 
 
+var enable_huds_hbox_links := true # enables links in IVHUDsHBox
+
 
 func _ready() -> void:
 	(%HUDsBox as Control).resized.connect(_reset_size)
