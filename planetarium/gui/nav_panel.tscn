@@ -19,10 +19,11 @@ grow_vertical = 0
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NavButton" parent="HBox" instance=ExtResource("1_rujde")]
+[node name="SunButton" parent="HBox" instance=ExtResource("1_rujde")]
 layout_mode = 2
 body_name = &"STAR_SUN"
 use_texture_slice = true
+focus_selected_on_sim_start = true
 
 [node name="RightContent" type="MarginContainer" parent="HBox"]
 layout_mode = 2
@@ -38,6 +39,7 @@ mouse_filter = 2
 [node name="NavButtonsSystem" parent="HBox/RightContent/VBox" instance=ExtResource("2_vibof")]
 layout_mode = 2
 moon_scroll_proportion = 100.0
+focus_selected_on_sim_start = true
 
 [node name="AsteroidsScroll" type="ScrollContainer" parent="HBox/RightContent/VBox"]
 layout_mode = 2
@@ -50,6 +52,7 @@ vertical_scroll_mode = 0
 layout_mode = 2
 size_flags_vertical = 3
 body_tables = Array[StringName]([&"asteroids"])
+focus_selected_on_sim_start = true
 
 [node name="SpacecraftsScroll" type="ScrollContainer" parent="HBox/RightContent/VBox"]
 layout_mode = 2
@@ -62,6 +65,7 @@ vertical_scroll_mode = 0
 layout_mode = 2
 size_flags_vertical = 3
 body_tables = Array[StringName]([&"spacecrafts"])
+focus_selected_on_sim_start = true
 
 [node name="SelectionButtons" parent="." instance=ExtResource("7")]
 layout_mode = 2
