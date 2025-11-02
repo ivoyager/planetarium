@@ -22,9 +22,15 @@ extends PanelContainer
 
 # This panel changes its own vertical size in response to SelectionData size
 # changes. Note that $ControlModResizable will override this an truncate y
-# if there is a PanelContainer below (from panel_under_spacing).
+# if there is a PanelContainer below (from "panel_under_spacing" property).
 
 const NONDATA_BASE_SIZE := 95.0
+
+
+var enable_selection_data_label_links := true
+var enable_selection_data_value_links := true
+
+
 
 var _settings := IVGlobal.settings
 var _gui_size_multipliers := IVCoreSettings.gui_size_multipliers
