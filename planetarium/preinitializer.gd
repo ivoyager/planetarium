@@ -45,7 +45,6 @@ func _init() -> void:
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
 	IVCoreSettings.pause_only_stops_time = true
-	IVCoreSettings.skip_splash_screen = true
 	IVCoreSettings.disable_exit = true
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false
@@ -55,19 +54,13 @@ func _init() -> void:
 		IVCoreSettings.home_longitude = time_zone.bias * TAU / 1440.0
 	
 	if is_web:
-		IVCoreInitializer.gui_nodes.erase("MainProgBar")
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
 		IVSettingsManager.defaults[&"gui_size"] = IVGlobal.GUISize.GUI_LARGE
 		
 	# class changes
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
-	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
-	IVCoreInitializer.gui_nodes.erase("MainProgBar")
-	IVCoreInitializer.program_nodes["GUIToggler"] = GUIToggler
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
-	IVCoreInitializer.gui_nodes["PlanetariumGUI"] = PlanetariumGUI
-	IVCoreInitializer.gui_nodes["BootScreen"] = BootScreen # added on top; self-frees
 	
 	# other singleton changes
 	IVQFormat.exponent_str = " ×10^"
@@ -82,6 +75,7 @@ func _on_program_objects_instantiated() -> void:
 		var state_manager: IVStateManager = IVGlobal.program[&"StateManager"]
 		IVDebug.signal_verbosely_all(state_manager, "StateManager")
 	
+	# FIXME: ?????
 	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
 	
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
@@ -99,7 +93,7 @@ func _on_program_objects_instantiated() -> void:
 
 
 func _on_project_nodes_added() -> void:
-	IVCoreInitializer.move_top_gui_child_to_sibling(&"PlanetariumGUI", &"MouseTargetLabel", false)
+	pass
 
 
 func _on_simulator_started() -> void:

@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://whpgdl66sqph"]
+[gd_scene load_steps=4 format=3 uid="uid://whpgdl66sqph"]
 
 [ext_resource type="Script" uid="uid://dj4ammselobqx" path="res://planetarium/gui/huds_panel.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://bx22jigtdb8iw" path="res://addons/ivoyager_core/gui_widgets/huds_box.tscn" id="2_k0j0v"]
-[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="4_k0j0v"]
-[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bx22jigtdb8iw" path="res://addons/ivoyager_core/ui_widgets/huds_box.tscn" id="2_k0j0v"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_helpers/control_mod_resizable.tscn" id="4_k0j0v"]
 
 [node name="HUDsPanel" type="PanelContainer"]
 anchors_preset = 3
@@ -27,9 +26,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HUDsBox" parent="MarginContainer" instance=ExtResource("2_k0j0v")]
 unique_name_in_owner = true
-layout_mode = 2
-
-[node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
 layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("4_k0j0v")]

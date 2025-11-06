@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST: # desktop only!
-		if IVGlobal.state.is_started_or_about_to_start:
+		if IVStateManager.is_started_or_about_to_start:
 			_cache_now(false)
 
 

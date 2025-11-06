@@ -1,4 +1,4 @@
-# gui_toggler.gd
+# universe.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,24 +17,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name GUIToggler
-extends Node
+class_name Universe
+extends Node3D
+
+## Main scene root for the Planetarium.
+##
+## This scene tree was duplicated and modified from [IVUniverseTemplate]. See
+## that class for Core plugin documentation.
 
 
-signal all_gui_toggled(is_visible: bool)
-
-
-var hidden_panels := []
-
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"toggle_all_gui"):
-		all_gui_toggled.emit(!hidden_panels.is_empty())
-		get_viewport().set_input_as_handled()
-
-
-func register_visibility(panel: Control, is_visible: bool) -> void:
-	if is_visible:
-		hidden_panels.erase(panel)
-	elif !hidden_panels.has(panel):
-		hidden_panels.append(panel)
+func _ready() -> void:
+	if IVCoreSettings.pause_only_stops_time:
+		process_mode = PROCESS_MODE_ALWAYS

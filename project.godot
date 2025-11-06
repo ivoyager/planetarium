@@ -12,7 +12,7 @@ config_version=5
 
 config/name="I, Voyager - Planetarium"
 config/version="0.1.rc"
-run/main_scene="uid://dyca8o73ks7n4"
+run/main_scene="uid://mcxrmcs1puig"
 config/features=PackedStringArray("4.5")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
@@ -33,6 +33,8 @@ IVGlobal="*res://addons/ivoyager_core/editor_plugin/../singletons/global.gd"
 IVCoreSettings="*res://addons/ivoyager_core/editor_plugin/../singletons/core_settings.gd"
 IVCoreInitializer="*res://addons/ivoyager_core/editor_plugin/../singletons/core_initializer.gd"
 IVAstronomy="*res://addons/ivoyager_core/editor_plugin/../singletons/astronomy.gd"
+IVSettingsManager="*res://addons/ivoyager_core/editor_plugin/../singletons/settings_manager.gd"
+IVStateManager="*res://addons/ivoyager_core/editor_plugin/../singletons/state_manager.gd"
 
 [debug]
 
