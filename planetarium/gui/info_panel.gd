@@ -26,14 +26,13 @@ extends PanelContainer
 
 const NONDATA_BASE_SIZE := 85.0
 
-var _settings := IVGlobal.settings
 var _gui_size_multipliers := IVCoreSettings.gui_size_multipliers
 
 @onready var _selection_data: VBoxContainer = %SelectionData
 
 
 func _ready() -> void:
-	IVGlobal.core_inited.connect(_configure_after_core_inited, CONNECT_ONE_SHOT)
+	IVStateManager.core_initialized.connect(_configure_after_core_inited, CONNECT_ONE_SHOT)
 
 
 func _configure_after_core_inited() -> void:
@@ -46,7 +45,7 @@ func _resize() -> void:
 	# Note: IVControlModResizable is set to truncate for panel below whenever
 	# this panel resizes. There shouldn't be any recursion danger here.
 	var data_height := _selection_data.get_minimum_size().y
-	var gui_size: int = _settings[&"gui_size"]
+	var gui_size: int = IVSettingsManager.get_setting(&"gui_size")
 	var nondata_height := NONDATA_BASE_SIZE * _gui_size_multipliers[gui_size]
 	var new_height := data_height + nondata_height
 	if size.y == new_height:

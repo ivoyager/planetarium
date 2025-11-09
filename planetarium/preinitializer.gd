@@ -23,8 +23,8 @@ extends RefCounted
 
 const USE_THREADS := true # set false for debugging
 const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
-const VERBOSE_GLOBAL_SIGNALS := false
-const VERBOSE_STATEMANAGER_SIGNALS := false
+#const VERBOSE_GLOBAL_SIGNALS := false
+#const VERBOSE_STATEMANAGER_SIGNALS := false
 
 
 func _init() -> void:
@@ -32,12 +32,12 @@ func _init() -> void:
 	var version: String = ProjectSettings.get_setting("application/config/version")
 	print("Planetarium v%s - https://ivoyager.dev" % version)
 	
-	if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
-		IVDebug.signal_verbosely_all(IVGlobal, "Global")
+	#if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
+		#IVDebug.signal_verbosely_all(IVGlobal, "Global")
 	
-	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
-	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
-	IVGlobal.simulator_started.connect(_on_simulator_started)
+	IVStateManager.core_init_program_objects_instantiated.connect(
+			_on_core_init_program_objects_instantiated)
+	IVStateManager.simulator_started.connect(_on_simulator_started)
 	var is_web := OS.has_feature("web")
 	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
 	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
@@ -56,7 +56,7 @@ func _init() -> void:
 	if is_web:
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
-		IVSettingsManager.defaults[&"gui_size"] = IVGlobal.GUISize.GUI_LARGE
+		IVSettingsManager.set_default(&"gui_size", IVGlobal.GUISize.GUI_LARGE)
 		
 	# class changes
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
@@ -69,11 +69,11 @@ func _init() -> void:
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
 
 
-func _on_program_objects_instantiated() -> void:
+func _on_core_init_program_objects_instantiated() -> void:
 	
-	if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
-		var state_manager: IVStateManager = IVGlobal.program[&"StateManager"]
-		IVDebug.signal_verbosely_all(state_manager, "StateManager")
+	#if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
+		#var state_manager: IVStateManager = IVGlobal.program[&"StateManager"]
+		#IVDebug.signal_verbosely_all(state_manager, "StateManager")
 	
 	# FIXME: ?????
 	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
@@ -90,10 +90,6 @@ func _on_program_objects_instantiated() -> void:
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher
 		view_cacher.cache_interval = 2.0
-
-
-func _on_project_nodes_added() -> void:
-	pass
 
 
 func _on_simulator_started() -> void:

@@ -40,13 +40,13 @@ var _view_manager: IVViewManager
 
 func _ready() -> void:
 	_view_manager = IVGlobal.program[&"ViewManager"]
-	IVGlobal.about_to_start_simulator.connect(_on_about_to_start_simulator)
-	IVGlobal.about_to_stop_before_quit.connect(_cache_now.bind(false))
+	IVStateManager.about_to_start_simulator.connect(_on_about_to_start_simulator)
+	IVStateManager.about_to_stop_before_quit.connect(_cache_now.bind(false))
 
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST: # desktop only!
-		if IVStateManager.is_started_or_about_to_start:
+		if IVStateManager.started_or_about_to_start:
 			_cache_now(false)
 
 

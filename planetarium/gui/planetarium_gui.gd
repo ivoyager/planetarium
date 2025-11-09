@@ -25,12 +25,12 @@ const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
 
 
 func _ready() -> void:
-	IVGlobal.system_tree_built_or_loaded.connect(_on_system_tree_built_or_loaded)
-	IVGlobal.simulator_exited.connect(_on_simulator_exited)
+	IVStateManager.system_tree_built.connect(_on_system_tree_built)
+	IVStateManager.simulator_exited.connect(_on_simulator_exited)
 	hide()
 
 
-func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:
+func _on_system_tree_built(_new_game: bool) -> void:
 	show()
 
 

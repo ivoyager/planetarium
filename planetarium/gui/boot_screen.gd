@@ -24,4 +24,4 @@ extends ColorRect
 
 
 func _ready() -> void:
-	IVGlobal.simulator_started.connect(queue_free)
+	IVStateManager.simulator_started.connect(queue_free)

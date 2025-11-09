@@ -23,7 +23,7 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	IVGlobal.core_inited.connect(_configure_after_core_inited, CONNECT_ONE_SHOT)
+	IVStateManager.core_initialized.connect(_configure_after_core_inited, CONNECT_ONE_SHOT)
 
 
 func _configure_after_core_inited() -> void:
