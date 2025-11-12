@@ -105,7 +105,7 @@ func _on_simulator_started() -> void:
 
 func _on_pwa_update_available() -> void:
 	print("PWA update available!")
-	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
+	IVGlobal.confirmation_required.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
 			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_RUN_WITHOUT_UPDATE")
 
 
