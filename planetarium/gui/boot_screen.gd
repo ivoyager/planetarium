@@ -19,20 +19,9 @@
 # *****************************************************************************
 class_name BootScreen
 extends ColorRect
-const SCENE := "res://planetarium/gui/boot_screen.tscn"
 
 ## Self-freeing boot screen hides messy node construction.
-##
-## This boot screen exists (and is visible?) before IVThemeManager, so it uses
-## ProjectSettings/gui/theme/custom and /gui/theme/custom_font. Font size is
-## set by Theme Overrides in child BootLabel.
-
 
 
 func _ready() -> void:
-	IVGlobal.simulator_started.connect(_free, CONNECT_ONE_SHOT)
-
-
-func _free() -> void:
-	IVGlobal.program.erase(&"BootScreen")
-	queue_free()
+	IVStateManager.simulator_started.connect(queue_free)

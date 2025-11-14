@@ -23,10 +23,14 @@ extends PanelContainer
 
 
 func _ready() -> void:
+	IVStateManager.core_initialized.connect(_configure_after_core_inited, CONNECT_ONE_SHOT)
+
+
+func _configure_after_core_inited() -> void:
 	# Panal expands with ViewCollection changes but does not shrink. Needs reset.
 	(%ViewCollection as Control).resized.connect(_reset_size)
+	_reset_size()
 
 
 func _reset_size() -> void:
-	var x := size.x
-	size = Vector2(x, 0.0)
+	size = Vector2(size.x, 0.0)

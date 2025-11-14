@@ -1,0 +1,80 @@
+[gd_scene load_steps=17 format=3 uid="uid://mcxrmcs1puig"]
+
+[ext_resource type="Script" uid="uid://bje5fh4y4vg3s" path="res://planetarium/universe.gd" id="1_5y20p"]
+[ext_resource type="PackedScene" uid="uid://b15j2rbaf1c4j" path="res://addons/ivoyager_core/tree_nodes/world_environment.tscn" id="2_8fbd1"]
+[ext_resource type="PackedScene" uid="uid://0r58al8slcnw" path="res://addons/ivoyager_core/ui_main/fragment_identifier.tscn" id="2_xfut5"]
+[ext_resource type="PackedScene" uid="uid://dd1xhk38f1jmf" path="res://addons/ivoyager_core/ui_main/top_ui.tscn" id="3_1ms6d"]
+[ext_resource type="PackedScene" uid="uid://cij2gsmtnwhcb" path="res://addons/ivoyager_core/ui_main/world_controller.tscn" id="4_s5sjs"]
+[ext_resource type="PackedScene" uid="uid://c6yqdxh0igm7a" path="res://addons/ivoyager_core/ui_main/mouse_target_label.tscn" id="5_c74a8"]
+[ext_resource type="PackedScene" uid="uid://cgv7mkfok4nux" path="res://addons/ivoyager_core/ui_main/show_hide_ui.tscn" id="6_ncrjh"]
+[ext_resource type="PackedScene" uid="uid://bevu554s76x0f" path="res://planetarium/gui/menu_panel.tscn" id="7_5y20p"]
+[ext_resource type="PackedScene" uid="uid://dglsn48wnive" path="res://planetarium/gui/info_panel.tscn" id="8_e3u8q"]
+[ext_resource type="PackedScene" uid="uid://diafd62ta13cn" path="res://planetarium/gui/nav_panel.tscn" id="9_8fbd1"]
+[ext_resource type="PackedScene" uid="uid://ba7271tsjvr4o" path="res://planetarium/gui/control_panel.tscn" id="10_nbyhj"]
+[ext_resource type="PackedScene" uid="uid://whpgdl66sqph" path="res://planetarium/gui/huds_panel.tscn" id="11_twnux"]
+[ext_resource type="PackedScene" uid="uid://cmijnisudhq4d" path="res://planetarium/gui/boot_screen.tscn" id="12_e3u8q"]
+[ext_resource type="PackedScene" uid="uid://do6i0el4c00jr" path="res://addons/ivoyager_core/ui_main/options_popup.tscn" id="12_uvir0"]
+[ext_resource type="PackedScene" uid="uid://b2fdgq3tjd8wq" path="res://addons/ivoyager_core/ui_main/hotkeys_popup.tscn" id="13_5m8w2"]
+[ext_resource type="PackedScene" uid="uid://bq5sg1c26wm60" path="res://addons/ivoyager_core/ui_main/confirmation_dialog.tscn" id="14_ip80n"]
+
+[node name="Universe" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_5y20p")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_8fbd1")]
+
+[node name="FragmentIdentifier" parent="." instance=ExtResource("2_xfut5")]
+
+[node name="TopUI" parent="." instance=ExtResource("3_1ms6d")]
+mouse_filter = 1
+enable_huds_hbox_links = true
+enable_selection_data_label_links = true
+enable_selection_data_value_links = true
+
+[node name="WorldController" parent="TopUI" instance=ExtResource("4_s5sjs")]
+layout_mode = 1
+
+[node name="MouseTargetLabel" parent="TopUI" instance=ExtResource("5_c74a8")]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 23.0
+
+[node name="ShowHideGUI" parent="TopUI" instance=ExtResource("6_ncrjh")]
+layout_mode = 1
+
+[node name="MenuPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("7_5y20p")]
+layout_mode = 1
+offset_left = -182.0
+offset_bottom = 298.0
+grow_horizontal = 0
+
+[node name="InfoPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("8_e3u8q")]
+layout_mode = 1
+
+[node name="NavPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("9_8fbd1")]
+layout_mode = 1
+
+[node name="ControlPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("10_nbyhj")]
+layout_mode = 1
+offset_left = -412.0
+offset_right = 412.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HUDsPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("11_twnux")]
+layout_mode = 1
+offset_left = -570.0
+offset_top = -282.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BootScreen" parent="TopUI" instance=ExtResource("12_e3u8q")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsPopup" parent="TopUI" instance=ExtResource("12_uvir0")]
+
+[node name="HotkeysPopup" parent="TopUI" instance=ExtResource("13_5m8w2")]
+
+[node name="ConfirmationDialog" parent="TopUI" instance=ExtResource("14_ip80n")]

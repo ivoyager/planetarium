@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bevu554s76x0f"]
+[gd_scene load_steps=9 format=3 uid="uid://bevu554s76x0f"]
 
 [ext_resource type="Script" uid="uid://cnyglo7c86jmi" path="res://planetarium/gui/menu_panel.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://cvv4u4ctix3v5" path="res://addons/ivoyager_core/gui_widgets/full_screen_button.tscn" id="2_spw6t"]
-[ext_resource type="PackedScene" uid="uid://boc2r4d0eomdr" path="res://addons/ivoyager_core/gui_widgets/options_button.tscn" id="3_4hcos"]
-[ext_resource type="PackedScene" uid="uid://pjw4ki1qswq0" path="res://addons/ivoyager_core/gui_widgets/hotkeys_button.tscn" id="4_1edhr"]
-[ext_resource type="PackedScene" uid="uid://dqwafuo72wscj" path="res://addons/ivoyager_core/gui_widgets/link_label.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://dcw1843unaohr" path="res://addons/ivoyager_core/gui_widgets/quit_button.tscn" id="5_caym3"]
-[ext_resource type="PackedScene" uid="uid://bkokwngymmnyk" path="res://addons/ivoyager_core/gui_widgets/version_label.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="9_xhnrs"]
+[ext_resource type="PackedScene" uid="uid://cvv4u4ctix3v5" path="res://addons/ivoyager_core/ui_widgets/full_screen_button.tscn" id="2_spw6t"]
+[ext_resource type="PackedScene" uid="uid://boc2r4d0eomdr" path="res://addons/ivoyager_core/ui_widgets/options_button.tscn" id="3_4hcos"]
+[ext_resource type="PackedScene" uid="uid://pjw4ki1qswq0" path="res://addons/ivoyager_core/ui_widgets/hotkeys_button.tscn" id="4_1edhr"]
+[ext_resource type="PackedScene" uid="uid://dqwafuo72wscj" path="res://addons/ivoyager_core/ui_widgets/link_label.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dcw1843unaohr" path="res://addons/ivoyager_core/ui_widgets/quit_button.tscn" id="5_caym3"]
+[ext_resource type="PackedScene" uid="uid://bkokwngymmnyk" path="res://addons/ivoyager_core/ui_widgets/version_label.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_helpers/control_mod_resizable.tscn" id="9_xhnrs"]
 
 [node name="MenuPanel" type="PanelContainer"]
 anchors_preset = 1
@@ -83,8 +82,5 @@ base_size = Vector2(0, 4)
 [node name="VersionLabel" parent="MarginContainer/VBox" instance=ExtResource("6")]
 layout_mode = 2
 prepend = "v"
-
-[node name="LockVisibleCkbx" parent="." instance=ExtResource("2")]
-layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("9_xhnrs")]

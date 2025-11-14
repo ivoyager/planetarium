@@ -1,4 +1,4 @@
-# planetarium_gui.gd
+# universe.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,22 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-class_name PlanetariumGUI
-extends Control
-const SCENE := "res://planetarium/gui/planetarium_gui.tscn"
+class_name Universe
+extends Node3D
 
-# Scenes instanced by IVCoreInitializer need SCENE constant above.
-
-
-func _ready() -> void:
-	IVGlobal.system_tree_built_or_loaded.connect(_on_system_tree_built_or_loaded)
-	IVGlobal.simulator_exited.connect(_on_simulator_exited)
-	hide()
-
-
-func _on_system_tree_built_or_loaded(_is_new_game: bool) -> void:
-	show()
-
-
-func _on_simulator_exited() -> void:
-	hide()
+## Main scene root for the Planetarium.
+##
+## This scene tree was duplicated and modified from [IVUniverseTemplate]. See
+## that class for Core plugin documentation.

@@ -23,8 +23,8 @@ extends RefCounted
 
 const USE_THREADS := true # set false for debugging
 const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
-const VERBOSE_GLOBAL_SIGNALS := false
-const VERBOSE_STATEMANAGER_SIGNALS := false
+#const VERBOSE_GLOBAL_SIGNALS := false
+#const VERBOSE_STATEMANAGER_SIGNALS := false
 
 
 func _init() -> void:
@@ -32,20 +32,18 @@ func _init() -> void:
 	var version: String = ProjectSettings.get_setting("application/config/version")
 	print("Planetarium v%s - https://ivoyager.dev" % version)
 	
-	if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
-		IVDebug.signal_verbosely_all(IVGlobal, "Global")
+	#if VERBOSE_GLOBAL_SIGNALS and OS.is_debug_build:
+		#IVDebug.signal_verbosely_all(IVGlobal, "Global")
 	
-	IVGlobal.project_objects_instantiated.connect(_on_program_objects_instantiated)
-	IVGlobal.project_nodes_added.connect(_on_project_nodes_added)
-	IVGlobal.simulator_started.connect(_on_simulator_started)
+	IVStateManager.core_init_program_objects_instantiated.connect(
+			_on_core_init_program_objects_instantiated)
+	IVStateManager.simulator_started.connect(_on_simulator_started)
 	var is_web := OS.has_feature("web")
 	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
 	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
 	
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
-	IVCoreSettings.pause_only_stops_time = true
-	IVCoreSettings.skip_splash_screen = true
 	IVCoreSettings.disable_exit = true
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false
@@ -55,19 +53,13 @@ func _init() -> void:
 		IVCoreSettings.home_longitude = time_zone.bias * TAU / 1440.0
 	
 	if is_web:
-		IVCoreInitializer.gui_nodes.erase("MainProgBar")
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
-		IVSettingsManager.defaults[&"gui_size"] = IVGlobal.GUISize.GUI_LARGE
+		IVSettingsManager.set_default(&"gui_size", IVGlobal.GUISize.GUI_LARGE)
 		
 	# class changes
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
-	IVCoreInitializer.gui_nodes.erase("MainMenuPopup")
-	IVCoreInitializer.gui_nodes.erase("MainProgBar")
-	IVCoreInitializer.program_nodes["GUIToggler"] = GUIToggler
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
-	IVCoreInitializer.gui_nodes["PlanetariumGUI"] = PlanetariumGUI
-	IVCoreInitializer.gui_nodes["BootScreen"] = BootScreen # added on top; self-frees
 	
 	# other singleton changes
 	IVQFormat.exponent_str = " ×10^"
@@ -76,12 +68,13 @@ func _init() -> void:
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
 
 
-func _on_program_objects_instantiated() -> void:
+func _on_core_init_program_objects_instantiated() -> void:
 	
-	if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
-		var state_manager: IVStateManager = IVGlobal.program[&"StateManager"]
-		IVDebug.signal_verbosely_all(state_manager, "StateManager")
+	#if OS.is_debug_build and VERBOSE_STATEMANAGER_SIGNALS:
+		#var state_manager: IVStateManager = IVGlobal.program[&"StateManager"]
+		#IVDebug.signal_verbosely_all(state_manager, "StateManager")
 	
+	# FIXME: ?????
 	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
 	
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
@@ -98,10 +91,6 @@ func _on_program_objects_instantiated() -> void:
 		view_cacher.cache_interval = 2.0
 
 
-func _on_project_nodes_added() -> void:
-	IVCoreInitializer.move_top_gui_child_to_sibling(&"PlanetariumGUI", &"MouseTargetLabel", false)
-
-
 func _on_simulator_started() -> void:
 	if OS.has_feature("web"):
 		# progressive web app (PWA) updating
@@ -115,7 +104,7 @@ func _on_simulator_started() -> void:
 
 func _on_pwa_update_available() -> void:
 	print("PWA update available!")
-	IVGlobal.confirmation_requested.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
+	IVGlobal.confirmation_required.emit("TXT_PWA_UPDATE_AVAILABLE", _update_pwa, true,
 			"LABEL_UPDATE_RESTART_Q", "BUTTON_UPDATE", "BUTTON_RUN_WITHOUT_UPDATE")
 
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://diafd62ta13cn"]
+[gd_scene load_steps=6 format=3 uid="uid://diafd62ta13cn"]
 
-[ext_resource type="PackedScene" uid="uid://t13lvtablxvu" path="res://addons/ivoyager_core/gui_widgets/nav_button.tscn" id="1_rujde"]
-[ext_resource type="PackedScene" uid="uid://cjtauq7kev3vl" path="res://addons/ivoyager_core/gui_widgets/nav_buttons_system.tscn" id="2_vibof"]
-[ext_resource type="PackedScene" uid="uid://3ofokqme2067" path="res://addons/ivoyager_core/gui_widgets/nav_buttons_box.tscn" id="4_yp30r"]
-[ext_resource type="PackedScene" uid="uid://c4wt6rs2mwd7l" path="res://planetarium/gui/lock_visible_ckbx.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/gui_widgets/selection_buttons.tscn" id="7"]
-[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/gui_helpers/control_mod_resizable.tscn" id="7_vibof"]
+[ext_resource type="PackedScene" uid="uid://t13lvtablxvu" path="res://addons/ivoyager_core/ui_widgets/nav_button.tscn" id="1_rujde"]
+[ext_resource type="PackedScene" uid="uid://cjtauq7kev3vl" path="res://addons/ivoyager_core/ui_widgets/nav_buttons_system.tscn" id="2_vibof"]
+[ext_resource type="PackedScene" uid="uid://3ofokqme2067" path="res://addons/ivoyager_core/ui_widgets/nav_buttons_box.tscn" id="4_yp30r"]
+[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/ui_widgets/selection_buttons.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_helpers/control_mod_resizable.tscn" id="7_vibof"]
 
 [node name="NavPanel" type="PanelContainer"]
 anchors_preset = 2
@@ -68,9 +67,6 @@ body_tables = Array[StringName]([&"spacecrafts"])
 focus_selected_on_sim_start = true
 
 [node name="SelectionButtons" parent="." instance=ExtResource("7")]
-layout_mode = 2
-
-[node name="LockVisibleCkbx" parent="." instance=ExtResource("6")]
 layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("7_vibof")]
