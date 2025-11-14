@@ -44,7 +44,6 @@ func _init() -> void:
 	
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
-	IVCoreSettings.pause_only_stops_time = true
 	IVCoreSettings.disable_exit = true
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false

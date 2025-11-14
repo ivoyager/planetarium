@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bq5sg1c26wm60" path="res://addons/ivoyager_core/ui_main/confirmation_dialog.tscn" id="14_ip80n"]
 
 [node name="Universe" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_5y20p")
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("2_8fbd1")]

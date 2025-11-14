@@ -24,8 +24,3 @@ extends Node3D
 ##
 ## This scene tree was duplicated and modified from [IVUniverseTemplate]. See
 ## that class for Core plugin documentation.
-
-
-func _ready() -> void:
-	if IVCoreSettings.pause_only_stops_time:
-		process_mode = PROCESS_MODE_ALWAYS
