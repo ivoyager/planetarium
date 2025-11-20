@@ -29,12 +29,12 @@ IVUnits="*res://planetarium/units.gd"
 IVQConvert="*res://addons/ivoyager_units/qconvert.gd"
 IVQFormat="*res://addons/ivoyager_units/qformat.gd"
 IVTableData="*res://addons/ivoyager_tables/table_data.gd"
-IVGlobal="*res://addons/ivoyager_core/editor_plugin/../singletons/global.gd"
-IVCoreSettings="*res://addons/ivoyager_core/editor_plugin/../singletons/core_settings.gd"
-IVCoreInitializer="*res://addons/ivoyager_core/editor_plugin/../singletons/core_initializer.gd"
-IVAstronomy="*res://addons/ivoyager_core/editor_plugin/../singletons/astronomy.gd"
-IVSettingsManager="*res://addons/ivoyager_core/editor_plugin/../singletons/settings_manager.gd"
-IVStateManager="*res://addons/ivoyager_core/editor_plugin/../singletons/state_manager.gd"
+IVGlobal="*res://addons/ivoyager_core/editor/../singletons/global.gd"
+IVCoreSettings="*res://addons/ivoyager_core/editor/../singletons/core_settings.gd"
+IVCoreInitializer="*res://addons/ivoyager_core/editor/../singletons/core_initializer.gd"
+IVAstronomy="*res://addons/ivoyager_core/editor/../singletons/astronomy.gd"
+IVSettingsManager="*res://addons/ivoyager_core/editor/../singletons/settings_manager.gd"
+IVStateManager="*res://addons/ivoyager_core/editor/../singletons/state_manager.gd"
 
 [debug]
 
