@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://ba7271tsjvr4o"]
+[gd_scene load_steps=20 format=3 uid="uid://ba7271tsjvr4o"]
 
 [ext_resource type="Script" uid="uid://bwtmii13a7exf" path="res://planetarium/gui/control_panel.gd" id="1_jbnqr"]
 [ext_resource type="PackedScene" uid="uid://b8lhpum4e5tps" path="res://addons/ivoyager_core/ui_widgets/date_time_label.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://addons/ivoyager_core/ui_widgets/now_ckbx.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://addons/ivoyager_core/ui_widgets/sync_os_time_checkbox.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://addons/ivoyager_core/ui_widgets/selection_label.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://addons/ivoyager_core/ui_widgets/range_label.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/ui_widgets/selection_buttons.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bhbsnekxvq6le" path="res://addons/ivoyager_core/ui_widgets/pause_button.tscn" id="8_16kaf"]
+[ext_resource type="PackedScene" uid="uid://cps3q0poas3ff" path="res://addons/ivoyager_core/ui_widgets/time_reverse_button.tscn" id="8_jbnqr"]
 [ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://addons/ivoyager_core/ui_widgets/speed_buttons.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://welwpw4boyv8" path="res://addons/ivoyager_core/ui_widgets/lat_long_label.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://chl27l6aiico8" path="res://addons/ivoyager_core/ui_widgets/focal_length_control.tscn" id="11_13kj6"]
@@ -14,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b1mkm7ajlvvm0" path="res://addons/ivoyager_core/ui_widgets/track_ckbxs.tscn" id="15"]
 [ext_resource type="PackedScene" uid="uid://bgk3lju7s35t" path="res://addons/ivoyager_core/ui_widgets/time_set_button.tscn" id="16"]
 [ext_resource type="PackedScene" uid="uid://do2jvg01jte0i" path="res://addons/ivoyager_core/ui_widgets/view_save_button.tscn" id="17"]
-[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_helpers/control_mod_resizable.tscn" id="17_jbnqr"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="17_jbnqr"]
 [ext_resource type="PackedScene" uid="uid://bcl70ysl6yces" path="res://addons/ivoyager_core/ui_widgets/view_button.tscn" id="19"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbnqr"]
@@ -58,7 +60,7 @@ size_flags_horizontal = 0
 [node name="HBox2" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 
-[node name="NowCkbx" parent="VBox/HBox2" instance=ExtResource("3")]
+[node name="SyncOSTimeCheckBox" parent="VBox/HBox2" instance=ExtResource("3")]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -71,8 +73,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
+[node name="PauseButton" parent="VBox/HBox2/SpeedButtons" instance=ExtResource("8_16kaf")]
+layout_mode = 2
+paused_text = "||"
+
+[node name="TimeReverseButton" parent="VBox/HBox2/SpeedButtons" instance=ExtResource("8_jbnqr")]
+layout_mode = 2
+
 [node name="TimeSetButton" parent="VBox/HBox2/SpeedButtons" instance=ExtResource("16")]
-unique_name_in_owner = true
 layout_mode = 2
 popup_stylebox_override = SubResource("StyleBoxFlat_jbnqr")
 
