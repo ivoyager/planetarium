@@ -42,6 +42,7 @@ func _init() -> void:
 	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
 	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
 	
+	IVCoreSettings.allow_fullscreen_toggle = true
 	IVCoreSettings.allow_time_setting = true
 	IVCoreSettings.allow_time_reversal = true
 	IVCoreSettings.disable_exit = true
@@ -58,6 +59,7 @@ func _init() -> void:
 		IVSettingsManager.set_default(&"gui_size", IVGlobal.GUISize.GUI_LARGE)
 		
 	# class changes
+	IVCoreInitializer.program_nodes["FullScreenManager"] = IVFullScreenManager
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
 	
