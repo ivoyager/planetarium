@@ -68,6 +68,13 @@ func _init() -> void:
 	
 	# static class changes
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
+	
+	# User settings/options
+	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
+	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
+	options_popup.add_section(&"LABEL_TIME", 1, 1)
+	options_popup.add_option(&"LABEL_TIME", &"LABEL_TERRESTRIAL_TIME_CLOCK",
+			&"terrestrial_time_clock")
 
 
 func _on_core_init_program_objects_instantiated() -> void:
@@ -81,6 +88,7 @@ func _on_core_init_program_objects_instantiated() -> void:
 	
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
 	timekeeper.start_real_world_time = true
+	timekeeper.terrestrial_time_clock_setting = true
 	var view_manager: IVViewManager = IVGlobal.program[&"ViewManager"]
 	view_manager.move_home_at_start = false # ViewCacher does initial camera move
 	var table_orbit_builder: IVTableOrbitBuilder = IVGlobal.program[&"TableOrbitBuilder"]
