@@ -87,9 +87,10 @@ func _on_core_init_program_objects_instantiated() -> void:
 	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
 	
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
-	timekeeper.start_real_world_time = true
+	timekeeper.start_os_time_sync_on = true
 	timekeeper.terrestrial_time_clock_user_setting = true
-	timekeeper.recalculate_universal_time_offset = true
+	timekeeper.recalculate_universal_time_offset = true	
+	
 	var view_manager: IVViewManager = IVGlobal.program[&"ViewManager"]
 	view_manager.move_home_at_start = false # ViewCacher does initial camera move
 	var table_orbit_builder: IVTableOrbitBuilder = IVGlobal.program[&"TableOrbitBuilder"]
