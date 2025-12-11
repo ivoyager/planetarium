@@ -87,7 +87,7 @@ func _on_core_init_program_objects_instantiated() -> void:
 	IVGlobal.get_viewport().gui_embed_subwindows = true # root default is true, contrary to docs
 	
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
-	timekeeper.start_os_time_sync_on = true
+	timekeeper.operating_system_time_sync = true
 	timekeeper.terrestrial_time_clock_user_setting = true
 	timekeeper.recalculate_universal_time_offset = true	
 	
