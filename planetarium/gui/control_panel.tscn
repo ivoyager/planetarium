@@ -66,7 +66,7 @@ size_flags_horizontal = 3
 
 [node name="DateTimeLabel" parent="VBox/HBox2" instance=ExtResource("2")]
 layout_mode = 2
-time_zone_suffix = " UT"
+suffix_ut_tt = true
 
 [node name="SpeedButtons" parent="VBox/HBox2" instance=ExtResource("9")]
 layout_mode = 2
