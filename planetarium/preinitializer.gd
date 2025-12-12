@@ -49,10 +49,6 @@ func _init() -> void:
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false
 	
-	var time_zone := Time.get_time_zone_from_system()
-	if time_zone and time_zone.has("bias"):
-		IVCoreSettings.home_longitude = time_zone.bias * TAU / 1440.0
-	
 	if is_web:
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
@@ -92,7 +88,7 @@ func _on_core_init_program_objects_instantiated() -> void:
 	timekeeper.recalculate_universal_time_offset = true	
 	
 	var view_manager: IVViewManager = IVGlobal.program[&"ViewManager"]
-	view_manager.move_home_at_start = false # ViewCacher does initial camera move
+	view_manager.set_view_on_start = &"" # ViewCacher does initial camera move
 	var table_orbit_builder: IVTableOrbitBuilder = IVGlobal.program[&"TableOrbitBuilder"]
 	table_orbit_builder.use_real_planet_orbits = true
 	var wiki_manager: IVWikiManager = IVGlobal.program[&"WikiManager"]
