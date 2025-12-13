@@ -6,18 +6,19 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
-## [v0.1] - UNRELEASED
+## [v0.1] - 2025-12-13
 
-Now release candidate for I, Voyager "beta"!
+Beta release!
 
-Under development using Godot 4.5.1.
+Developed using Godot 4.5.1.
 
 ### Changed
 * Updated GUI for new Core plugin widgets.
 * Replaced 3RD_PARTY.txt with updated and more human-readable 3RD_PARTY.md, and updated CREDITS.md.
-* Updated plugin ivoyager_core to v0.1.rc.
-* Updated plugin ivoyager_tables to v0.1.rc.
-* Updated plugin ivoyager_units to v0.1.rc.
+* Code updates for plugin API changes.
+* Updated plugin ivoyager_core to v0.1.
+* Updated plugin ivoyager_tables to v0.1.
+* Updated plugin ivoyager_units to v0.1.
 
 ## [v0.0.25] - 2025-06-12
 
@@ -201,7 +202,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
-[v0.1]: https://github.com/ivoyager/planetarium/compare/v0.0.25...HEAD
+[v0.1]: https://github.com/ivoyager/planetarium/compare/v0.0.25...v0.1
 [v0.0.25]: https://github.com/ivoyager/planetarium/compare/v0.0.24...v0.0.25
 [v0.0.24]: https://github.com/ivoyager/planetarium/compare/v0.0.23...v0.0.24
 [v0.0.23]: https://github.com/ivoyager/planetarium/compare/v0.0.22...v0.0.23

@@ -13,14 +13,14 @@ This repository uses submodules! To clone using git:
 
 `git clone --recursive git://github.com/ivoyager/planetarium.git`
 
-**NEW!** As of v0.0.18, the editor plugin will manage assets download and version updates (assets are not Git-tracked). Just press 'Download' at the editor prompt.
+The editor plugin will manage assets download and version updates (assets are not Git-tracked). Just press 'Download' at the editor prompt.
 
 After above steps, your addons directory will contain three subdirectories: `ivoyager_assets`, `ivoyager_core`, `ivoyager_tables` and `ivoyager_units`.
 
 ### What is I, Voyager?
 I, Voyager is
 1. an open-source software planetarium 
-2. a development platform for creating games and educational apps in a realistic solar system.
+2. a development platform for creating games and educational apps in a realistic solar system (or not realistic if you want).
 
 It is designed to be improved, modified and extended by the community. I, Voyager runs on the open-source [Godot Engine](https://godotengine.org) and primarily uses Godot’s easy-to-learn [GDScript](http://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_basics.html#doc-gdscript) (similar to Python). It can be extended into an independent free-standing project (a game or other software product) using GDScript, C# or C++.
 
