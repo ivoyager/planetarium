@@ -48,6 +48,8 @@ func _init() -> void:
 	IVCoreSettings.disable_exit = true
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false
+	IVCoreSettings.manage_engine_time_scale = false
+	IVCoreSettings.stroboscope_frames_per_second = 4.5
 	
 	if is_web:
 		IVCoreSettings.disable_quit = true
@@ -88,6 +90,8 @@ func _on_core_init_program_objects_instantiated() -> void:
 	timekeeper.recalculate_universal_time_offset = true
 	
 	var speed_manager: IVSpeedManager = IVGlobal.program[&"SpeedManager"]
+	speed_manager.ease_curve = -1.5
+	speed_manager.ease_seconds = 0.5
 	speed_manager.speeds = [
 		IVUnits.SECOND,
 		IVUnits.SECOND * 10,
@@ -100,7 +104,6 @@ func _on_core_init_program_objects_instantiated() -> void:
 		IVUnits.SECOND * 1e8,
 	]
 	speed_manager.speed_names = [
-		# Planetarium GUI doesn't show these, but IVSpeedManager expects something.
 		&"1x",
 		&"10x",
 		&"100x",
