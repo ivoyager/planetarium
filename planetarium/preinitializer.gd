@@ -48,6 +48,8 @@ func _init() -> void:
 	IVCoreSettings.disable_exit = true
 	IVCoreSettings.enable_precisions = true
 	IVCoreSettings.popops_can_stop_sim = false
+	IVCoreSettings.manage_engine_time_scale = false
+	IVCoreSettings.stroboscope_frames_per_second = 4.5
 	
 	if is_web:
 		IVCoreSettings.disable_quit = true
@@ -85,7 +87,33 @@ func _on_core_init_program_objects_instantiated() -> void:
 	var timekeeper: IVTimekeeper = IVGlobal.program[&"Timekeeper"]
 	timekeeper.operating_system_time_sync = true
 	timekeeper.terrestrial_time_clock_user_setting = true
-	timekeeper.recalculate_universal_time_offset = true	
+	timekeeper.recalculate_universal_time_offset = true
+	
+	var speed_manager: IVSpeedManager = IVGlobal.program[&"SpeedManager"]
+	speed_manager.ease_curve = -1.5
+	speed_manager.ease_seconds = 0.5
+	speed_manager.speeds = [
+		IVUnits.SECOND,
+		IVUnits.SECOND * 10,
+		IVUnits.SECOND * 100,
+		IVUnits.SECOND * 1e3,
+		IVUnits.SECOND * 1e4,
+		IVUnits.SECOND * 1e5,
+		IVUnits.SECOND * 1e6,
+		IVUnits.SECOND * 1e7,
+		IVUnits.SECOND * 1e8,
+	]
+	speed_manager.speed_names = [
+		&"1x",
+		&"10x",
+		&"100x",
+		&"1000x",
+		&"10,000x",
+		&"100,000x",
+		&"1,000,000x",
+		&"10,000,000x",
+		&"100,000,000x",
+	]
 	
 	var view_manager: IVViewManager = IVGlobal.program[&"ViewManager"]
 	view_manager.set_view_on_start = &"" # ViewCacher does initial camera move
