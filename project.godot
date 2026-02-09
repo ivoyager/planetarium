@@ -8,16 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="I, Voyager - Planetarium"
-config/version="0.1.1.dev"
+config/version="0.1.1"
 run/main_scene="uid://mcxrmcs1puig"
-config/features=PackedStringArray("4.5")
+config/features=PackedStringArray("4.6")
 run/max_fps=59
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 config/icon="res://web/jupiter-144.png"
 icon="res://jupiter-icon-128.png"
@@ -26,21 +30,23 @@ name="I, Voyager - Planetarium"
 
 [autoload]
 
-IVUnits="*res://planetarium/units.gd"
-IVQConvert="*res://addons/ivoyager_units/qconvert.gd"
-IVQFormat="*res://addons/ivoyager_units/qformat.gd"
-IVTableData="*res://addons/ivoyager_tables/table_data.gd"
-IVGlobal="*res://addons/ivoyager_core/editor/../singletons/global.gd"
-IVCoreSettings="*res://addons/ivoyager_core/editor/../singletons/core_settings.gd"
-IVCoreInitializer="*res://addons/ivoyager_core/editor/../singletons/core_initializer.gd"
-IVAstronomy="*res://addons/ivoyager_core/editor/../singletons/astronomy.gd"
-IVSettingsManager="*res://addons/ivoyager_core/editor/../singletons/settings_manager.gd"
-IVStateManager="*res://addons/ivoyager_core/editor/../singletons/state_manager.gd"
+IVUnits="*uid://ceqj2b3v48ds0"
+IVQConvert="*uid://c8hrxn2mc6635"
+IVQFormat="*uid://b6qll4nfpigux"
+IVTableData="*uid://kimqfyyqxcfo"
+IVGlobal="*uid://dlo5sdgqt41do"
+IVCoreSettings="*uid://q3dwrk3lnx0f"
+IVCoreInitializer="*uid://chh7oxyc16wm0"
+IVAstronomy="*uid://g2r1xgmex1as"
+IVSettingsManager="*uid://b8tkwtacbefl6"
+IVStateManager="*uid://dfigrpveqtlg2"
 
 [debug]
 
 file_logging/enable_file_logging=true
-gdscript/warnings/exclude_addons=false
+gdscript/warnings/directory_rules={
+"res://addons": 1
+}
 gdscript/warnings/unused_signal=false
 gdscript/warnings/untyped_declaration=1
 gdscript/warnings/unsafe_property_access=1
