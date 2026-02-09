@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://mcxrmcs1puig"]
+[gd_scene format=3 uid="uid://mcxrmcs1puig"]
 
 [ext_resource type="Script" uid="uid://bje5fh4y4vg3s" path="res://planetarium/universe.gd" id="1_5y20p"]
 [ext_resource type="PackedScene" uid="uid://b15j2rbaf1c4j" path="res://addons/ivoyager_core/tree/world_environment.tscn" id="2_8fbd1"]
@@ -17,64 +17,64 @@
 [ext_resource type="PackedScene" uid="uid://b2fdgq3tjd8wq" path="res://addons/ivoyager_core/ui/hotkeys_popup.tscn" id="13_5m8w2"]
 [ext_resource type="PackedScene" uid="uid://bq5sg1c26wm60" path="res://addons/ivoyager_core/ui/confirmation_dialog.tscn" id="14_ip80n"]
 
-[node name="Universe" type="Node3D"]
+[node name="Universe" type="Node3D" unique_id=834053313]
 process_mode = 3
 script = ExtResource("1_5y20p")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_8fbd1")]
+[node name="WorldEnvironment" parent="." unique_id=927874630 instance=ExtResource("2_8fbd1")]
 
-[node name="FragmentIdentifier" parent="." instance=ExtResource("2_xfut5")]
+[node name="FragmentIdentifier" parent="." unique_id=148315264 instance=ExtResource("2_xfut5")]
 
-[node name="TopUI" parent="." instance=ExtResource("3_1ms6d")]
+[node name="TopUI" parent="." unique_id=1132719155 instance=ExtResource("3_1ms6d")]
 mouse_filter = 1
 enable_huds_hbox_links = true
 enable_selection_data_label_links = true
 enable_selection_data_value_links = true
 
-[node name="WorldController" parent="TopUI" instance=ExtResource("4_s5sjs")]
+[node name="WorldController" parent="TopUI" unique_id=351072265 instance=ExtResource("4_s5sjs")]
 layout_mode = 1
 
-[node name="MouseTargetLabel" parent="TopUI" instance=ExtResource("5_c74a8")]
+[node name="MouseTargetLabel" parent="TopUI" unique_id=1219190650 instance=ExtResource("5_c74a8")]
 layout_mode = 0
 offset_right = 1.0
 offset_bottom = 23.0
 
-[node name="ShowHideGUI" parent="TopUI" instance=ExtResource("6_ncrjh")]
+[node name="ShowHideGUI" parent="TopUI" unique_id=1825950851 instance=ExtResource("6_ncrjh")]
 layout_mode = 1
 
-[node name="MenuPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("7_5y20p")]
+[node name="MenuPanel" parent="TopUI/ShowHideGUI" unique_id=1825312284 instance=ExtResource("7_5y20p")]
 layout_mode = 1
 offset_left = -182.0
 offset_bottom = 298.0
 grow_horizontal = 0
 
-[node name="InfoPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("8_e3u8q")]
+[node name="InfoPanel" parent="TopUI/ShowHideGUI" unique_id=995358639 instance=ExtResource("8_e3u8q")]
 layout_mode = 1
 
-[node name="NavPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("9_8fbd1")]
+[node name="NavPanel" parent="TopUI/ShowHideGUI" unique_id=1114749882 instance=ExtResource("9_8fbd1")]
 layout_mode = 1
 
-[node name="ControlPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("10_nbyhj")]
+[node name="ControlPanel" parent="TopUI/ShowHideGUI" unique_id=578250685 instance=ExtResource("10_nbyhj")]
 layout_mode = 1
 offset_left = -412.0
 offset_right = 412.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HUDsPanel" parent="TopUI/ShowHideGUI" instance=ExtResource("11_twnux")]
+[node name="HUDsPanel" parent="TopUI/ShowHideGUI" unique_id=702504198 instance=ExtResource("11_twnux")]
 layout_mode = 1
 offset_left = -570.0
 offset_top = -282.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="BootScreen" parent="TopUI" instance=ExtResource("12_e3u8q")]
+[node name="BootScreen" parent="TopUI" unique_id=354120369 instance=ExtResource("12_e3u8q")]
 layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OptionsPopup" parent="TopUI" instance=ExtResource("12_uvir0")]
+[node name="OptionsPopup" parent="TopUI" unique_id=1551482224 instance=ExtResource("12_uvir0")]
 
-[node name="HotkeysPopup" parent="TopUI" instance=ExtResource("13_5m8w2")]
+[node name="HotkeysPopup" parent="TopUI" unique_id=461994937 instance=ExtResource("13_5m8w2")]
 
-[node name="ConfirmationDialog" parent="TopUI" instance=ExtResource("14_ip80n")]
+[node name="ConfirmationDialog" parent="TopUI" unique_id=572168116 instance=ExtResource("14_ip80n")]

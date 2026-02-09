@@ -1,9 +1,5 @@
 # Progressive Web App (PWA) Deployment
 
-Note: As of Godot 4.3, most PWA functionality seems to be broken. There is no caching or offline operation.
-
-Godot 3.4.1 introduced [PWA](https://web.dev/what-are-pwas/) functionality, but it's still a little rough to deploy as of Godot 4.2.1.
-
 These files are referenced in export_presets.config and used to generate the HTML5 export:
 * godot.html - Custom Html Shell used to generate our loading page.
 * jupiter-xxx.png - Icon images (3 sizes) included in PWA export.
@@ -14,14 +10,16 @@ We've opted not to set Boot Splash in Project Settings because if forces us to u
 File to remove from export:
 * planetarium.png - Boot splash is off in Project Settings and isn't referenced anywhere in the export.
 
-#### Godot 4.x Notes:
+#### Notes
 Server must be set up to use .htaccess file! Add .htaccess with these lines:
 ```
 Header set Cross-Origin-Opener-Policy: same-origin
 Header set Cross-Origin-Embedder-Policy: require-corp
 ```
 
-Lighting is all screwed up in HTML5 export using normal world scale (METER = 1.0) as of Godot 4.2.1. See notes and change this value in res://planetarium/units.gd. METER = 1e-8 seem to work ok for HTML5 export (but this value screws up lighting in editor run or Windows export).
+Above requirement was supposed to have been fixed in 4.5.x, but it didn't work in first attempt to run without .htaccess file.
+
+Shadows are disabled for Compatibility renderer (this affects web export). See comments in ivoyager_core/tree/dynamic_light.gd.
 
 #### Export Settings
 * Resources/Filters to export... `*.ivbinary, *.cfg` (for any export!)
@@ -30,6 +28,7 @@ Lighting is all screwed up in HTML5 export using normal world scale (METER = 1.0
 * Options/HTML/Canvas Resize Policy `Adaptive`
 * Options/HTML/Focus Canvas on Start `On`
 * Options/Progressive Web App/Enabled `On`
+* Options/Progressive Web App/Ensure Cross Origin Isolation Headers `On`
 * Options/Progressive Web App/Display `Standalone`
 * Options/Progressive Web App/Orientation `Any`
 * Options/Progressive Web App/Icon 144x144 `res://web/jupiter-144.png`
