@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="I, Voyager - Planetarium"
-config/version="0.1.1"
+config/version="0.1.2.dev"
 run/main_scene="uid://mcxrmcs1puig"
 config/features=PackedStringArray("4.6")
 run/max_fps=59
