@@ -8,3 +8,7 @@ export_presets.cfg
 /addons/ivoyager_assets/
 /export/
 ~*
+
+# Claude Code
+.claude/*
+!.claude/skills/

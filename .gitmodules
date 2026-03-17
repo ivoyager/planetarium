@@ -7,3 +7,6 @@
 [submodule "addons/ivoyager_tables"]
 	path = addons/ivoyager_tables
 	url = https://github.com/ivoyager/ivoyager_tables
+[submodule "addons/ivoyager_assistant"]
+	path = addons/ivoyager_assistant
+	url = https://github.com/ivoyager/ivoyager_assistant
