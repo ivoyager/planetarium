@@ -34,10 +34,10 @@ IVUnits="*uid://ceqj2b3v48ds0"
 IVQConvert="*uid://c8hrxn2mc6635"
 IVQFormat="*uid://b6qll4nfpigux"
 IVTableData="*uid://kimqfyyqxcfo"
+IVAstronomy="*uid://g2r1xgmex1as"
 IVGlobal="*uid://dlo5sdgqt41do"
 IVCoreSettings="*uid://q3dwrk3lnx0f"
 IVCoreInitializer="*uid://chh7oxyc16wm0"
-IVAstronomy="*uid://g2r1xgmex1as"
 IVSettingsManager="*uid://b8tkwtacbefl6"
 IVStateManager="*uid://dfigrpveqtlg2"
 
@@ -63,7 +63,7 @@ window/size/viewport_height=1200
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ivoyager_core/plugin.cfg", "res://addons/ivoyager_tables/plugin.cfg", "res://addons/ivoyager_units/plugin.cfg")
+enabled=PackedStringArray("res://addons/ivoyager_assistant/plugin.cfg", "res://addons/ivoyager_core/plugin.cfg", "res://addons/ivoyager_tables/plugin.cfg", "res://addons/ivoyager_units/plugin.cfg")
 
 [filesystem]
 

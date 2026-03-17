@@ -11,6 +11,9 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 Under development using Godot 4.6.1.
 
+### Added
+* Plugin ivoyager_assistant v0.0.1.dev. Under development to allow AI tests and (eventually) AI assistance for accesibility (e.g., voice navigation).
+
 ### Changed
 * Updated plugin ivoyager_core to v0.1.2.dev
 * Updated plugin ivoyager_tables to v0.1.2.dev
@@ -223,6 +226,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
+[v0.1.2]: https://github.com/ivoyager/planetarium/compare/v0.1.1...HEAD
 [v0.1.1]: https://github.com/ivoyager/planetarium/compare/v0.1...v0.1.1
 [v0.1]: https://github.com/ivoyager/planetarium/compare/v0.0.25...v0.1
 [v0.0.25]: https://github.com/ivoyager/planetarium/compare/v0.0.24...v0.0.25
