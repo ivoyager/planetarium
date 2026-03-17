@@ -40,6 +40,7 @@ IVCoreSettings="*uid://q3dwrk3lnx0f"
 IVCoreInitializer="*uid://chh7oxyc16wm0"
 IVSettingsManager="*uid://b8tkwtacbefl6"
 IVStateManager="*uid://dfigrpveqtlg2"
+IVAssistantServer="*uid://cf38hsxudekl"
 
 [debug]
 
