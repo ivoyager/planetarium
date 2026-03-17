@@ -18,6 +18,15 @@ Open in Godot Editor and press Play. No external build system — Godot handles 
 
 There is no test framework or linter beyond Godot's built-in GDScript warnings.
 
+### GDScript Warning Preferences
+
+All GDScript code should compile with **zero warnings**. Apply these strategies:
+
+- **UNSAFE_CALL_ARGUMENT / UNSAFE_METHOD_ACCESS / UNSAFE_PROPERTY_ACCESS** — Fix by editing code. For built-in types, assign the Variant to a properly typed intermediate variable before passing it to a typed function parameter or constructor (e.g., `int()` requires `int`/`float`/`bool`, not `Variant`). Note: `as ClassName` generates UNSAFE_CAST — avoid it; direct assignment from `Object`-typed dictionary `.get()` to a typed member variable does not warn.
+- **UNUSED_VARIABLE** — Prefix with `_` (e.g., `for _k in count:`).
+- **INTEGER_DIVISION** — Suppress with `@warning_ignore("integer_division")` where integer division is intentional.
+- **SHADOWED_VARIABLE** — Suppress with `@warning_ignore("shadowed_variable")` only in static functions where shadowing the instance variable is expected. In all other cases, rename the variable to avoid shadowing.
+
 ## Architecture
 
 ### Plugin System (Git Submodules)
@@ -64,6 +73,15 @@ The `METER` constant in `planetarium/units.gd` controls world scale. It is set t
 
 - `master` — stable releases
 - `develop` — active development
+
+## Testing with the Assistant Plugin
+
+When running the Planetarium for testing:
+
+- **Godot executable:** Find the most recent `Godot_v*_console.exe` (or `godot*.console.exe`) in the parent directory of this project (i.e., `../`). Use the `_console` variant to see stdout. If no Godot executable is found there, ask the user for the path.
+- **Launch command:** `"<godot_console_exe>" --path "<project_dir>" --windowed --position 0,0 --resolution 800x600`
+- **TCP interface:** The `AssistantServer` listens on `127.0.0.1:29071` after the simulator starts. Use `addons/ivoyager_assistant/tools/assistant_client.sh` to send JSON-RPC commands.
+- **Quit step:** Always call `quit` with `{"force":true}` as the **last test step**. This calls `IVStateManager.quit(true)` which performs a clean shutdown and reveals errors such as orphan nodes in the Godot console output.
 
 ## License
 
