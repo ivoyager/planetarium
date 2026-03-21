@@ -10,5 +10,5 @@ export_presets.cfg
 ~*
 
 # Claude Code
-.claude/*
-!.claude/skills/
+CLAUDE.md
+/.claude/
