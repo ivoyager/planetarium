@@ -20,6 +20,12 @@
 class_name ControlPanel
 extends PanelContainer
 
+## Top-left control panel containing the [IVViewCollection] and related view
+## buttons.
+##
+## Resets its own size whenever [IVViewCollection] changes so the panel
+## expands and shrinks to fit. (PanelContainer expands automatically; the
+## reset to [code]y == 0[/code] on resize is what allows it to shrink again.)
 
 
 func _ready() -> void:

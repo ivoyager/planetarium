@@ -19,9 +19,19 @@
 # *****************************************************************************
 extends RefCounted
 
-# This file modifies operation if plugins ivoyager_core & ivoyager_units.
+## Primary initialization entry point for the Planetarium shell.
+##
+## Configures [IVCoreSettings], registers program objects via
+## [IVCoreInitializer], and sets up [IVTimekeeper] / [IVSpeedManager] / view
+## state once core init signals fire. Hooked in via
+## [code]res://ivoyager_override.cfg[/code]'s [code]preinitializer[/code]
+## key, which causes the core plugin to instantiate this RefCounted before
+## any other program object.
 
+## Whether to use threads for sim work. Set [code]false[/code] for debugging.
 const USE_THREADS := true # set false for debugging
+## When [code]true[/code], threads are disabled in web exports for browser
+## compatibility (overrides [constant USE_THREADS] when running in a browser).
 const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
 #const VERBOSE_GLOBAL_SIGNALS := false
 #const VERBOSE_STATEMANAGER_SIGNALS := false

@@ -20,6 +20,12 @@
 class_name HUDsPanel
 extends PanelContainer
 
+## Top-right HUDs panel containing visibility/color controls for orbit and
+## body HUDs.
+##
+## Resets its own size whenever the inner HUDsBox container resizes, so the
+## panel snaps to its content rather than retaining its previous extent.
+
 
 func _ready() -> void:
 	(%HUDsBox as Control).resized.connect(_reset_size)

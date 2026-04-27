@@ -20,9 +20,12 @@
 class_name InfoPanel
 extends PanelContainer
 
-# This panel changes its own vertical size in response to SelectionData size
-# changes. Note that $ControlModResizable will override this an truncate y
-# if there is a PanelContainer below (from "panel_under_spacing" property).
+## Right-side info panel that displays current selection data.
+##
+## Adjusts its own vertical size in response to SelectionData size changes.
+## Note that [code]$ControlModResizable[/code] will override this and truncate
+## [code]y[/code] if there is a [PanelContainer] below (via the
+## [code]panel_under_spacing[/code] property).
 
 const NONDATA_BASE_SIZE := 85.0
 

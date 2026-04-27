@@ -20,19 +20,25 @@
 class_name ViewCacher
 extends Timer
 
-# Caches current View (camera, HUDs and time state) and restores on start.
-#
-# We don't currently have a way to intercept app quit for HTML5 export. Hence,
-# set cache_interval for HTML5 exports.
-#
-# For non-HTML5 exports, cache will be written on quit and cache_interval
-# should not be set. The Timer functionality will not be used.
+## Caches the current view (camera, HUDs and time state) and restores it on
+## simulator start.
+##
+## On non-HTML5 exports the cache is written on quit and [member cache_interval]
+## should not be set; the [Timer] functionality is unused.[br][br]
+##
+## On HTML5 we have no way to intercept app quit, so set [member cache_interval]
+## to enable periodic caching via the [Timer] base.
 
 const ViewFlags := IVView.ViewFlags
 
+## Periodic cache write interval in seconds. Set [code]>0.0[/code] to enable the
+## [Timer] (HTML5 only).
 var cache_interval := 0.0 # s; set >0.0 to enable Timer (HTML5 only!)
+## Name used for the cached [IVView] entry.
 var cache_name := &"current"
+## Collection name used for the cached [IVView] entry.
 var cach_set := &"view_cacher"
+## Subset of [enum IVView.ViewFlags] to capture when caching.
 var view_flags := ViewFlags.VIEWFLAGS_ALL
 
 var _view_manager: IVViewManager
