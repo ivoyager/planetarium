@@ -18,6 +18,7 @@ Under development using Godot 4.6.2.
 * Updated plugin ivoyager_core to v0.1.2.dev
 * Updated plugin ivoyager_tables to v0.1.2.dev
 * Updated plugin ivoyager_units to v0.1.2.dev
+* Completed doc comments in all files.
 
 
 ## [v0.1.1] - 2026-02-09

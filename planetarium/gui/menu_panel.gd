@@ -20,6 +20,11 @@
 class_name MenuPanel
 extends PanelContainer
 
+## Bottom-right menu panel with options, hotkeys, and (on desktop) quit.
+##
+## On web exports the QuitButton is removed at runtime since the user closes
+## the browser tab to exit.
+
 
 func _ready() -> void:
 	if OS.has_feature("web"):
