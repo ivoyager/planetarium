@@ -64,7 +64,7 @@ func _init() -> void:
 	if is_web:
 		IVCoreSettings.disable_quit = true
 		IVCoreSettings.vertecies_per_orbit = 200
-		IVSettingsManager.set_default(&"gui_size", IVGlobal.GUISize.GUI_LARGE)
+		IVSettingsManager.set_default(&"gui_size", IVCoreSettings.gui_size_settings[&"GUI_LARGE"])
 		
 	# class changes
 	IVCoreInitializer.program_nodes["FullScreenManager"] = IVFullScreenManager
