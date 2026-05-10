@@ -164,10 +164,6 @@ iv_mouse_fragcoord={
 "type": "vec2",
 "value": Vector2(0, 0)
 }
-iv_fragment_id_cycler={
-"type": "float",
-"value": 0.0
-}
 iv_fragment_id_range={
 "type": "float",
 "value": 0.0
