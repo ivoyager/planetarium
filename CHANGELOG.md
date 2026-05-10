@@ -15,6 +15,7 @@ Under development using Godot 4.6.2.
 * Plugin ivoyager_assistant v0.0.1.dev. Under development to allow AI tests and (eventually) AI assistance for accessibility (e.g., voice navigation).
 
 ### Changed
+* Removed IVFragmentIdentifier from scene tree. (New system in Core.)
 * Updated plugin ivoyager_core to v0.1.2.dev
 * Updated plugin ivoyager_tables to v0.1.2.dev
 * Updated plugin ivoyager_units to v0.1.2.dev
