@@ -11,4 +11,5 @@ export_presets.cfg
 
 # Claude Code
 CLAUDE.md
+.claude
 /.claude/
