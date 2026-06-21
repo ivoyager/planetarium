@@ -86,35 +86,12 @@ CENTER_BODY = {
     "@899": "PLANET_NEPTUNE",
 }
 
-# orbits.tsv column order (index 0 is the unnamed entity-name column).
-ORBIT_COLUMNS = [
-    "name", "parent", "epoch_jd", "reference_plane_type",
-    "orbit_right_ascension", "orbit_declination",
-    "eccentricity", "inclination", "longitude_ascending_node", "argument_periapsis",
-    "semi_major_axis", "semi_parameter", "mean_anomaly_at_epoch", "time_periapsis",
-    "mean_motion", "orbit_gravitational_parameter",
-    "longitude_ascending_node_rate", "argument_periapsis_rate",
-    "#nodal_period", "#apsidal_period", "real_planet_orbit",
-    "semi_major_axis_rate", "eccentricity_rate", "inclination_rate",
-    "mean_anomaly_correction_b", "mean_anomaly_correction_c",
-    "mean_anomaly_correction_s", "mean_anomaly_correction_f",
-    "validity_begin", "validity_end", "segment_begin", "segment_end", "fix_gaps",
-]
-
-# spacecrafts.tsv column order. Index 0 ("name") is the unnamed entity-name
-# column; "spacecraft" is a separate BOOL field (data column 1), NOT the entity.
-# Order must track the table header exactly -- a reorder (not just a count change)
-# slips past upsert_table's field-count guard and silently misplaces every value.
-SPACECRAFT_COLUMNS = [
-    "name", "spacecraft", "parent", "orbit", "trajectory", "use_pitch_yaw",
-    "lazy_model", "sleep", "file_prefix", "en.wikipedia", "hud_name", "symbol",
-    "show_in_nav_panel", "body_class", "model_type", "tidally_locked", "axis_locked",
-    "#rotation_period", "right_ascension", "declination", "gravitational_parameter",
-    "mean_radius", "mean_density", "magnitude", "albedo",
-]
-
-# trajectories.tsv column order (index 0 is the unnamed entity-name column).
-TRAJECTORY_COLUMNS = ["name", "orbits", "begin_orbit", "end_orbit", "end_remove"]
+# Row values are assembled as {column_name: value} dicts (see internal_to_cols and the
+# per-craft spacecraft_row); the WRITER reads each table's column order from its header
+# at run time (read_table_columns / build_row) -- the same name-based mapping the GDScript
+# table reader uses. So a column reorder or insertion in a .tsv needs no change here, and a
+# column this script writes that goes missing fails loudly (naming it) instead of silently
+# shifting every value into the wrong column. No hardcoded column list to keep in sync.
 
 # Tables live in the ivoyager_core submodule, two levels up from this script.
 TABLES_DIR = (pathlib.Path(__file__).resolve().parent.parent
@@ -130,8 +107,11 @@ META_FIRST_FIELDS = {"", "Type", "Default", "Unit"}
 #   suffix       appended to "SEG_<CRAFT>_" to name the orbits.tsv row.
 #   center       HORIZONS CENTER code (key of CENTER_BODY) = the segment primary;
 #                "@10" (Sun) is a cruise leg, anything else is a flyby leg.
-#   begin/end    segment validity window ('YYYY-MM-DD'); the first segment's begin
-#                is launch, the last segment's end is the chosen horizon.
+#   begin/end    segment validity window, 'YYYY-MM-DD' or 'YYYY-MM-DDTHH:MM:SS' (see
+#                date_to_jd). A bare date pins the boundary to midnight; add a time where
+#                day-granularity is too coarse -- a join in a fast planet-moon frame. The
+#                first segment's begin is launch day (the emitted segment_begin is
+#                overridden to that conic's periapsis, see generate); the last end is the horizon.
 #   sample       epoch to sample HORIZONS osculating elements for the conic (closest
 #                approach for a flyby; mid-leg for a cruise). Unused for cruise legs
 #                under --pre-fix, which Lambert-fits them instead.
@@ -236,8 +216,20 @@ def gregorian_to_jd(year, month, day, hour=0, minute=0, second=0.0):
 
 
 def date_to_jd(date_str):
-    parts = [int(x) for x in date_str.split("-")]
-    return gregorian_to_jd(parts[0], parts[1], parts[2])
+    """Julian Day from an ISO date with optional time-of-day: 'YYYY-MM-DD' (midnight)
+    or 'YYYY-MM-DD[T| ]HH[:MM[:SS[.fff]]]'. A date alone pins a boundary to the day,
+    which is invisible across a slow heliocentric join but misplaces it by up to half a
+    day in a fast frame (a planet-moon system); give a time there. See the config note."""
+    date_part, _, time_part = date_str.replace("T", " ").partition(" ")
+    year, month, day = (int(field) for field in date_part.split("-"))
+    hour = minute = 0
+    second = 0.0
+    if time_part:
+        time_fields = time_part.split(":")
+        hour = int(time_fields[0])
+        minute = int(time_fields[1]) if len(time_fields) > 1 else 0
+        second = float(time_fields[2]) if len(time_fields) > 2 else 0.0
+    return gregorian_to_jd(year, month, day, hour, minute, second)
 
 
 def jd_to_sim_seconds(jd):
@@ -461,11 +453,18 @@ def generate(config, craft_name, godot, project, refresh=False, pre_fix=False):
     orbit_cols, segment_names = [], []
     print(f"# {craft_name}  (HORIZONS COMMAND='{command}')" + ("  [pre-fixed]" if pre_fix else ""))
     print(f"# {'segment':<22}{'primary':<15}{'e':>9}{'incl':>9}{'q(AU)':>10}{'fix_gaps':>9}")
-    for seg in segments:
+    for index, seg in enumerate(segments):
         name = prefix + seg["suffix"]
         fix_gaps = not seg["is_flyby"]
+        # The first segment is the Earth-departure hyperbola. Its rounded launch-date
+        # begin sits tens of Earth diameters up the incoming asymptote (the trajectory
+        # would be drawn arriving from deep space before launch). Begin it at periapsis
+        # instead -- the synthetic near-surface departure point, a few hundred km up.
+        segment_begin = seg["t_begin"]
+        if index == 0 and seg["is_flyby"]:
+            segment_begin = seg["internal"]["time_periapsis"]
         cols = internal_to_cols(name, seg["parent"], seg["internal"],
-                                seg["t_begin"], seg["t_end"], fix_gaps)
+                                segment_begin, seg["t_end"], fix_gaps)
         orbit_cols.append(cols)
         segment_names.append(name)
         periapsis_au = seg["internal"]["p"] / (1.0 + seg["internal"]["e"]) / KM_PER_AU
@@ -523,8 +522,32 @@ def fmt(value):
     return str(value)
 
 
-def build_tsv(columns, cols):
-    return "\t".join(fmt(cols.get(column, "")) for column in columns)
+def read_table_columns(path):
+    """Ordered column names from an ivoyager TSV header (its first non-comment row),
+    so the writer can place values by name regardless of the table's current column
+    order. Field 0 -- the unnamed entity column -- is reported as 'name', the key the
+    row dicts use for the entity. Raises if the file has no header row."""
+    with open(path, encoding="utf-8", newline="") as handle:
+        for raw_line in handle:
+            line = raw_line.rstrip("\r\n")
+            if line and not line.startswith("#"):
+                return ["name"] + line.split("\t")[1:]
+    raise ValueError(f"{path}: no header row found")
+
+
+def build_row(header_columns, cols):
+    """Render [cols] ({column_name: value}) as a TSV data row in the table's own
+    column order [header_columns]. Raises if a value in [cols] has no destination
+    column -- a loud failure naming the orphan, rather than silently dropping the
+    value (the symptom of a column this script writes being renamed or removed)."""
+    known = set(header_columns)
+    orphans = sorted(key for key, value in cols.items()
+                     if value not in ("", None) and key not in known)
+    if orphans:
+        raise ValueError(f"no column for {', '.join(orphans)} in this table header "
+                         f"(renamed/removed?); header has: "
+                         f"{', '.join(filter(None, header_columns))}")
+    return "\t".join(fmt(cols.get(column, "")) for column in header_columns)
 
 
 def _is_data_line(line):
@@ -543,12 +566,14 @@ def upsert_table(path, rows, remove_names=()):
     the same entity name (column 0) or is appended after the last data line (so
     it lands before any trailing comment/blank lines). Names in remove_names are
     deleted. Idempotent. Returns (replaced, appended, removed) name lists."""
-    raw = path.read_text(encoding="utf-8", newline="")     # newline="" -> no EOL translation
+    with open(path, encoding="utf-8", newline="") as handle:  # newline="" -> no EOL translation
+        raw = handle.read()
     newline = "\r\n" if "\r\n" in raw else "\n"
     lines = raw.split(newline)
 
-    # Guard against column misalignment: a new row must have the same field count
-    # as the existing data rows, or a silent off-by-one corrupts the whole table.
+    # Secondary guard: build_row already emits the header's column count, so a new row
+    # matching the existing data rows' field count confirms the header and data agree on
+    # width. A mismatch means the table's header and data rows disagree (a malformed .tsv).
     counts = [line.count("\t") + 1 for line in lines if _is_data_line(line)]
     if counts:
         expected = max(set(counts), key=counts.count)
@@ -556,7 +581,7 @@ def upsert_table(path, rows, remove_names=()):
             actual = row.count("\t") + 1
             if actual != expected:
                 raise ValueError(f"{path.name}: row '{name}' has {actual} fields, "
-                                 f"expected {expected} (column-list misalignment)")
+                                 f"expected {expected} (header/data column-count mismatch)")
 
     new_by_name = dict(rows)
     remove = set(remove_names)
@@ -580,7 +605,8 @@ def upsert_table(path, rows, remove_names=()):
                           if _is_data_line(out[i])), len(out))
         out[insert_at:insert_at] = [new_by_name[name] for name in appended]
 
-    path.write_text(newline.join(out), encoding="utf-8", newline="")
+    with open(path, "w", encoding="utf-8", newline="") as handle:
+        handle.write(newline.join(out))
     return replaced, appended, removed
 
 
@@ -610,12 +636,14 @@ def main():
     orbit_cols, segment_names = generate(config, args.craft, godot, args.project,
                                          args.refresh, args.pre_fix)
 
-    orbit_rows = [(cols["name"], build_tsv(ORBIT_COLUMNS, cols)) for cols in orbit_cols]
+    orbit_columns = read_table_columns(TABLES_DIR / "orbits.tsv")
+    orbit_rows = [(cols["name"], build_row(orbit_columns, cols)) for cols in orbit_cols]
     traj_name = args.craft.upper()
-    traj_row = (traj_name, build_tsv(TRAJECTORY_COLUMNS,
+    traj_row = (traj_name, build_row(read_table_columns(TABLES_DIR / "trajectories.tsv"),
                 {"name": traj_name, "orbits": ";".join(segment_names)}))
     spacecraft = config.get("spacecraft_row")
-    spacecraft_row = ((spacecraft["name"], build_tsv(SPACECRAFT_COLUMNS, spacecraft))
+    spacecraft_row = ((spacecraft["name"],
+                       build_row(read_table_columns(TABLES_DIR / "spacecrafts.tsv"), spacecraft))
                       if spacecraft else None)
 
     if not args.write:

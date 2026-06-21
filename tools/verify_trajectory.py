@@ -36,7 +36,7 @@ Checks per craft:
   4. No errors/leaks in the Godot console at quit.
 
 Usage (refresh table imports first; headless runs use cached table data):
-    <godot-console> --path . --editor --headless --quit
+    <godot-console> --path . --import --headless
     python tools/verify_trajectory.py voyager_1 --launch
 """
 
