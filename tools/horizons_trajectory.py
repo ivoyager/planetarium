@@ -239,11 +239,10 @@ CRAFT = {
         # old Jupiter "tidally_locked" rotation hack is dropped (it suited only the static
         # orbit). 'begin' is injected in main() = the departure segment_begin.
         "spacecraft_row": {
-            "name": "JUNO_SPACECRAFT",
+            "name": "JUNO",
             "sleep": "FALSE",
             "file_prefix": "Juno",
             "en.wikipedia": "Juno_(spacecraft)",
-            "hud_name": "JUNO_SPACECRAFT_HUD",
             "show_in_nav_panel": "x",
             "parent": "PLANET_EARTH",
             "orbit": "SEG_JUNO_DEPARTURE",
@@ -251,7 +250,7 @@ CRAFT = {
             "trajectory": "JUNO",
         },
         # The placeholder single representative orbit, now superseded by the trajectory.
-        "retire_orbits": ["SPACECRAFT_JUNO_SPACECRAFT"],
+        "retire_orbits": ["SPACECRAFT_JUNO"],
     },
 }
 

@@ -123,7 +123,7 @@ def main():
 
     # Body name comes from the config's spacecraft entity (with the table's SPACECRAFT_
     # prefix), not the CLI key -- they differ when the craft key isn't the entity name
-    # (e.g. craft 'juno' -> entity 'JUNO_SPACECRAFT' -> body 'SPACECRAFT_JUNO_SPACECRAFT').
+    # (e.g. craft 'juno' -> entity 'JUNO' -> body 'SPACECRAFT_JUNO').
     spacecraft_config = CRAFT[args.craft].get("spacecraft_row")
     entity = spacecraft_config["name"] if spacecraft_config else args.craft.upper()
     body = "SPACECRAFT_" + entity
