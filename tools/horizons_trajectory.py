@@ -103,12 +103,14 @@ ORBIT_COLUMNS = [
 
 # spacecrafts.tsv column order. Index 0 ("name") is the unnamed entity-name
 # column; "spacecraft" is a separate BOOL field (data column 1), NOT the entity.
+# Order must track the table header exactly -- a reorder (not just a count change)
+# slips past upsert_table's field-count guard and silently misplaces every value.
 SPACECRAFT_COLUMNS = [
-    "name", "spacecraft", "use_pitch_yaw", "lazy_model", "sleep", "file_prefix",
-    "en.wikipedia", "hud_name", "symbol", "show_in_nav_panel", "parent",
-    "orbit", "body_class", "model_type", "tidally_locked", "axis_locked",
+    "name", "spacecraft", "parent", "orbit", "trajectory", "use_pitch_yaw",
+    "lazy_model", "sleep", "file_prefix", "en.wikipedia", "hud_name", "symbol",
+    "show_in_nav_panel", "body_class", "model_type", "tidally_locked", "axis_locked",
     "#rotation_period", "right_ascension", "declination", "gravitational_parameter",
-    "mean_radius", "mean_density", "magnitude", "albedo", "trajectory",
+    "mean_radius", "mean_density", "magnitude", "albedo",
 ]
 
 # trajectories.tsv column order (index 0 is the unnamed entity-name column).
@@ -163,6 +165,35 @@ CRAFT = {
         },
         # Placeholder spacecraft rows to drop now that real data exists.
         "retire_spacecraft": ["TEST_PROBE_EARTH_MOON", "TEST_PROBE_INTERPLANETARY"],
+    },
+    "voyager_2": {
+        "command": "-32",
+        # Grand Tour: Jupiter -> Saturn -> Uranus -> Neptune. Flyby windows are
+        # closest-approach +/-15 d (approx SOI residence); cruise windows fill the
+        # gaps so each join time is shared with its neighbor anchor.
+        "segments": [
+            ("DEPARTURE", "@399", "1977-08-20", "1977-08-22", "1977-08-21"),
+            ("CRUISE_1",  "@10",  "1977-08-22", "1979-06-24", "1978-06-01"),
+            ("JUPITER",   "@599", "1979-06-24", "1979-07-24", "1979-07-09"),
+            ("CRUISE_2",  "@10",  "1979-07-24", "1981-08-10", "1980-08-01"),
+            ("SATURN",    "@699", "1981-08-10", "1981-09-09", "1981-08-25"),
+            ("CRUISE_3",  "@10",  "1981-09-09", "1986-01-09", "1983-11-01"),
+            ("URANUS",    "@799", "1986-01-09", "1986-02-08", "1986-01-24"),
+            ("CRUISE_4",  "@10",  "1986-02-08", "1989-08-10", "1987-11-01"),
+            ("NEPTUNE",   "@899", "1989-08-10", "1989-09-09", "1989-08-25"),
+            ("CRUISE_5",  "@10",  "1989-09-09", "2100-01-01", "1995-01-01"),
+        ],
+        "spacecraft_row": {
+            "name": "VOYAGER_2",
+            "sleep": "FALSE",
+            "file_prefix": "Voyager",
+            "en.wikipedia": "Voyager_2",
+            "show_in_nav_panel": "x",
+            "parent": "PLANET_EARTH",
+            "orbit": "SEG_VOYAGER_2_DEPARTURE",
+            "mean_radius": "5",          # meters; IVBody requires > 0 (model/HUD scale)
+            "trajectory": "VOYAGER_2",
+        },
     },
 }
 
