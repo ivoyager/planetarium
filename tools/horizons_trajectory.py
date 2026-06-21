@@ -198,6 +198,61 @@ CRAFT = {
             "trajectory": "PIONEER_10",
         },
     },
+    "juno": {
+        "command": "-61",
+        # Earth -> heliocentric DSM loop -> Earth gravity assist -> Jupiter capture,
+        # then one representative orbit per post-capture period era.
+        #  * The Earth->Earth cruise is a ~1-revolution loop -- more than the zero-rev
+        #    Lambert gap-fixer can fit as one leg -- so it is split at the 2012 deep-space
+        #    maneuver into two sub-revolution fix_gaps cruises (CRUISE_1A/1B). Consecutive
+        #    fix_gaps cruises chain correctly: the new-game fix runs in order, anchoring
+        #    each leg's start at its predecessor's freshly-fixed endpoint, so every join
+        #    closes (see "Capture orbits and multi-revolution cruises" in TRAJECTORIES.md).
+        #  * The Jupiter capture orbit and its successors are "visual_orbit" legs (optional
+        #    6th segment element = flag set): drawn as local orbits (visual_orbits in
+        #    trajectories.tsv), not the trajectory polyline. Their segment windows tile
+        #    contiguously but the orbits are independent snapshots (period 53.5 -> 43 -> 38
+        #    -> 33 d across the moon-flyby eras); the body jumps between them, which is fine
+        #    -- we don't model the changes faithfully.
+        #  * JUPITER_APPROACH is the pre-JOI inbound hyperbola -- a normal flyby-style anchor
+        #    drawn in the polyline. CRUISE_2 closes onto its SOI-side entry (~15 d out), and
+        #    it ends at perijove (JOI), where the capture ellipse takes over. JUPITER_CAPTURE
+        #    is sampled just after JOI so its time_periapsis IS that perijove, keeping the
+        #    hyperbola->ellipse handoff tight; a later sample lands Tp a period away, which
+        #    projects back to JOI a few RJ off at perijove speed.
+        # Earth-flyby and JOI boundaries get explicit times (fast planet-centric frames).
+        "segments": [
+            ("DEPARTURE",        "@399", "2011-08-05", "2011-08-07", "2011-08-06"),
+            ("CRUISE_1A",        "@10",  "2011-08-07", "2012-09-03", "2012-02-01"),
+            ("CRUISE_1B",        "@10",  "2012-09-03", "2013-10-08T19:21:25", "2013-04-01"),
+            ("EARTH",            "@399", "2013-10-08T19:21:25", "2013-10-10T19:21:25", "2013-10-09T19:21:25"),
+            ("CRUISE_2",         "@10",  "2013-10-10T19:21:25", "2016-06-20", "2015-01-01"),
+            ("JUPITER_APPROACH", "@599", "2016-06-20", "2016-07-05T02:30:00", "2016-07-04"),
+            ("JUPITER_CAPTURE",  "@599", "2016-07-05T02:30:00", "2021-06-07", "2016-07-10", {"visual_orbit"}),
+            ("JUPITER_43D",      "@599", "2021-06-07", "2022-09-29", "2022-01-01", {"visual_orbit"}),
+            ("JUPITER_38D",      "@599", "2022-09-29", "2024-02-03", "2023-06-01", {"visual_orbit"}),
+            ("JUPITER_33D",      "@599", "2024-02-03", "2100-01-01", "2024-09-01", {"visual_orbit"}),
+        ],
+        # Convert the placeholder single-orbit Juno into a trajectory craft. Keep its
+        # identity fields (model, wiki, HUD name, radius); repoint parent/orbit/trajectory
+        # and set sleep FALSE (a trajectory craft must run _process to swap segments). The
+        # old Jupiter "tidally_locked" rotation hack is dropped (it suited only the static
+        # orbit). 'begin' is injected in main() = the departure segment_begin.
+        "spacecraft_row": {
+            "name": "JUNO_SPACECRAFT",
+            "sleep": "FALSE",
+            "file_prefix": "Juno",
+            "en.wikipedia": "Juno_(spacecraft)",
+            "hud_name": "JUNO_SPACECRAFT_HUD",
+            "show_in_nav_panel": "x",
+            "parent": "PLANET_EARTH",
+            "orbit": "SEG_JUNO_DEPARTURE",
+            "mean_radius": "5",          # meters; IVBody requires > 0 (model/HUD scale)
+            "trajectory": "JUNO",
+        },
+        # The placeholder single representative orbit, now superseded by the trajectory.
+        "retire_orbits": ["SPACECRAFT_JUNO_SPACECRAFT"],
+    },
 }
 
 
@@ -435,12 +490,16 @@ def generate(config, craft_name, godot, project, refresh=False, pre_fix=False):
     # Per-segment scaffold. Flyby/departure anchors -- and, in the default path, cruise
     # legs too -- get HORIZONS osculating elements at the sample epoch.
     segments = []
-    for suffix, center, begin, end, sample in config["segments"]:
+    for entry in config["segments"]:
+        suffix, center, begin, end, sample = entry[:5]
+        flags = set(entry[5]) if len(entry) > 5 else set()
         seg = {
             "suffix": suffix, "parent": CENTER_BODY[center],
             "t_begin": jd_to_sim_seconds(date_to_jd(begin)),
             "t_end": jd_to_sim_seconds(date_to_jd(end)),
             "is_flyby": center != "@10",
+            # Planet-centric leg drawn as a local orbit (visual_orbits), not the polyline.
+            "visual_orbit": "visual_orbit" in flags,
         }
         if seg["is_flyby"] or not pre_fix:
             seg["internal"] = horizons_to_internal(
@@ -450,9 +509,9 @@ def generate(config, craft_name, godot, project, refresh=False, pre_fix=False):
     if pre_fix:
         _pre_fix_cruises(segments, command, godot, project, refresh)
 
-    orbit_cols, segment_names = [], []
+    orbit_cols, segment_names, visual_orbits = [], [], []
     print(f"# {craft_name}  (HORIZONS COMMAND='{command}')" + ("  [pre-fixed]" if pre_fix else ""))
-    print(f"# {'segment':<22}{'primary':<15}{'e':>9}{'incl':>9}{'q(AU)':>10}{'fix_gaps':>9}")
+    print(f"# {'segment':<26}{'primary':<15}{'e':>9}{'incl':>9}{'q(AU)':>10}{'fix_gaps':>9}{'visual':>8}")
     for index, seg in enumerate(segments):
         name = prefix + seg["suffix"]
         fix_gaps = not seg["is_flyby"]
@@ -467,11 +526,13 @@ def generate(config, craft_name, godot, project, refresh=False, pre_fix=False):
                                 segment_begin, seg["t_end"], fix_gaps)
         orbit_cols.append(cols)
         segment_names.append(name)
+        if seg["visual_orbit"]:
+            visual_orbits.append(index)
         periapsis_au = seg["internal"]["p"] / (1.0 + seg["internal"]["e"]) / KM_PER_AU
-        print(f"# {name:<22}{seg['parent']:<15}{seg['internal']['e']:>9.4f}"
+        print(f"# {name:<26}{seg['parent']:<15}{seg['internal']['e']:>9.4f}"
               f"{math.degrees(seg['internal']['inc']):>9.3f}{periapsis_au:>10.4f}"
-              f"{('x' if fix_gaps else ''):>9}")
-    return orbit_cols, segment_names
+              f"{('x' if fix_gaps else ''):>9}{('orbit' if seg['visual_orbit'] else ''):>8}")
+    return orbit_cols, segment_names, visual_orbits
 
 
 def _pre_fix_cruises(segments, command, godot, project, refresh):
@@ -633,15 +694,21 @@ def main():
         if not godot:
             sys.exit("No Godot console executable found; pass --godot PATH")
 
-    orbit_cols, segment_names = generate(config, args.craft, godot, args.project,
-                                         args.refresh, args.pre_fix)
+    orbit_cols, segment_names, visual_orbits = generate(config, args.craft, godot, args.project,
+                                                        args.refresh, args.pre_fix)
 
     orbit_columns = read_table_columns(TABLES_DIR / "orbits.tsv")
     orbit_rows = [(cols["name"], build_row(orbit_columns, cols)) for cols in orbit_cols]
     traj_name = args.craft.upper()
-    traj_row = (traj_name, build_row(read_table_columns(TABLES_DIR / "trajectories.tsv"),
-                {"name": traj_name, "orbits": ";".join(segment_names)}))
+    traj_cols = {"name": traj_name, "orbits": ";".join(segment_names)}
+    if visual_orbits:  # ARRAY[INT] of segment indexes drawn as local orbits, not the polyline
+        traj_cols["visual_orbits"] = ";".join(str(index) for index in visual_orbits)
+    traj_row = (traj_name, build_row(read_table_columns(TABLES_DIR / "trajectories.tsv"), traj_cols))
     spacecraft = config.get("spacecraft_row")
+    if spacecraft is not None:
+        # Body 'begin' (start of life) = the departure segment's segment_begin (its synthetic
+        # perigee), so the craft appears exactly when its trajectory starts.
+        spacecraft = dict(spacecraft, begin=orbit_cols[0]["segment_begin"])
     spacecraft_row = ((spacecraft["name"],
                        build_row(read_table_columns(TABLES_DIR / "spacecrafts.tsv"), spacecraft))
                       if spacecraft else None)
@@ -670,7 +737,8 @@ def main():
         print(f"# {filename:<20} {', '.join(parts) or 'no change'}")
 
     print(f"\n# ---- writing to {TABLES_DIR} ----")
-    report("orbits.tsv", upsert_table(TABLES_DIR / "orbits.tsv", orbit_rows))
+    report("orbits.tsv", upsert_table(TABLES_DIR / "orbits.tsv", orbit_rows,
+           remove_names=config.get("retire_orbits", ())))
     report("trajectories.tsv", upsert_table(TABLES_DIR / "trajectories.tsv", [traj_row]))
     if spacecraft_row:
         report("spacecrafts.tsv", upsert_table(TABLES_DIR / "spacecrafts.tsv",

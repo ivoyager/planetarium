@@ -59,10 +59,18 @@ CONSOLE_ERROR_MARKERS = ("SCRIPT ERROR", "ERROR:", "Assertion failed",
                          "Trajectory segment", "not found in IVBody.bodies")
 
 
+def is_fix_gaps_cruise(entry):
+    """A heliocentric cruise the engine re-fits at runtime to close its joins. Only boundaries
+    adjacent to one are continuity-enforced; planet-centric visual_orbit snapshots, which jump
+    between independent orbits, are reported for information only."""
+    return entry[1] == "@10"
+
+
 def checkpoints(craft_name):
     """(sample_seconds, expected_parent, label) per segment, from the config."""
     points = []
-    for suffix, center, _begin, _end, sample in CRAFT[craft_name]["segments"]:
+    for entry in CRAFT[craft_name]["segments"]:
+        suffix, center, _begin, _end, sample = entry[:5]
         seconds = jd_to_sim_seconds(date_to_jd(sample))
         points.append((seconds, CENTER_BODY[center], suffix))
     return points
@@ -113,7 +121,12 @@ def main():
     if args.craft not in CRAFT:
         sys.exit(f"Unknown craft '{args.craft}'. Known: {', '.join(CRAFT)}")
 
-    body = "SPACECRAFT_" + args.craft.upper()
+    # Body name comes from the config's spacecraft entity (with the table's SPACECRAFT_
+    # prefix), not the CLI key -- they differ when the craft key isn't the entity name
+    # (e.g. craft 'juno' -> entity 'JUNO_SPACECRAFT' -> body 'SPACECRAFT_JUNO_SPACECRAFT').
+    spacecraft_config = CRAFT[args.craft].get("spacecraft_row")
+    entity = spacecraft_config["name"] if spacecraft_config else args.craft.upper()
+    body = "SPACECRAFT_" + entity
     points = checkpoints(args.craft)
     failures = []
 
@@ -189,22 +202,33 @@ def main():
         # Continuity: at each interior boundary the heliocentric position from the
         # two adjacent segments must coincide. Sample 1 s inside each side; a torn
         # join reads ~1e6 km, a connected one ~1e2 km (the float32 path floor).
+        # Only joins adjacent to a fix_gaps cruise are ENFORCED -- that is where the
+        # engine re-fits to close the gap (including a run of consecutive cruises, each
+        # re-anchored to its predecessor's fixed end). A visual_orbit snapshot-to-snapshot
+        # boundary is open by design and reported for information only (it jumps by an
+        # orbit's worth of km).
         segments = CRAFT[args.craft]["segments"]
-        print(f"\n{'boundary':<26}{'gap (km)':>13}  result")
-        print("-" * 48)
+        print(f"\n{'boundary':<34}{'gap (km)':>13}  result")
+        print("-" * 56)
         for k in range(len(segments) - 1):
             t_boundary = jd_to_sim_seconds(date_to_jd(segments[k][3]))
             before = heliocentric(client, body, t_boundary - 1.0, CENTER_BODY[segments[k][1]])
             after = heliocentric(client, body, t_boundary + 1.0, CENTER_BODY[segments[k + 1][1]])
             label = f"{segments[k][0]} -> {segments[k + 1][0]}"
+            enforced = is_fix_gaps_cruise(segments[k]) or is_fix_gaps_cruise(segments[k + 1])
             if before is None or after is None:
-                failures.append(f"continuity {label}: query failed")
+                if enforced:
+                    failures.append(f"continuity {label}: query failed")
+                print(f"{label:<34}{'n/a':>13}  {'FAIL' if enforced else 'info'} (query failed)")
                 continue
             gap = vector_length(vector_sub(after, before))
+            if not enforced:
+                print(f"{label:<34}{gap:>13.3e}  info (open join)")
+                continue
             ok = gap < 1.0e4
             if not ok:
                 failures.append(f"continuity {label}: gap {gap:.3e} km")
-            print(f"{label:<26}{gap:>13.3e}  {'PASS' if ok else 'FAIL'}")
+            print(f"{label:<34}{gap:>13.3e}  {'PASS' if ok else 'FAIL'}")
 
     except Exception as exc:
         failures.append(f"exception: {exc}")
