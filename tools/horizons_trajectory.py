@@ -98,7 +98,7 @@ ORBIT_COLUMNS = [
     "semi_major_axis_rate", "eccentricity_rate", "inclination_rate",
     "mean_anomaly_correction_b", "mean_anomaly_correction_c",
     "mean_anomaly_correction_s", "mean_anomaly_correction_f",
-    "validity_begin", "validity_end", "segment_begin", "segment_end",
+    "validity_begin", "validity_end", "segment_begin", "segment_end", "fix_gaps",
 ]
 
 # spacecrafts.tsv column order. Index 0 ("name") is the unnamed entity-name
@@ -130,8 +130,9 @@ META_FIRST_FIELDS = {"", "Type", "Default", "Unit"}
 #                "@10" (Sun) is a cruise leg, anything else is a flyby leg.
 #   begin/end    segment validity window ('YYYY-MM-DD'); the first segment's begin
 #                is launch, the last segment's end is the chosen horizon.
-#   sample       flyby: closest-approach epoch to anchor the conic. (Unused for
-#                cruise legs, which are fitted by Lambert -- left at the CA-ish date.)
+#   sample       epoch to sample HORIZONS osculating elements for the conic (closest
+#                approach for a flyby; mid-leg for a cruise). Unused for cruise legs
+#                under --pre-fix, which Lambert-fits them instead.
 #
 # Flyby window bounds are approximate sphere-of-influence crossings -- seeded by
 # hand from the known encounter dates and refined after viewing in-sim.
@@ -140,11 +141,12 @@ CRAFT = {
     "voyager_1": {
         "command": "-31",
         "segments": [
-            ("CRUISE_1", "@10",  "1977-09-05", "1979-02-20", "1978-06-01"),
-            ("JUPITER",  "@599", "1979-02-20", "1979-03-20", "1979-03-05"),
-            ("CRUISE_2", "@10",  "1979-03-20", "1980-10-28", "1980-01-01"),
-            ("SATURN",   "@699", "1980-10-28", "1980-11-27", "1980-11-12"),
-            ("CRUISE_3", "@10",  "1980-11-27", "2100-01-01", "1990-01-01"),
+            ("DEPARTURE", "@399", "1977-09-05", "1977-09-07", "1977-09-06"),
+            ("CRUISE_1",  "@10",  "1977-09-07", "1979-02-20", "1978-06-01"),
+            ("JUPITER",   "@599", "1979-02-20", "1979-03-20", "1979-03-05"),
+            ("CRUISE_2",  "@10",  "1979-03-20", "1980-10-28", "1980-01-01"),
+            ("SATURN",    "@699", "1980-10-28", "1980-11-27", "1980-11-12"),
+            ("CRUISE_3",  "@10",  "1980-11-27", "2100-01-01", "1990-01-01"),
         ],
         # spacecrafts.tsv registration (non-default fields only). No Voyager .glb
         # asset yet -> file_prefix falls back gracefully; add a model + hud_name later.
@@ -154,8 +156,8 @@ CRAFT = {
             "file_prefix": "Voyager",
             "en.wikipedia": "Voyager_1",
             "show_in_nav_panel": "x",
-            "parent": "STAR_SUN",
-            "orbit": "SEG_VOYAGER_1_CRUISE_1",
+            "parent": "PLANET_EARTH",
+            "orbit": "SEG_VOYAGER_1_DEPARTURE",
             "mean_radius": "5",          # meters; IVBody requires > 0 (model/HUD scale)
             "trajectory": "VOYAGER_1",
         },
@@ -354,9 +356,10 @@ def _state_position(internal, gm, t):
                              internal["time_periapsis"], gm, t)[0]
 
 
-def internal_to_cols(name, parent, internal, segment_begin, segment_end):
+def internal_to_cols(name, parent, internal, segment_begin, segment_end, fix_gaps):
     """Internal elements -> orbits.tsv columns. Open-conic form (semi_parameter +
-    time_periapsis) is valid for any eccentricity; the builder mods elliptic ones."""
+    time_periapsis) is valid for any eccentricity; the builder mods elliptic ones.
+    [fix_gaps] marks a cruise leg for the engine's runtime gap-fix ('x' = true)."""
     return {
         "name": name,
         "parent": parent,
@@ -368,15 +371,23 @@ def internal_to_cols(name, parent, internal, segment_begin, segment_end):
         "time_periapsis": internal["time_periapsis"],
         "segment_begin": segment_begin,
         "segment_end": segment_end,
+        "fix_gaps": "x" if fix_gaps else "",
     }
 
 
-def generate(config, craft_name, godot, project, refresh=False):
-    """Build all segment conics; return (orbit_cols, segment_names)."""
+def generate(config, craft_name, godot, project, refresh=False, pre_fix=False):
+    """Build all segment conics; return (orbit_cols, segment_names).
+
+    Default: each segment is HORIZONS osculating elements at its sample epoch, and
+    cruise legs are flagged fix_gaps so the engine closes the joins at new-game. With
+    [pre_fix]: cruise legs are instead Lambert-fitted offline to the flyby endpoints
+    using the running sim's planet positions (gap-free as shipped, no engine fix
+    needed), which requires launching the sim."""
     command = config["command"]
     prefix = "SEG_" + craft_name.upper() + "_"
 
-    # Per-segment scaffold; anchor each flyby on HORIZONS osculating elements at CA.
+    # Per-segment scaffold. Flyby/departure anchors -- and, in the default path, cruise
+    # legs too -- get HORIZONS osculating elements at the sample epoch.
     segments = []
     for suffix, center, begin, end, sample in config["segments"]:
         seg = {
@@ -385,13 +396,36 @@ def generate(config, craft_name, godot, project, refresh=False):
             "t_end": jd_to_sim_seconds(date_to_jd(end)),
             "is_flyby": center != "@10",
         }
-        if seg["is_flyby"]:
+        if seg["is_flyby"] or not pre_fix:
             seg["internal"] = horizons_to_internal(
                 parse_first_element_record(query_elements(command, center, sample)))
         segments.append(seg)
 
-    # Sim's GMs (Sun + each flyby primary) and each flyby primary's position at the
-    # flyby boundary times -- needed to express flyby endpoints heliocentrically.
+    if pre_fix:
+        _pre_fix_cruises(segments, command, godot, project, refresh)
+
+    orbit_cols, segment_names = [], []
+    print(f"# {craft_name}  (HORIZONS COMMAND='{command}')" + ("  [pre-fixed]" if pre_fix else ""))
+    print(f"# {'segment':<22}{'primary':<15}{'e':>9}{'incl':>9}{'q(AU)':>10}{'fix_gaps':>9}")
+    for seg in segments:
+        name = prefix + seg["suffix"]
+        fix_gaps = not seg["is_flyby"]
+        cols = internal_to_cols(name, seg["parent"], seg["internal"],
+                                seg["t_begin"], seg["t_end"], fix_gaps)
+        orbit_cols.append(cols)
+        segment_names.append(name)
+        periapsis_au = seg["internal"]["p"] / (1.0 + seg["internal"]["e"]) / KM_PER_AU
+        print(f"# {name:<22}{seg['parent']:<15}{seg['internal']['e']:>9.4f}"
+              f"{math.degrees(seg['internal']['inc']):>9.3f}{periapsis_au:>10.4f}"
+              f"{('x' if fix_gaps else ''):>9}")
+    return orbit_cols, segment_names
+
+
+def _pre_fix_cruises(segments, command, godot, project, refresh):
+    """--pre-fix path: Lambert-fit each cruise leg to the adjacent flyby endpoints,
+    using the running sim's planet positions, so shipped data is gap-free without the
+    engine's runtime fix. Mutates each cruise seg['internal']. (The default path skips
+    this entirely -- the engine closes the gaps at new-game.)"""
     gm_bodies = {"STAR_SUN"} | {s["parent"] for s in segments if s["is_flyby"]}
     pos_queries = [(s["parent"], t) for s in segments if s["is_flyby"]
                    for t in (s["t_begin"], s["t_end"])]
@@ -407,9 +441,7 @@ def generate(config, craft_name, godot, project, refresh=False):
             seg["exit_helio"] = _add(_state_position(seg["internal"], gm_planet, seg["t_end"]),
                                      sim["pos"][(seg["parent"], seg["t_end"])])
 
-    # Cruise legs: the heliocentric conic through both boundary points (Lambert),
-    # anchored to the adjacent flyby endpoints at the shared boundary times. Each
-    # endpoint carries its own time; the conic is valid across the whole segment.
+    # Each cruise = the heliocentric conic through its two boundary points in its TOF.
     for index, seg in enumerate(segments):
         if seg["is_flyby"]:
             continue
@@ -425,21 +457,6 @@ def generate(config, craft_name, godot, project, refresh=False):
             end_pos = query_helio_position(command, t_target)
         velocity, _ = lambert(start_pos, end_pos, t_target - t_start, gm_sun)
         seg["internal"] = state_to_elements(start_pos, velocity, gm_sun, t_start)
-
-    orbit_cols, segment_names = [], []
-    print(f"# {craft_name}  (HORIZONS COMMAND='{command}')")
-    print(f"# {'segment':<24}{'primary':<15}{'e':>9}{'incl':>9}{'periapsis(AU)':>15}")
-    for seg in segments:
-        name = prefix + seg["suffix"]
-        cols = internal_to_cols(name, seg["parent"], seg["internal"],
-                                seg["t_begin"], seg["t_end"])
-        orbit_cols.append(cols)
-        segment_names.append(name)
-        periapsis_au = seg["internal"]["p"] / (1.0 + seg["internal"]["e"]) / KM_PER_AU
-        kind = "" if seg["is_flyby"] else "  (lambert)"
-        print(f"# {name:<24}{seg['parent']:<15}{seg['internal']['e']:>9.4f}"
-              f"{math.degrees(seg['internal']['inc']):>9.3f}{periapsis_au:>15.4f}{kind}")
-    return orbit_cols, segment_names
 
 
 # *****************************************************************************
@@ -517,7 +534,10 @@ def main():
     parser = argparse.ArgumentParser(description="Generate ivoyager trajectory table rows from HORIZONS")
     parser.add_argument("craft", nargs="?", default="voyager_1")
     parser.add_argument("--write", action="store_true", help="upsert rows into the tables")
-    parser.add_argument("--refresh", action="store_true", help="re-query cached sim data")
+    parser.add_argument("--refresh", action="store_true", help="re-query cached sim data (--pre-fix)")
+    parser.add_argument("--pre-fix", action="store_true",
+                        help="Lambert-fit cruise legs offline (launches the sim); default emits "
+                             "natural cruises + fix_gaps for the engine to close at runtime")
     parser.add_argument("--godot", default=None, help="path to the Godot console executable")
     parser.add_argument("--project", default=str(TABLES_DIR.parent.parent.parent))
     args = parser.parse_args()
@@ -526,14 +546,15 @@ def main():
     config = CRAFT[args.craft]
 
     godot = args.godot
-    if godot is None:
+    if args.pre_fix and godot is None:
         sys.path.insert(0, str(ASSISTANT_TOOLS))
         from orbit_accuracy_test import find_godot_executable
         godot = find_godot_executable(args.project)
         if not godot:
             sys.exit("No Godot console executable found; pass --godot PATH")
 
-    orbit_cols, segment_names = generate(config, args.craft, godot, args.project, args.refresh)
+    orbit_cols, segment_names = generate(config, args.craft, godot, args.project,
+                                         args.refresh, args.pre_fix)
 
     orbit_rows = [(cols["name"], build_tsv(ORBIT_COLUMNS, cols)) for cols in orbit_cols]
     traj_name = args.craft.upper()
