@@ -195,6 +195,29 @@ CRAFT = {
             "trajectory": "VOYAGER_2",
         },
     },
+    "pioneer_10": {
+        "command": "-23",
+        # A single Jupiter flyby, then solar-system escape (no further encounters).
+        # HORIZONS solution is DE118-era -- lower fidelity than the Voyager refits;
+        # the patched-conic joins still close, but absolute accuracy is weaker.
+        "segments": [
+            ("DEPARTURE", "@399", "1972-03-03", "1972-03-05", "1972-03-04"),
+            ("CRUISE_1",  "@10",  "1972-03-05", "1973-11-18", "1973-01-01"),
+            ("JUPITER",   "@599", "1973-11-18", "1973-12-18", "1973-12-03"),
+            ("CRUISE_2",  "@10",  "1973-12-18", "2100-01-01", "1985-01-01"),
+        ],
+        "spacecraft_row": {
+            "name": "PIONEER_10",
+            "sleep": "FALSE",
+            "file_prefix": "Pioneer",
+            "en.wikipedia": "Pioneer_10",
+            "show_in_nav_panel": "x",
+            "parent": "PLANET_EARTH",
+            "orbit": "SEG_PIONEER_10_DEPARTURE",
+            "mean_radius": "5",          # meters; IVBody requires > 0 (model/HUD scale)
+            "trajectory": "PIONEER_10",
+        },
+    },
 }
 
 
