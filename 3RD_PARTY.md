@@ -126,9 +126,13 @@ Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped 
   - `/models/iss/*`
   - `/models/itokawa/*`
   - `/models/juno/*`
+  - `/models/jwst/*`
   - `/models/mimas/*`
+  - `/models/new_horizons/*`
   - `/models/phobos/*`
+  - `/models/pioneer_10/*`
   - `/models/vesta/*`
+  - `/models/voyager/*`
 - **Copyright:** Public Domain
 - **License:** Public Domain; see [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/).
 
