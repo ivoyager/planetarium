@@ -84,6 +84,7 @@ CENTER_BODY = {
     "@699": "PLANET_SATURN",
     "@799": "PLANET_URANUS",
     "@899": "PLANET_NEPTUNE",
+    "@999": "PLANET_PLUTO",
 }
 
 # Row values are assembled as {column_name: value} dicts (see internal_to_cols and the
@@ -251,6 +252,38 @@ CRAFT = {
         },
         # The placeholder single representative orbit, now superseded by the trajectory.
         "retire_orbits": ["SPACECRAFT_JUNO"],
+    },
+    "new_horizons": {
+        "command": "-98",
+        # Earth -> Jupiter gravity assist -> Pluto-Charon flyby -> Kuiper Belt escape.
+        # The fastest launch ever (a direct Earth-escape hyperbola, C3 ~ 158 km^2/s^2), so the
+        # departure leg is a very hot hyperbola. Flyby windows are closest-approach +/- a SOI
+        # residence: +/-15 d at Jupiter (the distant 2.3e6 km / 32-RJ pass is still deep inside
+        # the ~48e6 km SOI), but only +/-2 d at Pluto -- its SOI is ~3e6 km (tiny GM out at 33 AU)
+        # and the ~14 km/s encounter speed crosses it in days. The Pluto sample takes the explicit
+        # closest-approach instant (fast planet-centric frame) so its time_periapsis is the real
+        # perijove. Post-Pluto is one escape cruise to the 2100 horizon (Voyager/Pioneer pattern):
+        # the 2019 Arrokoth flyby is NOT an anchor -- Arrokoth is modeled only as a massless
+        # asteroid (no SOI), and it barely perturbed the heliocentric escape trajectory.
+        "segments": [
+            ("DEPARTURE", "@399", "2006-01-19", "2006-01-21", "2006-01-20"),
+            ("CRUISE_1",  "@10",  "2006-01-21", "2007-02-13", "2006-08-01"),
+            ("JUPITER",   "@599", "2007-02-13", "2007-03-15", "2007-02-28"),
+            ("CRUISE_2",  "@10",  "2007-03-15", "2015-07-12", "2011-01-01"),
+            ("PLUTO",     "@999", "2015-07-12", "2015-07-16", "2015-07-14T11:49:57"),
+            ("CRUISE_3",  "@10",  "2015-07-16", "2100-01-01", "2018-01-01"),
+        ],
+        "spacecraft_row": {
+            "name": "NEW_HORIZONS",
+            "sleep": "FALSE",
+            "file_prefix": "New_Horizons",
+            "en.wikipedia": "New_Horizons",
+            "show_in_nav_panel": "x",
+            "parent": "PLANET_EARTH",
+            "orbit": "SEG_NEW_HORIZONS_DEPARTURE",
+            "mean_radius": "5",          # meters; IVBody requires > 0 (model/HUD scale)
+            "trajectory": "NEW_HORIZONS",
+        },
     },
 }
 

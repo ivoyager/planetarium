@@ -18,8 +18,11 @@ All real spacecraft (and body) ephemeris data comes from the JPL Solar System Dy
 | Voyager 2 | `-32` | 2022 refit (Jacobson, DE440) | 1977-08-20 → 2100 |
 | Pioneer 10 | `-23` | JPL Nav merged (PN10A–G, DE118) | 1972-03-03 → ~2002 tracking |
 | Juno | `-61` | JPL reconstructed SPK (post-Centaur-separation) | 2011-08-05 → 2025-09 (Jupiter impact) |
+| New Horizons | `-98` | NH nav concatenated SPK (recon. → 2019, pred. → 2050; plu060 Pluto recon, Brozovic & Jacobson) | 2006-01-19 → 2050 |
 
 Juno is the one **capture** mission (the others fly by and escape): Earth → a multi-year heliocentric loop with an Earth gravity assist → Jupiter orbit insertion, then years of polar orbits. It uses the `visual_orbit` segment kind and the multi-revolution-cruise split in *Capture orbits and multi-revolution cruises* below.
+
+New Horizons is the worked example of a **dwarf-planet flyby anchor**: Earth → Jupiter gravity assist → Pluto-Charon flyby → Kuiper Belt escape. Pluto anchors a flyby segment exactly like a giant planet would — any body modeled with a GM works (`PLANET_PLUTO`, GM 871 km³/s²), the segment is just tuned to Pluto's far smaller SOI (~3×10⁶ km, crossed in days at the ~14 km/s encounter speed): a ±2-day window vs the ±15-day giant-planet windows, with an explicit closest-approach sample epoch. The eccentricity there is ~2986 — a near-straight-line hyperbola, since Pluto's weak gravity barely deflects the pass; the open-conic `semi_parameter`/`time_periapsis` form carries it fine. The 2019 Arrokoth flyby is **not** modeled as an anchor: Arrokoth exists only as a massless asteroid row (no GM, no SOI) and barely perturbed the heliocentric escape, so the post-Pluto leg is a single escape cruise to the horizon (the Voyager/Pioneer pattern).
 
 Pioneer 10 is **lower fidelity** — built on the DE118 Jupiter-flyby-era ephemeris; HORIZONS labels it "suitable for general historical purposes." Treat Voyager solutions as high-confidence; treat Pioneer 10 with caution.
 
