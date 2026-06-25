@@ -99,6 +99,8 @@ Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped 
   - `/maps/Charon.albedo.4096.jpg`
   - `/maps/Dione.albedo.4096.jpg`
   - `/maps/Earth.albedo.8192.jpg`
+  - `/maps/Earth.clouds.albedo.2048.png`
+  - `/maps/Earth.emission.4096.jpg`
   - `/maps/Enceladus.albedo.4096.jpg`
   - `/maps/Iapetus.albedo.4096.jpg`
   - `/maps/Mars.albedo.4096.jpg`
@@ -139,7 +141,7 @@ Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped 
 
 ### I, Voyager body models and normal maps
 
-Unlike the NASA models listed above, the 3D body models and surface-normal maps in this section are original works created by Charlie Whitfield for I, Voyager. They are not third-party works; they are covered by the I, Voyager license ([Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)). They are listed here to attribute the public-domain source data from which they were derived; that data is NASA mission data in the public domain, governed by the [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/). The models also embed the corresponding NASA albedo maps (listed above) as surface textures.
+Unlike the NASA models listed above, the 3D body models and surface-normal maps in this section are original works created by Charlie Whitfield for I, Voyager. They are not third-party works; they are covered by the I, Voyager license ([Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)). They are listed here to attribute the public-domain source data from which they were derived; that data is public-domain U.S. Government data — chiefly NASA mission data (governed by the [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/)), plus the NOAA ETOPO 2022 global relief model for the Earth normal map. The models also embed the corresponding NASA albedo maps (listed above) as surface textures.
 
 Custom models (`.glb`):
 
@@ -154,6 +156,7 @@ Normal (bump) maps for shaded relief on the shared spheroid mesh:
 - `/maps/Mercury.normal.2048.png` — derived from MESSENGER global topography (NASA/JHUAPL/Carnegie Institution of Washington; USGS Astrogeology DEM).
 - `/maps/Mars.normal.4096.png` — derived from MGS MOLA global topography (NASA/JPL/GSFC MOLA Science Team; USGS Astrogeology DEM).
 - `/maps/Enceladus.normal.2048.png` — derived from Cassini ISS global topography (Schenk, 2024; NASA/JPL-Caltech/Space Science Institute).
+- `/maps/Earth.normal.4096.png` — derived from the NOAA ETOPO 2022 global relief model (60 arc-second ice surface; NOAA National Centers for Environmental Information), with ocean bathymetry flattened to sea level.
 
 - **Copyright:** Models and maps © Charlie Whitfield; underlying source data Public Domain.
 - **License:** [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) (models and maps); Public Domain (source data).

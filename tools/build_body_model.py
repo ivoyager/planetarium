@@ -303,6 +303,9 @@ def main():
     p.add_argument("--dem-add-m", type=float, default=0.0, help="meters added to DN")
     p.add_argument("--nodata", type=float, default=None,
                    help="DEM nodata DN -> no displacement (stays spherical)")
+    p.add_argument("--clamp-min-m", type=float, default=None,
+                   help="clamp DEM heights below this many meters up to it (e.g. 0 flattens "
+                        "ocean/bathymetry to a flat sea-level surface)")
     p.add_argument("--lon-seg", type=int, default=1024)
     p.add_argument("--lat-seg", type=int, default=512)
     p.add_argument("--exaggeration", type=float, default=1.0)
@@ -334,6 +337,12 @@ def main():
         print(f"reading DEM {args.dem} ...")
         dem, nodata_mask = read_dem(args.dem, args.max_proc_width, args.nodata)
         print(f"  DEM {dem.shape} DN range [{dem.min():.0f}, {dem.max():.0f}]")
+        if args.clamp_min_m is not None:
+            # Flatten everything below the threshold (e.g. ocean-floor bathymetry) to a
+            # single level so it generates no slope — a mirror-flat sea for an ocean world.
+            clamp_dn = (args.clamp_min_m - args.dem_add_m) / args.dem_vert_unit_m
+            dem = np.maximum(dem, clamp_dn)
+            print(f"  clamped to >= {args.clamp_min_m} m -> DN range [{dem.min():.0f}, {dem.max():.0f}]")
 
     phi0 = math.pi - math.radians(args.map_offset_deg)
     content = args.normal_content
