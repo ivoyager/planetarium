@@ -158,6 +158,10 @@ Normal (bump) maps for shaded relief on the shared spheroid mesh:
 - `/maps/Enceladus.normal.2048.png` — derived from Cassini ISS global topography (Schenk, 2024; NASA/JPL-Caltech/Space Science Institute).
 - `/maps/Earth.normal.4096.png` — derived from the NOAA ETOPO 2022 global relief model (60 arc-second ice surface; NOAA National Centers for Environmental Information), with ocean bathymetry flattened to sea level.
 
+Surface roughness map for the specular Sun-glint on open water (smooth water; matte land, ice and snow):
+
+- `/maps/Earth.roughness.4096.png` — a land/sea mask derived from the `Earth.normal` relief map (NOAA ETOPO 2022, ocean flattened to sea level) and the `Earth.albedo` ocean color (NASA Blue Marble Next Generation): open water reads smooth (specular), land and ice matte.
+
 - **Copyright:** Models and maps © Charlie Whitfield; underlying source data Public Domain.
 - **License:** [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) (models and maps); Public Domain (source data).
 
