@@ -1,0 +1,24 @@
+I, Voyager Planetarium — notes for automation / accessibility clients.
+
+FRAMING THE CAMERA ON A BODY
+The reliable way to look at a body is to select it, then apply a named view:
+  1. select_body {"name": "PLANET_MARS"}
+  2. apply_view {"name": "VIEW_ZOOM", "instant": true}
+VIEW_ZOOM frames the current selection at close range (~3 body radii, 18 deg above
+the horizon) — the same as clicking the GUI "Zoom" button. It changes only the
+camera, not HUDs or time. Call list_views for the full set (e.g. VIEW_ZOOM,
+VIEW_FORTYFIVE, VIEW_TOP, VIEW_HOME, VIEW_CISLUNAR, VIEW_SYSTEM, VIEW_ASTEROIDS).
+
+Prefer apply_view over move_camera. move_camera is low-level: its view_position is
+[longitude, latitude, perspective_distance], and that third value is a perspective
+distance (radius-scaled), NOT meters — an IVCamera internal you normally should not
+hand-build. Use move_camera only for explicit per-axis control.
+
+INSPECTING GRAPHICS (typical flow)
+  1. get_state            # confirm "started": true
+  2. select_body          # pick the body, e.g. {"name": "PLANET_EARTH"}
+  3. apply_view {"name": "VIEW_ZOOM", "instant": true}   # instant: no animation before capture
+  4. screenshot {"path": "<file>.png", "hide_gui": true}
+
+Use "instant": true with apply_view before a screenshot so the camera does not
+animate into place across frames.
