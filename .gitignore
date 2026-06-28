@@ -10,6 +10,5 @@ export_presets.cfg
 ~*
 
 # Claude Code
-CLAUDE.md
-.claude
-/.claude/
+.claude/settings.local.json
+.claude/worktrees/
