@@ -4,7 +4,7 @@ This document is an incomplete list of contributions to I, Voyager that are not 
 
 See list of direct contributors ("authors") [here](https://github.com/ivoyager/ivoyager_core/blob/master/AUTHORS.md).
 
-See 3rd-party copyright and licence information [here](https://github.com/ivoyager/ivoyager_core/blob/master/3RD_PARTY.md).
+See 3rd-party copyright and licence information [here](https://github.com/ivoyager/asset_downloads/blob/master/3RD_PARTY.md).
 
 ---
 
