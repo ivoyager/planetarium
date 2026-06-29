@@ -80,7 +80,7 @@ func _init() -> void:
 	# User settings/options
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
-	options_popup.add_section(&"LABEL_TIME", 1, 1)
+	options_popup.add_section(&"LABEL_TIME", 0, 0)
 	options_popup.add_option(&"LABEL_TIME", &"LABEL_TERRESTRIAL_TIME_CLOCK",
 			&"terrestrial_time_clock")
 
