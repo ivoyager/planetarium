@@ -63,9 +63,12 @@ func _on_about_to_start_simulator(_is_new_game: bool) -> void:
 		start()
 	else:
 		paused = true
-	if _view_manager.has_view(cache_name, cach_set, true):
+	var cached_view := _view_manager.get_view_object(cache_name, cach_set, true)
+	if cached_view and cached_view.is_valid():
 		_view_manager.set_view(cache_name, cach_set, true, true)
 	else:
+		if cached_view: # stale cache (e.g., camera target body removed); discard it
+			_view_manager.remove_view(cache_name, cach_set, true)
 		_view_manager.set_table_view(&"VIEW_HOME", true)
 
 
