@@ -19,6 +19,14 @@ The editor plugin will manage assets download and version updates (assets are no
 
 After above steps, your addons directory will contain three subdirectories: `ivoyager_assets`, `ivoyager_core`, `ivoyager_tables` and `ivoyager_units`.
 
+### Copyright and licensing
+
+I, Voyager source code is licensed under [Apache 2.0](LICENSE.txt). Asset and data files fall into three documented groups:
+
+- [3RD_PARTY.md](3RD_PARTY.md) — files under third-party copyright and license; use must comply with their terms.
+- [IVOYAGER_WORKS.md](IVOYAGER_WORKS.md) — original I, Voyager works (models, maps, generated data) and attribution of the public-domain source data they derive from.
+- [CREDITS.md](CREDITS.md) — acknowledgments.
+
 ### Screen captures!
 
 ![](https://www.ivoyager.dev/wp-content/uploads/2020/01/europa-jupiter-io-ivoyager.jpg)

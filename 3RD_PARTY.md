@@ -2,7 +2,7 @@
 
 This document provides copyright and license information for third-party software and files used in "I, Voyager" software distributed from https://www.ivoyager.dev and https://github.com/ivoyager.
 
-The master version of this file is maintained [here](https://github.com/ivoyager/ivoyager_core/blob/master/3RD_PARTY.md).
+The master version of this file is maintained [here](https://github.com/ivoyager/asset_downloads/blob/master/3RD_PARTY.md).
 
 **Contact:** Charlie Whitfield (mail@ivoyager.dev)
 
@@ -22,12 +22,12 @@ I, Voyager software distributions run on the [Godot Engine](https://godotengine.
 
 These files are located in subdirectories of `/addons/ivoyager_assets/` in project development builds and distributed from [this repository](https://github.com/ivoyager/asset_downloads), except where noted otherwise. Many of the images here were modified by Charlie Whitfield.
 
+Original I, Voyager works (custom models, surface-relief maps, generated data products) are documented separately in [IVOYAGER_WORKS.md](IVOYAGER_WORKS.md). The I, Voyager-rendered 2D body icons in `bodies_2d/` are also catalogued there; each icon inherits the copyright and license of the source body it is rendered from, including the third-party-licensed sources listed below.
+
 
 ### World maps by Björn Jónsson (from Planetary Society)
 
 Files were downloaded from https://www.planetary.org/space-images, and reduced in size from much larger file images.
-
-Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes).
 
 - **Files:**
   - `/maps/Europa.albedo.8192.jpg`
@@ -41,8 +41,6 @@ Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped 
 Files were downloaded from https://bjj.mmedia.is/data/planetary_maps.html.
 
 Neptune color was significantly adjusted by Charlie Whitfield to match published images [here](https://academic.oup.com/mnras/article/527/4/11521/7511973).
-
-Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes).
 
 - **Files:**
   - `/maps/Callisto.albedo.1800.jpg`
@@ -66,8 +64,6 @@ Jónsson" or something equivalent.
 
 File downloaded from https://planetpixelemporium.com/sun.html.
 
-Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes).
-
 - **File:** `/maps/Sun.emission.4096.jpg`  
 - **Copyright:** James Hastings-Trew
 - **License:** See full website notice [here](https://planetpixelemporium.com/planets.html). Excerpt:
@@ -89,26 +85,20 @@ Many world maps were modified by Charlie Whitfield. These modifications include 
 
 Starmaps were downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2020"). Some image processing was applied by Charlie Whitfield.
 
-All 3D models were downloaded from https://science.nasa.gov/3d-resources/. Model subdirectories each contain the downloaded file (usually *.glb extension) and files extracted from the model by Godot's importer.
-
-Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped globes and 3D models).
+3D models were downloaded from https://science.nasa.gov/3d-resources/. Model subdirectories each contain the downloaded file (usually *.glb extension) and files extracted from the model by Godot's importer.
 
 - **Files:**
   - `/maps/Ariel.albedo.2048.jpg`
-  - `/maps/Ceres.albedo.4096.jpg`
-  - `/maps/Charon.albedo.4096.jpg`
   - `/maps/Dione.albedo.4096.jpg`
   - `/maps/Earth.albedo.8192.jpg`
   - `/maps/Earth.clouds.albedo.2048.png`
   - `/maps/Earth.emission.4096.jpg`
   - `/maps/Enceladus.albedo.4096.jpg`
-  - `/maps/Iapetus.albedo.4096.jpg`
   - `/maps/Mars.albedo.4096.jpg`
   - `/maps/Mercury.albedo.4096.jpg`
   - `/maps/Miranda.albedo.2048.jpg`
   - `/maps/Moon.albedo.4096.jpg`
   - `/maps/Oberon.albedo.2048.jpg`
-  - `/maps/Phoebe.albedo.2048.jpg`
   - `/maps/Pluto.albedo.4096.jpg`
   - `/maps/Tethys.albedo.4096.jpg`
   - `/maps/Titania.albedo.2048.jpg`
@@ -135,35 +125,13 @@ Subdirectory `/2d_bodies/` contains derived images (flat projections of wrapped 
   - `/models/pioneer_10/*`
   - `/models/vesta/*`
   - `/models/voyager/*`
+- **Embedded maps in [I, Voyager models](IVOYAGER_WORKS.md):** albedo (diffuse) textures embedded as surface textures in the custom models.
+  - `/models/ceres/Ceres_Ceres_diff.jpg`
+  - `/models/charon/Charon_Charon_diff.jpg`
+  - `/models/iapetus/Iapetus_Iapetus_diff.jpg`
+  - `/models/phoebe/Phoebe_Phoebe_diff.jpg`
 - **Copyright:** Public Domain
 - **License:** Public Domain; see [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/).
-
-
-### I, Voyager body models and normal maps
-
-Unlike the NASA models listed above, the 3D body models and surface-normal maps in this section are original works created by Charlie Whitfield for I, Voyager. They are not third-party works; they are covered by the I, Voyager license ([Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)). They are listed here to attribute the public-domain source data from which they were derived; that data is public-domain U.S. Government data — chiefly NASA mission data (governed by the [NASA Images and Media Usage Guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/)), plus the NOAA ETOPO 2022 global relief model for the Earth normal map. The models also embed the corresponding NASA albedo maps (listed above) as surface textures.
-
-Custom models (`.glb`):
-
-- `/models/ceres/*` — derived from the Dawn Framing Camera HAMO global Digital Terrain Model (Preusker et al., 2016; NASA/JPL-Caltech/UCLA/MPS/DLR/IDA).
-- `/models/charon/*` — derived from the New Horizons LORRI/MVIC global Digital Elevation Model (Schenk et al., 2018; NASA/Johns Hopkins APL/SwRI).
-- `/models/iapetus/*` — an idealized figure based on the published triaxial radii of Thomas et al. (2007); no global Iapetus elevation model is publicly available.
-- `/models/phoebe/*` — derived from the Gaskell stereophotoclinometry shape model (R. Gaskell, Cassini ISS; PDS Small Bodies Node dataset CO-SA-ISSNA-5-PHOEBESHAPE-V2.0).
-
-Normal (bump) maps for shaded relief on the shared spheroid mesh:
-
-- `/maps/Moon.normal.2048.png` — derived from LRO LOLA topography (NASA Scientific Visualization Studio, CGI Moon Kit).
-- `/maps/Mercury.normal.2048.png` — derived from MESSENGER global topography (NASA/JHUAPL/Carnegie Institution of Washington; USGS Astrogeology DEM).
-- `/maps/Mars.normal.4096.png` — derived from MGS MOLA global topography (NASA/JPL/GSFC MOLA Science Team; USGS Astrogeology DEM).
-- `/maps/Enceladus.normal.2048.png` — derived from Cassini ISS global topography (Schenk, 2024; NASA/JPL-Caltech/Space Science Institute).
-- `/maps/Earth.normal.4096.png` — derived from the NOAA ETOPO 2022 global relief model (60 arc-second ice surface; NOAA National Centers for Environmental Information), with ocean bathymetry flattened to sea level.
-
-Surface roughness map for the specular Sun-glint on open water (smooth water; matte land, ice and snow):
-
-- `/maps/Earth.roughness.4096.png` — a land/sea mask derived from the `Earth.normal` relief map (NOAA ETOPO 2022, ocean flattened to sea level) and the `Earth.albedo` ocean color (NASA Blue Marble Next Generation): open water reads smooth (specular), land and ice matte.
-
-- **Copyright:** Models and maps © Charlie Whitfield; underlying source data Public Domain.
-- **License:** [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) (models and maps); Public Domain (source data).
 
 
 ### Blue noise by Christoph Peters

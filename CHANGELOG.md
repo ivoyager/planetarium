@@ -7,11 +7,12 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
 
-## [v0.1.2] - UNRELEASED
+## [v0.1.2] - 2025-06-29
 
-Under development using Godot 4.7.
+Released using Godot 4.7.
 
 ### Added
+* IVOYAGER_WORKS.md now documents *our* derived works (compliments existing 3RD_PARTY.md).
 * Directory /tools has python scripts needed for real-spacecraft trajectory development. See Core submodule IVTrajectory addition.
 * Plugin ivoyager_assistant v0.0.1.dev. Under development to allow AI tests and (eventually) AI assistance for accessibility (e.g., voice navigation).
 
@@ -230,7 +231,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
-[v0.1.2]: https://github.com/ivoyager/planetarium/compare/v0.1.1...HEAD
+[v0.1.2]: https://github.com/ivoyager/planetarium/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/ivoyager/planetarium/compare/v0.1...v0.1.1
 [v0.1]: https://github.com/ivoyager/planetarium/compare/v0.0.25...v0.1
 [v0.0.25]: https://github.com/ivoyager/planetarium/compare/v0.0.24...v0.0.25

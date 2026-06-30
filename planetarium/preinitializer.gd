@@ -63,8 +63,11 @@ func _init() -> void:
 	
 	if is_web:
 		IVCoreSettings.disable_quit = true
-		IVCoreSettings.vertecies_per_orbit = 200
+		#IVCoreSettings.vertecies_per_orbit = 200
 		IVSettingsManager.set_default(&"gui_size", IVCoreSettings.gui_size_settings[&"GUI_LARGE"])
+	
+	if IVGlobal.is_gl_compatibility:
+		pass
 		
 	# class changes
 	IVCoreInitializer.program_nodes["FullScreenManager"] = IVFullScreenManager
@@ -80,7 +83,7 @@ func _init() -> void:
 	# User settings/options
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
-	options_popup.add_section(&"LABEL_TIME", 1, 1)
+	options_popup.add_section(&"LABEL_TIME", 0, 0)
 	options_popup.add_option(&"LABEL_TIME", &"LABEL_TERRESTRIAL_TIME_CLOCK",
 			&"terrestrial_time_clock")
 
