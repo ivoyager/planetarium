@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="I, Voyager - Planetarium"
-config/version="0.1.2.dev"
+config/version="0.1.2"
 run/main_scene="uid://mcxrmcs1puig"
 config/features=PackedStringArray("4.7")
 run/max_fps=59
@@ -59,8 +59,8 @@ gdscript/warnings/static_called_on_instance=0
 
 [display]
 
-window/size/viewport_width=2500
-window/size/viewport_height=1200
+window/size/viewport_width=1700
+window/size/viewport_height=975
 
 [editor_plugins]
 
