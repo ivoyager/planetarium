@@ -12,8 +12,8 @@ NASA-derived models, e.g. Mimas.1_1000.glb), with the albedo and a DEM-derived
 tangent-space normal map embedded in the glb material.
 
 Frame conventions (matched to ivoyager_core):
-  - Mesh authored Y-up (north pole = +Y). IVPhysicalBody applies rotX(+90 deg),
-    sending +Y -> +Z (the engine's north). See physical_body.gd.
+  - Mesh authored Y-up (north pole = +Y). IVBodyVisual applies rotX(+90 deg),
+    sending +Y -> +Z (the engine's north). See body_visual.gd.
   - The generic spheroid additionally gets rotY(-90 deg - map_offset); we bake
     that same longitude rotation into the mesh so a built model reproduces the
     known-correct spheroid orientation. map_offset defaults to 0.
