@@ -23,8 +23,10 @@ extends PanelContainer
 ## Top-right HUDs panel containing visibility/color controls for orbit and
 ## body HUDs.
 ##
-## Resets its own size whenever the inner HUDsBox container resizes, so the
-## panel snaps to its content rather than retaining its previous extent.
+## Resets its own size whenever the inner HUDsBox resizes so the panel expands
+## and shrinks to fit. (PanelContainer expands automatically; the reset to
+## [code]y == 0[/code] on resize is what allows it to shrink again. Width is
+## held by [code]$ControlModResizable[/code].)
 
 
 func _ready() -> void:
@@ -32,4 +34,4 @@ func _ready() -> void:
 
 
 func _reset_size() -> void:
-	size = Vector2.ZERO
+	size = Vector2(size.x, 0.0)

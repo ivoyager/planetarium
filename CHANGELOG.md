@@ -7,6 +7,15 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
 
+## [v0.2] - UNRELEASED
+
+Under development using Godot 4.7.
+
+### Changed
+* Updated plugin ivoyager_core to v0.2.dev.
+* Updated plugin ivoyager_assistant to v0.0.2.dev.
+
+
 ## [v0.1.2] - 2025-06-29
 
 Released using Godot 4.7.
@@ -18,9 +27,9 @@ Released using Godot 4.7.
 
 ### Changed
 * Removed IVFragmentIdentifier from scene tree. (New system in Core.)
-* Updated plugin ivoyager_core to v0.1.2.dev
-* Updated plugin ivoyager_tables to v0.1.2.dev
-* Updated plugin ivoyager_units to v0.1.2.dev
+* Updated plugin ivoyager_core to v0.1.2.
+* Updated plugin ivoyager_tables to v0.1.2.
+* Updated plugin ivoyager_units to v0.1.2.
 * Completed doc comments in all files.
 
 
@@ -231,6 +240,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
+[v0.2]: https://github.com/ivoyager/planetarium/compare/v0.1.2...HEAD
 [v0.1.2]: https://github.com/ivoyager/planetarium/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/ivoyager/planetarium/compare/v0.1...v0.1.1
 [v0.1]: https://github.com/ivoyager/planetarium/compare/v0.0.25...v0.1
