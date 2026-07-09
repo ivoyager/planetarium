@@ -15,12 +15,16 @@
 [ext_resource type="PackedScene" uid="uid://do6i0el4c00jr" path="res://addons/ivoyager_core/ui/options_popup.tscn" id="12_uvir0"]
 [ext_resource type="PackedScene" uid="uid://b2fdgq3tjd8wq" path="res://addons/ivoyager_core/ui/hotkeys_popup.tscn" id="13_5m8w2"]
 [ext_resource type="PackedScene" uid="uid://bq5sg1c26wm60" path="res://addons/ivoyager_core/ui/confirmation_dialog.tscn" id="14_ip80n"]
+[ext_resource type="Script" uid="uid://bopo65wrmxwvt" path="res://addons/ivoyager_core/tree/stars_visual.gd" id="15_stars"]
 
 [node name="Universe" type="Node3D" unique_id=834053313]
 process_mode = 3
 script = ExtResource("1_5y20p")
 
 [node name="WorldEnvironment" parent="." unique_id=927874630 instance=ExtResource("2_8fbd1")]
+
+[node name="StarsVisual" type="MeshInstance3D" parent="." unique_id=900000001]
+script = ExtResource("15_stars")
 
 [node name="TopUI" parent="." unique_id=1132719155 instance=ExtResource("3_1ms6d")]
 mouse_filter = 1
