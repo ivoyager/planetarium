@@ -12,6 +12,7 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 Under development using Godot 4.7.
 
 ### Changed
+* Added IVStarsVisual to scene tree (required by Core plugin changes).
 * Updated plugin ivoyager_core to v0.2.dev.
 * Updated plugin ivoyager_assistant to v0.0.2.dev.
 
