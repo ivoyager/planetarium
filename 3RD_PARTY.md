@@ -83,7 +83,7 @@ Most NASA images and models are in the public domain. Use is governed by [NASA I
 
 Many world maps were modified by Charlie Whitfield. These modifications include substantial color adjustments to Mercury, Mars, Ceres and Uranus. Grid lines were added to unimaged areas of the moons of Uranus and Neptune.
 
-Starmaps were downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2020"). Some image processing was applied by Charlie Whitfield.
+The background starmap was downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2020"); it is the Milky Way and nebulae background with the bright (Hipparcos and Tycho) stars omitted, used as-is (the sky shader orients the equatorial image to the simulator's ecliptic frame). Discrete stars are rendered separately by I, Voyager from catalog data (see IVOYAGER_WORKS.md).
 
 3D models were downloaded from https://science.nasa.gov/3d-resources/. Model subdirectories each contain the downloaded file (usually *.glb extension) and files extracted from the model by Godot's importer.
 
@@ -104,8 +104,7 @@ Starmaps were downloaded from https://svs.gsfc.nasa.gov/4851/ ("Deep Star Maps 2
   - `/maps/Titania.albedo.2048.jpg`
   - `/maps/Triton.albedo.4096.jpg`
   - `/maps/Umbriel.albedo.2048.jpg`
-  - `/starmaps/starmap_8k.jpg`
-  - `/starmaps/starmap_16k.jpg`
+  - `/starmaps/starmap_background.4096.exr`
   - `pale_blue_dot.png` is distributed in the [Project Template repository](https://github.com/ivoyager/project_template).
   - `pale_blue_dot_453x614.jpg` is distributed in web-based deployments of the [Planetarium app](https://www.ivoyager.dev/planetarium/).
 - **Model subdirectories:**

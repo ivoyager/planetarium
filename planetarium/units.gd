@@ -35,6 +35,11 @@ extends Node
 
 # Scale notes:
 #
+# Godot 4.7 w/ ivoyager_core 0.2.dev update:
+# Either Godot changes our our new shadow system (probably the latter) may
+# have cured scale sensitivity. METER = 1e-3 or 1.0 are fine in Forward+ and
+# Compatibility renderer. Have not tested HTML5 export specifically yet.
+#
 # Godot 4.5 update:
 # METER = 1e-3 looks good in editor and Windows export (lighting and shadows)
 # and HTML5 export (lighting) at all target object scales. Did not test other
@@ -70,7 +75,7 @@ extends Node
 
 # SI base units
 const SECOND := 1.0
-const METER := 1e-3 # see notes above
+const METER := 1.0 # see notes above
 const KG := 1.0
 const AMPERE := 1.0
 const KELVIN := 1.0

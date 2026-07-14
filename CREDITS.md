@@ -18,6 +18,8 @@ See 3rd-party copyright and licence information [here](https://github.com/ivoyag
 
 **[Asteroids Dynamic Site](https://newton.spacedys.com/astdys)** - Source data for asteroid proper orbits.
 
+**[ESA, Hipparcos Catalogue](https://www.cosmos.esa.int/web/hipparcos)** - Source data for stars.
+
 **[Björn Jónsson](https://bjj.mmedia.is)** - Source data used to generate shader samplers for Saturn's rings ([here](https://bjj.mmedia.is/data/s_rings/index.html)).
 
 **[Grant Sanderson, "3Blue1Brown"](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw)** - Helping us _understand_ the math.

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bje5fh4y4vg3s" path="res://planetarium/universe.gd" id="1_5y20p"]
 [ext_resource type="PackedScene" uid="uid://b15j2rbaf1c4j" path="res://addons/ivoyager_core/tree/world_environment.tscn" id="2_8fbd1"]
 [ext_resource type="PackedScene" uid="uid://dd1xhk38f1jmf" path="res://addons/ivoyager_core/ui/top_ui.tscn" id="3_1ms6d"]
+[ext_resource type="PackedScene" uid="uid://beaq440kp2utp" path="res://addons/ivoyager_core/tree/stars_visual.tscn" id="3_8fbd1"]
 [ext_resource type="PackedScene" uid="uid://cij2gsmtnwhcb" path="res://addons/ivoyager_core/ui/world_controller.tscn" id="4_s5sjs"]
 [ext_resource type="PackedScene" uid="uid://c6yqdxh0igm7a" path="res://addons/ivoyager_core/ui/mouse_target_label.tscn" id="5_c74a8"]
 [ext_resource type="PackedScene" uid="uid://cgv7mkfok4nux" path="res://addons/ivoyager_core/ui/show_hide_ui.tscn" id="6_ncrjh"]
@@ -21,6 +22,8 @@ process_mode = 3
 script = ExtResource("1_5y20p")
 
 [node name="WorldEnvironment" parent="." unique_id=927874630 instance=ExtResource("2_8fbd1")]
+
+[node name="StarsVisual" parent="." unique_id=680322112 instance=ExtResource("3_8fbd1")]
 
 [node name="TopUI" parent="." unique_id=1132719155 instance=ExtResource("3_1ms6d")]
 mouse_filter = 1
