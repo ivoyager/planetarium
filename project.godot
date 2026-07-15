@@ -171,3 +171,7 @@ iv_farwarp_start={
 "type": "float",
 "value": 0.0
 }
+iv_reference_viewport_height={
+"type": "float",
+"value": 1080.0
+}
