@@ -13,6 +13,8 @@ Under development using Godot 4.7.
 
 ### Changed
 * Added IVStarsVisual to scene tree (required by Core plugin changes).
+* Added IVScreenshotDialog to scene tree (required by Core plugin changes).
+* Set METER := 1.0 (was 1e-3). Core plugin changes cured the scale sensitivity that forced the smaller value.
 * Updated plugin ivoyager_core to v0.2.dev.
 * Updated plugin ivoyager_assistant to v0.0.2.dev.
 
