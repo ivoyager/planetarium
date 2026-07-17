@@ -17,6 +17,7 @@ Under development using Godot 4.7.
 * Set METER := 1.0 (was 1e-3). Core plugin changes cured the scale sensitivity that forced the smaller value.
 * Updated plugin ivoyager_core to v0.2.dev.
 * Updated plugin ivoyager_assistant to v0.0.2.dev.
+* Moved directory /tools and TRAJECTORIES.md into new submodule addons/tools. Its README.md indexes our asset generation and data conversion pipelines.
 
 
 ## [v0.1.2] - 2025-06-29

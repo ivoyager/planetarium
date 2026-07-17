@@ -37,7 +37,12 @@ The core simulation lives in three plugins under `addons/`, each a git submodule
 - **ivoyager_tables** — CSV-based data table import system (planet/moon/asteroid data)
 - **ivoyager_units** — Unit conversion system (template replaced by `planetarium/units.gd`)
 
-A fourth directory, `addons/ivoyager_assets/`, holds 3D models and textures (not Git-tracked, downloaded by the editor plugin).
+Two more submodules support development:
+
+- **ivoyager_assistant** — In-sim TCP/JSON-RPC server for AI-driven testing (see *Testing with the Assistant Plugin*)
+- **tools** — Python asset-generation and data-conversion scripts; not a Godot plugin (see *Asset & Data Pipelines*)
+
+A further directory, `addons/ivoyager_assets/`, holds 3D models and textures (not Git-tracked, downloaded by the editor plugin).
 
 ### Planetarium Shell (`planetarium/`)
 
@@ -69,9 +74,11 @@ Components are decoupled via signals on `IVStateManager` and `IVGlobal`. Hook in
 
 The `METER` constant in `planetarium/units.gd` controls world scale. It is set to `1e-3` for Godot 4.5+ to support shadows at both planetary and spacecraft scales. **Changing this value breaks lighting/shadows** in platform-specific ways. See the extensive comments in that file before modifying.
 
-## Spacecraft Trajectory & Ephemeris Data
+## Asset & Data Pipelines
 
-Trajectory and ephemeris work — the patched-conic model, the NASA/JPL HORIZONS source and query pipeline, the HORIZONS → `orbits.tsv` mapping, gap closing/segmentation, time base, and known imprecisions — is documented in **TRAJECTORIES.md**. Read it only when creating or working with spacecraft trajectories.
+Body models, texture maps, star binaries and generated table data are all produced by Python scripts in the **`addons/tools/`** submodule. **`addons/tools/README.md` indexes every pipeline** — go there to find the script for an existing one, or to add a new one. It also carries the conventions they share: run from the project directory, where outputs go, the attribution entry a new asset needs, and the reimport step required after writing a `.tsv` or an asset. Each script's module docstring is its full specification.
+
+Spacecraft trajectory and ephemeris work has its own reference, **`addons/tools/TRAJECTORIES.md`** (the patched-conic model, the NASA/JPL HORIZONS source and query pipeline, the HORIZONS → `orbits.tsv` mapping, gap closing/segmentation, time base, and known imprecisions). Read it only when creating or working with spacecraft trajectories.
 
 ## Branching
 
