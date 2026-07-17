@@ -7,7 +7,6 @@ export_presets.cfg
 *.translation
 /addons/ivoyager_assets/
 /export/
-/tools/source_data/
 ~*
 
 # Claude Code
