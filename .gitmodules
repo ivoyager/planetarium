@@ -10,3 +10,6 @@
 [submodule "addons/ivoyager_assistant"]
 	path = addons/ivoyager_assistant
 	url = https://github.com/ivoyager/ivoyager_assistant
+[submodule "addons/tools"]
+	path = addons/tools
+	url = https://github.com/ivoyager/tools
