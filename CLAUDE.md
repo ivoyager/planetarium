@@ -28,9 +28,10 @@ per-shader measurements, what actually drives them (the GL compiler unrolling co
 loops, not source length or include weight), why the Compatibility light configuration is the
 largest remaining lever, what editing a given `.gdshaderinc` costs in recompiles, where the two
 shader caches live, how to measure it again, and what a weak part costs through Chrome's ANGLE
-path — where the limb shader probably cannot finish compiling inside Chrome's GPU watchdog at
-all. Read it before touching a shader or hand-unrolling anything. The timing harness is
-`addons/tools/time_shader_compiles.py`, run from this directory.
+path — where FXC inlines every call, which is why `_atmosphere.gdshaderinc` reaches each heavy
+function from one call site (THE STRUCTURE in its header). Read it before touching a shader or
+hand-unrolling anything. The timing harness is `addons/tools/time_shader_compiles.py`, run from
+this directory.
 
 Its per-frame counterpart is `addons/ivoyager_core/GRAPHICS_PROFILING.md` — what each candidate
 graphics option would buy back on a weak GPU and what it would cost on screen, measured in this
