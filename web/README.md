@@ -9,19 +9,20 @@ These are used after export:
 * post_export.py - Prepares an export for upload (below).
 
 #### Deploying
-1. Export the Web preset (settings below). Keep a copy of the `.htaccess` below in the export directory, so it goes up with every upload.
-2. From the project directory, run:
+1. Export the Web preset to `export/planetarium.html`, or to `export/planetarium-dev.html` for a dev build (settings below). Keep a copy of the `.htaccess` below in `export/`.
+2. From the project directory, run the post-export script, adding `-dev` for a dev build:
    ```
    python web/post_export.py
+   python web/post_export.py -dev
    ```
-   It works on the export at the Web preset's export path, or on the one whose .html you name (`python web/post_export.py export/planetarium.html`). In the export's directory, it:
-   * copies in pale_blue_dot_453x614.jpg and adds it to `CACHED_FILES` in `<name>.service.worker.js`, which otherwise caches only the files Godot writes, so the installed app shows the splash image offline too;
-   * replaces `<name>.wasm` and `<name>.pck` with gzipped `<name>.wasm.gz` and `<name>.pck.gz`, cutting a first visit's download from about 400 MB to 240 MB;
-   * deletes `<name>.png`, the boot splash that Godot writes but godot.html never shows;
-   * warns if the directory has no `.htaccess` that serves the `.gz` files.
+   It first checks that `export/` has every file the upload needs, the `.htaccess` included; if any is missing, it lists them and changes nothing. Then it:
+   * copies in pale_blue_dot_453x614.jpg and adds it to `CACHED_FILES` in `planetarium.service.worker.js`, which otherwise caches only the files Godot writes, so the installed app shows the splash image offline too;
+   * replaces `planetarium.wasm` and `planetarium.pck` with gzipped `planetarium.wasm.gz` and `planetarium.pck.gz`, cutting a first visit's download from about 400 MB to 240 MB;
+   * deletes `planetarium.png`, the boot splash that Godot writes but godot.html never shows;
+   * zips the upload, `.htaccess` included, as `export/app.zip`.
 
-   Running it twice does no harm. To get the uncompressed files back, re-export.
-3. Upload the export directory's contents, `.htaccess` included, to the app's directory on the server. The first time, also delete the old uncompressed `<name>.wasm` and `<name>.pck` there; they are never sent again.
+   With `-dev`, each of those names takes the suffix: `planetarium-dev.*` and `app-dev.zip`. Running it twice does no harm. To get the uncompressed files back, re-export.
+3. Upload the zip to the app's directory on the server, `app/` or `app-dev/`, and extract it there. The first time, also delete the old uncompressed `.wasm` and `.pck` there; they are never sent again.
 4. Check that the server sends the gzipped files under the original names, here for the dev build:
    ```
    curl -sI https://www.ivoyager.dev/app-dev/planetarium-dev.wasm
