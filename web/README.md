@@ -1,31 +1,62 @@
 # Progressive Web App (PWA) Deployment
 
-These files are referenced in export_presets.config and used to generate the HTML5 export:
+These files are referenced in export_presets.cfg and used to generate the HTML5 export:
 * godot.html - Custom Html Shell used to generate our loading page.
 * jupiter-xxx.png - Icon images (3 sizes) included in PWA export.
 
-We've opted not to set Boot Splash in Project Settings because if forces us to use a .png file, which is slow to load in web browsers. Instead, we add the following file manually to the web server directory **AND** to planetarium.service.worker.js CACHED_FILES array.
-* pale_blue_dot_453x614.jpg
+These are used after export:
+* pale_blue_dot_453x614.jpg - Our splash image, shown by godot.html while the app loads. We've opted not to set Boot Splash in Project Settings because it forces us to use a .png file, which is slow to load in web browsers.
+* post_export.py - Prepares an export for upload (below).
 
-File to remove from export:
-* planetarium.png - Boot splash is off in Project Settings and isn't referenced anywhere in the export.
+#### Deploying
+1. Export the Web preset (settings below). Keep a copy of the `.htaccess` below in the export directory, so it goes up with every upload.
+2. From the project directory, run:
+   ```
+   python web/post_export.py
+   ```
+   It works on the export at the Web preset's export path, or on the one whose .html you name (`python web/post_export.py export/planetarium.html`). In the export's directory, it:
+   * copies in pale_blue_dot_453x614.jpg and adds it to `CACHED_FILES` in `<name>.service.worker.js`, which otherwise caches only the files Godot writes, so the installed app shows the splash image offline too;
+   * replaces `<name>.wasm` and `<name>.pck` with gzipped `<name>.wasm.gz` and `<name>.pck.gz`, cutting a first visit's download from about 400 MB to 240 MB;
+   * deletes `<name>.png`, the boot splash that Godot writes but godot.html never shows;
+   * warns if the directory has no `.htaccess` that serves the `.gz` files.
 
-#### Notes
-Server must be set up to use .htaccess file! Add .htaccess with these lines:
-```
+   Running it twice does no harm. To get the uncompressed files back, re-export.
+3. Upload the export directory's contents, `.htaccess` included, to the app's directory on the server. The first time, also delete the old uncompressed `<name>.wasm` and `<name>.pck` there; they are never sent again.
+4. Check that the server sends the gzipped files under the original names, here for the dev build:
+   ```
+   curl -sI https://www.ivoyager.dev/app-dev/planetarium-dev.wasm
+   curl -sI https://www.ivoyager.dev/app-dev/planetarium-dev.pck
+   ```
+   Each should answer `200 OK` with `Content-Encoding: gzip` and a `Content-Type` of `application/wasm` or `application/octet-stream`. Otherwise the app can't load: flush SiteGround's cache and check again before suspecting the `.htaccess`.
+
+#### .htaccess
+The server must be set up to use .htaccess files. Each app directory on the server needs this one:
+```apache
+# I, Voyager Planetarium web app. See web/README.md in the Planetarium repository.
+
 Header set Cross-Origin-Opener-Policy: same-origin
 Header set Cross-Origin-Embedder-Policy: require-corp
+
+# The .wasm and .pck are uploaded only gzipped, as .wasm.gz and .pck.gz. Send each
+# for a request of the original name, with the original's type and gzip encoding.
+AddType application/wasm .wasm
+AddType application/octet-stream .pck
+RemoveType .gz
+AddEncoding gzip .gz
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^(.+\.(?:wasm|pck))$ $1.gz [L]
 ```
 
-Above requirement was supposed to have been fixed in 4.5.x, but it didn't work in first attempt to run without .htaccess file.
+The two `Header` lines were supposed to be unnecessary from Godot 4.5.x, but the app didn't run without them in our first attempt.
 
+The rest answers a request for `<name>.wasm` or `<name>.pck` with `<name>.wasm.gz` or `<name>.pck.gz` whenever that file exists, labeled with the original's `Content-Type` and with `Content-Encoding: gzip`, so the browser unpacks it as it arrives. Godot's loader, its progress bar and the service worker all see the original bytes, and every browser that can run the app accepts gzip. `RemoveType` and `AddEncoding` are what make that work: by default Apache labels a `.gz` as a gzip file to download, which the browser won't unpack.
+
+#### Notes
 Shadows are disabled for Compatibility renderer (this affects web export). See comments in ivoyager_core/tree/dynamic_light.gd.
 
 #### TODO
 * **Re-export and test before the next upload: the v0.2.1.dev1 export does not load.** Chrome compiles WebGL shaders on Windows through ANGLE and FXC, where one atmosphere-limb program took 74-85 s against Chrome's 30 s GPU watchdog, so the app never got past "Building the Solar System...". Since 2026-09-27 an atmosphere shader's whole first draw, five programs, takes 11-25 s on the development laptop, so an export should now load, though no browser has confirmed it yet. A first visit still spends about two minutes of that laptop's CPU compiling, and more on a slower one. See *The v0.2.1 dev build* and *The atmosphere's structure* in `ivoyager_core/SHADER_COMPILE_PROFILING.md`.
-* **Export a release build for the public site.** The dev export was a debug build: its page title reads "(DEBUG)".
-* **Serve `.wasm` and `.pck` compressed and typed.** The host sends both uncompressed and with no `Content-Type`. Gzip at level 6 takes the wasm from 37.9 to 10.1 MB and the pck from 361 to 231 MB, cutting a first visit's download from 399 MB to 241 MB. For a file this size, serve pre-compressed copies rather than compressing on every request. Add `AddType application/wasm .wasm` to the `.htaccess`.
-* **Retire the manual `CACHED_FILES` edit.** Inlining `pale_blue_dot_453x614.jpg` into `godot.html` as a data URI would put the splash image in the cached HTML itself, so neither the service-worker edit nor the separate upload would be needed.
 * **Test the export in real Chrome and Firefox, never in the Claude desktop app's built-in browser.** That browser shares a renderer and a GPU process with the app's own UI, and a long shader compile freezes the whole app.
 
 #### Export Settings
