@@ -26,24 +26,13 @@ extends RefCounted
 ## state once core init signals fire. Hooked in via
 ## [code]res://ivoyager_override.cfg[/code]'s [code]preinitializer[/code]
 ## key, which causes the core plugin to instantiate this RefCounted before
-## any other program object.[br][br]
-##
-## On desktop, a run whose renderer differs from the [code]renderer[/code] user
-## setting (e.g. the first run on integrated graphics, which defaults to
-## Compatibility) restarts itself into it before the rest of init; see [constant
-## KEEP_RENDERER_ARG] to prevent that.
+## any other program object.
 
 ## Whether to use threads for sim work. Set [code]false[/code] for debugging.
 const USE_THREADS := true # set false for debugging
 ## When [code]true[/code], threads are disabled in web exports for browser
 ## compatibility (overrides [constant USE_THREADS] when running in a browser).
 const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
-## Command-line user argument (after [code]++[/code]) that keeps the renderer a run
-## started with. The renderer restart passes it, so a restarted run never restarts
-## again. Pass it for a run that picks its GPU on the command line, e.g.
-## [code]--gpu-index[/code] for an integrated GPU under Forward+: without it, that
-## run restarts into Compatibility and leaves Compatibility for every later run.
-const KEEP_RENDERER_ARG := "--keep-renderer"
 ## Default key and Hotkeys-list label of each panel button action in
 ## [code]gui/focus_gui.tscn[/code].
 const PANEL_ACTIONS: Dictionary[StringName, Array] = {
@@ -70,7 +59,10 @@ func _init() -> void:
 	IVStateManager.simulator_started.connect(_on_simulator_started)
 	var is_web := OS.has_feature("web")
 	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
-	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
+	var graphics_tier: String = IVGraphicsManager.GraphicsTier.keys()[
+			IVGraphicsManager.get_graphics_tier()]
+	print("web = %s, threads = %s, graphics tier = %s"
+			% [is_web, IVCoreSettings.use_threads, graphics_tier])
 	
 	IVCoreSettings.allow_fullscreen_toggle = true
 	IVCoreSettings.allow_time_setting = true
@@ -89,21 +81,6 @@ func _init() -> void:
 	if is_web:
 		IVCoreSettings.disable_quit = true
 		#IVCoreSettings.vertecies_per_orbit = 200
-	
-	# On an integrated GPU, Compatibility runs 1.4-8x faster than Forward+, and the limb
-	# shell is 75-95% of a frame with air, which the Reduced tier cuts by a quarter to a
-	# third for no visible change (GRAPHICS_PROFILING.md in the Core plugin). A discrete
-	# GPU keeps Forward+ and Normal, in either renderer. A GPU of unknown type is taken
-	# as weak: only a Compatibility run can fail to know it, which on the desktop means
-	# one that has never run Forward+ here, and on the web means every run.
-	var video_adapter_type := IVGlobal.video_adapter_type
-	if (video_adapter_type == RenderingDevice.DEVICE_TYPE_INTEGRATED_GPU
-			or (video_adapter_type == RenderingDevice.DEVICE_TYPE_OTHER
-			and IVGlobal.is_gl_compatibility)):
-		IVSettingsManager.set_default(&"atmosphere_quality", 1) # reduced
-		IVSettingsManager.set_default(&"renderer", 1) # compatibility
-	if IVGraphicsManager.can_set_renderer():
-		IVSettingsManager.initialized.connect(_restart_into_renderer_setting)
 
 	# class changes
 	IVCoreInitializer.program_nodes["FullScreenManager"] = IVFullScreenManager
@@ -120,6 +97,7 @@ func _init() -> void:
 			"res://planetarium/text/planetarium_text.en.translation")
 
 	# User settings/options
+	IVSettingsManager.graphics_target = IVSettingsManager.GraphicsTarget.BROAD_HARDWARE
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
 	options_popup.layout = [
@@ -155,40 +133,6 @@ func _init() -> void:
 		IVInputMapManager.defaults[action] = [event_dict]
 		IVInputMapManager.action_texts[action] = label
 		gui_hotkeys.append(action)
-
-
-# Godot fixes the renderer at engine start, so a run whose renderer setting has come to
-# differ -- above all a first run whose default the adapter test changed -- restarts into
-# it, before init builds anything.
-func _restart_into_renderer_setting() -> void:
-	if KEEP_RENDERER_ARG in OS.get_cmdline_user_args():
-		return
-	var running_method := RenderingServer.get_current_rendering_method()
-	var configured_method: String = ProjectSettings.get_setting_with_override(
-			&"rendering/renderer/rendering_method")
-	if running_method != configured_method:
-		return # the command line, or the engine's own fallback, chose this renderer
-	var renderer: int = IVSettingsManager.get_setting(&"renderer")
-	var rendering_method := IVGraphicsManager.get_rendering_method(renderer)
-	if rendering_method == running_method:
-		return
-	var error := IVGraphicsManager.write_rendering_method(rendering_method)
-	if error != OK:
-		push_error("Could not write the renderer to the project settings override: "
-				+ error_string(error))
-		return
-	print("Restarting with renderer %s" % rendering_method)
-	IVCoreInitializer.init_sequence.clear() # ends init after this step
-	var arguments := OS.get_cmdline_args()
-	if !OS.has_feature("template"):
-		# The engine consumes --path, but a run that isn't an export needs it back.
-		arguments.append("--path")
-		arguments.append(ProjectSettings.globalize_path("res://"))
-	arguments.append("++")
-	arguments.append_array(OS.get_cmdline_user_args())
-	arguments.append(KEEP_RENDERER_ARG)
-	OS.set_restart_on_exit(true, arguments)
-	IVGlobal.get_tree().quit()
 
 
 func _on_core_init_program_objects_instantiated() -> void:
