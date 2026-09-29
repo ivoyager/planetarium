@@ -15,6 +15,7 @@ Under development using Godot 4.7.2.
 * Shader warm-up on the boot screen: registers the Core plugin's new IVShaderWarmup, and the boot screen now stays up through it, reporting *Compiling shaders (n of N)*. This moves the Compatibility renderer's shader compiles, which dominate a cold start and were hanging the camera mid-flight, onto the boot screen.
 * Added the Core plugin's new `IVExposureControl` widget to the Camera & Views panel.
 * Enabled the Core plugin's new physical-light system (`IVCoreSettings.enable_physical_light`): physically calibrated sunlight, sky and ambient with a software compensating camera. A "Physical Light" row appears in Options (default on).
+* The web page offers a reload with the recommended graphics settings when the browser drops the WebGL context, and a URL ending `#reset-graphics` asks for the same, through the Core plugin's new `--reset-graphics` argument (`web/godot.html`). The web-app update now records its start as finished before it reloads, so the Core plugin's new graphics rescue doesn't take it for a failed start.
 * Post-export script `web/post_export.py`, which adds the splash image to the web export's service worker `CACHED_FILES`, gzips its `.wasm` and `.pck`, and zips the upload. `web/README.md` gives the `.htaccess` that serves them and the whole deployment.
 
 ### Changed

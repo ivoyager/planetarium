@@ -206,4 +206,7 @@ func _on_pwa_update_available() -> void:
 
 func _update_pwa() -> void:
 	print("Updating PWA!")
+	# The reload can come before the start's check does, and would count as a failed start.
+	IVSettingsManager.mark_start_finished()
+	await IVGlobal.get_tree().process_frame # Godot saves user:// to IndexedDB between frames
 	JavaScriptBridge.pwa_update()
