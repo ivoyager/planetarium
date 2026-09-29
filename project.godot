@@ -144,6 +144,172 @@ motion_fix_enabled=true
 
 [rendering]
 
+gl_compatibility/force_angle_on_devices=[{
+"name": "Radeon 9",
+"vendor": "ATI"
+}, {
+"name": "Radeon X",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 2",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 3",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 4",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 5",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 6",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 7",
+"vendor": "ATI"
+}, {
+"name": "Radeon HD 8",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R2 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R3 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R4 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R5 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R6 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R7 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon(TM) R7 Graphics",
+"vendor": "AMD"
+}, {
+"name": "Radeon(TM) R8 Graphics",
+"vendor": "AMD"
+}, {
+"name": "Radeon R5 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon R6 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon R7 Graphics",
+"vendor": "ATI"
+}, {
+"name": "Radeon R7 Graphics",
+"vendor": "AMD"
+}, {
+"name": "Radeon R8 Graphics",
+"vendor": "AMD"
+}, {
+"name": "Radeon R5 2",
+"vendor": "ATI"
+}, {
+"name": "Radeon R7 2",
+"vendor": "ATI"
+}, {
+"name": "Radeon R9 2",
+"vendor": "ATI"
+}, {
+"name": "Radeon R5 M2",
+"vendor": "ATI"
+}, {
+"name": "Radeon R7 M2",
+"vendor": "ATI"
+}, {
+"name": "Radeon R9 M2",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R9 Fury",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R5 3",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R5 3",
+"vendor": "AMD"
+}, {
+"name": "Radeon (TM) R7 3",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R7 3",
+"vendor": "AMD"
+}, {
+"name": "Radeon (TM) R9 3",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R9 3",
+"vendor": "AMD"
+}, {
+"name": "Radeon (TM) R5 M3",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R5 M3",
+"vendor": "AMD"
+}, {
+"name": "Radeon (TM) R7 M3",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R7 M3",
+"vendor": "AMD"
+}, {
+"name": "Radeon (TM) R9 M3",
+"vendor": "ATI"
+}, {
+"name": "Radeon (TM) R9 M3",
+"vendor": "AMD"
+}, {
+"name": "Intel(R) HD Graphics",
+"vendor": "Intel"
+}, {
+"name": "Intel HD Graphics",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Vallyview Graphics",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris(TM) Graphics 5100",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris(TM) Pro Graphics 5200",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris(TM) Graphics 6100",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris(TM) Pro Graphics 6200",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris(TM) Pro Graphics P6300",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris Graphics 540",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris Plus Graphics 640",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris Plus Graphics 650",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris Pro Graphics 580",
+"vendor": "Intel"
+}, {
+"name": "Intel(R) Iris Pro Graphics P580",
+"vendor": "Intel"
+}, {
+"name": "*",
+"vendor": "Intel"
+}]
 lights_and_shadows/directional_shadow/16_bits=false
 lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
 anti_aliasing/quality/use_debanding=true
