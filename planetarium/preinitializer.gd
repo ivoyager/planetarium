@@ -122,7 +122,12 @@ func _init() -> void:
 	# User settings/options
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
-	options_popup.add_section(&"LABEL_TIME", 0, 0)
+	options_popup.layout = [
+		[&"LABEL_GUI_AND_HUD", &"LABEL_TIME"],
+		[&"LABEL_CAMERA", &"LABEL_SCREENSHOTS"],
+		[&"LABEL_GRAPHICS_PERFORMANCE"],
+	]
+	options_popup.section_content[&"LABEL_TIME"] = []
 	options_popup.add_option(&"LABEL_TIME", &"LABEL_TERRESTRIAL_TIME_CLOCK",
 			&"terrestrial_time_clock")
 	options_popup.option_tooltips[&"terrestrial_time_clock"] = &"HINT_TERRESTRIAL_TIME_CLOCK"
@@ -136,6 +141,11 @@ func _init() -> void:
 
 	# User hotkeys
 	var hotkeys_popup: IVHotkeysPopup = IVGlobal.get_node("/root/Universe/TopUI/HotkeysPopup")
+	hotkeys_popup.layout = [
+		[&"LABEL_ADMIN", &"LABEL_GUI"],
+		[&"LABEL_TIME", &"LABEL_SELECTION"],
+		[&"LABEL_CAMERA", &"LABEL_SCREENSHOTS"],
+	]
 	var gui_hotkeys: Array = hotkeys_popup.section_content[&"LABEL_GUI"]
 	for action in PANEL_ACTIONS:
 		var action_data := PANEL_ACTIONS[action]

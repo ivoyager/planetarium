@@ -186,7 +186,6 @@ base_size = Vector2(44, 44)
 [node name="ControlModSpacing" parent="ButtonGrid" instance=ExtResource("31_spacing")]
 
 [node name="NavPanel" parent="." instance=ExtResource("10_nav_panel")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8

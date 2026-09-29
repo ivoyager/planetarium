@@ -24,7 +24,6 @@ extends ColorRect
 ## warm-up while it runs.
 
 const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
-const WARMUP_NOTE := "Only the first run after an update needs this."
 
 @onready var _label: Label = $BootLabel
 
@@ -45,4 +44,4 @@ func _on_about_to_build_system_tree(_is_new_game: bool) -> void:
 
 
 func _on_warmup_progress(index: int, count: int, _shader_name: StringName) -> void:
-	_label.text = WARMUP_TEXT % [index + 1, count] + "\n" + WARMUP_NOTE
+	_label.text = WARMUP_TEXT % [index + 1, count]

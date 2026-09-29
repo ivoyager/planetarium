@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b2fdgq3tjd8wq" path="res://addons/ivoyager_core/ui/hotkeys_popup.tscn" id="13_5m8w2"]
 [ext_resource type="PackedScene" uid="uid://bq5sg1c26wm60" path="res://addons/ivoyager_core/ui/confirmation_dialog.tscn" id="14_ip80n"]
 [ext_resource type="PackedScene" uid="uid://bgmsnatpv0h5g" path="res://addons/ivoyager_core/ui/screenshot_dialog.tscn" id="15_scrsh"]
+[ext_resource type="Script" uid="uid://c0sht671igupp" path="res://planetarium/gui/popup_group.gd" id="16_popup_group"]
 
 [node name="Universe" type="Node3D" unique_id=834053313]
 process_mode = 3
@@ -76,3 +77,9 @@ modal = false
 [node name="ConfirmationDialog" parent="TopUI" unique_id=572168116 instance=ExtResource("14_ip80n")]
 
 [node name="ScreenshotDialog" parent="TopUI" unique_id=1730458267 instance=ExtResource("15_scrsh")]
+
+[node name="PopupGroup" type="Node" parent="TopUI" unique_id=1609083346 node_paths=PackedStringArray("popups", "buttons", "confirmation_dialog")]
+script = ExtResource("16_popup_group")
+popups = [NodePath("../OptionsPopup"), NodePath("../HotkeysPopup")]
+buttons = [NodePath("../ShowHideGUI/FocusGUI/ButtonGrid/OptionsButton"), NodePath("../ShowHideGUI/FocusGUI/ButtonGrid/HotkeysButton")]
+confirmation_dialog = NodePath("../ConfirmationDialog")
