@@ -75,7 +75,7 @@ func _init() -> void:
 	IVCoreSettings.enable_physical_light = true # user Options toggle "Physical Light"
 	IVCoreSettings.apply_gl_compatibility_shadows = false # only ISS self-shadowing. No big loss.
 	# With the line above false there are no shadow maps under Compatibility, so this acts
-	# only on Forward+ - which is where the empty passes cost 20-25 ms a frame.
+	# only on Forward+ - where the empty passes cost 7-22 % of an integrated GPU's frame.
 	IVCoreSettings.apply_empty_shadow_pass_skip = true
 	
 	if is_web:

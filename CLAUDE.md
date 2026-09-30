@@ -21,22 +21,20 @@ Open in Godot Editor and press Play. No external build system — Godot handles 
 There is no test framework or linter beyond Godot's built-in GDScript warnings.
 
 **Shader compile time is the dominant first-run cost on the Compatibility renderer, and so in
-the web export** — a cold start spends anywhere from tens of seconds to a couple of minutes
-compiling, depending on the GPU, nearly all of it now behind the boot screen via the Core
-plugin's `IVShaderWarmup`. `addons/ivoyager_core/SHADER_COMPILE_PROFILING.md` carries the
-per-shader measurements, what actually drives them (the GL compiler unrolling constant-bound
-loops, not source length or include weight), why the Compatibility light configuration is the
-largest remaining lever, what editing a given `.gdshaderinc` costs in recompiles, where the two
-shader caches live, how to measure it again, and what a weak part costs through Chrome's ANGLE
-path — where FXC inlines every call, which is why `_atmosphere.gdshaderinc` reaches each heavy
-function from one call site (THE STRUCTURE in its header). Read it before touching a shader or
-hand-unrolling anything. The timing harness is `addons/tools/time_shader_compiles.py`, run from
-this directory.
+the web export** — a cold start through ANGLE spends about a minute and a half compiling on the
+development laptop, nearly all of it behind the boot screen via the Core plugin's
+`IVShaderWarmup`.
 
-Its per-frame counterpart is `addons/ivoyager_core/GRAPHICS_PROFILING.md` — what each candidate
-graphics option would buy back on a weak GPU and what it would cost on screen, measured in this
-project. Read it before proposing, adding or retuning a graphics option; the two documents open by
-pointing at each other.
+`addons/ivoyager_core/GRAPHICS_PROFILING.md` is the measured record of what the graphics cost a
+weak machine, on each render path this project's reference laptop gives: per frame, what each
+graphics option and each automatic saving buys back and what it costs on screen, and what the
+fitted defaults deliver; and once, what each shader costs to compile and what drives it (the GL
+compiler unrolling constant-bound loops, and FXC inlining every call, which is why
+`_atmosphere.gdshaderinc` reaches each heavy function from one call site — THE STRUCTURE in its
+header), what editing a given `.gdshaderinc` costs, where the shader caches live and how to
+measure it all again. Read it before touching a shader, hand-unrolling anything, or proposing,
+adding or retuning a graphics option. The compile-timing harness is
+`addons/tools/time_shader_compiles.py`, run from this directory.
 
 ### GDScript Warning Preferences
 
