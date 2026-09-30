@@ -55,7 +55,7 @@ func _on_state_changed() -> void:
 		queue_free()
 
 
-func _on_warmup_progress(index: int, count: int, _shader_name: StringName) -> void:
+func _on_warmup_progress(index: int, count: int, _step_name: StringName) -> void:
 	_set_report(WARMUP_TEXT % [index + 1, count])
 
 
