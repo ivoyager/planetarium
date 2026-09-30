@@ -29,18 +29,19 @@ const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
 
 
 func _ready() -> void:
-	IVStateManager.about_to_build_system_tree.connect(_on_about_to_build_system_tree)
+	IVStateManager.core_initialized.connect(_on_core_initialized)
+	IVStateManager.state_changed.connect(_on_state_changed)
 
 
-func _on_about_to_build_system_tree(_is_new_game: bool) -> void:
-	# Program nodes exist by now. With a shader warm-up registered the screen
-	# stays up until it finishes, which is after the simulator starts.
+func _on_core_initialized() -> void:
 	var warmup: IVShaderWarmup = IVGlobal.program.get(&"ShaderWarmup")
 	if warmup:
 		warmup.progress_changed.connect(_on_warmup_progress)
-		warmup.finished.connect(queue_free)
-	else:
-		IVStateManager.simulator_started.connect(queue_free)
+
+
+func _on_state_changed() -> void:
+	if !IVStateManager.show_splash_screen:
+		queue_free()
 
 
 func _on_warmup_progress(index: int, count: int, _shader_name: StringName) -> void:
