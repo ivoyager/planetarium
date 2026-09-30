@@ -90,6 +90,38 @@ a {
 	z-index: 1;
 }
 
+#graphics-lost {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 2;
+}
+
+#graphics-lost-notice {
+	max-width: 30rem;
+	background-color: #5b3943;
+	border-radius: 0.5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	line-height: 1.3;
+	margin: 0 2rem;
+	padding: 1rem;
+	text-align: center;
+}
+
+#graphics-lost-notice button {
+	font: inherit;
+	margin: 0.25rem;
+	padding: 0.25rem 0.75rem;
+}
+
 @media only screen and (orientation: portrait) {
 	#status {
 		flex-direction: column;
@@ -125,9 +157,20 @@ a {
 			Your browser does not support JavaScript.
 		</noscript>
 
+		<div id='graphics-lost'>
+			<div id='graphics-lost-notice'>
+				<p>
+					The browser stopped the Planetarium's graphics. If this keeps happening,
+					reload with the graphics settings recommended for this device.
+				</p>
+				<button id='graphics-lost-reload'>Reload</button>
+				<button id='graphics-lost-reset'>Reload with Recommended Settings</button>
+			</div>
+		</div>
+
 		<div id='status'>
 			<!-- Planetarium:
-			Redirected status-splash.
+			Redirected status-splash to pale_blue_dot_453x614.jpg, which web/post_export.py adds to the export.
 			Embedded status-progress & status-notice within info-container.
 			-->
 			<img id='status-splash' src="pale_blue_dot_453x614.jpg" alt="Pale Blue Dot">
@@ -135,7 +178,7 @@ a {
 				<div>
 					<p>
 						I, Voyager - Planetarium<br>
-						v0.2<br><br>
+						v0.2.1.dev3<br><br>
 						Loading...
 					</p>
 					<progress id="status-progress"></progress>
@@ -146,8 +189,7 @@ a {
 					</p>
 					<p>
 						A native Windows app can be downloaded 
-						<a href='https://www.ivoyager.dev/planetarium/' target='_blank'>here</a>. 
-						(It's a little smoother and has shadows.)<br>
+						<a href='https://www.ivoyager.dev/planetarium/' target='_blank'>here</a>. <br>
 					</p>
 					<p>
 						Please consider supporting us at our GitHub 
@@ -166,6 +208,26 @@ a {
 const GODOT_CONFIG = $GODOT_CONFIG;
 const GODOT_THREADS_ENABLED = $GODOT_THREADS_ENABLED;
 const engine = new Engine(GODOT_CONFIG);
+
+// Planetarium: a way back from graphics settings the device can't carry. The hash asks Core to
+// restore its recommended graphics settings (IVSettingsManager.RESET_GRAPHICS_ARGUMENT); a lost
+// WebGL context, which a reload with the same settings is likely to repeat, offers it.
+const RESET_GRAPHICS_HASH = '#reset-graphics';
+const isResetGraphics = window.location.hash === RESET_GRAPHICS_HASH;
+if (isResetGraphics) {
+	// A reload keeps the hash, and only this load should reset.
+	window.history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+document.getElementById('canvas').addEventListener('webglcontextlost', () => {
+	document.getElementById('graphics-lost').style.display = 'flex';
+});
+document.getElementById('graphics-lost-reload').addEventListener('click', () => {
+	window.location.reload();
+});
+document.getElementById('graphics-lost-reset').addEventListener('click', () => {
+	window.location.hash = RESET_GRAPHICS_HASH;
+	window.location.reload();
+});
 
 (function () {
 	const statusOverlay = document.getElementById('status');
@@ -251,7 +313,9 @@ const engine = new Engine(GODOT_CONFIG);
 		}
 	} else {
 		setStatusMode('progress');
+		const args = GODOT_CONFIG['args'] || [];
 		engine.startGame({
+			'args': isResetGraphics ? args.concat(['--', '--reset-graphics']) : args,
 			'onProgress': function (current, total) {
 				if (current > 0 && total > 0) {
 					statusProgress.value = current;

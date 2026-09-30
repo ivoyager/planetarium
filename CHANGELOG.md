@@ -12,12 +12,24 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 Under development using Godot 4.7.2.
 
 ### Added
-* Shader warm-up on the boot screen: registers the Core plugin's new IVShaderWarmup, and the boot screen now stays up through it, reporting *Compiling shaders (n of N)* with a note that only the first run after an update needs it. This moves the Compatibility renderer's shader compiles, which dominate a cold start and were hanging the camera mid-flight, onto the boot screen.
-* Added the Core plugin's new `IVExposureControl` widget to the control panel.
+* Shader warm-up on the boot screen: registers the Core plugin's new IVShaderWarmup, and the boot screen now stays up through it, reporting *Compiling shaders (n of N)*. This moves the Compatibility renderer's shader compiles, which dominate a cold start and were hanging the camera mid-flight, onto the boot screen.
+* The web app's boot screen notes that startup should be faster on a revisit and that the app starts with low graphics settings (`gui/boot_screen.gd`).
+* Added the Core plugin's new `IVExposureControl` widget to the Camera & Views panel.
 * Enabled the Core plugin's new physical-light system (`IVCoreSettings.enable_physical_light`): physically calibrated sunlight, sky and ambient with a software compensating camera. A "Physical Light" row appears in Options (default on).
+* The web page offers a reload with the recommended graphics settings when the browser drops the WebGL context, and a URL ending `#reset-graphics` asks for the same, through the Core plugin's new `--reset-graphics` argument (`web/godot.html`). The web-app update now records its start as finished before it reloads, so the Core plugin's new graphics rescue doesn't take it for a failed start.
+* Post-export script `web/post_export.py`, which adds the splash image to the web export's service worker `CACHED_FILES`, gzips its `.wasm` and `.pck`, and zips the upload. `web/README.md` gives the `.htaccess` that serves them and the whole deployment.
 
 ### Changed
+* GUI rebuilt around the view (`gui/focus_gui.tscn`): a selection card with optional Details at top left, a time bar at bottom center, and a grid of buttons at top right for Hide GUI, Full Screen, Options, Hotkeys and the Navigation, HUDs, Camera & Views and Info panels, which open at bottom right one at a time (hotkeys 1-5), Navigation at start. The Menu panel is gone: Info holds its links and the version, Ctrl+Q quits, and Options and Hotkeys are non-`modal` popups that open one at a time as the panels do (`gui/popup_group.gd`) and leave the view usable. Panels no longer overlap at any window or GUI Size, and the GUI fades while the view is dragged and when idle (both in Options).
 * Turned off `IVCoreSettings.apply_gl_compatibility_shadows`, so the Compatibility renderer — and with it the web export — takes one unshadowed light instead of the shadowed multi-light stack. This cuts each lit shader from four GL programs to one, which is a large part of the cold-start shader compile the boot screen reports; what it costs is local shadow maps, in practice the ISS shadowing itself. The analytic ring, eclipse and transit shadows are unaffected.
+* Turned on the Core plugin's new `IVCoreSettings.apply_empty_shadow_pass_skip`, which drops the local shadow passes in any view with no spacecraft or local scene near the camera — 7-22 % of a Forward+ frame on weak integrated graphics. With `apply_gl_compatibility_shadows` off above, this acts on desktop Forward+ only.
+* Graphics defaults are fitted to each machine's GPU and screen through the Core plugin's new `IVSettingsManager.graphics_target`, set to `BROAD_HARDWARE`, which starts integrated graphics, the web and dense screens with lighter settings.
+* Enabled the Core plugin's new "Renderer" Option by naming `user://override.cfg` as the project settings override. Forward+ is the default wherever it runs.
+* Intel graphics run the Compatibility renderer through ANGLE's Direct3D 11 path: `rendering/gl_compatibility/force_angle_on_devices` adds every Intel GPU to Godot's own list. ANGLE draws Saturn's rings, which Intel's OpenGL driver does not, and the atmosphere views faster; see *Renderer* in the Core plugin's GRAPHICS_PROFILING.md.
+* Removed the 59 fps cap (`application/run/max_fps`), a workaround for the Core plugin's old SubViewport IVFragmentIdentifier that no longer exists. The Core plugin's new "Frame Rate Cap" Option now sets the rate, uncapped by default.
+* The web export no longer defaults GUI Size to Large, which stood in for the screen scale that the Core plugin's new display scale now applies on every platform.
+* Rearranged the Options and Hotkeys columns (`preinitializer.gd`).
+* Panel margins, separations and spacers follow GUI Size, through the Core plugin's new IVControlModSpacing and its IVControlModResizable.
 * Attribution docs restructured: `IVOYAGER_WORKS.md` is retired and replaced by `IVOYAGER_ASSETS.md`, which documents every distributed asset individually with its own copyright and license; `3RD_PARTY.md` becomes a clean list by copyright holder. README.md updated to match.
 * [Dev ongoing] Sync attribution docs with assets and Core submodule.
 * [Dev ongoing] Updating plugin ivoyager_core with v0.2.1.dev.

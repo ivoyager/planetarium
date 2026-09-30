@@ -45,11 +45,13 @@ extends IVAssistantTestSuite
 
 var _lights: Array[IVDynamicLight] = []
 var _world_environment: WorldEnvironment
+var _stars_visual: IVStarsVisual
 var _sun_disc_material: ShaderMaterial
 
 
 func _on_simulator_started() -> void:
 	_lights.clear()
+	_world_environment = IVGlobal.program.get(&"WorldEnvironment")
 	_collect(IVGlobal.get_tree().root)
 
 
@@ -66,7 +68,8 @@ func get_method_names() -> Array[String]:
 			"poke_sky_radiance", "get_shadow_receivers", "set_exposure_ceiling",
 			"get_limb_samples", "set_limb_meter", "set_ring_meter", "set_exposure",
 			"project_limb_circle", "list_saved_views", "apply_saved_view", "get_render_time",
-			"set_shell_visible", "set_shell_param", "set_glow", "set_psf_settings"]
+			"set_shell_visible", "set_shell_param", "set_glow", "set_psf_settings",
+			"get_exposure_skips", "set_exposure_skips", "get_shadow_skips", "set_shadow_skips"]
 
 
 func get_method_summaries() -> Dictionary:
@@ -95,8 +98,12 @@ func get_method_summaries() -> Dictionary:
 		"set_shell_param": "Set one shader parameter on one shell's material ({\"name\": entity_name, \"shell\": int, \"param\": String, \"value\": float}); sweeps a candidate in ONE app run instead of one run per value.",
 		"set_shell_visible": "Show or hide one IVShellsModel shell ({\"name\": entity_name, \"shell\": int, \"visible\": bool}); shell 0 is the surface, 1..N its overlays. Decomposes a rendered pixel into the shells that built it.",
 		"set_psf_settings": "Set IVPSFSettings values at runtime ({\"psf_sigma\": float, \"intensity_scale\": float, \"intensity_gamma\": float, \"intensity_faint_mag\": float, \"color_saturation\": float, \"fov_compensation\": float, \"glare_scale\": float, \"glare_gamma\": float, \"glare_max_px\": float}; omit a key to keep it). One object feeds the catalog field and every body's PSF quad, so a sweep moves them together. Reports every value back.",
-		"set_glow": "Set Environment glow properties at runtime ({\"enabled\": bool, \"intensity\": float, \"strength\": float, \"bloom\": float, \"hdr_threshold\": float, \"hdr_scale\": float, \"hdr_luminance_cap\": float, \"blend_mode\": int, \"levels\": [float x 7]}; omit a key to keep it). Reports every glow property back, so a sweep records the state it measured.",
+		"set_glow": "Set Environment glow properties at runtime ({\"enabled\": bool, \"intensity\": float, \"strength\": float, \"bloom\": float, \"hdr_threshold\": float, \"hdr_scale\": float, \"hdr_luminance_cap\": float, \"blend_mode\": int, \"levels\": [float x 7]}; omit a key to keep it). Levels are as authored for the reference height, which IVWorldEnvironment shifts to the render height from the next frame. Reports every glow property back (levels as applied, authored_levels as set), so a sweep records the state it measured.",
 		"set_exposure_ceiling": "Override a body's shells.tsv exposure_ceiling / limb_exposure_ceiling cells at runtime ({\"name\": entity_name, \"ceiling\": float, \"limb_only\": bool}); 0.0 removes them.",
+		"get_exposure_skips": "Report what the exposure-driven skips are dropping ({}): the sky pass, and every star magnitude bin with its star count, brightest magnitude, peak sky density and current visibility. A zero-pixel A/B proves nothing unless the mechanism actually fired, and this is what says whether it did.",
+		"set_exposure_skips": "Turn either exposure-driven skip off or on ({\"sky\": bool, \"stars\": bool, \"capture_height\": float}; omit a key to keep it). Off is the un-culled render an A/B diffs against, in ONE app run and so at ONE exposure. capture_height stands in for IVScreenshotManager's off-screen render height, which is otherwise unreachable from a driver; 0.0 clears it. Reports the state back.",
+		"get_shadow_skips": "Report the empty-shadow-pass decision per IVDynamicLight ({}): each light's table intent, live shadow_enabled, reach, cull mask and idle frame count, beside every registered local-shadow participant with its layers, visibility and surface distance. Says whether the mechanism actually fired, which a zero-pixel A/B cannot.",
+		"set_shadow_skips": "Turn the empty-shadow-pass skip off or on for every light ({\"enabled\": bool}); off restores each light's table shadow_enabled, which is the un-skipped render an A/B diffs against, in ONE app run at ONE pose. Reports the state back.",
 	}
 
 
@@ -154,6 +161,14 @@ func dispatch(method: String, params: Dictionary) -> Variant:
 			return _set_shell_param(params)
 		"get_rings_geometry":
 			return _get_rings_geometry()
+		"get_exposure_skips":
+			return _get_exposure_skips()
+		"set_exposure_skips":
+			return _set_exposure_skips(params)
+		"get_shadow_skips":
+			return _get_shadow_skips()
+		"set_shadow_skips":
+			return _set_shadow_skips(params)
 	return {"_error": {"code": ERR_UNKNOWN_METHOD, "message": "Unknown method: %s" % method}}
 
 
@@ -204,12 +219,22 @@ func _get_rings_geometry() -> Variant:
 		var material := rings.get_surface_override_material(0) as ShaderMaterial
 		var plane_fraction: Variant = (material.get_shader_parameter(
 				&"plane_light_fraction") if material else null)
-		var view_height := IVGlobal.get_viewport().get_visible_rect().size.y
-		var pixel_angle := 2.0 / maxf(view_height
-				* absf(camera.get_camera_projection().y.y), 1e-9)
 		# Read through get() so this suite still runs against a build without the
 		# plane-to-point handoff -- which is exactly the build an A/B compares to.
 		var flux_factor: Variant = body.get(&"rings_psf_flux_factor")
+		# Render-buffer pixels, as IVRings decides the crossfade in: the taller of the
+		# window's and the one a capture has registered (through get(), as above). Taken
+		# from the window's own pixels, which a display scale makes finer than its visible
+		# rect; inline rather than IVGraphicsManager.get_render_size(), which an older
+		# build lacks.
+		var window := IVGlobal.get_window()
+		var render_height := floorf(window.size.y * window.scaling_3d_scale)
+		var capture_height_variant: Variant = rings.get(&"capture_render_height")
+		if typeof(capture_height_variant) == TYPE_FLOAT:
+			var capture_height: float = capture_height_variant
+			render_height = maxf(render_height, capture_height)
+		var pixel_angle := 2.0 / maxf(render_height
+				* absf(camera.get_camera_projection().y.y), 1e-9)
 		var profile_variant: Variant = rings.get(&"_psf_tau")
 		var profile_bins := -1
 		if typeof(profile_variant) == TYPE_PACKED_FLOAT64_ARRAY:
@@ -234,6 +259,7 @@ func _get_rings_geometry() -> Variant:
 			"outer_radius_m": rings.outer_radius,
 			"texture_inner_radius_m": rings.texture_inner_radius,
 			"texture_outer_radius_m": rings.texture_outer_radius,
+			"render_height": render_height,
 			"outer_pixels": rings.outer_radius / (camera_distance * pixel_angle),
 			"plane_light_fraction": plane_fraction,
 			"psf_flux_factor": flux_factor,
@@ -532,9 +558,9 @@ func _collect(node: Node) -> void:
 	if node is IVDynamicLight:
 		var light: IVDynamicLight = node
 		_lights.append(light)
-	elif node is WorldEnvironment:
-		var world_environment: WorldEnvironment = node
-		_world_environment = world_environment
+	elif node is IVStarsVisual:
+		var stars_visual: IVStarsVisual = node
+		_stars_visual = stars_visual
 	for child in node.get_children():
 		_collect(child)
 
@@ -1338,19 +1364,32 @@ func _set_glow(params: Dictionary) -> Variant:
 		if levels.size() != 7:
 			return {"_error": {"code": ERR_INVALID_PARAMS,
 					"message": "'levels' must have 7 entries"}}
+		var new_levels: Array[float] = []
 		for i in 7:
 			var level_var: Variant = levels[i]
 			if typeof(level_var) != TYPE_FLOAT and typeof(level_var) != TYPE_INT:
 				return {"_error": {"code": ERR_INVALID_PARAMS,
 						"message": "'levels' entries must be numbers"}}
 			var level: float = level_var
+			new_levels.append(level)
+		# IVWorldEnvironment shifts its authored levels by render height and would overwrite a
+		# direct write the next time the height changed.
+		if _world_environment is IVWorldEnvironment:
+			var iv_world_environment: IVWorldEnvironment = _world_environment
+			iv_world_environment.set_glow_levels(new_levels)
+		else:
 			# Environment's own index is 0-based (MAX_GLOW_LEVELS = 7), where the inspector
 			# labels the same levels 1-7; i + 1 here errored on the last one and skipped the
 			# first.
-			environment.set_glow_level(i, level)
+			for i in 7:
+				environment.set_glow_level(i, new_levels[i])
 	var reported_levels := []
 	for i in 7:
 		reported_levels.append(environment.get_glow_level(i))
+	var authored_levels: Array = reported_levels
+	if _world_environment is IVWorldEnvironment:
+		var iv_world_environment: IVWorldEnvironment = _world_environment
+		authored_levels = iv_world_environment.get_glow_levels()
 	return {
 		"ok": true,
 		"enabled": environment.glow_enabled,
@@ -1363,6 +1402,7 @@ func _set_glow(params: Dictionary) -> Variant:
 		"hdr_luminance_cap": environment.glow_hdr_luminance_cap,
 		"blend_mode": environment.glow_blend_mode,
 		"levels": reported_levels,
+		"authored_levels": authored_levels,
 	}
 
 
@@ -1386,3 +1426,116 @@ func _set_psf_settings(params: Dictionary) -> Variant:
 	for name in names:
 		report[String(name)] = psf_settings.get(name)
 	return report
+
+
+# What IVWorldEnvironment and IVStarsVisual are currently NOT drawing because the
+# compensating camera has metered it below one display code, plus the per-bin numbers the
+# cull decides on. Reads their private members on purpose: a probe exists to reach what the
+# public API does not expose, and a rename in Core breaks this and nothing else reports it.
+func _get_exposure_skips() -> Variant:
+	var sky := {}
+	if _world_environment is IVWorldEnvironment:
+		var world_environment: IVWorldEnvironment = _world_environment
+		sky = {
+			"enabled": world_environment.skip_invisible_starmap,
+			"skipped": world_environment._starmap_skipped,
+			"background_mode": world_environment.environment.background_mode,
+		}
+	var stars := {}
+	if _stars_visual:
+		var bins := []
+		var i := 0
+		var n_bins := _stars_visual.get_bin_count()
+		while i < n_bins:
+			var bin_visual := _stars_visual._bin_visuals[i]
+			bins.append({
+				"name": String(bin_visual.name),
+				"stars": _stars_visual._bin_star_counts[i],
+				"brightest_magnitude": _stars_visual._bin_brightest_magnitudes[i],
+				"peak_density_per_steradian": _stars_visual._bin_peak_densities[i],
+				"visible": bin_visual.visible,
+			})
+			i += 1
+		stars = {
+			"enabled": _stars_visual.cull_invisible_bins,
+			"drawn_bins": _stars_visual.get_drawn_bin_count(),
+			"capture_render_height": IVStarsVisual.capture_render_height,
+			"bins": bins,
+		}
+	return {
+		"one_display_code_linear": IVPhotometry.ONE_DISPLAY_CODE_LINEAR,
+		"exposure": IVExposureManager.exposure,
+		"physical_active": IVExposureManager.physical_active,
+		"sky": sky,
+		"stars": stars,
+	}
+
+
+func _set_exposure_skips(params: Dictionary) -> Variant:
+	var sky_var: Variant = params.get("sky")
+	if typeof(sky_var) == TYPE_BOOL:
+		if not _world_environment is IVWorldEnvironment:
+			return {"_error": {"code": ERR_UNAVAILABLE, "message": "No IVWorldEnvironment"}}
+		var world_environment: IVWorldEnvironment = _world_environment
+		var sky_enabled: bool = sky_var
+		world_environment.skip_invisible_starmap = sky_enabled
+	var stars_var: Variant = params.get("stars")
+	if typeof(stars_var) == TYPE_BOOL:
+		if !_stars_visual:
+			return {"_error": {"code": ERR_UNAVAILABLE, "message": "No IVStarsVisual"}}
+		var stars_enabled: bool = stars_var
+		_stars_visual.cull_invisible_bins = stars_enabled
+	# Standing in for IVScreenshotManager, which sets this around an off-screen capture and
+	# clears it after -- a window is the only render height a driver can otherwise reach.
+	var capture_var: Variant = params.get("capture_height")
+	if typeof(capture_var) == TYPE_FLOAT:
+		var capture_height: float = capture_var
+		IVStarsVisual.capture_render_height = capture_height
+	return _get_exposure_skips()
+
+
+func _get_shadow_skips() -> Variant:
+	const KM := IVUnits.KM
+	var lights := []
+	for light in _lights:
+		lights.append({
+			"name": String(light.name),
+			"shadow_capable": light._shadow_capable,
+			"skip_enabled": light._skip_empty_shadow_passes,
+			"shadow_enabled": light.shadow_enabled,
+			"reach_km": light.directional_shadow_max_distance / KM,
+			"light_cull_mask": light.light_cull_mask,
+			"idle_shadow_frames": light._idle_shadow_frames,
+			"shared": light._shared.duplicate(),
+		})
+	var camera := IVGlobal.get_tree().root.get_camera_3d()
+	var participants := []
+	for node3d: Node3D in IVDynamicLight._local_shadow_layers:
+		var extent_radius: float = IVDynamicLight._local_shadow_radii[node3d]
+		var distance := INF
+		if camera:
+			distance = (node3d.global_position - camera.global_position).length() - extent_radius
+		participants.append({
+			"name": String(node3d.get_parent().name) if node3d.get_parent() else String(node3d.name),
+			"visual_layers": IVDynamicLight._local_shadow_layers[node3d],
+			"visible": node3d.is_visible_in_tree(),
+			"surface_distance_km": distance / KM,
+		})
+	return {
+		"setting": IVCoreSettings.apply_empty_shadow_pass_skip,
+		"participants": participants,
+		"farwarp_start_km": IVFarwarpManager.farwarp_start / KM,
+		"lights": lights,
+	}
+
+
+func _set_shadow_skips(params: Dictionary) -> Variant:
+	var enabled_var: Variant = params.get("enabled")
+	if typeof(enabled_var) == TYPE_BOOL:
+		var enabled: bool = enabled_var
+		for light in _lights:
+			light._skip_empty_shadow_passes = enabled and light._process_shadow_distances
+			if !enabled:
+				light.shadow_enabled = light._shadow_capable
+				light._idle_shadow_frames = 0
+	return _get_shadow_skips()

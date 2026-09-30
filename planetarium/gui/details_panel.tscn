@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dglsn48wnive"]
+
+[ext_resource type="PackedScene" uid="uid://dcy30ki8dt6lw" path="res://addons/ivoyager_core/ui_widgets/selection_data.tscn" id="3_krqkh"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="5_krqkh"]
+[ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="6_spcng"]
+[ext_resource type="PackedScene" uid="uid://dbmmj34clrl2a" path="res://addons/ivoyager_core/ui_widgets/selection_wiki_link.tscn" id="10"]
+
+[node name="DetailsPanel" type="PanelContainer"]
+theme_type_variation = &"FloatingPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="SelectionWikiLink" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("10")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ControlModResizable" parent="MarginContainer/ScrollContainer/VBox/Spacer" instance=ExtResource("5_krqkh")]
+base_size = Vector2(0, 6)
+
+[node name="SelectionData" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("3_krqkh")]
+layout_mode = 2
+
+[node name="ControlModResizable" parent="." instance=ExtResource("5_krqkh")]
+base_size = Vector2(390, 0)
+
+[node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("6_spcng")]

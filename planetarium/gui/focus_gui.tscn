@@ -1,0 +1,328 @@
+[gd_scene format=3 uid="uid://tjwau0l3oe84"]
+
+[ext_resource type="Script" uid="uid://batrc750kycns" path="res://addons/ivoyager_core/ui_components/edge_container.gd" id="1_edge"]
+[ext_resource type="Theme" uid="uid://kfapss7pf0ta" path="res://planetarium/gui/focus_theme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://d2no1yqnxs01k" path="res://addons/ivoyager_core/ui_widgets/panel_button.gd" id="3_panel_button"]
+[ext_resource type="Script" uid="uid://duaidrx5h6a3o" path="res://addons/ivoyager_core/ui_widgets/hide_gui_button.gd" id="4_hide_gui_button"]
+[ext_resource type="DPITexture" uid="uid://5durunpuspsy" path="res://planetarium/gui/icons/navigation.svg" id="5_icon_navigation"]
+[ext_resource type="DPITexture" uid="uid://tet6sybmxvon" path="res://planetarium/gui/icons/huds.svg" id="6_icon_huds"]
+[ext_resource type="DPITexture" uid="uid://d1e4w28q7vdus" path="res://planetarium/gui/icons/view.svg" id="7_icon_view"]
+[ext_resource type="DPITexture" uid="uid://oh10l4m1ps6l" path="res://planetarium/gui/icons/info.svg" id="8_icon_info"]
+[ext_resource type="DPITexture" uid="uid://86bu7x8q65ye" path="res://planetarium/gui/icons/hide_gui.svg" id="9_icon_hide_gui"]
+[ext_resource type="PackedScene" uid="uid://diafd62ta13cn" path="res://planetarium/gui/nav_panel.tscn" id="10_nav_panel"]
+[ext_resource type="PackedScene" uid="uid://whpgdl66sqph" path="res://planetarium/gui/huds_panel.tscn" id="11_huds_panel"]
+[ext_resource type="PackedScene" uid="uid://ba7271tsjvr4o" path="res://planetarium/gui/view_panel.tscn" id="12_view_panel"]
+[ext_resource type="PackedScene" uid="uid://bwlx340pfijqd" path="res://planetarium/gui/info_panel.tscn" id="13_info_panel"]
+[ext_resource type="PackedScene" uid="uid://dglsn48wnive" path="res://planetarium/gui/details_panel.tscn" id="14_details_panel"]
+[ext_resource type="Script" uid="uid://dq5nev1sa608g" path="res://addons/ivoyager_core/ui_widgets/hotkeys_button.gd" id="16_hotkeys_button"]
+[ext_resource type="Script" uid="uid://crfmdej6b2qm4" path="res://addons/ivoyager_core/ui_widgets/options_button.gd" id="17_options_button"]
+[ext_resource type="Script" uid="uid://57h2ng8gqwmq" path="res://addons/ivoyager_core/ui_widgets/full_screen_button.gd" id="18_full_screen_button"]
+[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/ui_widgets/selection_buttons.tscn" id="20_selection_buttons"]
+[ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://addons/ivoyager_core/ui_widgets/selection_label.tscn" id="21_selection_label"]
+[ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://addons/ivoyager_core/ui_widgets/range_label.tscn" id="22_range_label"]
+[ext_resource type="PackedScene" uid="uid://welwpw4boyv8" path="res://addons/ivoyager_core/ui_widgets/lat_long_label.tscn" id="23_lat_long_label"]
+[ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://addons/ivoyager_core/ui_widgets/sync_os_time_checkbox.tscn" id="24_sync_os_time"]
+[ext_resource type="PackedScene" uid="uid://b8lhpum4e5tps" path="res://addons/ivoyager_core/ui_widgets/date_time_label.tscn" id="25_date_time_label"]
+[ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://addons/ivoyager_core/ui_widgets/speed_buttons.tscn" id="26_speed_buttons"]
+[ext_resource type="PackedScene" uid="uid://bhbsnekxvq6le" path="res://addons/ivoyager_core/ui_widgets/pause_button.tscn" id="27_pause_button"]
+[ext_resource type="PackedScene" uid="uid://cps3q0poas3ff" path="res://addons/ivoyager_core/ui_widgets/time_reverse_button.tscn" id="28_time_reverse_button"]
+[ext_resource type="PackedScene" uid="uid://bgk3lju7s35t" path="res://addons/ivoyager_core/ui_widgets/time_set_button.tscn" id="29_time_set_button"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="30_resizable"]
+[ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="31_spacing"]
+[ext_resource type="DPITexture" uid="uid://pw2dri2d7u20" path="res://planetarium/gui/icons/hotkeys.svg" id="32_icon_hotkeys"]
+[ext_resource type="DPITexture" uid="uid://bu0t44s80028d" path="res://planetarium/gui/icons/options.svg" id="33_icon_options"]
+[ext_resource type="DPITexture" uid="uid://dwbcfcyucfd3c" path="res://planetarium/gui/icons/full_screen.svg" id="34_icon_full_screen"]
+[ext_resource type="DPITexture" uid="uid://b3qeqhq687nq7" path="res://planetarium/gui/icons/full_screen_exit.svg" id="35_icon_full_screen_exit"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_panels"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_time_setter"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="FocusGUI" type="Container"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_edge")
+base_margin = 12.0
+base_separation = 10.0
+
+[node name="ButtonGrid" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="HideGUIButton" type="Button" parent="ButtonGrid"]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "HINT_HIDE_GUI"
+theme_type_variation = &"RoundButton"
+icon = ExtResource("9_icon_hide_gui")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_hide_gui_button")
+
+[node name="ControlModResizable" parent="ButtonGrid/HideGUIButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="FullScreenButton" type="Button" parent="ButtonGrid"]
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+icon = ExtResource("34_icon_full_screen")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("18_full_screen_button")
+minimize_text = &"HINT_EXIT_FULL_SCREEN"
+full_screen_icon = ExtResource("34_icon_full_screen")
+minimize_icon = ExtResource("35_icon_full_screen_exit")
+
+[node name="ControlModResizable" parent="ButtonGrid/FullScreenButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="NavigationButton" type="Button" parent="ButtonGrid" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "HINT_NAVIGATION_PANEL"
+theme_type_variation = &"RoundButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_panels")
+icon = ExtResource("5_icon_navigation")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_panel_button")
+panel = NodePath("../../NavPanel")
+input_action = &"toggle_navigation_panel"
+
+[node name="ControlModResizable" parent="ButtonGrid/NavigationButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="OptionsButton" type="Button" parent="ButtonGrid"]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "BUTTON_OPTIONS"
+theme_type_variation = &"RoundButton"
+icon = ExtResource("33_icon_options")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("17_options_button")
+
+[node name="ControlModResizable" parent="ButtonGrid/OptionsButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="HUDsButton" type="Button" parent="ButtonGrid" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "HINT_HUDS_PANEL"
+theme_type_variation = &"RoundButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_panels")
+icon = ExtResource("6_icon_huds")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_panel_button")
+panel = NodePath("../../HUDsPanel")
+input_action = &"toggle_huds_panel"
+
+[node name="ControlModResizable" parent="ButtonGrid/HUDsButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="HotkeysButton" type="Button" parent="ButtonGrid"]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "BUTTON_HOTKEYS"
+theme_type_variation = &"RoundButton"
+icon = ExtResource("32_icon_hotkeys")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("16_hotkeys_button")
+
+[node name="ControlModResizable" parent="ButtonGrid/HotkeysButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="ViewButton" type="Button" parent="ButtonGrid" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "HINT_VIEW_PANEL"
+theme_type_variation = &"RoundButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_panels")
+icon = ExtResource("7_icon_view")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_panel_button")
+panel = NodePath("../../ViewPanel")
+input_action = &"toggle_view_panel"
+
+[node name="ControlModResizable" parent="ButtonGrid/ViewButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="InfoButton" type="Button" parent="ButtonGrid" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "HINT_INFO_PANEL"
+theme_type_variation = &"RoundButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_panels")
+icon = ExtResource("8_icon_info")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("3_panel_button")
+panel = NodePath("../../InfoPanel")
+input_action = &"toggle_info_panel"
+
+[node name="ControlModResizable" parent="ButtonGrid/InfoButton" instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="ControlModSpacing" parent="ButtonGrid" instance=ExtResource("31_spacing")]
+
+[node name="NavPanel" parent="." instance=ExtResource("10_nav_panel")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HUDsPanel" parent="." instance=ExtResource("11_huds_panel")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ViewPanel" parent="." instance=ExtResource("12_view_panel")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="InfoPanel" parent="." instance=ExtResource("13_info_panel")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="TimeBar" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"PillPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="TimeBar"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 5
+
+[node name="HBox" type="HBoxContainer" parent="TimeBar/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="SyncOSTimeCheckBox" parent="TimeBar/MarginContainer/HBox" instance=ExtResource("24_sync_os_time")]
+layout_mode = 2
+
+[node name="DateTimeLabel" parent="TimeBar/MarginContainer/HBox" instance=ExtResource("25_date_time_label")]
+layout_mode = 2
+suffix_ut_tt = true
+
+[node name="SpeedButtons" parent="TimeBar/MarginContainer/HBox" instance=ExtResource("26_speed_buttons")]
+layout_mode = 2
+
+[node name="PauseButton" parent="TimeBar/MarginContainer/HBox/SpeedButtons" instance=ExtResource("27_pause_button")]
+layout_mode = 2
+paused_text = "||"
+
+[node name="TimeReverseButton" parent="TimeBar/MarginContainer/HBox/SpeedButtons" instance=ExtResource("28_time_reverse_button")]
+layout_mode = 2
+
+[node name="TimeSetButton" parent="TimeBar/MarginContainer/HBox/SpeedButtons" instance=ExtResource("29_time_set_button")]
+layout_mode = 2
+popup_stylebox_override = SubResource("StyleBoxFlat_time_setter")
+
+[node name="ControlModSpacing" parent="TimeBar/MarginContainer" instance=ExtResource("31_spacing")]
+
+[node name="ControlModSpacing" parent="TimeBar/MarginContainer/HBox" instance=ExtResource("31_spacing")]
+
+[node name="SelectionCard" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"FloatingPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="SelectionCard"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="SelectionCard/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="TopRow" type="HBoxContainer" parent="SelectionCard/MarginContainer/VBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SelectionButtons" parent="SelectionCard/MarginContainer/VBox/TopRow" instance=ExtResource("20_selection_buttons")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="SelectionCard/MarginContainer/VBox/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="DetailsButton" type="Button" parent="SelectionCard/MarginContainer/VBox/TopRow" node_paths=PackedStringArray("panel")]
+layout_mode = 2
+focus_mode = 0
+tooltip_text = "HINT_SELECTION_DETAILS"
+theme_type_variation = &"PillButton"
+toggle_mode = true
+text = "BUTTON_DETAILS"
+script = ExtResource("3_panel_button")
+panel = NodePath("../../../../../DetailsPanel")
+input_action = &"toggle_selection_details"
+
+[node name="SelectionLabel" parent="SelectionCard/MarginContainer/VBox" instance=ExtResource("21_selection_label")]
+layout_mode = 2
+theme_type_variation = &"LargeFont"
+autowrap_mode = 3
+
+[node name="RangeHBox" type="HBoxContainer" parent="SelectionCard/MarginContainer/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="RangeLabel" parent="SelectionCard/MarginContainer/VBox/RangeHBox" instance=ExtResource("22_range_label")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
+
+[node name="LatLongLabel" parent="SelectionCard/MarginContainer/VBox/RangeHBox" instance=ExtResource("23_lat_long_label")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
+
+[node name="ControlModSpacing" parent="SelectionCard/MarginContainer" instance=ExtResource("31_spacing")]
+
+[node name="ControlModSpacing" parent="SelectionCard/MarginContainer/VBox" instance=ExtResource("31_spacing")]
+
+[node name="ControlModSpacing" parent="SelectionCard/MarginContainer/VBox/RangeHBox" instance=ExtResource("31_spacing")]
+
+[node name="ControlModResizable" parent="SelectionCard" instance=ExtResource("30_resizable")]
+base_size = Vector2(390, 0)
+
+[node name="DetailsPanel" parent="." instance=ExtResource("14_details_panel")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0

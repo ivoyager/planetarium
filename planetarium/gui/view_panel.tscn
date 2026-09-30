@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://ba7271tsjvr4o"]
+
+[ext_resource type="PackedScene" uid="uid://chl27l6aiico8" path="res://addons/ivoyager_core/ui_widgets/focal_length_control.tscn" id="11_13kj6"]
+[ext_resource type="PackedScene" uid="uid://cwnvxi44ijkr4" path="res://addons/ivoyager_core/ui_widgets/up_lock_ckbx.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://cr2k471sfa7fd" path="res://addons/ivoyager_core/ui_widgets/view_collection.tscn" id="13_jbnqr"]
+[ext_resource type="PackedScene" uid="uid://b1mkm7ajlvvm0" path="res://addons/ivoyager_core/ui_widgets/track_ckbxs.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://do2jvg01jte0i" path="res://addons/ivoyager_core/ui_widgets/view_save_button.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="17_jbnqr"]
+[ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="18_spcng"]
+[ext_resource type="PackedScene" uid="uid://bcl70ysl6yces" path="res://addons/ivoyager_core/ui_widgets/view_button.tscn" id="19"]
+[ext_resource type="PackedScene" uid="uid://costgpjxqhe1m" path="res://addons/ivoyager_core/ui_widgets/exposure_control.tscn" id="20_expos"]
+
+[node name="ViewPanel" type="PanelContainer" unique_id=414442521]
+theme_type_variation = &"FloatingPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=697162857]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CameraHBox" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox" unique_id=259752333]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UpLockCkbx" parent="MarginContainer/ScrollContainer/VBox/CameraHBox" unique_id=1947636366 instance=ExtResource("12")]
+layout_mode = 2
+
+[node name="TrackCkbxs" parent="MarginContainer/ScrollContainer/VBox/CameraHBox" unique_id=813428786 instance=ExtResource("15")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="FocalLengthControl" parent="MarginContainer/ScrollContainer/VBox/CameraHBox" unique_id=1393967227 instance=ExtResource("11_13kj6")]
+layout_mode = 2
+big_steps = Array[float]([6.0, 15.0, 24.0, 35.0, 50.0, 70.0, 100.0])
+
+[node name="ExposureHBox" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="ExposureControl" parent="MarginContainer/ScrollContainer/VBox/ExposureHBox" instance=ExtResource("20_expos")]
+layout_mode = 2
+
+[node name="DefaultViewsHBox" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox" unique_id=1470317599]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Home" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=2066098456 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_HOME"
+default_view = &"VIEW_HOME"
+
+[node name="Cislunar" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=441315420 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_CISLUNAR"
+default_view = &"VIEW_CISLUNAR"
+
+[node name="System" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1495223175 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_SYSTEM"
+default_view = &"VIEW_SYSTEM"
+
+[node name="Asteroids" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1204574272 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_ASTEROIDS"
+default_view = &"VIEW_ASTEROIDS"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=811058549]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Zoom" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=94857445 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_ZOOM"
+default_view = &"VIEW_ZOOM"
+
+[node name="Fortyfive" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=2097793109 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_FORTYFIVE"
+default_view = &"VIEW_FORTYFIVE"
+
+[node name="Top" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1110406164 instance=ExtResource("19")]
+layout_mode = 2
+text = "VIEW_TOP"
+default_view = &"VIEW_TOP"
+
+[node name="ViewCollection" parent="MarginContainer/ScrollContainer/VBox" unique_id=243690492 instance=ExtResource("13_jbnqr")]
+layout_mode = 2
+collection_name = "CP"
+external_button_containers = Array[NodePath]([NodePath("../DefaultViewsHBox")])
+
+[node name="ViewSaveButton" parent="MarginContainer/ScrollContainer/VBox/ViewCollection" unique_id=511917316 instance=ExtResource("17")]
+layout_mode = 2
+
+[node name="ControlModResizable" parent="." unique_id=983916401 instance=ExtResource("17_jbnqr")]
+base_size = Vector2(600, 0)
+
+[node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("18_spcng")]

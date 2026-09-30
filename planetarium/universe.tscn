@@ -7,16 +7,16 @@
 [ext_resource type="PackedScene" uid="uid://cij2gsmtnwhcb" path="res://addons/ivoyager_core/ui/world_controller.tscn" id="4_s5sjs"]
 [ext_resource type="PackedScene" uid="uid://c6yqdxh0igm7a" path="res://addons/ivoyager_core/ui/mouse_target_label.tscn" id="5_c74a8"]
 [ext_resource type="PackedScene" uid="uid://cgv7mkfok4nux" path="res://addons/ivoyager_core/ui/show_hide_ui.tscn" id="6_ncrjh"]
-[ext_resource type="PackedScene" uid="uid://bevu554s76x0f" path="res://planetarium/gui/menu_panel.tscn" id="7_5y20p"]
-[ext_resource type="PackedScene" uid="uid://dglsn48wnive" path="res://planetarium/gui/info_panel.tscn" id="8_e3u8q"]
-[ext_resource type="PackedScene" uid="uid://diafd62ta13cn" path="res://planetarium/gui/nav_panel.tscn" id="9_8fbd1"]
-[ext_resource type="PackedScene" uid="uid://ba7271tsjvr4o" path="res://planetarium/gui/control_panel.tscn" id="10_nbyhj"]
-[ext_resource type="PackedScene" uid="uid://whpgdl66sqph" path="res://planetarium/gui/huds_panel.tscn" id="11_twnux"]
+[ext_resource type="PackedScene" uid="uid://derpnr26i3ifi" path="res://addons/ivoyager_core/ui_components/control_mod_fade.tscn" id="7_fade"]
+[ext_resource type="PackedScene" uid="uid://tjwau0l3oe84" path="res://planetarium/gui/focus_gui.tscn" id="8_focus_gui"]
+[ext_resource type="PackedScene" uid="uid://cmv48khp6j56u" path="res://addons/ivoyager_core/ui_widgets/show_gui_button.tscn" id="9_show_gui"]
+[ext_resource type="Theme" uid="uid://kfapss7pf0ta" path="res://planetarium/gui/focus_theme.tres" id="10_focus_theme"]
 [ext_resource type="PackedScene" uid="uid://cmijnisudhq4d" path="res://planetarium/gui/boot_screen.tscn" id="12_e3u8q"]
 [ext_resource type="PackedScene" uid="uid://do6i0el4c00jr" path="res://addons/ivoyager_core/ui/options_popup.tscn" id="12_uvir0"]
 [ext_resource type="PackedScene" uid="uid://b2fdgq3tjd8wq" path="res://addons/ivoyager_core/ui/hotkeys_popup.tscn" id="13_5m8w2"]
 [ext_resource type="PackedScene" uid="uid://bq5sg1c26wm60" path="res://addons/ivoyager_core/ui/confirmation_dialog.tscn" id="14_ip80n"]
 [ext_resource type="PackedScene" uid="uid://bgmsnatpv0h5g" path="res://addons/ivoyager_core/ui/screenshot_dialog.tscn" id="15_scrsh"]
+[ext_resource type="Script" uid="uid://c0sht671igupp" path="res://planetarium/gui/popup_group.gd" id="16_popup_group"]
 
 [node name="Universe" type="Node3D" unique_id=834053313]
 process_mode = 3
@@ -43,31 +43,25 @@ offset_bottom = 23.0
 [node name="ShowHideGUI" parent="TopUI" unique_id=1825950851 instance=ExtResource("6_ncrjh")]
 layout_mode = 1
 
-[node name="MenuPanel" parent="TopUI/ShowHideGUI" unique_id=1825312284 instance=ExtResource("7_5y20p")]
+[node name="ControlModFade" parent="TopUI/ShowHideGUI" unique_id=1724189516 instance=ExtResource("7_fade")]
+
+[node name="FocusGUI" parent="TopUI/ShowHideGUI" unique_id=1655457956 instance=ExtResource("8_focus_gui")]
 layout_mode = 1
-offset_left = -182.0
-offset_bottom = 298.0
+
+[node name="ShowGUIButton" parent="TopUI" unique_id=1359431809 node_paths=PackedStringArray("show_hide_ui") instance=ExtResource("9_show_gui")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 12.0
 grow_horizontal = 0
-
-[node name="InfoPanel" parent="TopUI/ShowHideGUI" unique_id=995358639 instance=ExtResource("8_e3u8q")]
-layout_mode = 1
-
-[node name="NavPanel" parent="TopUI/ShowHideGUI" unique_id=1114749882 instance=ExtResource("9_8fbd1")]
-layout_mode = 1
-
-[node name="ControlPanel" parent="TopUI/ShowHideGUI" unique_id=578250685 instance=ExtResource("10_nbyhj")]
-layout_mode = 1
-offset_left = -412.0
-offset_right = 412.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="HUDsPanel" parent="TopUI/ShowHideGUI" unique_id=702504198 instance=ExtResource("11_twnux")]
-layout_mode = 1
-offset_left = -570.0
-offset_top = -282.0
-grow_horizontal = 0
-grow_vertical = 0
+focus_mode = 0
+theme = ExtResource("10_focus_theme")
+theme_type_variation = &"PillButton"
+show_hide_ui = NodePath("../ShowHideGUI")
 
 [node name="BootScreen" parent="TopUI" unique_id=354120369 instance=ExtResource("12_e3u8q")]
 layout_mode = 1
@@ -75,9 +69,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OptionsPopup" parent="TopUI" unique_id=1551482224 instance=ExtResource("12_uvir0")]
+modal = false
 
 [node name="HotkeysPopup" parent="TopUI" unique_id=461994937 instance=ExtResource("13_5m8w2")]
+modal = false
 
 [node name="ConfirmationDialog" parent="TopUI" unique_id=572168116 instance=ExtResource("14_ip80n")]
 
 [node name="ScreenshotDialog" parent="TopUI" unique_id=1730458267 instance=ExtResource("15_scrsh")]
+
+[node name="PopupGroup" type="Node" parent="TopUI" unique_id=1609083346 node_paths=PackedStringArray("popups", "buttons", "confirmation_dialog")]
+script = ExtResource("16_popup_group")
+popups = [NodePath("../OptionsPopup"), NodePath("../HotkeysPopup")]
+buttons = [NodePath("../ShowHideGUI/FocusGUI/ButtonGrid/OptionsButton"), NodePath("../ShowHideGUI/FocusGUI/ButtonGrid/HotkeysButton")]
+confirmation_dialog = NodePath("../ConfirmationDialog")

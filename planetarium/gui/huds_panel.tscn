@@ -1,31 +1,30 @@
 [gd_scene format=3 uid="uid://whpgdl66sqph"]
 
-[ext_resource type="Script" uid="uid://dj4ammselobqx" path="res://planetarium/gui/huds_panel.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bx22jigtdb8iw" path="res://addons/ivoyager_core/ui_widgets/huds_box.tscn" id="2_k0j0v"]
 [ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="4_k0j0v"]
+[ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="5_spcng"]
 
 [node name="HUDsPanel" type="PanelContainer" unique_id=38713050]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -381.0
-offset_top = -105.0
-script = ExtResource("1")
+theme_type_variation = &"FloatingPanel"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1489245491]
 layout_mode = 2
-size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 25
+theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 10
 
-[node name="HUDsBox" parent="MarginContainer" unique_id=1056522969 instance=ExtResource("2_k0j0v")]
-unique_name_in_owner = true
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 5
+
+[node name="HUDsBox" parent="MarginContainer/ScrollContainer" unique_id=1056522969 instance=ExtResource("2_k0j0v")]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="ControlModResizable" parent="." unique_id=1022628023 instance=ExtResource("4_k0j0v")]
-base_size = Vector2(350, 0)
+base_size = Vector2(375, 0)
+
+[node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("5_spcng")]

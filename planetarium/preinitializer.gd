@@ -33,6 +33,15 @@ const USE_THREADS := true # set false for debugging
 ## When [code]true[/code], threads are disabled in web exports for browser
 ## compatibility (overrides [constant USE_THREADS] when running in a browser).
 const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
+## Default key and Hotkeys-list label of each panel button action in
+## [code]gui/focus_gui.tscn[/code].
+const PANEL_ACTIONS: Dictionary[StringName, Array] = {
+	&"toggle_selection_details" : [KEY_1, &"LABEL_SHOW_HIDE_SELECTION_DETAILS"],
+	&"toggle_navigation_panel" : [KEY_2, &"LABEL_SHOW_HIDE_NAVIGATION_PANEL"],
+	&"toggle_huds_panel" : [KEY_3, &"LABEL_SHOW_HIDE_HUDS_PANEL"],
+	&"toggle_view_panel" : [KEY_4, &"LABEL_SHOW_HIDE_VIEW_PANEL"],
+	&"toggle_info_panel" : [KEY_5, &"LABEL_SHOW_HIDE_INFO_PANEL"],
+}
 #const VERBOSE_GLOBAL_SIGNALS := false
 #const VERBOSE_STATEMANAGER_SIGNALS := false
 
@@ -50,7 +59,10 @@ func _init() -> void:
 	IVStateManager.simulator_started.connect(_on_simulator_started)
 	var is_web := OS.has_feature("web")
 	IVCoreSettings.use_threads = USE_THREADS and !(is_web and DISABLE_THREADS_IF_WEB)
-	print("web = %s, threads = %s" % [is_web, IVCoreSettings.use_threads])
+	var graphics_tier: String = IVGraphicsManager.GraphicsTier.keys()[
+			IVGraphicsManager.get_graphics_tier()]
+	print("web = %s, threads = %s, graphics tier = %s"
+			% [is_web, IVCoreSettings.use_threads, graphics_tier])
 	
 	IVCoreSettings.allow_fullscreen_toggle = true
 	IVCoreSettings.allow_time_setting = true
@@ -62,15 +74,14 @@ func _init() -> void:
 	IVCoreSettings.stroboscope_frames_per_second = 4.5
 	IVCoreSettings.enable_physical_light = true # user Options toggle "Physical Light"
 	IVCoreSettings.apply_gl_compatibility_shadows = false # only ISS self-shadowing. No big loss.
+	# With the line above false there are no shadow maps under Compatibility, so this acts
+	# only on Forward+ - where the empty passes cost 7-22 % of an integrated GPU's frame.
+	IVCoreSettings.apply_empty_shadow_pass_skip = true
 	
 	if is_web:
 		IVCoreSettings.disable_quit = true
 		#IVCoreSettings.vertecies_per_orbit = 200
-		IVSettingsManager.set_default(&"gui_size", IVCoreSettings.gui_size_settings[&"GUI_LARGE"])
-	
-	if IVGlobal.is_gl_compatibility:
-		pass
-		
+
 	# class changes
 	IVCoreInitializer.program_nodes["FullScreenManager"] = IVFullScreenManager
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
@@ -82,13 +93,46 @@ func _init() -> void:
 	
 	# static class changes
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
-	
+	IVTranslationImporter.translations.append(
+			"res://planetarium/text/planetarium_text.en.translation")
+
 	# User settings/options
+	IVSettingsManager.graphics_target = IVSettingsManager.GraphicsTarget.BROAD_HARDWARE
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
-	options_popup.add_section(&"LABEL_TIME", 0, 0)
+	options_popup.layout = [
+		[&"LABEL_GUI_AND_HUD", &"LABEL_TIME"],
+		[&"LABEL_CAMERA", &"LABEL_SCREENSHOTS"],
+		[&"LABEL_GRAPHICS_PERFORMANCE"],
+	]
+	options_popup.section_content[&"LABEL_TIME"] = []
 	options_popup.add_option(&"LABEL_TIME", &"LABEL_TERRESTRIAL_TIME_CLOCK",
 			&"terrestrial_time_clock")
+	options_popup.option_tooltips[&"terrestrial_time_clock"] = &"HINT_TERRESTRIAL_TIME_CLOCK"
+	# The GUI's IVControlModFade reads these two.
+	options_popup.add_option(&"LABEL_GUI_AND_HUD", &"LABEL_FADE_GUI_WHILE_DRAGGING",
+			&"gui_fade_while_dragging", 2)
+	options_popup.add_option(&"LABEL_GUI_AND_HUD", &"LABEL_FADE_GUI_WHEN_IDLE",
+			&"gui_fade_when_idle", 3)
+	options_popup.option_tooltips[&"gui_fade_while_dragging"] = &"HINT_FADE_GUI_WHILE_DRAGGING"
+	options_popup.option_tooltips[&"gui_fade_when_idle"] = &"HINT_FADE_GUI_WHEN_IDLE"
+
+	# User hotkeys
+	var hotkeys_popup: IVHotkeysPopup = IVGlobal.get_node("/root/Universe/TopUI/HotkeysPopup")
+	hotkeys_popup.layout = [
+		[&"LABEL_ADMIN", &"LABEL_GUI"],
+		[&"LABEL_TIME", &"LABEL_SELECTION"],
+		[&"LABEL_CAMERA", &"LABEL_SCREENSHOTS"],
+	]
+	var gui_hotkeys: Array = hotkeys_popup.section_content[&"LABEL_GUI"]
+	for action in PANEL_ACTIONS:
+		var action_data := PANEL_ACTIONS[action]
+		var keycode: Key = action_data[0]
+		var label: StringName = action_data[1]
+		var event_dict := {&"event_class" : &"InputEventKey", &"keycode" : keycode}
+		IVInputMapManager.defaults[action] = [event_dict]
+		IVInputMapManager.action_texts[action] = label
+		gui_hotkeys.append(action)
 
 
 func _on_core_init_program_objects_instantiated() -> void:
@@ -162,4 +206,7 @@ func _on_pwa_update_available() -> void:
 
 func _update_pwa() -> void:
 	print("Updating PWA!")
+	# The reload can come before the start's check does, and would count as a failed start.
+	IVSettingsManager.mark_start_finished()
+	await IVGlobal.get_tree().process_frame # Godot saves user:// to IndexedDB between frames
 	JavaScriptBridge.pwa_update()

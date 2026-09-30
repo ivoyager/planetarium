@@ -21,28 +21,43 @@ class_name BootScreen
 extends ColorRect
 
 ## Self-freeing boot screen hides messy node construction and reports the shader
-## warm-up while it runs.
+## warm-up while it runs. In the web app, notes for the visitor follow the report.
 
 const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
-const WARMUP_NOTE := "Only the first run after an update needs this."
+const WEB_NOTES: Array[String] = [
+	"Depending on your browser, startup should be much faster on revisit.",
+	("The web app will start initially with low graphic settings. Try bumping these in"
+			+ " user options if you have a capable desktop."),
+]
+
+var _notes := ""
 
 @onready var _label: Label = $BootLabel
 
 
 func _ready() -> void:
-	IVStateManager.about_to_build_system_tree.connect(_on_about_to_build_system_tree)
+	IVStateManager.core_initialized.connect(_on_core_initialized)
+	IVStateManager.state_changed.connect(_on_state_changed)
+	if OS.has_feature("web"):
+		for note in WEB_NOTES:
+			_notes += "\n\n" + note
+		_set_report(_label.text)
 
 
-func _on_about_to_build_system_tree(_is_new_game: bool) -> void:
-	# Program nodes exist by now. With a shader warm-up registered the screen
-	# stays up until it finishes, which is after the simulator starts.
+func _on_core_initialized() -> void:
 	var warmup: IVShaderWarmup = IVGlobal.program.get(&"ShaderWarmup")
 	if warmup:
 		warmup.progress_changed.connect(_on_warmup_progress)
-		warmup.finished.connect(queue_free)
-	else:
-		IVStateManager.simulator_started.connect(queue_free)
 
 
-func _on_warmup_progress(index: int, count: int, _shader_name: StringName) -> void:
-	_label.text = WARMUP_TEXT % [index + 1, count] + "\n" + WARMUP_NOTE
+func _on_state_changed() -> void:
+	if !IVStateManager.show_splash_screen:
+		queue_free()
+
+
+func _on_warmup_progress(index: int, count: int, _step_name: StringName) -> void:
+	_set_report(WARMUP_TEXT % [index + 1, count])
+
+
+func _set_report(report: String) -> void:
+	_label.text = report + _notes
