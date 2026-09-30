@@ -21,9 +21,16 @@ class_name BootScreen
 extends ColorRect
 
 ## Self-freeing boot screen hides messy node construction and reports the shader
-## warm-up while it runs.
+## warm-up while it runs. In the web app, notes for the visitor follow the report.
 
 const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
+const WEB_NOTES: Array[String] = [
+	"Depending on your browser, startup should be much faster on revisit.",
+	("The web app will start initially with low graphic settings. Try bumping these in"
+			+ " user options if you have a capable desktop."),
+]
+
+var _notes := ""
 
 @onready var _label: Label = $BootLabel
 
@@ -31,6 +38,10 @@ const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
 func _ready() -> void:
 	IVStateManager.core_initialized.connect(_on_core_initialized)
 	IVStateManager.state_changed.connect(_on_state_changed)
+	if OS.has_feature("web"):
+		for note in WEB_NOTES:
+			_notes += "\n\n" + note
+		_set_report(_label.text)
 
 
 func _on_core_initialized() -> void:
@@ -45,4 +56,8 @@ func _on_state_changed() -> void:
 
 
 func _on_warmup_progress(index: int, count: int, _shader_name: StringName) -> void:
-	_label.text = WARMUP_TEXT % [index + 1, count]
+	_set_report(WARMUP_TEXT % [index + 1, count])
+
+
+func _set_report(report: String) -> void:
+	_label.text = report + _notes
