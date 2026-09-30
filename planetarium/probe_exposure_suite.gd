@@ -51,6 +51,7 @@ var _sun_disc_material: ShaderMaterial
 
 func _on_simulator_started() -> void:
 	_lights.clear()
+	_world_environment = IVGlobal.program.get(&"WorldEnvironment")
 	_collect(IVGlobal.get_tree().root)
 
 
@@ -557,9 +558,6 @@ func _collect(node: Node) -> void:
 	if node is IVDynamicLight:
 		var light: IVDynamicLight = node
 		_lights.append(light)
-	elif node is WorldEnvironment:
-		var world_environment: WorldEnvironment = node
-		_world_environment = world_environment
 	elif node is IVStarsVisual:
 		var stars_visual: IVStarsVisual = node
 		_stars_visual = stars_visual
