@@ -819,14 +819,18 @@ west, the IAU satellite convention, and are converted on import.
 
 `/models/<name>/` subdirectories hold 3D models downloaded from
 [NASA 3D Resources](https://science.nasa.gov/3d-resources/) — each the downloaded file, usually
-`.glb`, plus the files Godot's importer extracts from it. They are used as downloaded, with two
-exceptions, both on the **body** models. Their files are renamed to carry the model's own unit
-scale — `Eros.1_10.glb` is 10 m per glb unit, `Hyperion.1_1000.glb` 1000 — since a downloaded
-model is authored at whatever scale its author chose and the shipped body must render at its
-catalogued size. And their embedded base-color textures were rescaled in linear light toward the
-same level convention as the surface maps. A packed model carries its level in that texture and
-nowhere else, so a body whose reflectance does not fit under white cannot be held on this path at
-all; Mimas, at a V-band geometric albedo of 0.962, is built as a mesh and cubemaps instead.
+`.glb`, plus the files Godot's importer extracts from it. They are used as downloaded, with three
+exceptions, the first two on the **body** models alone. Their files are renamed to carry the
+model's own unit scale — `Eros.1_10.glb` is 10 m per glb unit, `Hyperion.1_1000.glb` 1000 —
+since a downloaded model is authored at whatever scale its author chose and the shipped body must
+render at its catalogued size. And their embedded base-color textures were rescaled in linear
+light toward the same level convention as the surface maps. A packed model carries its level in
+that texture and nowhere else, so a body whose reflectance does not fit under white cannot be held
+on this path at all; Mimas, at a V-band geometric albedo of 0.962, is built as a mesh and cubemaps
+instead. Last, five models — Hubble, the ISS, Arrokoth, Bennu and Hyperion — have an all-zero
+`emissiveFactor` removed from their materials: glTF defines it as no emission, but Godot's
+importer turns emission on for any factor it finds, so the change is to import metadata and to
+nothing rendered.
 
 - **Bodies:** `/models/arrokoth/*`, `/models/bennu/*`, `/models/eros/*`, `/models/hyperion/*`,
   `/models/itokawa/*`
