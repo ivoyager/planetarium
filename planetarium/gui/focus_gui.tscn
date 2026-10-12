@@ -172,6 +172,8 @@ mouse_filter = 2
 [node name="FocalLengthControl" parent="ControlPanel/MarginContainer/VBox/LensHBox" unique_id=634378817 instance=ExtResource("38_focal_length_control")]
 layout_mode = 2
 big_steps = Array[float]([6.0, 15.0, 24.0, 35.0, 50.0, 70.0, 100.0])
+label_text = &"LABEL_FL"
+buttons_first = true
 
 [node name="ExposureControl" parent="ControlPanel/MarginContainer/VBox/LensHBox" unique_id=1854455584 instance=ExtResource("39_exposure_control")]
 layout_mode = 2
