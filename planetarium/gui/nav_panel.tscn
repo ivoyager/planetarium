@@ -12,7 +12,7 @@
 [node name="NavPanel" type="PanelContainer" unique_id=1019950327]
 theme_type_variation = &"FloatingPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1818088351]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 6
@@ -20,12 +20,12 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1182079855]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=2024756949]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -59,20 +59,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Zoom" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=94857445 instance=ExtResource("9_view_button")]
+[node name="Close" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=94857445 instance=ExtResource("9_view_button")]
 layout_mode = 2
-text = "VIEW_ZOOM"
-default_view = &"VIEW_ZOOM"
+text = "VIEW_CLOSE"
+default_view = &"VIEW_CLOSE"
 
-[node name="Fortyfive" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=2097793109 instance=ExtResource("9_view_button")]
+[node name="Medium" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=2097793109 instance=ExtResource("9_view_button")]
 layout_mode = 2
-text = "VIEW_FORTYFIVE"
-default_view = &"VIEW_FORTYFIVE"
+text = "VIEW_MEDIUM"
+default_view = &"VIEW_MEDIUM"
 
-[node name="Top" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1110406164 instance=ExtResource("9_view_button")]
+[node name="Far" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1110406164 instance=ExtResource("9_view_button")]
 layout_mode = 2
-text = "VIEW_TOP"
-default_view = &"VIEW_TOP"
+text = "VIEW_FAR"
+default_view = &"VIEW_FAR"
 
 [node name="ViewCollection" parent="MarginContainer/ScrollContainer/VBox" unique_id=243690492 instance=ExtResource("10_view_collection")]
 layout_mode = 2
@@ -137,4 +137,4 @@ focus_selected_on_sim_start = true
 [node name="ControlModResizable" parent="MarginContainer/ScrollContainer/VBox/HBox" unique_id=1285560012 instance=ExtResource("7_vibof")]
 base_size = Vector2(508, 288)
 
-[node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("8_spcng")]
+[node name="ControlModSpacing" parent="MarginContainer" unique_id=2136016131 instance=ExtResource("8_spcng")]
