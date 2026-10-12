@@ -40,6 +40,6 @@ base_size = Vector2(0, 6)
 layout_mode = 2
 
 [node name="ControlModResizable" parent="." instance=ExtResource("5_krqkh")]
-base_size = Vector2(390, 0)
+base_size = Vector2(580, 0)
 
 [node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("6_spcng")]
