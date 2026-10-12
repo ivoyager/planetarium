@@ -50,7 +50,7 @@ theme = ExtResource("2_theme")
 script = ExtResource("1_edge")
 base_margin = 12.0
 base_separation = 10.0
-cullable_children = [NodePath("NavPanel"), NodePath("InfoPanel"), NodePath("HUDsPanel")]
+cullable_children = [NodePath("NavPanel"), NodePath("InfoPanel"), NodePath("HUDsPanel"), NodePath("DetailsPanel")]
 
 [node name="ControlPanel" type="PanelContainer" parent="." unique_id=1963999697]
 layout_mode = 2
