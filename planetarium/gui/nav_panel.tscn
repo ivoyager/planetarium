@@ -5,11 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://3ofokqme2067" path="res://addons/ivoyager_core/ui_widgets/nav_buttons_box.tscn" id="4_yp30r"]
 [ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="7_vibof"]
 [ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="8_spcng"]
+[ext_resource type="PackedScene" uid="uid://bcl70ysl6yces" path="res://addons/ivoyager_core/ui_widgets/view_button.tscn" id="9_view_button"]
+[ext_resource type="PackedScene" uid="uid://cr2k471sfa7fd" path="res://addons/ivoyager_core/ui_widgets/view_collection.tscn" id="10_view_collection"]
+[ext_resource type="PackedScene" uid="uid://do2jvg01jte0i" path="res://addons/ivoyager_core/ui_widgets/view_save_button.tscn" id="11_view_save_button"]
 
 [node name="NavPanel" type="PanelContainer" unique_id=1019950327]
 theme_type_variation = &"FloatingPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1818088351]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 6
@@ -17,65 +20,121 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=1182079855]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 5
 
-[node name="HBox" type="HBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=63856317]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=2024756949]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="SunButton" parent="MarginContainer/ScrollContainer/HBox" unique_id=1024880878 instance=ExtResource("1_rujde")]
+[node name="DefaultViewsHBox" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox" unique_id=1470317599]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Home" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=2066098456 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_HOME"
+default_view = &"VIEW_HOME"
+
+[node name="Cislunar" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=441315420 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_CISLUNAR"
+default_view = &"VIEW_CISLUNAR"
+
+[node name="System" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1495223175 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_SYSTEM"
+default_view = &"VIEW_SYSTEM"
+
+[node name="Asteroids" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1204574272 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_ASTEROIDS"
+default_view = &"VIEW_ASTEROIDS"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=811058549]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Close" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=94857445 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_CLOSE"
+default_view = &"VIEW_CLOSE"
+
+[node name="Medium" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=2097793109 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_MEDIUM"
+default_view = &"VIEW_MEDIUM"
+
+[node name="Far" parent="MarginContainer/ScrollContainer/VBox/DefaultViewsHBox" unique_id=1110406164 instance=ExtResource("9_view_button")]
+layout_mode = 2
+text = "VIEW_FAR"
+default_view = &"VIEW_FAR"
+
+[node name="ViewCollection" parent="MarginContainer/ScrollContainer/VBox" unique_id=243690492 instance=ExtResource("10_view_collection")]
+layout_mode = 2
+collection_name = "CP"
+external_button_containers = Array[NodePath]([NodePath("../DefaultViewsHBox")])
+
+[node name="ViewSaveButton" parent="MarginContainer/ScrollContainer/VBox/ViewCollection" unique_id=511917316 instance=ExtResource("11_view_save_button")]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBox" unique_id=63856317]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SunButton" parent="MarginContainer/ScrollContainer/VBox/HBox" unique_id=1024880878 instance=ExtResource("1_rujde")]
 layout_mode = 2
 body_name = &"STAR_SUN"
 use_texture_slice = true
 focus_selected_on_sim_start = true
 
-[node name="RightContent" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBox" unique_id=212498876]
+[node name="RightContent" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBox/HBox" unique_id=212498876]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 9.0
 mouse_filter = 2
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBox/RightContent" unique_id=318444913]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBox/HBox/RightContent" unique_id=318444913]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="NavButtonsSystem" parent="MarginContainer/ScrollContainer/HBox/RightContent/VBox" unique_id=228575664 instance=ExtResource("2_vibof")]
+[node name="NavButtonsSystem" parent="MarginContainer/ScrollContainer/VBox/HBox/RightContent/VBox" unique_id=228575664 instance=ExtResource("2_vibof")]
 layout_mode = 2
 moon_scroll_proportion = 100.0
 focus_selected_on_sim_start = true
 
-[node name="AsteroidsScroll" type="ScrollContainer" parent="MarginContainer/ScrollContainer/HBox/RightContent/VBox" unique_id=2095471347]
+[node name="AsteroidsScroll" type="ScrollContainer" parent="MarginContainer/ScrollContainer/VBox/HBox/RightContent/VBox" unique_id=2095471347]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 draw_focus_border = true
 vertical_scroll_mode = 0
 
-[node name="AsteroidsBox" parent="MarginContainer/ScrollContainer/HBox/RightContent/VBox/AsteroidsScroll" unique_id=142472377 instance=ExtResource("4_yp30r")]
+[node name="AsteroidsBox" parent="MarginContainer/ScrollContainer/VBox/HBox/RightContent/VBox/AsteroidsScroll" unique_id=142472377 instance=ExtResource("4_yp30r")]
 layout_mode = 2
 size_flags_vertical = 3
 body_tables = Array[StringName]([&"asteroids"])
 focus_selected_on_sim_start = true
 
-[node name="SpacecraftsScroll" type="ScrollContainer" parent="MarginContainer/ScrollContainer/HBox/RightContent/VBox" unique_id=2096886230]
+[node name="SpacecraftsScroll" type="ScrollContainer" parent="MarginContainer/ScrollContainer/VBox/HBox/RightContent/VBox" unique_id=2096886230]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 draw_focus_border = true
 vertical_scroll_mode = 0
 
-[node name="SpacecraftsBox" parent="MarginContainer/ScrollContainer/HBox/RightContent/VBox/SpacecraftsScroll" unique_id=1893887422 instance=ExtResource("4_yp30r")]
+[node name="SpacecraftsBox" parent="MarginContainer/ScrollContainer/VBox/HBox/RightContent/VBox/SpacecraftsScroll" unique_id=1893887422 instance=ExtResource("4_yp30r")]
 layout_mode = 2
 size_flags_vertical = 3
 body_tables = Array[StringName]([&"spacecrafts"])
 focus_selected_on_sim_start = true
 
-[node name="ControlModResizable" parent="MarginContainer/ScrollContainer/HBox" unique_id=1285560012 instance=ExtResource("7_vibof")]
+[node name="ControlModResizable" parent="MarginContainer/ScrollContainer/VBox/HBox" unique_id=1285560012 instance=ExtResource("7_vibof")]
 base_size = Vector2(508, 288)
 
-[node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("8_spcng")]
+[node name="ControlModSpacing" parent="MarginContainer" unique_id=2136016131 instance=ExtResource("8_spcng")]

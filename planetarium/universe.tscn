@@ -50,17 +50,16 @@ layout_mode = 1
 
 [node name="ShowGUIButton" parent="TopUI" unique_id=1359431809 node_paths=PackedStringArray("show_hide_ui") instance=ExtResource("9_show_gui")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -12.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_top = 12.0
-offset_right = -12.0
 offset_bottom = 12.0
-grow_horizontal = 0
+grow_horizontal = 2
 focus_mode = 0
 theme = ExtResource("10_focus_theme")
 theme_type_variation = &"PillButton"
+theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
 show_hide_ui = NodePath("../ShowHideGUI")
 
 [node name="BootScreen" parent="TopUI" unique_id=354120369 instance=ExtResource("12_e3u8q")]
@@ -81,5 +80,5 @@ modal = false
 [node name="PopupGroup" type="Node" parent="TopUI" unique_id=1609083346 node_paths=PackedStringArray("popups", "buttons", "confirmation_dialog")]
 script = ExtResource("16_popup_group")
 popups = [NodePath("../OptionsPopup"), NodePath("../HotkeysPopup")]
-buttons = [NodePath("../ShowHideGUI/FocusGUI/ButtonGrid/OptionsButton"), NodePath("../ShowHideGUI/FocusGUI/ButtonGrid/HotkeysButton")]
+buttons = [NodePath("../ShowHideGUI/FocusGUI/ButtonBar/OptionsButton"), NodePath("../ShowHideGUI/FocusGUI/ButtonBar/HotkeysButton")]
 confirmation_dialog = NodePath("../ConfirmationDialog")

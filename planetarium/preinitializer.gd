@@ -36,11 +36,11 @@ const DISABLE_THREADS_IF_WEB := true # override for browser compatibility
 ## Default key and Hotkeys-list label of each panel button action in
 ## [code]gui/focus_gui.tscn[/code].
 const PANEL_ACTIONS: Dictionary[StringName, Array] = {
-	&"toggle_selection_details" : [KEY_1, &"LABEL_SHOW_HIDE_SELECTION_DETAILS"],
+	&"toggle_control_panel" : [KEY_1, &"LABEL_SHOW_HIDE_CONTROL_PANEL"],
 	&"toggle_navigation_panel" : [KEY_2, &"LABEL_SHOW_HIDE_NAVIGATION_PANEL"],
 	&"toggle_huds_panel" : [KEY_3, &"LABEL_SHOW_HIDE_HUDS_PANEL"],
-	&"toggle_view_panel" : [KEY_4, &"LABEL_SHOW_HIDE_VIEW_PANEL"],
-	&"toggle_info_panel" : [KEY_5, &"LABEL_SHOW_HIDE_INFO_PANEL"],
+	&"toggle_info_panel" : [KEY_4, &"LABEL_SHOW_HIDE_INFO_PANEL"],
+	&"toggle_selection_details" : [KEY_5, &"LABEL_SHOW_HIDE_SELECTION_DETAILS"],
 }
 #const VERBOSE_GLOBAL_SIGNALS := false
 #const VERBOSE_STATEMANAGER_SIGNALS := false
