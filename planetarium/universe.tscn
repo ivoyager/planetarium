@@ -59,6 +59,7 @@ grow_horizontal = 2
 focus_mode = 0
 theme = ExtResource("10_focus_theme")
 theme_type_variation = &"PillButton"
+theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
 show_hide_ui = NodePath("../ShowHideGUI")
 
 [node name="BootScreen" parent="TopUI" unique_id=354120369 instance=ExtResource("12_e3u8q")]
