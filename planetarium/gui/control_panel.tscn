@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://2cm0wjal4n30"]
+
+[ext_resource type="Script" uid="uid://d2no1yqnxs01k" path="res://addons/ivoyager_core/ui_widgets/panel_button.gd" id="3_panel_button"]
+[ext_resource type="PackedScene" uid="uid://bk1wcjtaqcyyd" path="res://addons/ivoyager_core/ui_widgets/selection_buttons.tscn" id="20_selection_buttons"]
+[ext_resource type="PackedScene" uid="uid://c71yn7f8ovhrl" path="res://addons/ivoyager_core/ui_widgets/selection_label.tscn" id="21_selection_label"]
+[ext_resource type="PackedScene" uid="uid://b5k2m7jen3jwm" path="res://addons/ivoyager_core/ui_widgets/range_label.tscn" id="22_range_label"]
+[ext_resource type="PackedScene" uid="uid://welwpw4boyv8" path="res://addons/ivoyager_core/ui_widgets/lat_long_label.tscn" id="23_lat_long_label"]
+[ext_resource type="PackedScene" uid="uid://b7a02wvmqua4q" path="res://addons/ivoyager_core/ui_widgets/sync_os_time_checkbox.tscn" id="24_sync_os_time"]
+[ext_resource type="PackedScene" uid="uid://b8lhpum4e5tps" path="res://addons/ivoyager_core/ui_widgets/date_time_label.tscn" id="25_date_time_label"]
+[ext_resource type="PackedScene" uid="uid://drl4tb0hbqhl" path="res://addons/ivoyager_core/ui_widgets/speed_buttons.tscn" id="26_speed_buttons"]
+[ext_resource type="PackedScene" uid="uid://bhbsnekxvq6le" path="res://addons/ivoyager_core/ui_widgets/pause_button.tscn" id="27_pause_button"]
+[ext_resource type="PackedScene" uid="uid://cps3q0poas3ff" path="res://addons/ivoyager_core/ui_widgets/time_reverse_button.tscn" id="28_time_reverse_button"]
+[ext_resource type="PackedScene" uid="uid://bgk3lju7s35t" path="res://addons/ivoyager_core/ui_widgets/time_set_button.tscn" id="29_time_set_button"]
+[ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="30_resizable"]
+[ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="31_spacing"]
+[ext_resource type="PackedScene" uid="uid://cwnvxi44ijkr4" path="res://addons/ivoyager_core/ui_widgets/up_lock_ckbx.tscn" id="36_up_lock_ckbx"]
+[ext_resource type="PackedScene" uid="uid://b1mkm7ajlvvm0" path="res://addons/ivoyager_core/ui_widgets/track_ckbxs.tscn" id="37_track_ckbxs"]
+[ext_resource type="PackedScene" uid="uid://chl27l6aiico8" path="res://addons/ivoyager_core/ui_widgets/focal_length_control.tscn" id="38_focal_length_control"]
+[ext_resource type="PackedScene" uid="uid://costgpjxqhe1m" path="res://addons/ivoyager_core/ui_widgets/exposure_control.tscn" id="39_exposure_control"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_time_setter"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="ControlPanel" type="PanelContainer" unique_id=769731929]
+theme_type_variation = &"FloatingPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1614627456]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer" unique_id=723618208]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="TimeHBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1372234187]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="SyncOSTimeCheckBox" parent="MarginContainer/VBox/TimeHBox" unique_id=167901574 instance=ExtResource("24_sync_os_time")]
+layout_mode = 2
+
+[node name="DateTimeLabel" parent="MarginContainer/VBox/TimeHBox" unique_id=1726591552 instance=ExtResource("25_date_time_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+suffix_ut_tt = true
+
+[node name="SpeedButtons" parent="MarginContainer/VBox/TimeHBox" unique_id=1784159303 instance=ExtResource("26_speed_buttons")]
+layout_mode = 2
+
+[node name="PauseButton" parent="MarginContainer/VBox/TimeHBox/SpeedButtons" unique_id=419340279 instance=ExtResource("27_pause_button")]
+layout_mode = 2
+paused_text = "||"
+
+[node name="TimeReverseButton" parent="MarginContainer/VBox/TimeHBox/SpeedButtons" unique_id=1762084703 instance=ExtResource("28_time_reverse_button")]
+layout_mode = 2
+
+[node name="TimeSetButton" parent="MarginContainer/VBox/TimeHBox/SpeedButtons" unique_id=1857264794 instance=ExtResource("29_time_set_button")]
+layout_mode = 2
+popup_stylebox_override = SubResource("StyleBoxFlat_time_setter")
+
+[node name="ControlModSpacing" parent="MarginContainer/VBox/TimeHBox" unique_id=337232464 instance=ExtResource("31_spacing")]
+
+[node name="SelectionHBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1195107011]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SelectionButtons" parent="MarginContainer/VBox/SelectionHBox" unique_id=1021701655 instance=ExtResource("20_selection_buttons")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SelectionLabel" parent="MarginContainer/VBox/SelectionHBox" unique_id=521113519 instance=ExtResource("21_selection_label")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LargeFont"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ControlModResizable" parent="MarginContainer/VBox/SelectionHBox/SelectionLabel" unique_id=1101323570 instance=ExtResource("30_resizable")]
+base_size = Vector2(200, 0)
+
+[node name="DetailsButton" type="Button" parent="MarginContainer/VBox/SelectionHBox" unique_id=558864492]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "HINT_SELECTION_DETAILS"
+focus_mode = 0
+theme_type_variation = &"PillButton"
+toggle_mode = true
+text = "BUTTON_DETAILS"
+script = ExtResource("3_panel_button")
+input_action = &"toggle_selection_details"
+close_panel_when_hidden = true
+
+[node name="RangeHBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1512127950]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RangeLabel" parent="MarginContainer/VBox/RangeHBox" unique_id=1461086185 instance=ExtResource("22_range_label")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
+
+[node name="LatLongLabel" parent="MarginContainer/VBox/RangeHBox" unique_id=377720265 instance=ExtResource("23_lat_long_label")]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
+
+[node name="ControlModSpacing" parent="MarginContainer/VBox/RangeHBox" unique_id=1142621542 instance=ExtResource("31_spacing")]
+
+[node name="TrackingHBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=2085143722]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UpLockCkbx" parent="MarginContainer/VBox/TrackingHBox" unique_id=889292145 instance=ExtResource("36_up_lock_ckbx")]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="TrackCkbxs" parent="MarginContainer/VBox/TrackingHBox" unique_id=1498103066 instance=ExtResource("37_track_ckbxs")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBox/TrackingHBox"]
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 2
+
+[node name="LensHBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1191488637]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FocalLengthControl" parent="MarginContainer/VBox/LensHBox" unique_id=634378817 instance=ExtResource("38_focal_length_control")]
+layout_mode = 2
+big_steps = Array[float]([6.0, 15.0, 24.0, 35.0, 50.0, 70.0, 100.0])
+label_text = &"LABEL_FL"
+buttons_first = true
+
+[node name="ExposureControl" parent="MarginContainer/VBox/LensHBox" unique_id=1854455584 instance=ExtResource("39_exposure_control")]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="ControlModSpacing" parent="MarginContainer/VBox" unique_id=948250170 instance=ExtResource("31_spacing")]
+
+[node name="ControlModSpacing" parent="MarginContainer" unique_id=1615350233 instance=ExtResource("31_spacing")]
+
+[node name="ControlModResizable" parent="." unique_id=2065236374 instance=ExtResource("30_resizable")]
+base_size = Vector2(580, 0)
