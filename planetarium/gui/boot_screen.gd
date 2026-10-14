@@ -26,6 +26,9 @@ extends ColorRect
 const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
 const WEB_NOTE := """
 
+
+Your browser should cache shaders, making revisits faster.
+
 The web app will start initially with low graphic settings.
 Try bumping these in user options if you have a capable desktop."""
 
