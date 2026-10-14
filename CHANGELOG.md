@@ -12,7 +12,7 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 Under development using Godot 4.7.2.
 
 ### Added
-* Shader warm-up on the boot screen: registers the Core plugin's new IVShaderWarmup, and the boot screen now stays up through it, reporting *Compiling shaders (n of N)*. This moves the Compatibility renderer's shader compiles, which dominate a cold start and were hanging the camera mid-flight, onto the boot screen.
+* Shader warm-up on the boot screen: registers the Core plugin's new IVShaderWarmup, naming the star field's shader for it, and the boot screen now stays up through it, reporting *Compiling shaders (n of N)*. This moves the Compatibility renderer's shader compiles, which dominate a cold start and were hanging the camera mid-flight, onto the boot screen.
 * The web app's boot screen notes that startup should be faster on a revisit and that the app starts with low graphics settings (`gui/boot_screen.gd`).
 * Added the Core plugin's new `IVExposureControl` widget to the GUI's control panel.
 * Enabled the Core plugin's new physical-light system (`IVCoreSettings.enable_physical_light`): physically calibrated sunlight, sky and ambient with a software compensating camera. A "Physical Light" row appears in Options (default on).
