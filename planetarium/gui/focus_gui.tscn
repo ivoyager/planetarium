@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://tet6sybmxvon" path="res://planetarium/gui/icons/huds.svg" id="6_icon_huds"]
 [ext_resource type="Texture2D" uid="uid://oh10l4m1ps6l" path="res://planetarium/gui/icons/info.svg" id="8_icon_info"]
 [ext_resource type="Texture2D" uid="uid://86bu7x8q65ye" path="res://planetarium/gui/icons/hide_gui.svg" id="9_icon_hide_gui"]
+[ext_resource type="Script" uid="uid://cnf50yeyt7hkj" path="res://addons/ivoyager_core/ui_widgets/hide_huds_button.gd" id="42_hide_huds_button"]
+[ext_resource type="Texture2D" uid="uid://cbfbo85rfwyqc" path="res://planetarium/gui/icons/hide_huds.svg" id="43_icon_hide_huds"]
 [ext_resource type="PackedScene" uid="uid://diafd62ta13cn" path="res://planetarium/gui/nav_panel.tscn" id="10_nav_panel"]
 [ext_resource type="PackedScene" uid="uid://whpgdl66sqph" path="res://planetarium/gui/huds_panel.tscn" id="11_huds_panel"]
 [ext_resource type="PackedScene" uid="uid://bwlx340pfijqd" path="res://planetarium/gui/info_panel.tscn" id="13_info_panel"]
@@ -148,6 +150,20 @@ expand_icon = true
 script = ExtResource("16_hotkeys_button")
 
 [node name="ControlModResizable" parent="ButtonBar/HotkeysButton" unique_id=2044838210 instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="HideHUDsButton" type="Button" parent="ButtonBar"]
+layout_mode = 2
+tooltip_text = "HINT_HIDE_HUDS"
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+toggle_mode = true
+icon = ExtResource("43_icon_hide_huds")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("42_hide_huds_button")
+
+[node name="ControlModResizable" parent="ButtonBar/HideHUDsButton" instance=ExtResource("30_resizable")]
 base_size = Vector2(44, 44)
 
 [node name="HideGUIButton" type="Button" parent="ButtonBar" unique_id=582976097]

@@ -7,6 +7,18 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
 
+## [v0.2.2] - 2026-10-15
+
+Released using Godot 4.7.2.
+
+### Added
+* Hide HUDs toggle in the button row, left of Hide GUI, using the Core plugin's new IVHideHUDsButton; Hide GUI has a new icon to match (`gui/icons/`).
+
+### Changed
+* The HUDs panel's Hide All view button is replaced by a HIDE ALL toggle (SHOW while hidden) that stays in view below the scrolling list (`gui/huds_panel.tscn`).
+* Updated plugin ivoyager_core to v0.2.1.
+
+
 ## [v0.2.1] - 2026-10-15
 
 Released using Godot 4.7.2.
@@ -276,6 +288,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
+[v0.2.2]: https://github.com/ivoyager/planetarium/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/ivoyager/planetarium/compare/v0.2...v0.2.1
 [v0.2]: https://github.com/ivoyager/planetarium/compare/v0.1.2...v0.2
 [v0.1.2]: https://github.com/ivoyager/planetarium/compare/v0.1.1...v0.1.2
