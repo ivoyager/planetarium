@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmijnisudhq4d"]
+[gd_scene format=3 uid="uid://cmijnisudhq4d"]
 
 [ext_resource type="Script" uid="uid://b6wmdnqyec275" path="res://planetarium/gui/boot_screen.gd" id="1"]
 
-[node name="BootScreen" type="ColorRect"]
+[node name="BootScreen" type="ColorRect" unique_id=1802360341]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("1")
 
-[node name="BootLabel" type="Label" parent="."]
+[node name="BootLabel" type="Label" parent="." unique_id=518650177]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -181,6 +181,8 @@ func _on_core_init_program_objects_instantiated() -> void:
 	table_orbit_builder.use_real_planet_orbits = true
 	var wiki_manager: IVWikiManager = IVGlobal.program[&"WikiManager"]
 	wiki_manager.open_external_page = true
+	var shader_warmup: IVShaderWarmup = IVGlobal.program[&"ShaderWarmup"]
+	shader_warmup.extra_shader_names.append(&"stars_shader") # IVStarsVisual is ours to declare
 	
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher

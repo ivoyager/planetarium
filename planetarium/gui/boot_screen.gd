@@ -24,11 +24,13 @@ extends ColorRect
 ## warm-up while it runs. In the web app, notes for the visitor follow the report.
 
 const WARMUP_TEXT := "Compiling shaders (%d of %d)..."
-const WEB_NOTES: Array[String] = [
-	"Depending on your browser, startup should be much faster on revisit.",
-	("The web app will start initially with low graphic settings. Try bumping these in"
-			+ " user options if you have a capable desktop."),
-]
+const WEB_NOTE := """
+
+
+Your browser should cache shaders, making revisits faster.
+
+The web app will start initially with low graphic settings.
+Try bumping these in user options if you have a capable desktop."""
 
 var _notes := ""
 
@@ -39,8 +41,7 @@ func _ready() -> void:
 	IVStateManager.core_initialized.connect(_on_core_initialized)
 	IVStateManager.state_changed.connect(_on_state_changed)
 	if OS.has_feature("web"):
-		for note in WEB_NOTES:
-			_notes += "\n\n" + note
+		_notes = WEB_NOTE
 		_set_report(_label.text)
 
 
