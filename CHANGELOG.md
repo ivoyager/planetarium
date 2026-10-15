@@ -7,9 +7,9 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
 
-## [v0.2.1] - UNRELEASED
+## [v0.2.1] - 2026-10-15
 
-Under development using Godot 4.7.2.
+Released using Godot 4.7.2.
 
 ### Added
 * Shader warm-up on the boot screen: registers the Core plugin's new IVShaderWarmup, naming the star field's shader for it, and the boot screen now stays up through it, reporting *Compiling shaders (n of N)*. This moves the Compatibility renderer's shader compiles, which dominate a cold start and were hanging the camera mid-flight, onto the boot screen.
@@ -31,11 +31,11 @@ Under development using Godot 4.7.2.
 * Rearranged the Options and Hotkeys columns (`preinitializer.gd`).
 * Panel margins, separations and spacers follow GUI Size, through the Core plugin's new IVControlModSpacing and its IVControlModResizable.
 * Attribution docs restructured: `IVOYAGER_WORKS.md` is retired and replaced by `IVOYAGER_ASSETS.md`, which documents every distributed asset individually with its own copyright and license; `3RD_PARTY.md` becomes a clean list by copyright holder. README.md updated to match.
-* [Dev ongoing] Sync attribution docs with assets and Core submodule.
-* [Dev ongoing] Updating plugin ivoyager_core with v0.2.1.dev.
-* [Dev ongoing] Updating plugin ivoyager_tables with v0.2.1.dev.
-* [Dev ongoing] Updating plugin ivoyager_assistant with v0.0.3.dev.
-* [Dev ongoing] Updating submodule tools (unversioned).
+* Sync attribution docs with assets and Core submodule.
+* Updated plugin ivoyager_core to v0.2.1.
+* Updated plugin ivoyager_tables to v0.2.1.
+* Updated plugin ivoyager_assistant to v0.0.3.
+* Updated submodule tools to v0.0.2.
 
 
 ## [v0.2] - 2026-08-01
@@ -276,6 +276,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
+[v0.2.1]: https://github.com/ivoyager/planetarium/compare/v0.2...v0.2.1
 [v0.2]: https://github.com/ivoyager/planetarium/compare/v0.1.2...v0.2
 [v0.1.2]: https://github.com/ivoyager/planetarium/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/ivoyager/planetarium/compare/v0.1...v0.1.1
