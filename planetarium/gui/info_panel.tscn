@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="3_resizable"]
 [ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="4_spacing"]
 
-[node name="InfoPanel" type="PanelContainer"]
+[node name="InfoPanel" type="PanelContainer" unique_id=1082241561]
 theme_type_variation = &"FloatingPanel"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1089356059]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 14
@@ -16,49 +16,69 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 14
 theme_override_constants/margin_bottom = 12
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=240660574]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=1035358235]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_constants/separation = 6
 
-[node name="HomePage" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("1_link_label")]
+[node name="HomePage" parent="MarginContainer/ScrollContainer/VBox" unique_id=2006820478 instance=ExtResource("1_link_label")]
 layout_mode = 2
 text = "[url=\"https://ivoyager.dev\"]I, Voyager[/url]"
 open_external_url = true
 
-[node name="Credits" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("1_link_label")]
+[node name="GitHub" parent="MarginContainer/ScrollContainer/VBox" unique_id=655982552 instance=ExtResource("1_link_label")]
+layout_mode = 2
+text = "[url=\"https://github.com/ivoyager\"]GitHub[/url]"
+open_external_url = true
+
+[node name="Credits" parent="MarginContainer/ScrollContainer/VBox" unique_id=881168427 instance=ExtResource("1_link_label")]
 layout_mode = 2
 text = "[url=\"https://github.com/ivoyager/ivoyager_core/blob/master/CREDITS.md\"]Credits[/url]"
 open_external_url = true
 
-[node name="Feedback" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("1_link_label")]
+[node name="Assets" parent="MarginContainer/ScrollContainer/VBox" unique_id=322480780 instance=ExtResource("1_link_label")]
+layout_mode = 2
+text = "[url=\"https://github.com/ivoyager/ivoyager_core/blob/master/IVOYAGER_ASSETS.md\"]Assets[/url]"
+open_external_url = true
+
+[node name="ThirdParty" parent="MarginContainer/ScrollContainer/VBox" unique_id=259680621 instance=ExtResource("1_link_label")]
+layout_mode = 2
+text = "[url=\"https://github.com/ivoyager/ivoyager_core/blob/master/3RD_PARTY.md\"]3rd Party[/url]"
+open_external_url = true
+
+[node name="License" parent="MarginContainer/ScrollContainer/VBox" unique_id=828428353 instance=ExtResource("1_link_label")]
+layout_mode = 2
+text = "[url=\"https://github.com/ivoyager/ivoyager_core/blob/master/LICENSE.txt\"]License[/url]"
+open_external_url = true
+
+[node name="Feedback" parent="MarginContainer/ScrollContainer/VBox" unique_id=2008642363 instance=ExtResource("1_link_label")]
 layout_mode = 2
 text = "[url=\"https://github.com/orgs/ivoyager/discussions\"]Feedback[/url]"
 open_external_url = true
 
-[node name="SupportUs" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("1_link_label")]
+[node name="SupportUs" parent="MarginContainer/ScrollContainer/VBox" unique_id=971011281 instance=ExtResource("1_link_label")]
 layout_mode = 2
 text = "[url=\"https://github.com/sponsors/ivoyager\"]Support Us![/url]"
 open_external_url = true
 
-[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBox"]
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBox" unique_id=60566876]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ControlModResizable" parent="MarginContainer/ScrollContainer/VBox/Spacer" instance=ExtResource("3_resizable")]
+[node name="ControlModResizable" parent="MarginContainer/ScrollContainer/VBox/Spacer" unique_id=84564760 instance=ExtResource("3_resizable")]
 base_size = Vector2(0, 4)
 
-[node name="VersionLabel" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("2_version_label")]
+[node name="VersionLabel" parent="MarginContainer/ScrollContainer/VBox" unique_id=1324156200 instance=ExtResource("2_version_label")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.74, 0.78, 1)
 prepend = "v"
 
-[node name="ControlModSpacing" parent="MarginContainer" instance=ExtResource("4_spacing")]
+[node name="ControlModSpacing" parent="MarginContainer/ScrollContainer/VBox" unique_id=825469067 instance=ExtResource("4_spacing")]
 
-[node name="ControlModSpacing" parent="MarginContainer/ScrollContainer/VBox" instance=ExtResource("4_spacing")]
+[node name="ControlModSpacing" parent="MarginContainer" unique_id=1370057340 instance=ExtResource("4_spacing")]
