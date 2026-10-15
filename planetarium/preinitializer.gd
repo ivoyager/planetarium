@@ -102,8 +102,8 @@ func _init() -> void:
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
 	options_popup.layout = [
 		[&"LABEL_GUI_AND_HUD", &"LABEL_TIME"],
-		[&"LABEL_CAMERA", &"LABEL_SCREENSHOTS"],
-		[&"LABEL_GRAPHICS_PERFORMANCE"],
+		[&"LABEL_CAMERA"],
+		[&"LABEL_GRAPHICS_PERFORMANCE", &"LABEL_SCREENSHOTS"],
 	]
 	options_popup.section_content[&"LABEL_TIME"] = []
 	options_popup.add_option(&"LABEL_TIME", &"LABEL_TERRESTRIAL_TIME_CLOCK",
@@ -120,8 +120,8 @@ func _init() -> void:
 	# User hotkeys
 	var hotkeys_popup: IVHotkeysPopup = IVGlobal.get_node("/root/Universe/TopUI/HotkeysPopup")
 	hotkeys_popup.layout = [
-		[&"LABEL_ADMIN", &"LABEL_GUI"],
-		[&"LABEL_TIME", &"LABEL_SELECTION"],
+		[&"LABEL_ADMIN", &"LABEL_GUI", &"LABEL_TIME"],
+		[&"LABEL_SELECTION"],
 		[&"LABEL_CAMERA", &"LABEL_SCREENSHOTS"],
 	]
 	var gui_hotkeys: Array = hotkeys_popup.section_content[&"LABEL_GUI"]

@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bx22jigtdb8iw" path="res://addons/ivoyager_core/ui_widgets/huds_box.tscn" id="2_k0j0v"]
 [ext_resource type="PackedScene" uid="uid://bkcj6agxxgfw" path="res://addons/ivoyager_core/ui_components/control_mod_resizable.tscn" id="4_k0j0v"]
 [ext_resource type="PackedScene" uid="uid://cimxq7ent5esq" path="res://addons/ivoyager_core/ui_components/control_mod_spacing.tscn" id="5_spcng"]
+[ext_resource type="PackedScene" path="res://addons/ivoyager_core/ui_widgets/hide_huds_button.tscn" id="6_hide_huds"]
+[ext_resource type="PackedScene" path="res://addons/ivoyager_core/ui_components/control_mod_scroll_share.tscn" id="7_scroll_share"]
 
 [node name="HUDsPanel" type="PanelContainer" unique_id=38713050]
 theme_type_variation = &"FloatingPanel"
@@ -15,14 +17,28 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 5
 
-[node name="HUDsBox" parent="MarginContainer/ScrollContainer" unique_id=1056522969 instance=ExtResource("2_k0j0v")]
+[node name="HUDsBox" parent="MarginContainer/VBox/ScrollContainer" unique_id=1056522969 instance=ExtResource("2_k0j0v")]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="ControlModScrollShare" parent="MarginContainer/VBox/ScrollContainer" instance=ExtResource("7_scroll_share")]
+
+[node name="HideHUDsButton" parent="MarginContainer/VBox" instance=ExtResource("6_hide_huds")]
+layout_mode = 2
+focus_mode = 0
+theme_type_variation = &"PillButton"
+
+[node name="ControlModSpacing" parent="MarginContainer/VBox" instance=ExtResource("5_spcng")]
 
 [node name="ControlModResizable" parent="." unique_id=1022628023 instance=ExtResource("4_k0j0v")]
 base_size = Vector2(375, 0)
