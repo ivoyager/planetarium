@@ -24,53 +24,51 @@ extends Node
 ## This file replaces the "Units" plugin template file at
 ## [code]addons/ivoyager_units/units.gd[/code] as set in res://ivoyager_override.cfg.
 ##
-## It is unchanged except for comments and sim scale ([constant METER]).[br][br]
+## It is unchanged except for comments. The file override was necessary for much
+## of Core plugin development due to extreme sensitivity of lights and shadows
+## to scale ([constant METER]) that varied with Godot versions and our Core plugin
+## code. That sensitivity appears to be cured as of Godot 4.7 with Core 0.2. We're
+## keeping the file for the record in case similar issues arise again.[br][br]
 ##
-## WARNING: Lighting and shadows are EXTREMELY sensitive to scale, and the
-## specific issues (and best setting) vary with Godot versions. See class file
-## comments in the Planetarium's 
-## [url=https://github.com/ivoyager/planetarium/blob/master/planetarium/units.gd]
-## units.gd[/url] for a running record of issues and the current recommended
-## METER value.
-
-# Scale notes:
-#
-# Godot 4.7 w/ ivoyager_core 0.2.dev update:
-# Either Godot changes our our new shadow system (probably the latter) may
-# have cured scale sensitivity. METER = 1e-3 or 1.0 are fine in Forward+ and
-# Compatibility renderer. Have not tested HTML5 export specifically yet.
-#
-# Godot 4.5 update:
-# METER = 1e-3 looks good in editor and Windows export (lighting and shadows)
-# and HTML5 export (lighting) at all target object scales. Did not test other
-# values.
-#
-# Godot 4.4 update after shadows work (v0.0.24.dev):
-# For the IVDynamicLight system, we need METER ~ 1e-3. Larger breaks moon
-# shadows on Jupiter. Self-shadow quality on ISS is already affected at 1e-3
-# but gets much worse at smaller values. Needs testing in HTML5 export.
-#
-# Godot 4.3 update. Problems for HTML5 as below. However, Windows now appears
-# ok at 1e-10. Perhaps smaller value should be our base value (again)?
-#
-# COMMENTS BELOW ARE OBSOLETE, but keeping for reference.
-#
-# As of Godot 4.2.beta4, there are lighting bugs related to scale that are
-# platform specific. We have to manually update METER here for export platform.
-#
-# Windows [these notes are OBSOLETE]:
-#  METER = 1.0 works great.
-#  METER = 1e-3 looks ok for all existing bodies.
-#  METER = 1e-4 causes 'lights out' when approaching smallest object (Juno).
-#  METER = 1e-10 caues 'lights out' for Moon & smaller.
-#
-# HTML5 [these notes are OBSOLETE]:
-#  METER = 1.0 causes unlit everywhere with irregular light 'patches'.
-#  METER = 1e-3 causes above but only when at larger planets.
-#  METER = 1e-4 causes shadow edge issue at larger planets. (But no hint of Windows issue above.)
-#  METER = 1e-5 as above but less. Self-shadowing artifact?
-#  METER = 1e-7 lighting ok for all tested. (Harsh shadow border? Need to compare w/ below.)
-#  METER = 1e-10 lighting ok for all tested.
+## Scale notes:
+##
+## Godot 4.7 with Core 0.2 update:
+## Either Godot changes our our new shadow system (probably the latter) may
+## have cured scale sensitivity. METER = 1e-3 or 1.0 are fine in Forward+ and
+## Compatibility renderer. METER = 1.0 is used and ok in the web app.
+##
+## *****************************************************************************
+## EVERYTHING BELOW IS OBSOLETE !!!!
+##
+## Godot 4.5 update:
+## METER = 1e-3 looks good in editor and Windows export (lighting and shadows)
+## and HTML5 export (lighting) at all target object scales. Did not test other
+## values.
+##
+## Godot 4.4 update after shadows work (v0.0.24.dev):
+## For the IVDynamicLight system, we need METER ~ 1e-3. Larger breaks moon
+## shadows on Jupiter. Self-shadow quality on ISS is already affected at 1e-3
+## but gets much worse at smaller values. Needs testing in HTML5 export.
+##
+## Godot 4.3 update. Problems for HTML5 as below. However, Windows now appears
+## ok at 1e-10. Perhaps smaller value should be our base value (again)?
+##
+## As of Godot 4.2.beta4, there are lighting bugs related to scale that are
+## platform specific. We have to manually update METER here for export platform.
+##
+## Windows [these notes are OBSOLETE!]:
+##  METER = 1.0 works great.
+##  METER = 1e-3 looks ok for all existing bodies.
+##  METER = 1e-4 causes 'lights out' when approaching smallest object (Juno).
+##  METER = 1e-10 caues 'lights out' for Moon & smaller.
+##
+## HTML5 [these notes are OBSOLETE!]:
+##  METER = 1.0 causes unlit everywhere with irregular light 'patches'.
+##  METER = 1e-3 causes above but only when at larger planets.
+##  METER = 1e-4 causes shadow edge issue at larger planets. (But no hint of Windows issue above.)
+##  METER = 1e-5 as above but less. Self-shadowing artifact?
+##  METER = 1e-7 lighting ok for all tested. (Harsh shadow border? Need to compare w/ below.)
+##  METER = 1e-10 lighting ok for all tested.
 
 
 # SI base units
