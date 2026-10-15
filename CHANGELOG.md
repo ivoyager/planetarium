@@ -16,8 +16,8 @@ Released using Godot 4.7.2.
 
 ### Changed
 * The HUDs panel's Hide All view button is replaced by a HIDE ALL toggle (SHOW while hidden) that stays in view below the scrolling list (`gui/huds_panel.tscn`).
-* Updated plugin ivoyager_core to v0.2.1.
-
+* Updated plugin ivoyager_core to v0.2.2. (Patches v0.2.1's black asteroid orbit lines in Compatibility renderer.)
+* Updated plugin ivoyager_assistant to v0.0.4.
 
 ## [v0.2.1] - 2026-10-15
 
