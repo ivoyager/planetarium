@@ -7,6 +7,20 @@ File format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 See cloning and downloading instructions [here](https://www.ivoyager.dev/developers/).
 
 
+## [v0.2.3] - UNRELEASED
+
+Under development using Godot 4.7.2.
+
+### Changed
+* The Planetarium's translation is listed in project.godot rather than added by the preinitializer, and the Units plugin's is no longer listed there (Core adds it now).
+* [Dev ongoing] Updating plugin ivoyager_core with v0.2.3.dev.
+* [Dev ongoing] Updating plugin ivoyager_units with v0.2.3.dev.
+* [Dev ongoing] Updating plugin ivoyager_assistant with v0.0.5.dev.
+
+### Fixed
+* The boot screen and the Info panel's links had English text that no translation could reach; they use new text keys in `planetarium_text.csv`.
+
+
 ## [v0.2.2] - 2026-10-15
 
 Released using Godot 4.7.2.
@@ -18,6 +32,7 @@ Released using Godot 4.7.2.
 * The HUDs panel's Hide All view button is replaced by a HIDE ALL toggle (SHOW while hidden) that stays in view below the scrolling list (`gui/huds_panel.tscn`).
 * Updated plugin ivoyager_core to v0.2.2. (Patches v0.2.1's black asteroid orbit lines in Compatibility renderer.)
 * Updated plugin ivoyager_assistant to v0.0.4.
+
 
 ## [v0.2.1] - 2026-10-15
 
@@ -288,6 +303,7 @@ Requires non-Git-tracked **ivoyager_assets-0.0.10**; find in [ivoyager releases]
 * Updated submodule 'ivoyager' to v0.0.10.
 
 
+[v0.2.3]: https://github.com/ivoyager/planetarium/compare/v0.2.2...HEAD
 [v0.2.2]: https://github.com/ivoyager/planetarium/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/ivoyager/planetarium/compare/v0.2...v0.2.1
 [v0.2]: https://github.com/ivoyager/planetarium/compare/v0.1.2...v0.2

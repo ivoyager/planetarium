@@ -13,7 +13,7 @@ dest_files=["res://planetarium/text/planetarium_text.en.translation"]
 
 [params]
 
-compress=false
+compress=1
 delimiter=0
 unescape_keys=false
 unescape_translations=true
