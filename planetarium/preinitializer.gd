@@ -93,8 +93,6 @@ func _init() -> void:
 	
 	# static class changes
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
-	IVTranslationImporter.translations.append(
-			"res://planetarium/text/planetarium_text.en.translation")
 
 	# User settings/options
 	IVSettingsManager.graphics_target = IVSettingsManager.GraphicsTarget.BROAD_HARDWARE
