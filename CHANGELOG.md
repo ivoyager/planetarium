@@ -17,6 +17,9 @@ Under development using Godot 4.7.2.
 * [Dev ongoing] Updating plugin ivoyager_units with v0.2.3.dev.
 * [Dev ongoing] Updating plugin ivoyager_assistant with v0.0.5.dev.
 
+### Fixed
+* The boot screen and the Info panel's links had English text that no translation could reach; they use new text keys in `planetarium_text.csv`.
+
 
 ## [v0.2.2] - 2026-10-15
 

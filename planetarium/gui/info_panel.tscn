@@ -39,32 +39,32 @@ open_external_url = true
 
 [node name="Credits" parent="MarginContainer/ScrollContainer/VBox" unique_id=881168427 instance=ExtResource("1_link_label")]
 layout_mode = 2
-text = "[url=\"https://github.com/ivoyager/planetarium/blob/master/CREDITS.md\"]Credits[/url]"
+text = "TXT_LINK_CREDITS"
 open_external_url = true
 
 [node name="Assets" parent="MarginContainer/ScrollContainer/VBox" unique_id=322480780 instance=ExtResource("1_link_label")]
 layout_mode = 2
-text = "[url=\"https://github.com/ivoyager/planetarium/blob/master/IVOYAGER_ASSETS.md\"]Assets[/url]"
+text = "TXT_LINK_ASSETS"
 open_external_url = true
 
 [node name="ThirdParty" parent="MarginContainer/ScrollContainer/VBox" unique_id=259680621 instance=ExtResource("1_link_label")]
 layout_mode = 2
-text = "[url=\"https://github.com/ivoyager/planetarium/blob/master/3RD_PARTY.md\"]3rd Party[/url]"
+text = "TXT_LINK_THIRD_PARTY"
 open_external_url = true
 
 [node name="License" parent="MarginContainer/ScrollContainer/VBox" unique_id=828428353 instance=ExtResource("1_link_label")]
 layout_mode = 2
-text = "[url=\"https://github.com/ivoyager/planetarium/blob/master/LICENSE.txt\"]License[/url]"
+text = "TXT_LINK_LICENSE"
 open_external_url = true
 
 [node name="Feedback" parent="MarginContainer/ScrollContainer/VBox" unique_id=2008642363 instance=ExtResource("1_link_label")]
 layout_mode = 2
-text = "[url=\"https://github.com/orgs/ivoyager/discussions\"]Feedback[/url]"
+text = "TXT_LINK_FEEDBACK"
 open_external_url = true
 
 [node name="SupportUs" parent="MarginContainer/ScrollContainer/VBox" unique_id=971011281 instance=ExtResource("1_link_label")]
 layout_mode = 2
-text = "[url=\"https://github.com/sponsors/ivoyager\"]Support Us![/url]"
+text = "TXT_LINK_SUPPORT_US"
 open_external_url = true
 
 [node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBox" unique_id=60566876]
