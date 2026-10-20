@@ -68,9 +68,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="OptionsPopup" parent="TopUI" unique_id=1551482224 instance=ExtResource("12_uvir0")]
+size = Vector2i(672, 100)
 modal = false
 
 [node name="HotkeysPopup" parent="TopUI" unique_id=461994937 instance=ExtResource("13_5m8w2")]
+size = Vector2i(672, 100)
 modal = false
 
 [node name="ConfirmationDialog" parent="TopUI" unique_id=572168116 instance=ExtResource("14_ip80n")]
