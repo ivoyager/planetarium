@@ -28,3 +28,14 @@ keep drawing over the subject unless set_huds hides them.
 The maintainer's hand-saved views are listed by list_cached_views and applied by
 apply_cached_view {"name": ..., "collection": ...}; reuse one rather than hunting
 for a pose with move_camera.
+
+SETTINGS AND HUDS
+get_options lists every user setting with its value and default; a dropdown
+setting also gets its value names. set_option {"setting": "atmosphere_quality",
+"value": "ATMOSPHERE_REDUCED"} changes one as the Options popup does. Graphics
+defaults are fitted to the machine, so set any setting a test depends on. A change
+lasts only for the session unless you pass "persist": true; a result showing
+"restart_pending": true takes effect only at the next start.
+get_huds reads HUD visibility by body class and asteroid group; set_class_huds
+{"hud": "names", "body_classes": ["PLANET"], "visible": false} changes one, and
+returns "previous" for putting it back.
