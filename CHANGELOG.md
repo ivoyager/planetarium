@@ -13,7 +13,8 @@ Under development using Godot 4.7.2.
 
 ### Changed
 * The Planetarium's translation is listed in project.godot rather than added by the preinitializer, and the Units plugin's is no longer listed there (Core adds it now).
-* `planetarium/assistant_context.txt` tells Assistant clients to hide the 3D HUDs with `set_huds` before a screenshot, to reuse the maintainer's saved views, and how to set user settings and HUDs by class.
+* `planetarium/assistant_context.txt` tells Assistant clients how to work through the members Core's classes declare (`describe`, `get`, `call`, batches and widgets): framing a body by view, hiding the GUI and 3D HUDs for a screenshot, reusing the maintainer's saved views, and setting user settings and HUDs by class.
+* `planetarium/units.gd` declares the unit constants an automation client converts by.
 * [API breaking] `ProbeExposureSuite` drops `list_saved_views` and `apply_saved_view`, which the Assistant's `list_cached_views` and `apply_cached_view` replace. A driver passing no `collection` now passes `"view_cacher"` itself, and `"instant": true` to keep the camera from animating.
 * [Dev ongoing] Updating plugin ivoyager_core with v0.2.3.dev.
 * [Dev ongoing] Updating plugin ivoyager_units with v0.2.3.dev.
