@@ -18,7 +18,13 @@ INSPECTING GRAPHICS (typical flow)
   1. get_state            # confirm "started": true
   2. select_body          # pick the body, e.g. {"name": "PLANET_EARTH"}
   3. apply_view {"name": "VIEW_ZOOM", "instant": true}   # instant: no animation before capture
-  4. screenshot {"path": "<file>.png", "hide_gui": true}
+  4. set_huds {"visible": false}   # orbit lines, names, symbols, asteroid points
+  5. screenshot {"path": "<file>.png", "hide_gui": true}
 
 Use "instant": true with apply_view before a screenshot so the camera does not
-animate into place across frames.
+animate into place across frames. hide_gui hides only the 2D GUI; the 3D HUDs
+keep drawing over the subject unless set_huds hides them.
+
+The maintainer's hand-saved views are listed by list_cached_views and applied by
+apply_cached_view {"name": ..., "collection": ...}; reuse one rather than hunting
+for a pose with move_camera.
