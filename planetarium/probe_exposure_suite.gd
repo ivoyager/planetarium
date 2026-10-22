@@ -67,7 +67,7 @@ func get_method_names() -> Array[String]:
 			"get_body_debug", "set_ambient_energy", "set_reflected_light", "list_lights",
 			"poke_sky_radiance", "get_shadow_receivers", "set_exposure_ceiling",
 			"get_limb_samples", "set_limb_meter", "set_ring_meter", "set_exposure",
-			"project_limb_circle", "list_saved_views", "apply_saved_view", "get_render_time",
+			"project_limb_circle", "get_render_time",
 			"set_shell_visible", "set_shell_param", "set_glow", "set_psf_settings",
 			"get_exposure_skips", "set_exposure_skips", "get_shadow_skips", "set_shadow_skips"]
 
@@ -90,8 +90,6 @@ func get_method_summaries() -> Dictionary:
 		"set_limb_meter": "Override the limb ramp at runtime ({\"start\": float, \"full\": float, \"edge\": float}; omit a key to keep it).",
 		"set_ring_meter": "Override the ring openness ramp at runtime ({\"onset\": float, \"full\": float}; omit a key to keep it); sweeps the edge-on release in ONE app run.",
 		"set_exposure": "Freeze or release auto exposure ({\"auto\": bool, \"manual_ev\": float}; omit a key to keep it). A frozen exposure is what separates a render change from a metering change.",
-		"list_saved_views": "List the user's cached views by collection ({}); apply_view covers table views only.",
-		"apply_saved_view": "Apply one cached view ({\"name\": String, \"collection\": String}).",
 		"get_render_time": "Last frame's measured viewport render times ({}); enables measurement on first call, so poll and average.",
 		"project_limb_circle": "Screen positions of a body's silhouette circle at a given altitude ({\"name\": entity_name, \"altitude_km\": float, \"samples\": int}); the projection is the engine's own, so it holds off axis, where a sphere's silhouette is an ellipse and a circle fit is meaningless.",
 		"get_limb_samples": "Per-sample breakdown of one body's limb ring ({\"name\": entity_name}).",
@@ -145,10 +143,6 @@ func dispatch(method: String, params: Dictionary) -> Variant:
 			return _set_exposure(params)
 		"project_limb_circle":
 			return _project_limb_circle(params)
-		"list_saved_views":
-			return _list_saved_views()
-		"apply_saved_view":
-			return _apply_saved_view(params)
 		"get_render_time":
 			return _get_render_time()
 		"set_shell_visible":
@@ -1175,33 +1169,6 @@ func _get_limb_samples(params: Dictionary) -> Variant:
 				/ (star_distance * camera_distance), -1.0, 1.0))),
 		"samples": samples,
 	}
-
-
-# The assistant's apply_view reaches table views only; a view the maintainer saved in the app
-# lives in IVViewManager.cached_views, keyed "<name>.<collection>".
-func _list_saved_views() -> Variant:
-	var manager_var: Variant = IVGlobal.program.get(&"ViewManager")
-	if not manager_var is IVViewManager:
-		return {"_error": {"code": ERR_NOT_ALLOWED, "message": "no ViewManager"}}
-	var manager: IVViewManager = manager_var
-	var keys: Array = []
-	for key: StringName in manager.cached_views:
-		keys.append(String(key))
-	return {"cached": keys}
-
-
-func _apply_saved_view(params: Dictionary) -> Variant:
-	var manager_var: Variant = IVGlobal.program.get(&"ViewManager")
-	if not manager_var is IVViewManager:
-		return {"_error": {"code": ERR_NOT_ALLOWED, "message": "no ViewManager"}}
-	var manager: IVViewManager = manager_var
-	var view_name: String = params.get("name", "")
-	var collection: String = params.get("collection", "view_cacher")
-	if !manager.has_view(view_name, collection, true):
-		return {"_error": {"code": ERR_DOES_NOT_EXIST,
-				"message": "no cached view '%s.%s'" % [view_name, collection]}}
-	manager.set_view(view_name, collection, true, true)
-	return {"ok": true, "name": view_name, "collection": collection}
 
 
 # Where a body's silhouette at some altitude above its disc lands on screen. A sphere seen off

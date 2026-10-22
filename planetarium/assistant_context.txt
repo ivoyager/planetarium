@@ -1,24 +1,63 @@
 I, Voyager Planetarium — notes for automation / accessibility clients.
 
-FRAMING THE CAMERA ON A BODY
-The reliable way to look at a body is to select it, then apply a named view:
-  1. select_body {"name": "PLANET_MARS"}
-  2. apply_view {"name": "VIEW_ZOOM", "instant": true}
-VIEW_ZOOM frames the current selection at close range (~3 body radii, 18 deg above
-the horizon) — the same as clicking the GUI "Zoom" button. It changes only the
-camera, not HUDs or time. Call list_views for the full set (e.g. VIEW_ZOOM,
-VIEW_FORTYFIVE, VIEW_TOP, VIEW_HOME, VIEW_CISLUNAR, VIEW_SYSTEM, VIEW_ASTEROIDS).
+START HERE
+Call describe once the simulator is ready (get_project_info "ready": true). It lists
+every object you can read and call, with each member's arguments and description,
+the enums they use, what is unavailable right now, and the widgets a user can see.
+Read state with get, act with call, and send several requests as one JSON array
+(a batch) to save round trips. Bodies are addressed {"class": "IVBody", "name":
+"PLANET_MARS"}; single objects by name ("Timekeeper", "SelectionManager",
+"ViewManager", "CameraHandler", "BodyHUDsState", "IVStateManager", ...). The older
+methods (select_body, apply_view, set_huds, get_options, ...) still work but are
+deprecated.
 
-Prefer apply_view over move_camera. move_camera is low-level: its view_position is
-[longitude, latitude, perspective_distance], and that third value is a perspective
-distance (radius-scaled), NOT meters — an IVCamera internal you normally should not
-hand-build. Use move_camera only for explicit per-axis control.
+FRAMING THE CAMERA ON A BODY
+The reliable way to look at a body is to select it, then apply a named view, as a
+user clicking the GUI does:
+  1. call SelectionManager.select_by_name {"name": "PLANET_MARS"}
+  2. call ViewManager.set_table_view {"view_name": "VIEW_ZOOM", "is_camera_instant_move": true}
+VIEW_ZOOM frames the current selection at close range (~3 body radii, 18 deg above
+the horizon). It changes only the camera, not HUDs or time. get ViewManager
+table_views for the full set (e.g. VIEW_ZOOM, VIEW_FORTYFIVE, VIEW_TOP, VIEW_HOME,
+VIEW_CISLUNAR, VIEW_SYSTEM, VIEW_ASTEROIDS).
+
+Prefer views over CameraHandler.move_to_by_name. Its view_position is [longitude,
+latitude, perspective_distance], and that third value is a perspective distance
+(radius-scaled), NOT meters — an IVCamera internal you normally should not
+hand-build. Pass camera_flags ["CAMERAFLAGS_TRACK_GROUND"] to pose relative to the
+body's own equator; the default orbit tracking measures latitude in a tilted frame.
 
 INSPECTING GRAPHICS (typical flow)
-  1. get_state            # confirm "started": true
-  2. select_body          # pick the body, e.g. {"name": "PLANET_EARTH"}
-  3. apply_view {"name": "VIEW_ZOOM", "instant": true}   # instant: no animation before capture
-  4. screenshot {"path": "<file>.png", "hide_gui": true}
+  1. get_project_info     # confirm "ready": true
+  2. select the body and apply VIEW_ZOOM instantly (above), so the camera does not
+     animate into place across frames
+  3. one batch: call BodyHUDsState.set_huds_hidden {"is_hidden": true} (orbit lines,
+     names, symbols, asteroid points); call IVShowHideUI.show_hide_gui
+     {"is_toggle": false, "is_show": false}; screenshot {"path": "<file>.png",
+     "redraw": true}; then show the GUI again
+Read BodyHUDsState.huds_hidden back rather than assume a clean frame; any later
+HUD visibility change shows them again.
 
-Use "instant": true with apply_view before a screenshot so the camera does not
-animate into place across frames.
+The maintainer's hand-saved views are in ViewManager.cached_views (keyed
+"<name>.<collection>") and applied by ViewManager.set_view {"view_name": ...,
+"collection_name": ..., "is_cached": true}; reuse one rather than hunting for a
+pose.
+
+SETTINGS AND HUDS
+call IVSettingsManager.get_setting_keys / get_setting / get_default; a dropdown
+setting's value names come from IVOptionsPopup.get_option_enumeration. Change one
+with IVSettingsManager.change_setting {"key": ..., "value": ..., "suppress_caching":
+true} — without suppress_caching the change is written to the user's settings
+file. Graphics defaults are fitted to the machine, so set any setting a test
+depends on; IVSettingsManager.is_restart_pending_for says whether it takes effect
+only at the next start.
+HUD visibility by body class is BodyHUDsState (is_orbit_visible, set_orbit_visibility
+with body_flags such as ["BODYFLAGS_PLANET"]) and by asteroid group SBGHUDsState.
+HUD state and views persist between sessions, so set what a test depends on and
+put back what you change.
+
+THE USER SURFACE
+list_widgets lists the controls a user can operate, by name and address;
+operate_widget operates one as a user does (a button press, a value for the speed,
+time or focal-length controls). A hidden widget's error names the button that shows
+it.

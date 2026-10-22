@@ -111,6 +111,23 @@ const WEBER := VOLT * SECOND
 const TESLA := WEBER / METER ** 2
 const GRAVITATIONAL_CONSTANT := 6.67430e-11 * METER ** 3 / (KG * SECOND ** 2)
 
+## Unit constants an automation client may read to convert to and from the
+## simulator's internal units: a length in meters is [code]length / METER[/code].
+const AUTOMATION_PROPERTIES: Array[StringName] = [
+	&"SECOND",
+	&"METER",
+	&"KG",
+	&"DEG",
+	&"MINUTE",
+	&"HOUR",
+	&"DAY",
+	&"YEAR",
+	&"KM",
+	&"AU",
+	&"LIGHT_YEAR",
+	&"PARSEC",
+]
+
 
 ## Conversion multipliers for units that are linear with zero-intersect.
 ## Internal unit symbols must be unique. However, redundant symbol usage can
