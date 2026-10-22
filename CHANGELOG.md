@@ -15,7 +15,7 @@ Under development using Godot 4.7.2.
 * The Planetarium's translation is listed in project.godot rather than added by the preinitializer, and the Units plugin's is no longer listed there (Core adds it now).
 * `planetarium/assistant_context.txt` tells Assistant clients how to work through the members Core's classes declare (`describe`, `get`, `call`, batches and widgets): framing a body by view, hiding the GUI and 3D HUDs for a screenshot, reusing the maintainer's saved views, and setting user settings and HUDs by class.
 * `planetarium/units.gd` declares the unit constants an automation client converts by.
-* [API breaking] `ProbeExposureSuite` drops `list_saved_views` and `apply_saved_view`, which the Assistant's `list_cached_views` and `apply_cached_view` replace. A driver passing no `collection` now passes `"view_cacher"` itself, and `"instant": true` to keep the camera from animating.
+* [API breaking] The Assistant probe suites are program objects that declare their members, `ExposureProbe` and `DialogRigProbe` (`planetarium/`, added in `ivoyager_override2.cfg`), now that the Assistant has no suites; `ExposureProbe` drops `list_saved_views` and `apply_saved_view`, which `ViewManager.cached_views` and `set_view` replace. A driver keeps each method's name and arguments and sends them through the Assistant's `call`, addressing the probe by its role.
 * [Dev ongoing] Updating plugin ivoyager_core with v0.2.3.dev.
 * [Dev ongoing] Updating plugin ivoyager_units with v0.2.3.dev.
 * [Dev ongoing] Updating plugin ivoyager_assistant with v0.0.5.dev.
