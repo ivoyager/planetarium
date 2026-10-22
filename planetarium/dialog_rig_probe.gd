@@ -1,4 +1,4 @@
-# dialog_rig_probe_suite.gd
+# dialog_rig_probe.gd
 # This file is part of I, Voyager
 # https://ivoyager.dev
 # *****************************************************************************
@@ -17,24 +17,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # *****************************************************************************
-extends IVAssistantTestSuite
+class_name DialogRigProbe
+extends RefCounted
 
-## Assistant API for rendering a body through [IVBody2DCaptureDialog]'s own path.
+## Renders a body through [IVBody2DCaptureDialog]'s own path, for automated measurement.
 ##
 ## Drives [IVBody2DCapturer] through the sequence the dialog uses -- stage on the body's
 ## own camera radius, reset pose, [code]solve_fit_zoom[/code], [code]capture_image[/code]
 ## -- so the dialog-only half of the capturer, the fit and the readback conversion, can be
 ## measured headlessly. Neither is reached by
-## [code]addons/tools/body_2d_icon_suite.gd[/code], which captures the shipped icons; the
+## [code]addons/tools/body_2d_icon_capture.gd[/code], which captures the shipped icons; the
 ## two are one rig, and this is what shows they have not drifted apart.[br][br]
 ##
-## Register it in [code]ivoyager_override2.cfg[/code] under
-## [code][assistant_test_suites][/code]. Rendering needs frames, so a capture cannot answer
-## within one JSON-RPC call: [code]capture_dialog_icon[/code] starts one and returns
-## immediately, and [code]poll_dialog_icon[/code] returns the result once it lands.[br][br]
+## A client calls these members through the [code]ivoyager_assistant[/code] plugin's
+## [code]call[/code], addressing this object by its role, "DialogRigProbe"
+## ([code]ivoyager_override2.cfg[/code] adds it to the program); both wait for the
+## simulator to start. Rendering needs frames, so a capture cannot answer within one call:
+## [method capture_dialog_icon] starts one and returns immediately, and
+## [method poll_dialog_icon] returns the result once it lands.[br][br]
 ##
-## Companion to [code]planetarium/probe_exposure_suite.gd[/code]; the note there on where
+## Companion to [code]planetarium/exposure_probe.gd[/code]; the note there on where
 ## these two live, and on coding them for general use, applies here too.
+
+const AUTOMATION_METHODS: Array[StringName] = [
+	&"capture_dialog_icon",
+	&"poll_dialog_icon",
+]
 
 const RIG_SIZE := IVBody2DCapturer.ICON_SIZE * IVBody2DCapturer.SUPERSAMPLE
 
@@ -52,41 +60,38 @@ var _running := false
 var _result: Dictionary
 
 
-func get_method_names() -> Array[String]:
-	return ["capture_dialog_icon", "poll_dialog_icon"]
+## Whether an automation client may use [param _member] now: both members wait for the
+## simulator to start.
+func is_automation_available(_member: StringName) -> bool:
+	return IVStateManager.started
 
 
-func get_method_summaries() -> Dictionary:
-	return {
-		"capture_dialog_icon": "Start one render through the dialog's own path "
-				+ "({\"name\": entity_name, \"out_path\": String}); poll for the result.",
-		"poll_dialog_icon": "Return the running render's result once it has landed.",
-	}
+## Starts one render of body [param name] through the dialog's own path, saved to
+## [param out_path] where one is given, and returns at once; poll
+## [method poll_dialog_icon] for the result.
+func capture_dialog_icon(name: String, out_path := "") -> Dictionary:
+	if _running:
+		return {"error": "already running"}
+	_running = true
+	_result = {}
+	# A render needs frames, so the capture runs on and publishes through _result and
+	# _running for poll_dialog_icon to collect.
+	_capture(StringName(name), out_path)
+	return {"started": true}
 
 
-# The assistant dispatch is synchronous and a render needs frames, so _capture() is started
-# detached and publishes through _result / _running for poll_dialog_icon to collect.
-func dispatch(method: String, params: Dictionary) -> Variant:
-	match method:
-		"capture_dialog_icon":
-			if _running:
-				return {"error": "already running"}
-			_running = true
-			_result = {}
-			_capture(params)
-			return {"started": true}
-		"poll_dialog_icon":
-			if _running:
-				return {"done": false}
-			var result := _result
-			_result = {}
-			result["done"] = true
-			return result
-	return null
+## The running render's result once it has landed, with [code]done[/code] true; until then
+## only [code]{"done": false}[/code].
+func poll_dialog_icon() -> Dictionary:
+	if _running:
+		return {"done": false}
+	var result := _result
+	_result = {}
+	result["done"] = true
+	return result
 
 
-func _capture(params: Dictionary) -> void:
-	var body_name := StringName(str(params.get("name", "")))
+func _capture(body_name: StringName, out_path: String) -> void:
 	if !IVBody.bodies.has(body_name):
 		_finish({"error": "no body %s" % body_name})
 		return
@@ -123,7 +128,6 @@ func _capture(params: Dictionary) -> void:
 	var result := {"body": String(body_name), "zoom": zoom, "fit_msec": fit_msec,
 			"reference_radius": reference_radius}
 	if image:
-		var out_path := str(params.get("out_path", ""))
 		if !out_path.is_empty():
 			result["save_error"] = image.save_png(out_path)
 			result["path"] = out_path

@@ -7,9 +7,9 @@ the enums they use, what is unavailable right now, and the widgets a user can se
 Read state with get, act with call, and send several requests as one JSON array
 (a batch) to save round trips. Bodies are addressed {"class": "IVBody", "name":
 "PLANET_MARS"}; single objects by name ("Timekeeper", "SelectionManager",
-"ViewManager", "CameraHandler", "BodyHUDsState", "IVStateManager", ...). The older
-methods (select_body, apply_view, set_huds, get_options, ...) still work but are
-deprecated.
+"ViewManager", "CameraHandler", "BodyHUDsState", "IVStateManager", ...).
+ExposureProbe and DialogRigProbe are measuring instruments for asset and photometry
+work, not part of the app; their setters change rendering until the app restarts.
 
 FRAMING THE CAMERA ON A BODY
 The reliable way to look at a body is to select it, then apply a named view, as a
