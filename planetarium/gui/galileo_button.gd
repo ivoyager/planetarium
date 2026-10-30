@@ -20,25 +20,31 @@
 class_name GalileoButton
 extends IVPanelButton
 
-## The button that shows and hides Galileo's chat panel, there only while
-## Galileo is connected to a model.
+## The button that shows and hides Galileo's chat panel.
 ##
-## Galileo is experimental, so a user who hasn't set it up in Options never sees
-## it. Connecting shows this button and opens the panel; disconnecting hides
-## both, with [member IVPanelButton.close_panel_when_hidden] set.
+## Galileo is experimental. Until the user connects it to a model, the button
+## is there to open [member chat_box]'s setup offer, unless the user has
+## dismissed the offer for good; dismissing it hides this button and, with
+## [member IVPanelButton.close_panel_when_hidden] set, the panel. Connecting
+## shows the button and opens the panel, and so does disconnecting, which brings
+## the offer back.
+
+@export var chat_box: IVAssistantChatBox
 
 
 func _ready() -> void:
 	super()
 	var connections := IVAssistant.connections
-	visible = connections != null and connections.connection != null
-	if connections:
-		connections.connection_changed.connect(_on_connection_changed)
+	if !connections:
+		hide()
+		return
+	connections.connection_changed.connect(_on_connection_changed)
+	chat_box.setup_dismissed.connect(hide)
+	if connections.connection:
+		return
+	visible = IVAssistant.has_setup_wizard() and !connections.is_setup_declined
 
 
 func _on_connection_changed() -> void:
-	var is_connected_to_model := IVAssistant.connections.connection != null
-	if is_connected_to_model and !visible:
-		show()
-		button_pressed = true
-	visible = is_connected_to_model
+	show()
+	button_pressed = true

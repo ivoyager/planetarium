@@ -43,8 +43,17 @@ const PANEL_ACTIONS: Dictionary[StringName, Array] = {
 	&"toggle_selection_details" : [KEY_5, &"LABEL_SHOW_HIDE_SELECTION_DETAILS"],
 	&"toggle_galileo_panel" : [KEY_6, &"LABEL_SHOW_HIDE_GALILEO"],
 }
+const FOCUS_THEME := "res://planetarium/gui/focus_theme.tres"
 #const VERBOSE_GLOBAL_SIGNALS := false
 #const VERBOSE_STATEMANAGER_SIGNALS := false
+
+
+static func _copy_theme_type(from_theme: Theme, to_theme: Theme, theme_type: StringName) -> void:
+	to_theme.set_type_variation(theme_type, from_theme.get_type_variation_base(theme_type))
+	for data_type: Theme.DataType in [Theme.DATA_TYPE_COLOR, Theme.DATA_TYPE_STYLEBOX]:
+		for item_name in from_theme.get_theme_item_list(data_type, theme_type):
+			to_theme.set_theme_item(data_type, item_name, theme_type,
+					from_theme.get_theme_item(data_type, item_name, theme_type))
 
 
 func _init() -> void:
@@ -89,9 +98,14 @@ func _init() -> void:
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
 	IVCoreInitializer.program_nodes["ShaderWarmup"] = IVShaderWarmup
 	IVCoreInitializer.program_refcounteds["BodyFinder"] = BodyFinder # the assistant's tool
+	IVCoreInitializer.program_refcounteds["ExternalLinks"] = ExternalLinks # the assistant's tool
 	
 	# other singleton changes
 	IVQFormat.exponent_str = " ×10^"
+	# Popups take the main theme, not the Focus GUI's, so its accent button is added
+	# there before IVThemeManager reads it.
+	var focus_theme: Theme = load(FOCUS_THEME)
+	_copy_theme_type(focus_theme, IVThemeManager.get_main_theme(), &"AccentButton")
 	
 	# static class changes
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
@@ -99,6 +113,7 @@ func _init() -> void:
 	# User settings/options
 	IVSettingsManager.graphics_target = IVSettingsManager.GraphicsTarget.BROAD_HARDWARE
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
+	IVSettingsManager.set_default(&"galileo_show_api_commands", false) # GalileoChatBox
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
 	options_popup.layout = [
 		[&"LABEL_GUI_AND_HUD", &"LABEL_TIME"],
@@ -119,7 +134,10 @@ func _init() -> void:
 	if IVAssistant.has_setup_wizard(): # experimental
 		options_popup.add_section(&"LABEL_AI_GUIDE", 0)
 		options_popup.add_button(&"LABEL_AI_GUIDE", &"BUTTON_SET_UP_GALILEO",
-				IVAssistant.open_setup_wizard, &"HINT_SET_UP_GALILEO")
+				IVAssistant.open_setup_wizard, &"HINT_SET_UP_GALILEO", &"AccentButton", true)
+		options_popup.add_option(&"LABEL_AI_GUIDE", &"LABEL_SHOW_API_COMMANDS",
+				&"galileo_show_api_commands")
+		options_popup.option_tooltips[&"galileo_show_api_commands"] = &"HINT_SHOW_API_COMMANDS"
 
 	# User hotkeys
 	var hotkeys_popup: IVHotkeysPopup = IVGlobal.get_node("/root/Universe/TopUI/HotkeysPopup")
