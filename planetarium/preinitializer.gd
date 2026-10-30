@@ -97,8 +97,9 @@ func _init() -> void:
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
 	IVCoreInitializer.program_nodes["ShaderWarmup"] = IVShaderWarmup
-	IVCoreInitializer.program_refcounteds["BodyFinder"] = BodyFinder # the assistant's tool
-	IVCoreInitializer.program_refcounteds["ExternalLinks"] = ExternalLinks # the assistant's tool
+	if IVAssistant.is_enabled(): # Galileo's tools
+		IVCoreInitializer.program_refcounteds["BodyFinder"] = BodyFinder
+		IVCoreInitializer.program_refcounteds["ExternalLinks"] = ExternalLinks
 	
 	# other singleton changes
 	IVQFormat.exponent_str = " ×10^"
@@ -113,7 +114,6 @@ func _init() -> void:
 	# User settings/options
 	IVSettingsManager.graphics_target = IVSettingsManager.GraphicsTarget.BROAD_HARDWARE
 	IVSettingsManager.set_default(&"terrestrial_time_clock", false)
-	IVSettingsManager.set_default(&"galileo_show_api_commands", false) # GalileoChatBox
 	var options_popup: IVOptionsPopup = IVGlobal.get_node("/root/Universe/TopUI/OptionsPopup")
 	options_popup.layout = [
 		[&"LABEL_GUI_AND_HUD", &"LABEL_TIME"],
@@ -131,13 +131,16 @@ func _init() -> void:
 			&"gui_fade_when_idle", 3)
 	options_popup.option_tooltips[&"gui_fade_while_dragging"] = &"HINT_FADE_GUI_WHILE_DRAGGING"
 	options_popup.option_tooltips[&"gui_fade_when_idle"] = &"HINT_FADE_GUI_WHEN_IDLE"
-	if IVAssistant.has_setup_wizard(): # experimental
-		options_popup.add_section(&"LABEL_AI_GUIDE", 0)
+	# What the Assistant offers the user (experimental). The popup hides the section
+	# where it offers nothing, as when the assistant is the developer's alone.
+	options_popup.add_section(&"LABEL_AI_GUIDE", 0)
+	if IVAssistant.has_setup_wizard():
 		options_popup.add_button(&"LABEL_AI_GUIDE", &"BUTTON_SET_UP_GALILEO",
 				IVAssistant.open_setup_wizard, &"HINT_SET_UP_GALILEO", &"AccentButton", true)
+	if IVSettingsManager.has_setting(IVAssistant.API_COMMANDS_SETTING):
 		options_popup.add_option(&"LABEL_AI_GUIDE", &"LABEL_SHOW_API_COMMANDS",
-				&"galileo_show_api_commands")
-		options_popup.option_tooltips[&"galileo_show_api_commands"] = &"HINT_SHOW_API_COMMANDS"
+				IVAssistant.API_COMMANDS_SETTING)
+		options_popup.option_tooltips[IVAssistant.API_COMMANDS_SETTING] = &"HINT_SHOW_API_COMMANDS"
 
 	# User hotkeys
 	var hotkeys_popup: IVHotkeysPopup = IVGlobal.get_node("/root/Universe/TopUI/HotkeysPopup")
@@ -148,6 +151,8 @@ func _init() -> void:
 	]
 	var gui_hotkeys: Array = hotkeys_popup.section_content[&"LABEL_GUI"]
 	for action in PANEL_ACTIONS:
+		if action == &"toggle_galileo_panel" and !IVAssistant.is_enabled():
+			continue
 		var action_data := PANEL_ACTIONS[action]
 		var keycode: Key = action_data[0]
 		var label: StringName = action_data[1]

@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://kq1pd1emfko5" path="res://planetarium/gui/icons/control_panel.svg" id="41_icon_control_panel"]
 [ext_resource type="Texture2D" uid="uid://627ef5dpinie" path="res://planetarium/gui/icons/galileo.svg" id="44_icon_galileo"]
 [ext_resource type="Script" uid="uid://d3r15gb1o0ukh" path="res://planetarium/gui/galileo_button.gd" id="45_galileo_button"]
-[ext_resource type="Script" path="res://planetarium/gui/galileo_chat_box.gd" id="46_chat_box"]
+[ext_resource type="Script" uid="uid://ctn4xa7gb04s2" path="res://addons/ivoyager_assistant/assistant/chat_box.gd" id="46_chat_box"]
 
 [node name="FocusGUI" type="Container" unique_id=1362937073 node_paths=PackedStringArray("cullable_children")]
 anchors_preset = 15
