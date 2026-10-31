@@ -41,6 +41,7 @@ IVCoreInitializer="*uid://chh7oxyc16wm0"
 IVSettingsManager="*uid://b8tkwtacbefl6"
 IVStateManager="*uid://dfigrpveqtlg2"
 IVAssistantServer="*uid://cf38hsxudekl"
+IVAssistant="*uid://824qc35dy0d0"
 
 [debug]
 
@@ -68,7 +69,6 @@ import/blender/enabled=false
 [gui]
 
 theme/custom="uid://c1ce75roeyk17"
-theme/custom_font="uid://btl3ian81yhn4"
 
 [importer_defaults]
 

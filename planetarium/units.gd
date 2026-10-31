@@ -113,7 +113,7 @@ const GRAVITATIONAL_CONSTANT := 6.67430e-11 * METER ** 3 / (KG * SECOND ** 2)
 
 ## Unit constants an automation client may read to convert to and from the
 ## simulator's internal units: a length in meters is [code]length / METER[/code].
-const AUTOMATION_PROPERTIES: Array[StringName] = [
+const AUTOMATION_USER_PROPERTIES: Array[StringName] = [
 	&"SECOND",
 	&"METER",
 	&"KG",

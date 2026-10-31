@@ -25,6 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://b3qeqhq687nq7" path="res://planetarium/gui/icons/full_screen_exit.svg" id="35_icon_full_screen_exit"]
 [ext_resource type="PackedScene" uid="uid://2cm0wjal4n30" path="res://planetarium/gui/control_panel.tscn" id="40_control_panel"]
 [ext_resource type="Texture2D" uid="uid://kq1pd1emfko5" path="res://planetarium/gui/icons/control_panel.svg" id="41_icon_control_panel"]
+[ext_resource type="Texture2D" uid="uid://627ef5dpinie" path="res://planetarium/gui/icons/galileo.svg" id="44_icon_galileo"]
+[ext_resource type="Script" uid="uid://d3r15gb1o0ukh" path="res://planetarium/gui/galileo_button.gd" id="45_galileo_button"]
+[ext_resource type="Script" uid="uid://ctn4xa7gb04s2" path="res://addons/ivoyager_assistant/assistant/chat_box.gd" id="46_chat_box"]
 
 [node name="FocusGUI" type="Container" unique_id=1362937073 node_paths=PackedStringArray("cullable_children")]
 anchors_preset = 15
@@ -37,7 +40,7 @@ theme = ExtResource("2_theme")
 script = ExtResource("1_edge")
 base_margin = 12.0
 base_separation = 10.0
-cullable_children = [NodePath("NavPanel"), NodePath("InfoPanel"), NodePath("HUDsPanel"), NodePath("DetailsPanel")]
+cullable_children = [NodePath("NavPanel"), NodePath("InfoPanel"), NodePath("HUDsPanel"), NodePath("DetailsPanel"), NodePath("GalileoPanel")]
 
 [node name="ControlPanel" parent="." unique_id=1963999697 instance=ExtResource("40_control_panel")]
 layout_mode = 2
@@ -92,6 +95,24 @@ panel = NodePath("../../NavPanel")
 input_action = &"toggle_navigation_panel"
 
 [node name="ControlModResizable" parent="ButtonBar/NavigationButton" unique_id=1025554096 instance=ExtResource("30_resizable")]
+base_size = Vector2(44, 44)
+
+[node name="GalileoButton" type="Button" parent="ButtonBar" node_paths=PackedStringArray("panel", "chat_box")]
+layout_mode = 2
+tooltip_text = "HINT_GALILEO_PANEL"
+focus_mode = 0
+theme_type_variation = &"RoundButton"
+toggle_mode = true
+icon = ExtResource("44_icon_galileo")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("45_galileo_button")
+panel = NodePath("../../GalileoPanel")
+input_action = &"toggle_galileo_panel"
+close_panel_when_hidden = true
+chat_box = NodePath("../../GalileoPanel/MarginContainer/ChatBox")
+
+[node name="ControlModResizable" parent="ButtonBar/GalileoButton" instance=ExtResource("30_resizable")]
 base_size = Vector2(44, 44)
 
 [node name="HUDsButton" type="Button" parent="ButtonBar" unique_id=1992151054 node_paths=PackedStringArray("panel")]
@@ -212,5 +233,29 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="GalileoPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_type_variation = &"FloatingPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="GalileoPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="ChatBox" type="VBoxContainer" parent="GalileoPanel/MarginContainer"]
+layout_mode = 2
+script = ExtResource("46_chat_box")
+offer_dismiss = true
+setup_note = "TXT_GALILEO_SETUP_NOTE"
+setup_button_type_variation = &"AccentButton"
+
+[node name="ControlModSpacing" parent="GalileoPanel/MarginContainer" instance=ExtResource("31_spacing")]
 
 [editable path="ControlPanel"]

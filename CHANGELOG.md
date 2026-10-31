@@ -11,10 +11,13 @@ See cloning and downloading instructions [here](https://www.ivoyager.dev/develop
 
 Under development using Godot 4.7.2.
 
+### Added
+* The Assistant plugin's user assistant is enabled and named Galileo (`[assistant]` in `ivoyager_override.cfg`), with its autoload `IVAssistant` in project.godot. The user connects it to a model in the Assistant's setup wizard, opened from an experimental button in Options or from the panel at the bottom center where they talk with it (`planetarium/gui/galileo_button.gd`, key 6), whose button (after Navigation's) is there to offer setup until they connect or decline it; Options' "AI Guide" section, hidden where the assistant offers the user nothing, also holds the Assistant's "Show API Commands". Its instructions are `planetarium/galileo_instructions.txt`; its `compact` tool set for a small model includes new `BodyFinder`, which finds a body's key from the user's words, and new `ExternalLinks`, which opens the Info panel's pages, and its `full` set for a large model adds the generic tools.
+
 ### Changed
 * The Planetarium's translation is listed in project.godot rather than added by the preinitializer, and the Units plugin's is no longer listed there (Core adds it now).
-* `planetarium/assistant_context.txt` tells Assistant clients how to work through the members Core's classes declare (`describe`, `get`, `call`, batches and widgets): framing a body by view, hiding the GUI and 3D HUDs for a screenshot, reusing the maintainer's saved views, and setting user settings and HUDs by class.
-* `planetarium/units.gd` declares the unit constants an automation client converts by.
+* `planetarium/assistant_context.txt` tells Assistant clients how to work through the members Core's classes declare (`describe`, `get`, `call`, batches and widgets): framing a body by view, hiding the GUI and 3D HUDs for a screenshot, reusing the maintainer's saved views, and setting user settings and HUDs by class. It is the test client's alone, under `[assistant_server]` in `ivoyager_override.cfg`.
+* `planetarium/units.gd` declares the unit constants an automation client, the user's assistant included, converts by.
 * [API breaking] The Assistant probe suites are program objects that declare their members, `ExposureProbe` and `DialogRigProbe` (`planetarium/`, added in `ivoyager_override2.cfg`), now that the Assistant has no suites; `ExposureProbe` drops `list_saved_views` and `apply_saved_view`, which `ViewManager.cached_views` and `set_view` replace. A driver keeps each method's name and arguments and sends them through the Assistant's `call`, addressing the probe by its role.
 * [Dev ongoing] Updating plugin ivoyager_core with v0.2.3.dev.
 * [Dev ongoing] Updating plugin ivoyager_units with v0.2.3.dev.
@@ -23,6 +26,7 @@ Under development using Godot 4.7.2.
 
 ### Fixed
 * The boot screen and the Info panel's links had English text that no translation could reach; they use new text keys in `planetarium_text.csv`.
+* The Planetarium runs without ivoyager_assets: project.godot no longer names the assets' font as `gui/theme/custom_font`, which Godot loads before any script and errored without it (Core's IVThemeManager loads the same font).
 
 
 ## [v0.2.2] - 2026-10-15

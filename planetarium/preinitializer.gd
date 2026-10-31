@@ -41,9 +41,19 @@ const PANEL_ACTIONS: Dictionary[StringName, Array] = {
 	&"toggle_huds_panel" : [KEY_3, &"LABEL_SHOW_HIDE_HUDS_PANEL"],
 	&"toggle_info_panel" : [KEY_4, &"LABEL_SHOW_HIDE_INFO_PANEL"],
 	&"toggle_selection_details" : [KEY_5, &"LABEL_SHOW_HIDE_SELECTION_DETAILS"],
+	&"toggle_galileo_panel" : [KEY_6, &"LABEL_SHOW_HIDE_GALILEO"],
 }
+const FOCUS_THEME := "res://planetarium/gui/focus_theme.tres"
 #const VERBOSE_GLOBAL_SIGNALS := false
 #const VERBOSE_STATEMANAGER_SIGNALS := false
+
+
+static func _copy_theme_type(from_theme: Theme, to_theme: Theme, theme_type: StringName) -> void:
+	to_theme.set_type_variation(theme_type, from_theme.get_type_variation_base(theme_type))
+	for data_type: Theme.DataType in [Theme.DATA_TYPE_COLOR, Theme.DATA_TYPE_STYLEBOX]:
+		for item_name in from_theme.get_theme_item_list(data_type, theme_type):
+			to_theme.set_theme_item(data_type, item_name, theme_type,
+					from_theme.get_theme_item(data_type, item_name, theme_type))
 
 
 func _init() -> void:
@@ -87,9 +97,16 @@ func _init() -> void:
 	IVCoreInitializer.program_refcounteds["WikiManager"] = IVWikiManager
 	IVCoreInitializer.program_nodes["ViewCacher"] = ViewCacher
 	IVCoreInitializer.program_nodes["ShaderWarmup"] = IVShaderWarmup
+	if IVAssistant.is_enabled(): # Galileo's tools
+		IVCoreInitializer.program_refcounteds["BodyFinder"] = BodyFinder
+		IVCoreInitializer.program_refcounteds["ExternalLinks"] = ExternalLinks
 	
 	# other singleton changes
 	IVQFormat.exponent_str = " ×10^"
+	# Popups take the main theme, not the Focus GUI's, so its accent button is added
+	# there before IVThemeManager reads it.
+	var focus_theme: Theme = load(FOCUS_THEME)
+	_copy_theme_type(focus_theme, IVThemeManager.get_main_theme(), &"AccentButton")
 	
 	# static class changes
 	IVTableInitializer.wiki_page_title_fields.append(&"en.wikipedia")
@@ -114,6 +131,16 @@ func _init() -> void:
 			&"gui_fade_when_idle", 3)
 	options_popup.option_tooltips[&"gui_fade_while_dragging"] = &"HINT_FADE_GUI_WHILE_DRAGGING"
 	options_popup.option_tooltips[&"gui_fade_when_idle"] = &"HINT_FADE_GUI_WHEN_IDLE"
+	# What the Assistant offers the user (experimental). The popup hides the section
+	# where it offers nothing, as when the assistant is the developer's alone.
+	options_popup.add_section(&"LABEL_AI_GUIDE", 0)
+	if IVAssistant.has_setup_wizard():
+		options_popup.add_button(&"LABEL_AI_GUIDE", &"BUTTON_SET_UP_GALILEO",
+				IVAssistant.open_setup_wizard, &"HINT_SET_UP_GALILEO", &"AccentButton", true)
+	if IVSettingsManager.has_setting(IVAssistant.API_COMMANDS_SETTING):
+		options_popup.add_option(&"LABEL_AI_GUIDE", &"LABEL_SHOW_API_COMMANDS",
+				IVAssistant.API_COMMANDS_SETTING)
+		options_popup.option_tooltips[IVAssistant.API_COMMANDS_SETTING] = &"HINT_SHOW_API_COMMANDS"
 
 	# User hotkeys
 	var hotkeys_popup: IVHotkeysPopup = IVGlobal.get_node("/root/Universe/TopUI/HotkeysPopup")
@@ -124,6 +151,8 @@ func _init() -> void:
 	]
 	var gui_hotkeys: Array = hotkeys_popup.section_content[&"LABEL_GUI"]
 	for action in PANEL_ACTIONS:
+		if action == &"toggle_galileo_panel" and !IVAssistant.is_enabled():
+			continue
 		var action_data := PANEL_ACTIONS[action]
 		var keycode: Key = action_data[0]
 		var label: StringName = action_data[1]
@@ -179,8 +208,9 @@ func _on_core_init_program_objects_instantiated() -> void:
 	table_orbit_builder.use_real_planet_orbits = true
 	var wiki_manager: IVWikiManager = IVGlobal.program[&"WikiManager"]
 	wiki_manager.open_external_page = true
-	var shader_warmup: IVShaderWarmup = IVGlobal.program[&"ShaderWarmup"]
-	shader_warmup.extra_shader_names.append(&"stars_shader") # IVStarsVisual is ours to declare
+	var shader_warmup: IVShaderWarmup = IVGlobal.program.get(&"ShaderWarmup") # none if headless
+	if shader_warmup:
+		shader_warmup.extra_shader_names.append(&"stars_shader") # IVStarsVisual is ours to declare
 	
 	if OS.has_feature("web"):
 		var view_cacher: ViewCacher = IVGlobal.program.ViewCacher

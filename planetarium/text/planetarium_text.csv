@@ -1,18 +1,26 @@
 id,en
 BUTTON_DETAILS,Details
+BUTTON_SET_UP_GALILEO,Set Up Galileo (Experimental)...
 HINT_CONTROL_PANEL,Controls
 HINT_EXIT_FULL_SCREEN,Exit Full Screen
+HINT_GALILEO_PANEL,"Galileo, your AI guide"
 HINT_HUDS_PANEL,HUDs
 HINT_INFO_PANEL,Info
 HINT_NAVIGATION_PANEL,Navigation
 HINT_SELECTION_DETAILS,Details of the selected body
+HINT_SET_UP_GALILEO,"Galileo is an AI guide that answers your questions and operates the Planetarium for you. Connect it to an AI model of your choice: one on this computer, or an online service with your own key."
+HINT_SHOW_API_COMMANDS,"Show the commands Galileo sends to the Planetarium, in gray, in its chat panel."
+LABEL_AI_GUIDE,AI Guide
+LABEL_SHOW_API_COMMANDS,Show API Commands
 LABEL_SHOW_HIDE_CONTROL_PANEL,Show/Hide Control Panel
+LABEL_SHOW_HIDE_GALILEO,Show/Hide Galileo
 LABEL_SHOW_HIDE_HUDS_PANEL,Show/Hide HUDs Panel
 LABEL_SHOW_HIDE_INFO_PANEL,Show/Hide Info Panel
 LABEL_SHOW_HIDE_NAVIGATION_PANEL,Show/Hide Navigation Panel
 LABEL_SHOW_HIDE_SELECTION_DETAILS,Show/Hide Selection Details
 TXT_BUILDING_SOLAR_SYSTEM,Building the Solar System...
 TXT_COMPILING_SHADERS_CONSTRUCTOR,Compiling shaders (%d of %d)...
+TXT_GALILEO_SETUP_NOTE,"Galileo is an experimental AI guide that answers your questions and operates the Planetarium for you. You can also set it up later in Options."
 TXT_LINK_ASSETS,[url=https://github.com/ivoyager/planetarium/blob/master/IVOYAGER_ASSETS.md]Assets[/url]
 TXT_LINK_CREDITS,[url=https://github.com/ivoyager/planetarium/blob/master/CREDITS.md]Credits[/url]
 TXT_LINK_FEEDBACK,[url=https://github.com/orgs/ivoyager/discussions]Feedback[/url]
