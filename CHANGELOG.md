@@ -26,6 +26,7 @@ Under development using Godot 4.7.2.
 
 ### Fixed
 * The boot screen and the Info panel's links had English text that no translation could reach; they use new text keys in `planetarium_text.csv`.
+* The Planetarium runs without ivoyager_assets: project.godot no longer names the assets' font as `gui/theme/custom_font`, which Godot loads before any script and errored without it (Core's IVThemeManager loads the same font).
 
 
 ## [v0.2.2] - 2026-10-15
